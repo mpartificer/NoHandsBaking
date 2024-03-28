@@ -16,7 +16,7 @@ function toggle(htmlID) {
 }
 
 async function retrieveWebString(){
-    const linkToRecipe = await document.getElementById('webpage');
+    const linkToRecipe = document.getElementById('webpage');
     finalLink = linkToRecipe.value;
     return finalLink;
 };
@@ -27,12 +27,12 @@ buttonLink.addEventListener('click', async () => {
   // console.log("myLink", myLink)
 
   //Backend
-  const linkToRecipe = await retrieveWebString;
-  
+  const linkToRecipe = await retrieveWebString();
+  recipeTitle.setAttribute('class', 'recipeTitleVisible');
   
   
   //Frontend
-  toggle(recipeTitle);
+  // toggle(recipeTitle);
 
   //window.location = linkToRecipe;
   // myLink.setAttribute('href', linkToRecipe.value)
