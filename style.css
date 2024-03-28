@@ -1,4 +1,12 @@
+header {
+  top: 10%;
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+}
+
 body {
+    font-family: Georgia;
     background-color: rgb(255, 182, 193);
     position: absolute;
     top: 50%;
@@ -9,4 +17,34 @@ body {
 
   .my-blue-thing {
     background-color:rgb(0, 0, 255);
+  }
+
+  .open-recipe-header {
+    white-space: nowrap;
+    display: show;
+    width:100%;
+    top: 0%;
+    font-family: Georgia;
+    position: absolute;
+    border-bottom: 5px solid black;
+    overflow: hidden;
+    left: 10%;
+    animation: animate 2s linear forwards;
+  }
+
+  @keyframes animate {
+    0% {
+      width: 0px;
+      height: 0px;
+    }
+
+    30% {
+      width: 100px;
+      height: 0px;
+    }
+
+    60% {
+      width: 200px;
+      height: 18px;
+    }
   }
