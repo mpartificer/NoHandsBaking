@@ -15,6 +15,9 @@ body {
     ;
   }
 
+  .hideTheOpener {
+    visibility: hidden;
+  }
   .my-blue-thing {
     background-color:rgb(0, 0, 255);
   }

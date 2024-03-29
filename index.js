@@ -4,6 +4,7 @@ const button = document.getElementById('test');
 const recipeTitle = document.getElementById('recipeTitle');
 const miseEnPlaceSet = document.getElementById('lockedAndLoadedButton');
 const miseEnPlaceText = document.getElementById('miseEnPlace');
+const recipeSelector = document.getElementById('recipeSelector');
 
 button.addEventListener('click', () => button.setAttribute('class', 'my-blue-thing'))
 
@@ -31,8 +32,8 @@ buttonLink.addEventListener('click', async () => {
   //Backend
   const linkToRecipe = await retrieveWebString();
   recipeTitle.setAttribute('class', 'recipeTitleVisible');
-  miseEnPlace.SetAttribute('class', 'miseEnPlaceVisible');
-  
+  miseEnPlaceText.setAttribute('class', 'miseEnPlaceVisible');
+  recipeSelector.setAttribute('class', 'hideTheOpener');
   
   //Frontend
   // toggle(recipeTitle);
