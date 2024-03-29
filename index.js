@@ -2,6 +2,8 @@ console.log("Hello!")
 
 const button = document.getElementById('test');
 const recipeTitle = document.getElementById('recipeTitle');
+const miseEnPlaceSet = document.getElementById('lockedAndLoadedButton');
+const miseEnPlaceText = document.getElementById('miseEnPlace');
 
 button.addEventListener('click', () => button.setAttribute('class', 'my-blue-thing'))
 
@@ -29,6 +31,7 @@ buttonLink.addEventListener('click', async () => {
   //Backend
   const linkToRecipe = await retrieveWebString();
   recipeTitle.setAttribute('class', 'recipeTitleVisible');
+  miseEnPlace.SetAttribute('class', 'miseEnPlaceVisible');
   
   
   //Frontend
@@ -40,4 +43,8 @@ buttonLink.addEventListener('click', async () => {
   fetch('https://api.codetabs.com/v1/proxy?quest=https://www.allrecipes.com/recipe/261983/tourtiere-french-canadian-meat-pie/').then((response) => response.text()).then((text) => console.log(text));
 
   
+})
+
+buttonLink.addEventListener('click', () => {
+  miseEnPlace.SetAttribute('class', 'miseEnPlace')
 })
