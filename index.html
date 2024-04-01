@@ -7,6 +7,7 @@
 
     <div id="header"><h1><div id="recipeTitle" class="recipeTitle">Placeholder for Entered Recipe</div></h1></div>
     <p></p>
+
     <body>
         <div id="recipeSelector">
             
@@ -25,11 +26,17 @@
             <button id="lockedAndLoadedButton">Go To Instructions</button>
         </div>
 
-        <div id = "instructions" class="instructions">1. Cream butter and sugar together.<br>
-            2. Add in flour.<br>
-            3. Probably add in a liquid or something, it's giving very dry right now.<br>
-            4. Bake?<br>
-            5. Enjoy!<br>
+        
+
+        <div id = "instructions" class="instructions">
+            <ul class="instructionsVisible__container__list">
+                <li class="instructionsVisible__container__list__item">1. Cream butter and sugar together.</li>
+                <li class="instructionsVisible__container__list__item">2. Add in flour.</li>
+                <li class="instructionsVisible__container__list__item">3. Probably add a liquid or something, it's giving very dry right now.</li>
+                <li class="instructionsVisible__container__list__item">4. Bake?</li>
+                <li class="instructionsVisible__container__list__item">5. Enjoy!</li>
+              </ul>
+
             <button id="previousStep">Previous</button>
             <button id="repeatStep">Repeat</button>
             <button id="nextStep">Next</button>
@@ -37,5 +44,5 @@
 
         <script src="index.js"></script>
     </body>
-
+<div class="footer">No Hands Baking</div>
 </html>
