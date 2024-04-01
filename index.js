@@ -1,6 +1,3 @@
-console.log("Hello!")
-
-const button = document.getElementById('test');
 const buttonLink = document.getElementById('letsGoButton');
 const recipeTitle = document.getElementById('recipeTitle');
 const miseEnPlaceSet = document.getElementById('lockedAndLoadedButton');

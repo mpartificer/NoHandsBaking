@@ -1,5 +1,5 @@
 header {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 50%;
   margin: 0px;
@@ -13,22 +13,33 @@ footer {
   left: 0;
   z-index: 10;
    */
+   position: fixed;
+   bottom: 0;
+   margin: 0px;
+   padding: 0px;
    margin-top: auto;
 }
 
 body {
     font-family: 'Futura';
     background-color: rgb(255, 182, 193);
-    position: absolute;
+    width:100%;
+    height:100%;
+    /* position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
-    flex-direction: column;
+    flex-direction: column; */
+  }
+
+  .opener {
+    visibility: visible;
   }
 
   .hideTheOpener {
     visibility: hidden;
+    display: block;
   }
 
   .miseEnPlace {
@@ -36,10 +47,14 @@ body {
     display: block;
     visibility: hidden;
     width:100%;
-    top: 0%;
     /* position: absolute; */
     overflow: hidden;
-    left: 10%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
   }
 
   .miseEnPlaceVisible {
@@ -48,13 +63,12 @@ body {
 
   .recipeTitle {
     white-space: nowrap;
-    display: block;
+    display: inline;
     visibility: hidden;
     width:100%;
     top: 100%;
-    position: absolute;
+    position: fixed;
     overflow: hidden;
-    top: 0%;
     left: 50%;
   }
 
@@ -67,7 +81,12 @@ body {
   .instructions {
     visibility: hidden;
     overflow: hidden;
-    /* position: fixed; */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
   }
 
   .instructionsVisible {
