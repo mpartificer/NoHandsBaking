@@ -25,9 +25,6 @@ body {
   .hideTheOpener {
     visibility: hidden;
   }
-  .my-blue-thing {
-    background-color:rgb(0, 0, 255);
-  }
 
   .miseEnPlace {
     white-space: nowrap;
@@ -69,8 +66,9 @@ body {
 
   .instructionsVisible {
     visibility: visible;
+    
 
-    &__container {
+    &--container {
       list-style: none;
       font-weight: 600;
       overflow: hidden;
@@ -78,7 +76,7 @@ body {
       padding: 0 40px;
 
 
-    &__list {
+    &--list {
       margin-top: 0;
       padding-left: 110px;
       text-align: left;
@@ -91,7 +89,7 @@ body {
       animation-duration: 10s;
       animation-iteration-count: infinite;
 
-      &__item {
+      &--item {
         line-height:40px;
         margin:0;
       }

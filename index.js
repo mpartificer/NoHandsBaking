@@ -8,8 +8,6 @@ const miseEnPlaceText = document.getElementById('miseEnPlace');
 const recipeSelector = document.getElementById('recipeSelector');
 const instructions = document.getElementById('instructions');
 
-button.addEventListener('click', () => button.setAttribute('class', 'my-blue-thing'))
-
 buttonLink.addEventListener('click', async () => {
 
   recipeTitle.setAttribute('class', 'recipeTitleVisible');
