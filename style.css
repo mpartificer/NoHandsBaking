@@ -1,4 +1,5 @@
 header {
+  position: absolute;
   top: 0;
   left: 50%;
   margin: 0px;
@@ -7,19 +8,23 @@ header {
 }
 
 footer {
-  position: absolute;
+  /* position: absolute;
   bottom: 0;
   left: 0;
   z-index: 10;
+   */
+   margin-top: auto;
 }
 
 body {
-    font-family: Georgia;
+    font-family: 'Futura';
     background-color: rgb(255, 182, 193);
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
   }
 
   .hideTheOpener {
@@ -47,9 +52,10 @@ body {
     visibility: hidden;
     width:100%;
     top: 100%;
-    position: fixed;
+    position: absolute;
     overflow: hidden;
-    left: 10%;
+    top: 0%;
+    left: 50%;
   }
 
   .recipeTitleVisible {
