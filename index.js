@@ -24,7 +24,7 @@ async function retrieveRecipes() {
   console.log(recipesObj);
   console.log(recipesObj.results)
 
-  return recipesObj;
+  return recipesObj.results;
 }
 
 function listView() {
@@ -66,17 +66,19 @@ async function letsBake(recipeID) {
   console.log(recipesObj);
   console.log(recipesObj.results)
 
-  return recipesObj;
+  return recipesObj
 }
 
 async function recipeWaiter(recipesList) {
   for (i = 0; i < recipesList.length; i++) {
-    document.GetElementById(`Recipe${i+1}`).innerHTML=recipesList[i].title;
+    const title = document.getElementById(`Recipe${i+1}`)
+    const origText = title.textContent;
+    title.textContent = recipesList[i].title;
     const viewButton = document.getElementById(`recipe${i+1}View`)
     const miseButton = document.getElementById(`recipe${i+1}Mise`)
     const grabID = recipesList[i].id;
-    viewButton.value = grabID;
-    miseButton.value = grabID;
+    // viewButton.value = grabID;
+    // miseButton.value = grabID;
   }
 }
 
