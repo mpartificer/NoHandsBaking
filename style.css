@@ -37,6 +37,28 @@ body {
     display: block;
   }
 
+  .column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+  }
+  
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .recipeSelectionScreen {
+    display: block;
+    visibility: hidden;
+    overflow: hidden;
+  }
+
+  .recipeSelectionScreen{
+    visibility: visible;
+  }
+
   .miseEnPlace {
     white-space: nowrap;
     display: block;
