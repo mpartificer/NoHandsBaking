@@ -76,6 +76,7 @@ body {
   }
 
   .recipePreview {
+    top: 10%;
     white-space: nowrap;
     display: block;
     visibility: hidden;
@@ -100,7 +101,7 @@ body {
 
   .recipeSelectionScreenVisible {
     visibility: visible;
-
+    
     top: 10%;
   }
 

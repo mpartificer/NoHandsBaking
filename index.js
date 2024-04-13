@@ -5,6 +5,7 @@ const miseEnPlaceText = document.getElementById('miseEnPlace');
 const recipeSelector = document.getElementById('recipeSelector');
 const instructions = document.getElementById('instructions');
 const recipeSelectionScreen = document.getElementById('recipeSelectionScreen');
+const recipePreview = document.getElementById('recipePreview');
 const imagePreview = document.getElementById('imagePreview');
 const ingredientsPreview = document.getElementById('ingredientsPreview');
 const instructionsPreview = document.getElementById('instructionsPreview');
@@ -57,6 +58,10 @@ async function readMore(recipeID) {
   ingredientsPreview.textContent = recipesObj.extendedIngredients;
   instructionsPreview.textContent = recipesObj.instructions;
 
+  console.log(imagePreview);
+  console.log(ingredientsPreview);
+  console.log(instructionsPreview);
+
   return recipesObj;
 }
 
@@ -71,6 +76,8 @@ async function letsBake(recipeID) {
   const recipesObj = await selectMyRecipe.json();
   console.log(recipesObj);
 
+  mise
+
   return recipesObj
 }
 
@@ -83,17 +90,17 @@ async function recipeWaiter(recipesList) {
     const grabID = recipesList[i].id;
     // viewButton.value = grabID;
     // miseButton.value = grabID;
+    // these buttons require some thinking
   }
 }
 
 buttonLink.addEventListener('click', async () => {
-  // const recipesList = await retrieveRecipes();
-  // await recipeWaiter(recipesList);
-  // recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible');
+  const recipesList = await retrieveRecipes();
+  await recipeWaiter(recipesList);
+  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible');
 
-  await readMore(640386);
-
-  recipePreview.setAttribute('class', 'recipePreviewVisible')
+  // await readMore(640386);
+  // recipePreview.setAttribute('class', 'recipePreviewVisible')
 
   // recipeTitle.setAttribute('class', 'recipeTitleVisible');
   // miseEnPlaceText.setAttribute('class', 'miseEnPlaceVisible');
