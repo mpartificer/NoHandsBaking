@@ -104,6 +104,6 @@ miseEnPlaceSet.addEventListener('click', () => {
 }
 )
 
-aboutUsButton.addEventListener('click', () => {
-  aboutUs.setAttribute('aboutUsVisible');
-})
+// aboutUsButton.addEventListener('click', () => {
+//   aboutUs.setAttribute('aboutUsVisible');
+// })
