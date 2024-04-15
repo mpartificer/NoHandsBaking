@@ -25,6 +25,21 @@
   background-color: #F25278;
 }
 
+.aboutUs { 
+  position: relative;
+  border: none;
+  padding:20px;
+  background-color:#F25278;
+  animation: aboutUsVisible 1s ease; 
+  font-family:'Futura';
+}
+
+.aboutUsButton {
+  background-color: #F25278;
+  border: none;
+  font-family:'Futura';
+}
+
 
 
 body {
@@ -51,17 +66,21 @@ body {
     position: absolute;
   }
 
-  .column {
-    border: 1px solidblack;
-    float: left;
-    width: 50%;
-    padding: 10px;
+  .wrapper{
+    width: 100%;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(5, 20%);
+    grid-template-rows: 50% 50%;
+    grid-auto-flow: column;
   }
-  
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
+
+  .column {
+    background-color: lightgrey;
+    color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 100%;
   }
 
   .columnPreview {
@@ -101,7 +120,7 @@ body {
 
   .recipeSelectionScreenVisible {
     visibility: visible;
-    
+
     top: 10%;
   }
 
@@ -140,6 +159,7 @@ body {
     overflow: hidden;
     position: fixed;
   }
+
 
   .instructionsVisible {
     visibility: visible;
@@ -242,5 +262,14 @@ body {
 @media screen and (max-width: 600px) {
   .columnPreview {
     width: 100%;
+  }
+}
+
+@keyframes aboutUsVisible {
+  from { 
+  button: 0%;
+  }
+  to { 
+  buttom: 50%;
   }
 }

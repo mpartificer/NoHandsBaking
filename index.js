@@ -9,7 +9,9 @@ const recipePreview = document.getElementById('recipePreview');
 const imagePreview = document.getElementById('imagePreview');
 const ingredientsPreview = document.getElementById('ingredientsPreview');
 const instructionsPreview = document.getElementById('instructionsPreview');
+const aboutUsButton = document.getElementById('aboutUsButton');
 const spoonacularKey = "3c5ec8b2939641a99e28c6023598b2d4";
+const aboutUs = document.getElementById('aboutUs')
 var i;
 
 async function retrieveRecipes() {
@@ -29,18 +31,6 @@ async function retrieveRecipes() {
   console.log(recipesObj.results)
 
   return recipesObj.results;
-}
-
-function listView() {
-  for (i = 0; i < 10; i++) {
-    elements[i].style.width = "100%";
-  }
-}
-
-function gridView() {
-  for (i = 0; i < 10; i++) {
-    elements[i].style.width = "50%";
-  }
 }
 
 async function readMore(recipeID) {
@@ -112,3 +102,7 @@ miseEnPlaceSet.addEventListener('click', () => {
   miseEnPlaceText.setAttribute('class', 'miseEnPlace');
 }
 )
+
+aboutUsButton.addEventListener('click', () => {
+  aboutUs.setAttribute('aboutUsVisible');
+})
