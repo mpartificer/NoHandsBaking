@@ -83,6 +83,18 @@ body {
     font-size: 100%;
   }
 
+  .column.title {
+    font-style: h2;
+  }
+  
+  .column.readMoreButton {
+
+  }
+
+  .column.miseButton {
+
+  }
+
   .columnPreview {
     float: left;
     width: 33.33%;
