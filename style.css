@@ -76,19 +76,21 @@ body {
   }
 
   .column {
-    background-color: lightgrey;
-    color: #fff;
+    background-color: rgb(246, 121, 142);
+    color: #000;
     border-radius: 5px;
     padding: 20px;
     font-size: 100%;
   }
   
-  .column.readMoreButton {
-
+  .readMoreButton {
+    border: none;
+    font-family: 'Futura';
+    background-color: rgb(246, 121, 142);
   }
 
-  .column.miseButton {
-
+  .readMoreButton:hover {
+    color: white;
   }
 
   .columnPreview {

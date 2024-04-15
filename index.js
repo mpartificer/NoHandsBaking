@@ -75,13 +75,8 @@ async function recipeWaiter(recipesList) {
   for (i = 0; i < recipesList.length; i++) {
     const recipeObj = document.getElementById(`Recipe${i+1}`)
     recipeObj.textContent = recipesList[i].title;
-    
-    const viewButton = document.getElementById(`Recipe${i+1}View`)
-    const miseButton = document.getElementById(`Recipe${i+1}Mise`)
-    const grabID = recipesList[i].id;
-    // viewButton.value = grabID;
-    // miseButton.value = grabID;
-    // these buttons require some thinking
+    document.getElementById(`recipe${i+1}View`).value = recipesList[i].id;
+    document.getElementById(`recipe${i+1}Mise`).value = recipesList[i].id;
   }
 }
 
