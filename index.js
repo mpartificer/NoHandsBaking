@@ -54,14 +54,17 @@ async function retrieveRecipes() {
   return recipesObj.results;
 }
 
-async function ingredientArray(recipeObj, ingredientLocation) {
+async function ingredientArray(recipeObj) {
 const ingredientsList = recipeObj.extendedIngredients;
-var ingredientHTML = `<ul>`;
+var ingredientHTML = document.createElement("p");
+ingredientHTML.innerHTML = '<ul>';
   for (i = 0; i < ingredientsList; i++) {
-    ingredientHTML += `<li> ${ingredientsList[i].meta.originalname} </li>`;
+    ingredientHTML.innerHTML += `<li> ${ingredientsList[i].original} </li>`;
   }
-ingredientHTML += `</ul>`;
-ingredientLocation.innerHTML(ingredientHTML);
+ingredientHTML.innerHTML += `</ul>`;
+
+
+return ingredientHTML;
 }
 
 async function readMore(recipeID) {
@@ -79,8 +82,10 @@ async function readMore(recipeID) {
   img.src = recipesObj.image;
   imagePreview.appendChild(img);
 
-  ingredientsPreview.textContent = recipesObj.extendedIngredients;
-  instructionsPreview.textContent = recipesObj.instructions;
+  var ingredientHTML = await ingredientArray(recipesObj);
+  ingredientsPreview.appendChild(ingredientHTML);
+
+  instructionsPreview.innerHTML = recipesObj.instructions;
 
   console.log(imagePreview);
   console.log(ingredientsPreview);
@@ -100,7 +105,11 @@ async function letsBake(recipeID) {
   const recipesObj = await selectMyRecipe.json();
   console.log(recipesObj);
 
-  await ingredientArray(recipesObj, ingredients);
+  var ingredientHTML = await ingredientArray(recipesObj);
+
+  console.log(ingredientHTML);
+
+  ingredients.appendChild(ingredientHTML);
 
   return recipesObj
 }
