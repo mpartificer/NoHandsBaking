@@ -10,7 +10,6 @@ const imagePreview = document.getElementById('imagePreview');
 const ingredientsPreview = document.getElementById('ingredientsPreview');
 const instructionsPreview = document.getElementById('instructionsPreview');
 const aboutUsButton = document.getElementById('aboutUsButton');
-const spoonacularKey = "3c5ec8b2939641a99e28c6023598b2d4";
 const aboutUs = document.getElementById('aboutUs')
 const recipe1View = document.getElementById('recipe1View');
 const recipe2View = document.getElementById('recipe2View');
@@ -32,6 +31,8 @@ const recipe7Mise = document.getElementById('recipe7Mise');
 const recipe8Mise = document.getElementById('recipe8Mise');
 const recipe9Mise = document.getElementById('recipe9Mise');
 const recipe10Mise = document.getElementById('recipe10Mise');
+const ingredients = document.getElementById('ingredients');
+const spoonacularKey = "3c5ec8b2939641a99e28c6023598b2d4";
 var i;
 
 async function retrieveRecipes() {
@@ -53,6 +54,16 @@ async function retrieveRecipes() {
   return recipesObj.results;
 }
 
+async function ingredientArray(recipeObj, ingredientLocation) {
+const ingredientsList = recipeObj.extendedIngredients;
+var ingredientHTML = `<ul>`;
+  for (i = 0; i < ingredientsList; i++) {
+    ingredientHTML += `<li> ${ingredientsList[i].meta.originalname} </li>`;
+  }
+ingredientHTML += `</ul>`;
+ingredientLocation.innerHTML(ingredientHTML);
+}
+
 async function readMore(recipeID) {
   const recipeSelect = `https://api.spoonacular.com/recipes/${recipeID}/information?apiKey=${spoonacularKey}`
 
@@ -64,7 +75,10 @@ async function readMore(recipeID) {
   const recipesObj = await selectMyRecipe.json();
   console.log(recipesObj);
 
-  imagePreview.textContent = recipesObj.image;
+  var img = document.createElement("img");
+  img.src = recipesObj.image;
+  imagePreview.appendChild(img);
+
   ingredientsPreview.textContent = recipesObj.extendedIngredients;
   instructionsPreview.textContent = recipesObj.instructions;
 
@@ -86,7 +100,7 @@ async function letsBake(recipeID) {
   const recipesObj = await selectMyRecipe.json();
   console.log(recipesObj);
 
-  mise
+  await ingredientArray(recipesObj, ingredients);
 
   return recipesObj
 }
