@@ -58,12 +58,12 @@ async function ingredientArray(recipeObj) {
 const ingredientsList = recipeObj.extendedIngredients;
 var ingredientHTML = document.createElement("p");
 ingredientHTML.innerHTML = '<ul>';
-  for (i = 0; i < ingredientsList; i++) {
-    ingredientHTML.innerHTML += `<li> ${ingredientsList[i].original} </li>`;
+  for (i = 0; i < ingredientsList.length; i++) {
+    ingredientHTML.innerHTML += '<li>' + ingredientsList[i].original + '</li>';
   }
 ingredientHTML.innerHTML += `</ul>`;
 
-
+console.log(ingredientsList);
 return ingredientHTML;
 }
 
