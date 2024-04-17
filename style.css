@@ -30,8 +30,11 @@
   border: none;
   padding:20px;
   background-color:#F25278;
-  animation: aboutUsVisible 1s ease; 
   font-family:'Futura';
+}
+
+.aboutUsVisible {
+  animation: aboutUsVisible 0.5s ease;
 }
 
 .aboutUsButton {
@@ -284,9 +287,9 @@ body {
 
 @keyframes aboutUsVisible {
   from { 
-  button: 0%;
+  bottom: 0%;
   }
   to { 
-  buttom: 50%;
+  bottom: 50%;
   }
 }

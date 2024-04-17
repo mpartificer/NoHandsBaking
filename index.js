@@ -9,6 +9,7 @@ const recipePreview = document.getElementById('recipePreview');
 const imagePreview = document.getElementById('imagePreview');
 const ingredientsPreview = document.getElementById('ingredientsPreview');
 const instructionsPreview = document.getElementById('instructionsPreview');
+const instructionsText = document.getElementById('instructionsText');
 const aboutUsButton = document.getElementById('aboutUsButton');
 const aboutUs = document.getElementById('aboutUs')
 const recipe1View = document.getElementById('recipe1View');
@@ -64,6 +65,8 @@ ingredientHTML.innerHTML = '<ul>';
 ingredientHTML.innerHTML += `</ul>`;
 
 console.log(ingredientsList);
+
+document.getElementById('lockedAndLoadedButton').value = recipeObj.id;
 return ingredientHTML;
 }
 
@@ -92,6 +95,19 @@ async function readMore(recipeID) {
   console.log(instructionsPreview);
 
   return recipesObj;
+}
+async function instructionLoad(recipeID) {
+  const recipeSelect = `https://api.spoonacular.com/recipes/${recipeID}/information?apiKey=${spoonacularKey}`
+
+  const selectMyRecipe = await fetch(recipeSelect, {
+    headers:
+    {"Content-Type": "application/json"}
+  });
+
+  const recipesObj = await selectMyRecipe.json();
+  console.log(recipesObj);
+
+  instructionsText.innerHTML = recipesObj.instructions;
 }
 
 async function letsBake(recipeID) {
@@ -131,13 +147,14 @@ buttonLink.addEventListener('click', async () => {
   // await recipeWaiter(recipesList);
   // recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible'); 
 
-  await readMore(69095);
-  recipePreview.setAttribute('class', 'recipePreviewVisible');
+  await letsBake(1003464);
+  miseEnPlaceText.setAttribute('class', 'miseEnPlaceVisible');
 
   recipeSelector.setAttribute('class', 'hideTheOpener');
 })
 
-miseEnPlaceSet.addEventListener('click', () => {
+miseEnPlaceSet.addEventListener('click', async () => {
+  await instructionLoad(1003464);
   instructions.setAttribute('class', 'instructionsVisible');
   miseEnPlaceText.setAttribute('class', 'miseEnPlace');
 }
@@ -263,6 +280,6 @@ recipe10Mise.addEventListener('click', async () => {
   miseEnPlaceText.setAttribute('class', 'miseEnPlaceVisible');
 })
 
-// aboutUsButton.addEventListener('click', () => {
-//   aboutUs.setAttribute('aboutUsVisible');
-// })
+aboutUsButton.addEventListener('click', () => {
+  aboutUs.setAttribute('aboutUsVisible');
+})
