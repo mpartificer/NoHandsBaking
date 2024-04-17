@@ -111,6 +111,9 @@ async function letsBake(recipeID) {
 
   ingredients.appendChild(ingredientHTML);
 
+  document.title = recipesObj.title + " | No Hands Baking!";
+  recipeTitle.innerHTML = recipesObj.title;
+
   return recipesObj
 }
 
@@ -124,12 +127,13 @@ async function recipeWaiter(recipesList) {
 }
 
 buttonLink.addEventListener('click', async () => {
-  const recipesList = await retrieveRecipes();
-  await recipeWaiter(recipesList);
-  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible'); 
+  // const recipesList = await retrieveRecipes();
+  // await recipeWaiter(recipesList);
+  // recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible'); 
 
-  // recipeTitle.setAttribute('class', 'recipeTitleVisible');
-  // miseEnPlaceText.setAttribute('class', 'miseEnPlaceVisible');
+  await readMore(69095);
+  recipePreview.setAttribute('class', 'recipePreviewVisible');
+
   recipeSelector.setAttribute('class', 'hideTheOpener');
 })
 

@@ -93,6 +93,12 @@ body {
     color: white;
   }
 
+  .sayMore {
+    visibility: hidden;
+    display: block;
+    position: absolute;
+  }
+
   .columnPreview {
     float: left;
     width: 33.33%;
