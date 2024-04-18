@@ -33,14 +33,17 @@ const recipe8Mise = document.getElementById('recipe8Mise');
 const recipe9Mise = document.getElementById('recipe9Mise');
 const recipe10Mise = document.getElementById('recipe10Mise');
 const ingredients = document.getElementById('ingredients');
+const previousPage = document.getElementById('previousPage');
+const nextPage = document.getElementById('nextPage');
 const spoonacularKey = "3c5ec8b2939641a99e28c6023598b2d4";
+var offset;
 var i;
 
-async function retrieveRecipes() {
+async function retrieveRecipes(offset) {
   const searchValue = webpage.value;
   // template literals
 
-  const recipeSearch = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonacularKey}&query=${searchValue}&instructionsRequired=true`
+  const recipeSearch = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonacularKey}&query=${searchValue}&instructionsRequired=true&offset=${offset}`
   
 
   const findMyRecipe = await fetch(recipeSearch, {
@@ -52,7 +55,7 @@ async function retrieveRecipes() {
   console.log(recipesObj);
   console.log(recipesObj.results)
 
-  return recipesObj.results;
+  return recipesObj;
 }
 
 async function ingredientArray(recipeObj) {
@@ -161,12 +164,32 @@ async function recipeWaiter(recipesList) {
 }
 
 buttonLink.addEventListener('click', async () => {
-  const recipesList = await retrieveRecipes();
+  offset = 0;
+  var pageNumber = 1;
+  const recipesList = await retrieveRecipes(offset);
+  var totalPages = recipesList.totalResults / 10
   // await buildSelectionHTML(recipesList);
-  await recipeWaiter(recipesList);
+  await recipeWaiter(recipesList.results);
+  document.getElementById('selectorPageTracker').innerHTML = `Page ${pageNumber} of ${totalPages}`
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible'); 
 
   recipeSelector.setAttribute('class', 'hideTheOpener');
+})
+
+nextPage.addEventListener('click', async () => {
+  offset += 10
+  const recipesList = await retrieveRecipes(offset);
+  await recipeWaiter(recipesList.results);
+  document.getElementById('selectorPageTracker').innerHTML = 
+  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible'); 
+})
+
+previousPage.addEventListener('click', async () => {
+  offset -= 10;
+  const recipesList = await retrieveRecipes(offset);
+  await recipeWaiter(recipesList.results);
+  document.getElementById('selectorPageTracker').innerHTML = 
+  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible'); 
 })
 
 miseEnPlaceSet.addEventListener('click', async () => {
