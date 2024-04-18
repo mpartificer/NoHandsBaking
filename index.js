@@ -133,6 +133,24 @@ async function letsBake(recipeID) {
   return recipesObj
 }
 
+// async function buildSelectionHTML(recipesList){
+//   var ingredientHTML = document.createElement("p");
+
+//   ingredientHTML.innerHTML = '<div class="wrapper">';
+//     for (i = 0; i < recipesList.length; i++) {
+//       ingredientHTML.innerHTML += '<div class="column" value="">'
+//       ingredientHTML.innerHTML += `<div id="Recipe${i+1}">Recipe 1</div>`
+//       ingredientHTML.innerHTML += '<p></p>'
+//       ingredientHTML.innerHTML += `<button id="recipe${i+1}View" class="readMoreButton" value="">Read more</button>`
+//       ingredientHTML.innerHTML += `<button id="recipe${i+1}Mise" class="readMoreButton" value="">Let\'s Bake!</button>`
+//       ingredientHTML.innerHTML += '</div>';
+//     }
+
+//   ingredientHTML.innerHTML += `</div>`;
+
+//   recipeSelectionScreen.appendChild(ingredientHTML);
+// }
+
 async function recipeWaiter(recipesList) {
   for (i = 0; i < recipesList.length; i++) {
     const recipeObj = document.getElementById(`Recipe${i+1}`)
@@ -143,12 +161,10 @@ async function recipeWaiter(recipesList) {
 }
 
 buttonLink.addEventListener('click', async () => {
-  // const recipesList = await retrieveRecipes();
-  // await recipeWaiter(recipesList);
-  // recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible'); 
-
-  await letsBake(1003464);
-  miseEnPlaceText.setAttribute('class', 'miseEnPlaceVisible');
+  const recipesList = await retrieveRecipes();
+  // await buildSelectionHTML(recipesList);
+  await recipeWaiter(recipesList);
+  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible'); 
 
   recipeSelector.setAttribute('class', 'hideTheOpener');
 })
