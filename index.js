@@ -1,3 +1,4 @@
+const footer = document.getElementById('footer');
 const buttonLink = document.getElementById('letsGoButton');
 const recipeTitle = document.getElementById('recipeTitle');
 const miseEnPlaceSet = document.getElementById('lockedAndLoadedButton');
@@ -320,5 +321,5 @@ recipe10Mise.addEventListener('click', async () => {
 })
 
 aboutUsButton.addEventListener('click', () => {
-  aboutUs.setAttribute('aboutUsVisible');
+  footer.classList.add('class', 'aboutUsVisible');
 })

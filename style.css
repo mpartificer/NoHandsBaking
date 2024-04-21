@@ -16,7 +16,6 @@
 
 .footer {
   position: absolute;
-  margin-bottom: 0.5%;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -34,7 +33,9 @@
 }
 
 .aboutUsVisible {
-  animation: aboutUsVisible 0.5s ease;
+  animation: aboutUsVisible 10s ease;
+  /* bottom: 50 px; */
+  text-align: center;
 }
 
 .aboutUsButton {
@@ -53,6 +54,7 @@ body {
     position: absolute;
     top: 50%;
     left: 50%;
+    margin: 0px;
     transform: translate(-50%, -50%);
     min-height: 100vh;
     display: flex;
@@ -97,7 +99,7 @@ body {
   }
 
   .sayMore {
-    visibility: hidden;
+    visibility: visible;
     display: block;
     position: absolute;
   }
@@ -286,10 +288,10 @@ body {
 }
 
 @keyframes aboutUsVisible {
-  from { 
-  bottom: 0%;
+  0% { 
+  height: 0%;
   }
-  to { 
-  bottom: 50%;
+  100% { 
+  height: 33%;
   }
 }
