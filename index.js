@@ -36,9 +36,14 @@ const recipe10Mise = document.getElementById('recipe10Mise');
 const ingredients = document.getElementById('ingredients');
 const previousPage = document.getElementById('previousPage');
 const nextPage = document.getElementById('nextPage');
+const selectButton = document.getElementById('selectButton');
 const spoonacularKey = "3c5ec8b2939641a99e28c6023598b2d4";
+var recipeList;
 var offset;
+var pageNumber;
+var totalPages;
 var i;
+var storedrecipe;
 
 async function retrieveRecipes(offset) {
   const searchValue = webpage.value;
@@ -52,44 +57,44 @@ async function retrieveRecipes(offset) {
       {"Content-Type": "application/json"
   }});
   
-  const recipesObj = await findMyRecipe.json();
-  console.log(recipesObj);
-  console.log(recipesObj.results)
+  recipeList = await findMyRecipe.json();
+  console.log(recipeList);
+  console.log(recipeList.results)
 
-  return recipesObj;
+  return recipeList;
 }
 
 async function ingredientArray(recipeObj) {
-const ingredientsList = recipeObj.extendedIngredients;
-var ingredientHTML = document.createElement("p");
-ingredientHTML.innerHTML = '<ul>';
-  for (i = 0; i < ingredientsList.length; i++) {
-    ingredientHTML.innerHTML += '<li>' + ingredientsList[i].original + '</li>';
-  }
-ingredientHTML.innerHTML += `</ul>`;
+  const ingredientsList = recipeObj.extendedIngredients;
+  var ingredientHTML = document.createElement("p");
+  ingredientHTML.innerHTML = '<ul>';
+    for (i = 0; i < ingredientsList.length; i++) {
+      ingredientHTML.innerHTML += '<li>' + ingredientsList[i].original + '</li>';
+    }
+  ingredientHTML.innerHTML += `</ul>`;
 
-console.log(ingredientsList);
+  console.log(ingredientsList);
 
-document.getElementById('lockedAndLoadedButton').value = recipeObj.id;
-return ingredientHTML;
+  document.getElementById('lockedAndLoadedButton').value = recipeObj.id;
+  return ingredientHTML;
 }
 
 async function readMore(recipeID) {
-  const recipeSelect = `https://api.spoonacular.com/recipes/${recipeID}/information?apiKey=${spoonacularKey}`
+  var recipeSelect = `https://api.spoonacular.com/recipes/${recipeID}/information?apiKey=${spoonacularKey}`
 
   const selectMyRecipe = await fetch(recipeSelect, {
     headers: 
       {"Content-Type": "application/json"
   }});
 
-  const recipesObj = await selectMyRecipe.json();
-  console.log(recipesObj);
+  storedRecipe = await selectMyRecipe.json();
+  console.log(storedRecipe);
 
   var img = document.createElement("img");
-  img.src = recipesObj.image;
+  img.src = storedRecipe.image;
   imagePreview.appendChild(img);
 
-  var ingredientHTML = await ingredientArray(recipesObj);
+  var ingredientHTML = await ingredientArray(storedRecipe);
   ingredientsPreview.appendChild(ingredientHTML);
 
   instructionsPreview.innerHTML = recipesObj.instructions;
@@ -100,18 +105,18 @@ async function readMore(recipeID) {
 
   return recipesObj;
 }
-async function instructionLoad(recipeID) {
-  const recipeSelect = `https://api.spoonacular.com/recipes/${recipeID}/information?apiKey=${spoonacularKey}`
+async function instructionLoad(storedRecipe) {
+  // const recipeSelect = `https://api.spoonacular.com/recipes/${storedRecipeId}/information?apiKey=${spoonacularKey}`
 
-  const selectMyRecipe = await fetch(recipeSelect, {
-    headers:
-    {"Content-Type": "application/json"}
-  });
+  // const selectMyRecipe = await fetch(recipeSelect, {
+  //   headers:
+  //   {"Content-Type": "application/json"}
+  // });
 
-  const recipesObj = await selectMyRecipe.json();
-  console.log(recipesObj);
+  // const recipesObj = await selectMyRecipe.json();
+  // console.log(recipesObj);
 
-  instructionsText.innerHTML = recipesObj.instructions;
+  instructionsText.innerHTML = storedRecipe.instructions;
 }
 
 async function letsBake(recipeID) {
@@ -166,11 +171,14 @@ async function recipeWaiter(recipesList) {
 
 buttonLink.addEventListener('click', async () => {
   offset = 0;
-  var pageNumber = 1;
-  const recipesList = await retrieveRecipes(offset);
-  var totalPages = recipesList.totalResults / 10
+  pageNumber = 1;
+  recipeList = await retrieveRecipes(offset);
+  totalPages = recipeList.totalResults / 10
+  if (totalPages % 10 != 0) {
+    totalPages = Math.floor(recipeList.totalResults/10) + 1;
+  }
   // await buildSelectionHTML(recipesList);
-  await recipeWaiter(recipesList.results);
+  await recipeWaiter(recipeList.results);
   document.getElementById('selectorPageTracker').innerHTML = `Page ${pageNumber} of ${totalPages}`
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible'); 
 
@@ -179,17 +187,19 @@ buttonLink.addEventListener('click', async () => {
 
 nextPage.addEventListener('click', async () => {
   offset += 10
-  const recipesList = await retrieveRecipes(offset);
-  await recipeWaiter(recipesList.results);
-  document.getElementById('selectorPageTracker').innerHTML = 
+  pageNumber += 1;
+  recipeList = await retrieveRecipes(offset);
+  await recipeWaiter(recipeList.results);
+  document.getElementById('selectorPageTracker').innerHTML = `Page ${pageNumber} of ${totalPages}`
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible'); 
 })
 
 previousPage.addEventListener('click', async () => {
   offset -= 10;
-  const recipesList = await retrieveRecipes(offset);
-  await recipeWaiter(recipesList.results);
-  document.getElementById('selectorPageTracker').innerHTML = 
+  pageNumber -= 1;
+  recipeList = await retrieveRecipes(offset);
+  await recipeWaiter(recipeList.results);
+  document.getElementById('selectorPageTracker').innerHTML = `Page ${pageNumber} of ${totalPages}`
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible'); 
 })
 
@@ -199,6 +209,12 @@ miseEnPlaceSet.addEventListener('click', async () => {
   miseEnPlaceText.setAttribute('class', 'miseEnPlace');
 }
 )
+
+selectButton.addEventListener('click', async () => {
+  await letsBake(storedRecipe.value);
+  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
+  miseEnPlaceText.setAttribute('class', 'miseEnPlaceVisible');
+})
 
 recipe1View.addEventListener('click', async () => {
   await readMore(recipe1View.value);
