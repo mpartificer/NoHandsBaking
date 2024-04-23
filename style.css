@@ -75,8 +75,8 @@ body {
     width: 100%;
     display: grid;
     grid-gap: 10px;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: repeat(5, 15%);
+    grid-template-columns: repeat(2, 50%);
+    grid-template-rows: 18% 18% 18% 18% 18%;
     grid-auto-flow: column;
   }
 

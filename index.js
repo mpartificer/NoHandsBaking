@@ -47,7 +47,6 @@ var offset;
 var pageNumber;
 var totalPages;
 var i;
-var storedRecipe;
 
 async function retrieveRecipes(offset) {
   const searchValue = webpage.value;
@@ -231,6 +230,9 @@ previousPage.addEventListener('click', async () => {
   }
   if (pageNumber == totalPages) {
     nextPage.disabled = true;
+  }
+  if (pageNumber != totalPages) {
+    nextPage.disabled = false;
   }
   await recipeWaiter(recipeList.results);
   document.getElementById('selectorPageTracker').innerHTML = `Page ${pageNumber} of ${totalPages}`
