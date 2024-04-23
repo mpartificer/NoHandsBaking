@@ -202,6 +202,18 @@ nextPage.addEventListener('click', async () => {
   offset += 10
   pageNumber += 1;
   recipeList = await retrieveRecipes(offset);
+  if (pageNumber == 1) {
+    previousPage.disabled = true;
+  }
+  if (pageNumber != 1) {
+    previousPage.disabled = false;
+  }
+  if (pageNumber == totalPages) {
+    nextPage.disabled = true;
+  }
+  if (pageNumber != totalPages) {
+    nextPage.disabled = false;
+  }
   await recipeWaiter(recipeList.results);
   document.getElementById('selectorPageTracker').innerHTML = `Page ${pageNumber} of ${totalPages}`
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible'); 
@@ -211,6 +223,15 @@ previousPage.addEventListener('click', async () => {
   offset -= 10;
   pageNumber -= 1;
   recipeList = await retrieveRecipes(offset);
+  if (pageNumber == 1) {
+    previousPage.disabled = true;
+  }
+  if (pageNumber != 1) {
+    previousPage.disabled = false;
+  }
+  if (pageNumber == totalPages) {
+    nextPage.disabled = true;
+  }
   await recipeWaiter(recipeList.results);
   document.getElementById('selectorPageTracker').innerHTML = `Page ${pageNumber} of ${totalPages}`
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible'); 
