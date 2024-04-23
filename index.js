@@ -117,8 +117,8 @@ async function setRecipe(recipeID) {
       {"Content-Type": "application/json"
   }});
   
-  storedRecipe = await selectMyRecipe.json();
-  console.log(storedRecipe);
+  const findMyRecipe = await selectMyRecipe.json();
+  console.log(findMyRecipe);
 
   if (sessionStorage.getItem('storedRecipeTitle') != null) {
     sessionStorage.removeItem('storedRecipeTitle');
@@ -127,6 +127,15 @@ async function setRecipe(recipeID) {
     sessionStorage.removeItem('storedRecipeImage');
     sessionStorage.removeItem('storedRecipeInstructions');
   }
+
+  const jsonObject = JSON.stringify(findMyRecipe)
+
+  sessionStorage.setItem('storedRecipeTitle', jsonObject.title);
+  sessionStorage.setItem('storedRecipeId', jsonObject.id);
+  sessionStorage.setItem('storedRecipeInstructions', jsonObject.instructions);
+  sessionStorage.setItem('storedRecipeIngredients', jsonObject.extendedIngredients);
+  sessionStorage.setItem('storedRecipeImage', jsonObject.image);
+
 }
 
 async function letsBake(storedRecipe) {
