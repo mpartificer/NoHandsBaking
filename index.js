@@ -79,7 +79,7 @@ async function ingredientArray(recipeObj) {
   return ingredientHTML;
 }
 
-async function readMore(storedRecipe) {
+async function readMore() {
   // var recipeSelect = `https://api.spoonacular.com/recipes/${recipeID}/information?apiKey=${spoonacularKey}`
 
   // const selectMyRecipe = await fetch(recipeSelect, {
@@ -90,14 +90,23 @@ async function readMore(storedRecipe) {
   // storedRecipe = await selectMyRecipe.json();
   // console.log(storedRecipe);
 
+  const image = sessionStorage.getItem('storedRecipeImage');
+  const parsedImage = JSON.parse(image)
+
   var img = document.createElement("img");
-  img.src = storedRecipe.image;
+  
+  img.src = parsedImage;
   imagePreview.appendChild(img);
 
-  var ingredientHTML = await ingredientArray(storedRecipe);
+  const storedIngredients = sessionStorage.getItem('storedRecipeIngredients');
+  const parsedIngredients = JSON.parse(storedIngredients);
+
+  var ingredientHTML = await ingredientArray(parsedIngredients);
   ingredientsPreview.appendChild(ingredientHTML);
 
-  instructionsPreview.innerHTML = storedRecipe.instructions;
+  const storedInstructions = sessionStorage.getItem('storedRecipeInstructions');
+  const parsedInstructions = JSON.parse(storedInstructions)
+  instructionsPreview.innerHTML = parsedInstructions;
 
   console.log(imagePreview);
   console.log(ingredientsPreview);
@@ -105,8 +114,10 @@ async function readMore(storedRecipe) {
 
   return storedRecipe;
 }
-async function instructionLoad(storedRecipe) {
-  instructionsText.innerHTML = storedRecipe.instructions;
+async function instructionLoad() {
+  const storedInstructions = sessionStorage.getItem('storedRecipeInstructions');
+  const parsedInstructions = JSON.parse(storedInstructions);
+  instructionsText.innerHTML = parsedInstructions;
 }
 
 async function setRecipe(recipeID) {
@@ -138,36 +149,23 @@ async function setRecipe(recipeID) {
 
 }
 
-async function letsBake(storedRecipe) {
-  var ingredientHTML = await ingredientArray(storedRecipe);
+async function letsBake() {
+
+  const storedIngredients = getItem('storedRecipeIngredients');
+  const parsedIngredients = JSON.parse(storedIngredients);
+
+  var ingredientHTML = await ingredientArray(parsedIngredients);
 
   console.log(ingredientHTML);
 
   ingredients.appendChild(ingredientHTML);
 
-  document.title = storedRecipe.title + " | No Hands Baking!";
-  recipeTitle.innerHTML = storedRecipe.title;
+  const storedTitle = getItem('storedRecipeTitle');
+  const parsedTitle = JSON.parse(storedTitle);
 
-  return storedRecipe;
+  document.title = parsedTitle + " | No Hands Baking!";
+  recipeTitle.innerHTML = parsedTitle;
 }
-
-// async function buildSelectionHTML(recipesList){
-//   var ingredientHTML = document.createElement("p");
-
-//   ingredientHTML.innerHTML = '<div class="wrapper">';
-//     for (i = 0; i < recipesList.length; i++) {
-//       ingredientHTML.innerHTML += '<div class="column" value="">'
-//       ingredientHTML.innerHTML += `<div id="Recipe${i+1}">Recipe 1</div>`
-//       ingredientHTML.innerHTML += '<p></p>'
-//       ingredientHTML.innerHTML += `<button id="recipe${i+1}View" class="readMoreButton" value="">Read more</button>`
-//       ingredientHTML.innerHTML += `<button id="recipe${i+1}Mise" class="readMoreButton" value="">Let\'s Bake!</button>`
-//       ingredientHTML.innerHTML += '</div>';
-//     }
-
-//   ingredientHTML.innerHTML += `</div>`;
-
-//   recipeSelectionScreen.appendChild(ingredientHTML);
-// }
 
 async function recipeWaiter(recipesList) {
   for (i = 0; i < recipesList.length; i++) {
@@ -237,140 +235,140 @@ selectRecipe.addEventListener('click', async () => {
 
 recipe1View.addEventListener('click', async () => {
   storedRecipe = await setRecipe(recipe1View.value);
-  await readMore(storedRecipe);
+  await readMore();
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
   recipePreview.setAttribute('class', 'recipePreviewVisible');
 })
 
 recipe2View.addEventListener('click', async () => {
   storedRecipe = await setRecipe(recipe2View.value);
-  await readMore(storedRecipe);
+  await readMore();
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
   recipePreview.setAttribute('class', 'recipePreviewVisible');
 })
 
 recipe3View.addEventListener('click', async () => {
   storedRecipe = await setRecipe(recipe3View.value);
-  await readMore(storedRecipe);
+  await readMore();
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
   recipePreview.setAttribute('class', 'recipePreviewVisible');
 })
 
 recipe4View.addEventListener('click', async () => {
   storedRecipe = await setRecipe(recipe4View.value);
-  await readMore(storedRecipe);
+  await readMore();
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
   recipePreview.setAttribute('class', 'recipePreviewVisible');
 })
 
 recipe5View.addEventListener('click', async () => {
   storedRecipe = await setRecipe(recipe5View.value);
-  await readMore(storedRecipe);
+  await readMore();
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
   recipePreview.setAttribute('class', 'recipePreviewVisible');
 })
 
 recipe6View.addEventListener('click', async () => {
   storedRecipe = await setRecipe(recipe6View.value);
-  await readMore(storedRecipe);
+  await readMore();
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
   recipePreview.setAttribute('class', 'recipePreviewVisible');
 })
 
 recipe7View.addEventListener('click', async () => {
   storedRecipe = await setRecipe(recipe7View.value);
-  await readMore(storedRecipe);
+  await readMore();
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
   recipePreview.setAttribute('class', 'recipePreviewVisible');
 })
 
 recipe8View.addEventListener('click', async () => {
   storedRecipe = await setRecipe(recipe8View.value);
-  await readMore(storedRecipe);
+  await readMore();
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
   recipePreview.setAttribute('class', 'recipePreviewVisible');
 })
 
 recipe9View.addEventListener('click', async () => {
   storedRecipe = await setRecipe(recipe9View.value);
-  await readMore(storedRecipe);
+  await readMore();
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
   recipePreview.setAttribute('class', 'recipePreviewVisible');
 })
 
 recipe10View.addEventListener('click', async () => {
   storedRecipe = await setRecipe(recipe10View.value);
-  await readMore(storedRecipe);
+  await readMore();
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
   recipePreview.setAttribute('class', 'recipePreviewVisible');
 })
 
 recipe1Mise.addEventListener('click', async () => {
   storedRecipe = await setRecipe(recipe1Mise.value);
-  await letsBake(storedRecipe);
+  await letsBake();
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
   miseEnPlaceText.setAttribute('class', 'miseEnPlaceVisible');
 })
 
 recipe2Mise.addEventListener('click', async () => {
   storedRecipe = await setRecipe(recipe2Mise.value);
-  await letsBake(storedRecipe);
+  await letsBake();
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
   miseEnPlaceText.setAttribute('class', 'miseEnPlaceVisible');
 })
 
 recipe3Mise.addEventListener('click', async () => {
   storedRecipe = await setRecipe(recipe3Mise.value);
-  await letsBake(storedRecipe);
+  await letsBake();
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
   miseEnPlaceText.setAttribute('class', 'miseEnPlaceVisible');
 })
 
 recipe4Mise.addEventListener('click', async () => {
   storedRecipe = await setRecipe(recipe4Mise.value);
-  await letsBake(storedRecipe);
+  await letsBake();
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
   miseEnPlaceText.setAttribute('class', 'miseEnPlaceVisible');
 })
 
 recipe5Mise.addEventListener('click', async () => {
   storedRecipe = await setRecipe(recipe5Mise.value);
-  await letsBake(storedRecipe);
+  await letsBake();
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
   miseEnPlaceText.setAttribute('class', 'miseEnPlaceVisible');
 })
 
 recipe6Mise.addEventListener('click', async () => {
   storedRecipe = await setRecipe(recipe6Mise.value);
-  await letsBake(storedRecipe);
+  await letsBake();
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
   miseEnPlaceText.setAttribute('class', 'miseEnPlaceVisible');
 })
 
 recipe7Mise.addEventListener('click', async () => {
   storedRecipe = await setRecipe(recipe7Mise.value);
-  await letsBake(storedRecipe);
+  await letsBake();
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
   miseEnPlaceText.setAttribute('class', 'miseEnPlaceVisible');
 })
 
 recipe8Mise.addEventListener('click', async () => {
   storedRecipe = await setRecipe(recipe8Mise.value);
-  await letsBake(storedRecipe);
+  await letsBake();
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
   miseEnPlaceText.setAttribute('class', 'miseEnPlaceVisible');
 })
 
 recipe9Mise.addEventListener('click', async () => {
   storedRecipe = await setRecipe(recipe9Mise.value);
-  await letsBake(storedRecipe);
+  await letsBake();
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
   miseEnPlaceText.setAttribute('class', 'miseEnPlaceVisible');
 })
 
 recipe10Mise.addEventListener('click', async () => {
   storedRecipe = await setRecipe(recipe10Mise.value);
-  await letsBake(storedRecipe);
+  await letsBake();
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
   miseEnPlaceText.setAttribute('class', 'miseEnPlaceVisible');
 })
