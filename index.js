@@ -1,4 +1,8 @@
 const footer = document.getElementById('footer');
+const backToResults = document.getElementById('backToResults');
+const backToResults2 = document.getElementById('backToResults2');
+const backToResults3 = document.getElementById('backToResults3');
+const backToMise = document.getElementById('backToMise');
 const buttonLink = document.getElementById('letsGoButton');
 const recipeTitle = document.getElementById('recipeTitle');
 const miseEnPlaceSet = document.getElementById('lockedAndLoadedButton');
@@ -86,15 +90,6 @@ async function ingredientArray() {
 }
 
 async function readMore() {
-  // var recipeSelect = `https://api.spoonacular.com/recipes/${recipeID}/information?apiKey=${spoonacularKey}`
-
-  // const selectMyRecipe = await fetch(recipeSelect, {
-  //   headers: 
-  //     {"Content-Type": "application/json"
-  // }});
-
-  // await selectMyRecipe.json();
-  // console.log(storedRecipe);
 
   const image = sessionStorage.getItem('storedRecipeImage');
   const parsedImage = JSON.parse(image)
@@ -113,10 +108,6 @@ async function readMore() {
   const storedInstructions = sessionStorage.getItem('storedRecipeInstructions');
   const parsedInstructions = JSON.parse(storedInstructions)
   instructionsPreview.innerHTML = parsedInstructions;
-
-  console.log(imagePreview);
-  console.log(ingredientsPreview);
-  console.log(instructionsPreview);
 
   return storedRecipe;
 }
@@ -163,16 +154,11 @@ async function letsBake() {
 
   const storedIngredients = sessionStorage.getItem('storedRecipeIngredients');
   const parsedIngredients = JSON.parse(storedIngredients);
-
   var ingredientHTML = await ingredientArray(parsedIngredients);
-
-  console.log(ingredientHTML);
-
   ingredients.appendChild(ingredientHTML);
 
   const storedTitle = sessionStorage.getItem('storedRecipeTitle');
   const parsedTitle = JSON.parse(storedTitle);
-
   document.title = parsedTitle + " | No Hands Baking!";
   recipeTitle.innerHTML = parsedTitle;
 }
@@ -204,7 +190,7 @@ buttonLink.addEventListener('click', async () => {
   if (totalPages % 10 != 0) {
     totalPages = Math.floor(recipeList.totalResults/10) + 1;
   }
-  // await buildSelectionHTML(recipesList);
+  
   await recipeWaiter(recipeList.results);
   document.getElementById('selectorPageTracker').innerHTML = `Page ${pageNumber} of ${totalPages}`
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible'); 
@@ -385,4 +371,24 @@ recipe10Mise.addEventListener('click', async () => {
 
 aboutUsButton.addEventListener('click', () => {
   footer.classList.add('class', 'aboutUsVisible');
+})
+
+backToResults.addEventListener('click', () => {
+  recipePreview.setAttribute('class', 'recipePreview');
+  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible');
+})
+
+backToResults2.addEventListener('click', () => {
+  miseEnPlaceText.setAttribute('class', 'miseEnPlace');
+  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible');
+})
+
+backToResults3.addEventListener('click', () => {
+  instructions.setAttribute('class', 'instructions');
+  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible');
+})
+
+backToMise.addEventListener('click', () => {
+  instructions.setAttribute('class', 'instructions');
+  miseEnPlaceText.setAttribute('class', 'miseEnPlaceVisible')
 })
