@@ -107,10 +107,28 @@ async function readMore() {
 
   const storedInstructions = sessionStorage.getItem('storedRecipeInstructions');
   const parsedInstructions = JSON.parse(storedInstructions)
+  console.log('here!!', typeof parsedInstructions) // .split(". ")
   instructionsPreview.innerHTML = parsedInstructions;
 
-  return storedRecipe;
+
+  const functionThatReturnsMaybeSomething = (num) => {
+    if (num > 1) {
+      return {
+        something: 'hello'
+      }
+    }
+    return undefined
+  }
+
+  const maybeSomething = functionThatReturnsMaybeSomething(3000)
+
+  console.log(maybeSomething.something)
+
+  const maybeSomething2 = functionThatReturnsMaybeSomething(0)
+
+  console.log(maybeSomething2?.something)
 }
+
 async function instructionLoad() {
   const storedInstructions = sessionStorage.getItem('storedRecipeInstructions');
   const parsedInstructions = JSON.parse(storedInstructions);
@@ -176,7 +194,7 @@ async function recipeWaiter(recipesList) {
 
     const jsonObjectTitle = JSON.stringify(recipesList[i].title);
     const jsonObjectId = JSON.stringify(recipesList[i].id);
-    sessionStorage.setItem(`Title${1}`, jsonObjectTitle);
+    sessionStorage.setItem(`Title${i}`, jsonObjectTitle);
     sessionStorage.setItem(`Id${i}`, jsonObjectId);
   }
 }

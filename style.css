@@ -78,7 +78,7 @@ body {
     grid-gap: 10px;
     grid-template-columns: repeat(2, 50%);
     grid-template-rows: 18% 18% 18% 18% 18%;
-    grid-auto-flow: column;
+    grid-auto-flow: row;
   }
 
   .column {
@@ -87,6 +87,9 @@ body {
     border-radius: 5px;
     padding: 20px;
     font-size: 100%;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: space-between; */
   }
   
   .readMoreButton {
@@ -101,6 +104,7 @@ body {
 
   .sayMore {
     visibility: hidden;
+    height: -12%;
     display: block;
     position: absolute;
   }
@@ -289,6 +293,10 @@ body {
 @media screen and (max-width: 600px) {
   .columnPreview {
     width: 100%;
+  }
+
+  .wrapper{
+    grid-template-columns: repeat(1, 100%);
   }
 }
 
