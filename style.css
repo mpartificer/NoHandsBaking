@@ -33,7 +33,8 @@
 }
 
 .aboutUsVisible {
-  animation: aboutUsVisible 10s ease;
+  animation: aboutUsVisible 2s ease;
+  animation-fill-mode: forwards;
   /* bottom: 50 px; */
   text-align: center;
 }
@@ -99,9 +100,13 @@ body {
   }
 
   .sayMore {
-    visibility: visible;
+    visibility: hidden;
     display: block;
     position: absolute;
+  }
+
+  .sayMoreVisible {
+    visibility: visible;
   }
 
   .columnPreview {
@@ -289,9 +294,9 @@ body {
 
 @keyframes aboutUsVisible {
   0% { 
-  height: 0%;
+  height: 10%;
   }
   100% { 
-  height: 33%;
+  height: 15%;
   }
 }

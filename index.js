@@ -17,6 +17,7 @@ const instructionsPreview = document.getElementById('instructionsPreview');
 const instructionsText = document.getElementById('instructionsText');
 const aboutUsButton = document.getElementById('aboutUsButton');
 const aboutUs = document.getElementById('aboutUs')
+const sayMore = document.getElementById('sayMore');
 const recipe1View = document.getElementById('recipe1View');
 const recipe2View = document.getElementById('recipe2View');
 const recipe3View = document.getElementById('recipe3View');
@@ -393,6 +394,7 @@ recipe10Mise.addEventListener('click', async () => {
 })
 
 aboutUsButton.addEventListener('click', () => {
+  sayMore.classList.add('class', 'sayMoreVisible');
   footer.classList.add('class', 'aboutUsVisible');
 })
 
