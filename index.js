@@ -1,4 +1,5 @@
 const footer = document.getElementById('footer');
+const exitAboutUs = document.getElementById('exitAboutUs');
 const backToResults = document.getElementById('backToResults');
 const backToResults2 = document.getElementById('backToResults2');
 const backToResults3 = document.getElementById('backToResults3');
@@ -208,7 +209,24 @@ buttonLink.addEventListener('click', async () => {
   if (totalPages % 10 != 0) {
     totalPages = Math.floor(recipeList.totalResults/10) + 1;
   }
+  if (pageNumber == 1 && pageNumber != totalPages) {
+    previousPage.disabled = true;
+    nextPage.disabled = false;
+  }
+  else if (pageNumber != 1 && pageNumber == totalPages) {
+    previousPage.disabled = false;
+    nextPage.disabled = true;
+  }
+  else if (pageNumber == 1 && pageNumber == totalPages) {
+    nextPage.disabled = true;
+    previousPage.disabled = true;
+  }
+  else if (pageNumber != 1 && pageNumber != totalPages) {
+    nextPage.disabled = false;
+    previousPage.disabled = false;
+  }
   
+  console.log(totalPages)
   await recipeWaiter(recipeList.results);
   document.getElementById('selectorPageTracker').innerHTML = `Page ${pageNumber} of ${totalPages}`
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible'); 
@@ -220,19 +238,24 @@ nextPage.addEventListener('click', async () => {
   offset += 10
   pageNumber += 1;
   recipeList = await retrieveRecipes(offset);
-  if (pageNumber == 1) {
+  if (pageNumber == 1 && pageNumber != totalPages) {
     previousPage.disabled = true;
-  }
-  if (pageNumber != 1) {
-    previousPage.disabled = false;
-  }
-  if (pageNumber == totalPages) {
-    nextPage.disabled = true;
-  }
-  if (pageNumber != totalPages) {
     nextPage.disabled = false;
   }
+  else if (pageNumber != 1 && pageNumber == totalPages) {
+    previousPage.disabled = false;
+    nextPage.disabled = true;
+  }
+  else if (pageNumber == 1 && pageNumber == totalPages) {
+    nextPage.disabled = true;
+    previousPage.disabled = true;
+  }
+  else if (pageNumber != 1 && pageNumber != totalPages) {
+    nextPage.disabled = false;
+    previousPage.disabled = false;
+  }
   await recipeWaiter(recipeList.results);
+  console.log(totalPages)
   document.getElementById('selectorPageTracker').innerHTML = `Page ${pageNumber} of ${totalPages}`
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible'); 
 })
@@ -241,17 +264,21 @@ previousPage.addEventListener('click', async () => {
   offset -= 10;
   pageNumber -= 1;
   recipeList = await retrieveRecipes(offset);
-  if (pageNumber == 1) {
+  if (pageNumber == 1 && pageNumber != totalPages) {
     previousPage.disabled = true;
+    nextPage.disabled = false;
   }
-  if (pageNumber != 1) {
+  else if (pageNumber != 1 && pageNumber == totalPages) {
     previousPage.disabled = false;
-  }
-  if (pageNumber == totalPages) {
     nextPage.disabled = true;
   }
-  if (pageNumber != totalPages) {
+  else if (pageNumber == 1 && pageNumber == totalPages) {
+    nextPage.disabled = true;
+    previousPage.disabled = true;
+  }
+  else if (pageNumber != 1 && pageNumber != totalPages) {
     nextPage.disabled = false;
+    previousPage.disabled = false;
   }
   await recipeWaiter(recipeList.results);
   document.getElementById('selectorPageTracker').innerHTML = `Page ${pageNumber} of ${totalPages}`
@@ -414,6 +441,11 @@ recipe10Mise.addEventListener('click', async () => {
 aboutUsButton.addEventListener('click', () => {
   sayMore.classList.add('class', 'sayMoreVisible');
   footer.classList.add('class', 'aboutUsVisible');
+})
+
+exitAboutUs.addEventListener('click', () => {
+  footer.classList.add('class', 'aboutUsExitButton');
+  sayMore.setAttribute('class', 'sayMore');
 })
 
 backToResults.addEventListener('click', () => {
