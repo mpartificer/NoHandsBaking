@@ -171,6 +171,11 @@ body {
     position: absolute;
   }
 
+  .alignPageInfo {
+    display: inline-block;
+    text-align: center;
+  }
+
   .recipeSelectionScreenVisible {
     visibility: visible;
 
@@ -179,6 +184,15 @@ body {
 
   .pageButtons {
     border-radius: 20 px;
+    font-family: 'Futura';
+    border: none;
+    display: inline-block;
+    text-align: center;
+  }
+
+  .pageCounter {
+    display: inline-block;
+    text-align: center;
   }
 
   .miseEnPlace {
