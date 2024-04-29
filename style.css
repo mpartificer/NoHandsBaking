@@ -6,6 +6,7 @@
   padding: 0px;
   text-align: center;
   white-space: nowrap;
+  z-index: -2;
     display: inline;
     visibility: visible;
     width:100%;
@@ -30,6 +31,7 @@
   animation-fill-mode: forwards;
   animation-delay: 2s
 }
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -56,9 +58,6 @@
   left: 50%;
   transform: translateX(-50%);
   animation: smooth-appear 2s ease forwards;
-  /* animation: aboutUsVisible 2s ease;
-  animation-fill-mode: forwards; */
-  /* bottom: 50 px; */
   text-align: center;
 }
 
@@ -176,6 +175,10 @@ body {
     visibility: visible;
 
     top: 10%;
+  }
+
+  .pageButtons {
+    border-radius: 20 px;
   }
 
   .miseEnPlace {
