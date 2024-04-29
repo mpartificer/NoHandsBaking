@@ -69,6 +69,32 @@ async function retrieveRecipes(offset) {
   return recipeList;
 }
 
+async function manageInstructions(parsedInstructions) {
+  const yesOrNot = parsedInstructions.startsWith('<ol>');
+  if (yesOrNot == true) {
+    return parsedInstructions;
+  }
+  else {
+    const instructionsArray = parsedInstructions.split('. ');
+
+    var instructionInsert = "";
+    instructionInsert += '<ol>';
+
+    for (i = 0; i < instructionsArray.length; i++) {
+      instructionInsert += `<li>`;
+      instructionInsert += instructionsArray[i];
+      instructionInsert += `</li>`;
+    }
+
+    instructionInsert += `</ol>`;
+
+    console.log(instructionInsert)
+
+    return instructionInsert;
+    
+  }
+}
+
 async function ingredientArray() {
 
   const storedIngredients = sessionStorage.getItem('storedRecipeIngredients');
@@ -96,44 +122,29 @@ async function readMore() {
   const parsedImage = JSON.parse(image)
 
   var img = document.createElement("img");
-  
   img.src = parsedImage;
+  imagePreview.innerHTML = "";
   imagePreview.appendChild(img);
 
   const storedIngredients = sessionStorage.getItem('storedRecipeIngredients');
   const parsedIngredients = JSON.parse(storedIngredients);
 
   var ingredientHTML = await ingredientArray(parsedIngredients);
+  ingredientsPreview.innerHTML = "";
   ingredientsPreview.appendChild(ingredientHTML);
 
   const storedInstructions = sessionStorage.getItem('storedRecipeInstructions');
-  const parsedInstructions = JSON.parse(storedInstructions)
-  console.log('here!!', typeof parsedInstructions) // .split(". ")
-  instructionsPreview.innerHTML = parsedInstructions;
-
-
-  const functionThatReturnsMaybeSomething = (num) => {
-    if (num > 1) {
-      return {
-        something: 'hello'
-      }
-    }
-    return undefined
-  }
-
-  const maybeSomething = functionThatReturnsMaybeSomething(3000)
-
-  console.log(maybeSomething.something)
-
-  const maybeSomething2 = functionThatReturnsMaybeSomething(0)
-
-  console.log(maybeSomething2?.something)
+  const parsedInstructions = JSON.parse(storedInstructions);
+  var formattedInstructions = await manageInstructions(parsedInstructions);
+  console.log(formattedInstructions) // .split(". ")
+  instructionsPreview.innerHTML = formattedInstructions;
 }
 
 async function instructionLoad() {
   const storedInstructions = sessionStorage.getItem('storedRecipeInstructions');
   const parsedInstructions = JSON.parse(storedInstructions);
-  instructionsText.innerHTML = parsedInstructions;
+  var formattedInstructions = await manageInstructions(parsedInstructions);
+  instructionsText.innerHTML = formattedInstructions;
 }
 
 async function setRecipe(recipeID) {
@@ -147,7 +158,7 @@ async function setRecipe(recipeID) {
   const findMyRecipe = await selectMyRecipe.json();
   console.log(findMyRecipe);
 
-  if (sessionStorage.getItem('storedRecipeTitle') != null) {
+  if (sessionStorage.getItem('storedRecipeTitle') != undefined) {
     sessionStorage.removeItem('storedRecipeTitle');
     sessionStorage.removeItem('storedRecipeId');
     sessionStorage.removeItem('storedRecipeIngredients');
@@ -445,6 +456,7 @@ aboutUsButton.addEventListener('click', () => {
 
 exitAboutUs.addEventListener('click', () => {
   footer.classList.add('class', 'aboutUsExitButton');
+  footer.setAttribute('class', 'footer');
   sayMore.setAttribute('class', 'sayMore');
 })
 
