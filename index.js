@@ -3,6 +3,7 @@ const exitAboutUs = document.getElementById('exitAboutUs');
 const backToResults = document.getElementById('backToResults');
 const backToResults2 = document.getElementById('backToResults2');
 const backToResults3 = document.getElementById('backToResults3');
+const homeButton = document.getElementById('homeButton');
 const backToMise = document.getElementById('backToMise');
 const buttonLink = document.getElementById('letsGoButton');
 const recipeTitle = document.getElementById('recipeTitle');
@@ -478,4 +479,12 @@ backToResults3.addEventListener('click', () => {
 backToMise.addEventListener('click', () => {
   instructions.setAttribute('class', 'instructions');
   miseEnPlaceText.setAttribute('class', 'miseEnPlaceVisible')
+})
+
+homeButton.addEventListener('click', () => {
+  instructions.setAttribute('class', 'instructions');
+  miseEnPlaceText.setAttribute('class', 'miseEnPlace');
+  recipePreview.setAttribute('class', 'recipePreview');
+  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
+  recipeSelector.setAttribute('class', 'opener');
 })

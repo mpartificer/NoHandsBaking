@@ -14,6 +14,22 @@
     animation: animate 2s linear forwards;
 }
 
+.homeButton {
+  text-align: left;
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  margin-top: 20px;
+  background-color: rgb(255, 182, 193);
+  width: 60px;
+  height: 60px;
+  animation: opacity 1s linear forwards;
+  animation-direction: reverse;
+  animation-fill-mode: forwards;
+  animation-delay: 2s
+}
 .footer {
   position: absolute;
   bottom: 0;
@@ -237,8 +253,8 @@ body {
 }
 
 @-o-keyframes opacity {
-  0%, 100% {opacity:0;}
-  50% {opacity:1;}
+  0% {opacity:1;}
+  100% {opacity:0;}
 }
 
 @-o-keyframes change {
@@ -251,8 +267,8 @@ body {
 }
 
 @-moz-keyframes opacity {
-  0%, 100% {opacity:0;}
-  50% {opacity:1;}
+  0% {opacity:1;}
+  100% {opacity:0;}
 }
 
 @-moz-keyframes change {
@@ -265,8 +281,8 @@ body {
 }
 
 @keyframes opacity {
-  0%, 100% {opacity:0;}
-  50% {opacity:1;}
+  0% {opacity:1;}
+  100% {opacity:0;}
 }
 
 @keyframes change {
@@ -292,6 +308,20 @@ body {
   }
 }
 
+@keyframes home{
+  0% {
+    height: 0px;
+  }
+
+  30% {
+    height: 50px;
+  }
+
+  60% {
+    height: 100px;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .columnPreview {
     width: 100%;
@@ -308,5 +338,19 @@ body {
   }
   100%{
     height: 15%;
+  }
+}
+
+@keyframes ripple {
+  0% {
+      width: 0;
+      height: 0;
+      opacity: .5;
+  }
+  
+  100% {
+      width: 50px;
+      height: 50px;
+      opacity: 0;
   }
 }
