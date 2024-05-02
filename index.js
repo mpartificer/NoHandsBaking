@@ -26,12 +26,58 @@ const ingredients = document.getElementById('ingredients');
 const previousPage = document.getElementById('previousPage');
 const nextPage = document.getElementById('nextPage');
 const selectRecipe = document.getElementById('selectRecipe');
+const readTest = document.getElementById('readTest');
+var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
+var SpeechGrammarList = SpeechGrammarList || window.webkitSpeechGrammarList
+var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
 const spoonacularKey = "3c5ec8b2939641a99e28c6023598b2d4";
 var recipeList;
 var offset;
 var pageNumber;
 var totalPages;
 var i;
+
+
+const grammarArray = ['aqua', 'azure', 'white', 'yellow']
+const grammar = `#JSGF V1.0; grammar colors; public <color> = ${grammarArray.join(' | ')} ;`;
+// const grammar = "#JSGF V1.0; grammar colors; public <color> = aqua | azure | white | yellow ;";
+const recognition = new SpeechRecognition();
+const speechRecognitionList = new SpeechGrammarList();
+speechRecognitionList.addFromString(grammar, 1);
+recognition.grammars = speechRecognitionList;
+recognition.continuous = false;
+recognition.lang = "en-US";
+recognition.interimResults = false;
+recognition.maxAlternatives = 1;
+
+// const diagnostic = document.querySelector(".output");
+// const bg = document.querySelector("html");
+
+readTest.addEventListener('click', () => {
+  recognition.start();
+  console.log("Ready to receive a color command.");
+})
+
+recognition.onresult = (event) => {
+  const color = event.results[0][0].transcript.toLowerCase();
+  console.log(`Result received: ${color}`)
+
+  if (grammarArray.includes(color)) {
+    console.log('yup')
+  } else {
+    console.log('nope')
+  }
+
+  // diagnostic.textContent = `Result received: ${color}`;
+  // bg.style.backgroundColor = color;
+
+  const confidence = event.results[0][0].confidence
+  console.log(`Confidence: ${confidence}`)
+};
+
+// on stop
+
+// on no match 
 
 async function retrieveRecipes(offset) {
   const searchValue = webpage.value;
@@ -104,6 +150,7 @@ async function ingredientArray() {
   document.getElementById('lockedAndLoadedButton').value = parsedId;
   return ingredientHTML;
 }
+
 
 function resizeImage(image) {
   var canvas = document.createElement('canvas');

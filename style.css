@@ -18,11 +18,11 @@
 .homeButton {
   text-align: left;
   position: absolute;
-  opacity: 0;
   top: 0;
   left: 0;
-  z-index: -1;
   margin-top: 20px;
+  opacity: 0;
+  z-index: -1;
   background-color: rgb(255, 182, 193);
   width: 60px;
   height: 60px;
