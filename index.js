@@ -8,6 +8,7 @@ const homeButton = document.getElementById('homeButton');
 const backToMise = document.getElementById('backToMise');
 const buttonLink = document.getElementById('letsGoButton');
 const recipeTitle = document.getElementById('recipeTitle');
+var columnPreview = document.getElementsByClassName('columnPreview');
 const miseEnPlaceSet = document.getElementById('lockedAndLoadedButton');
 const miseEnPlaceText = document.getElementById('miseEnPlace');
 const recipeSelector = document.getElementById('recipeSelector');
@@ -21,26 +22,6 @@ const instructionsText = document.getElementById('instructionsText');
 const aboutUsButton = document.getElementById('aboutUsButton');
 const aboutUs = document.getElementById('aboutUs')
 const sayMore = document.getElementById('sayMore');
-const recipe1View = document.getElementById('recipe1View');
-const recipe2View = document.getElementById('recipe2View');
-const recipe3View = document.getElementById('recipe3View');
-const recipe4View = document.getElementById('recipe4View');
-const recipe5View = document.getElementById('recipe5View');
-const recipe6View = document.getElementById('recipe6View');
-const recipe7View = document.getElementById('recipe7View');
-const recipe8View = document.getElementById('recipe8View');
-const recipe9View = document.getElementById('recipe9View');
-const recipe10View = document.getElementById('recipe10View');
-const recipe1Mise = document.getElementById('recipe1Mise');
-const recipe2Mise = document.getElementById('recipe2Mise');
-const recipe3Mise = document.getElementById('recipe3Mise');
-const recipe4Mise = document.getElementById('recipe4Mise');
-const recipe5Mise = document.getElementById('recipe5Mise');
-const recipe6Mise = document.getElementById('recipe6Mise');
-const recipe7Mise = document.getElementById('recipe7Mise');
-const recipe8Mise = document.getElementById('recipe8Mise');
-const recipe9Mise = document.getElementById('recipe9Mise');
-const recipe10Mise = document.getElementById('recipe10Mise');
 const ingredients = document.getElementById('ingredients');
 const previousPage = document.getElementById('previousPage');
 const nextPage = document.getElementById('nextPage');
@@ -147,6 +128,10 @@ function resizeImage(image) {
   // Set the canvas dimensions to the new dimensions
   canvas.width = width;
   canvas.height = height;
+
+  for(i = 0; i < columnPreview.length; i++) {
+    columnPreview[i].style.height = height;
+  }
 
   // Draw the resized image on the canvas
   var ctx = canvas.getContext('2d');
@@ -259,6 +244,8 @@ async function recipeWaiter(recipesList) {
     document.getElementById(`recipe${i+1}View`).value = recipesList[i].id;
     document.getElementById(`recipe${i+1}Mise`).value = recipesList[i].id;
 
+    console.log(document.getElementById(`recipe${i+1}View`).value)
+
     const jsonObjectTitle = JSON.stringify(recipesList[i].title);
     const jsonObjectId = JSON.stringify(recipesList[i].id);
     sessionStorage.setItem(`Title${i}`, jsonObjectTitle);
@@ -364,146 +351,6 @@ selectRecipe.addEventListener('click', async () => {
   miseEnPlaceText.setAttribute('class', 'miseEnPlaceVisible');
 })
 
-recipe1View.addEventListener('click', async () => {
-  await setRecipe(recipe1View.value);
-  await readMore();
-  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
-  recipePreview.setAttribute('class', 'recipePreviewVisible');
-})
-
-recipe2View.addEventListener('click', async () => {
-  await setRecipe(recipe2View.value);
-  await readMore();
-  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
-  recipePreview.setAttribute('class', 'recipePreviewVisible');
-})
-
-recipe3View.addEventListener('click', async () => {
-  await setRecipe(recipe3View.value);
-  await readMore();
-  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
-  recipePreview.setAttribute('class', 'recipePreviewVisible');
-})
-
-recipe4View.addEventListener('click', async () => {
-  await setRecipe(recipe4View.value);
-  await readMore();
-  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
-  recipePreview.setAttribute('class', 'recipePreviewVisible');
-})
-
-recipe5View.addEventListener('click', async () => {
-  await setRecipe(recipe5View.value);
-  await readMore();
-  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
-  recipePreview.setAttribute('class', 'recipePreviewVisible');
-})
-
-recipe6View.addEventListener('click', async () => {
-  await setRecipe(recipe6View.value);
-  await readMore();
-  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
-  recipePreview.setAttribute('class', 'recipePreviewVisible');
-})
-
-recipe7View.addEventListener('click', async () => {
-  await setRecipe(recipe7View.value);
-  await readMore();
-  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
-  recipePreview.setAttribute('class', 'recipePreviewVisible');
-})
-
-recipe8View.addEventListener('click', async () => {
-  await setRecipe(recipe8View.value);
-  await readMore();
-  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
-  recipePreview.setAttribute('class', 'recipePreviewVisible');
-})
-
-recipe9View.addEventListener('click', async () => {
-  await setRecipe(recipe9View.value);
-  await readMore();
-  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
-  recipePreview.setAttribute('class', 'recipePreviewVisible');
-})
-
-recipe10View.addEventListener('click', async () => {
-  await setRecipe(recipe10View.value);
-  await readMore();
-  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
-  recipePreview.setAttribute('class', 'recipePreviewVisible');
-})
-
-recipe1Mise.addEventListener('click', async () => {
-  await setRecipe(recipe1Mise.value);
-  await letsBake();
-  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
-  miseEnPlaceText.setAttribute('class', 'miseEnPlaceVisible');
-})
-
-recipe2Mise.addEventListener('click', async () => {
-  await setRecipe(recipe2Mise.value);
-  await letsBake();
-  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
-  miseEnPlaceText.setAttribute('class', 'miseEnPlaceVisible');
-})
-
-recipe3Mise.addEventListener('click', async () => {
-  await setRecipe(recipe3Mise.value);
-  await letsBake();
-  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
-  miseEnPlaceText.setAttribute('class', 'miseEnPlaceVisible');
-})
-
-recipe4Mise.addEventListener('click', async () => {
-  await setRecipe(recipe4Mise.value);
-  await letsBake();
-  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
-  miseEnPlaceText.setAttribute('class', 'miseEnPlaceVisible');
-})
-
-recipe5Mise.addEventListener('click', async () => {
-  await setRecipe(recipe5Mise.value);
-  await letsBake();
-  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
-  miseEnPlaceText.setAttribute('class', 'miseEnPlaceVisible');
-})
-
-recipe6Mise.addEventListener('click', async () => {
-  await setRecipe(recipe6Mise.value);
-  await letsBake();
-  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
-  miseEnPlaceText.setAttribute('class', 'miseEnPlaceVisible');
-})
-
-recipe7Mise.addEventListener('click', async () => {
-  await setRecipe(recipe7Mise.value);
-  await letsBake();
-  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
-  miseEnPlaceText.setAttribute('class', 'miseEnPlaceVisible');
-})
-
-recipe8Mise.addEventListener('click', async () => {
-  await setRecipe(recipe8Mise.value);
-  await letsBake();
-  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
-  miseEnPlaceText.setAttribute('class', 'miseEnPlaceVisible');
-})
-
-recipe9Mise.addEventListener('click', async () => {
-  await setRecipe(recipe9Mise.value);
-  await letsBake();
-  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
-  miseEnPlaceText.setAttribute('class', 'miseEnPlaceVisible');
-})
-
-recipe10Mise.addEventListener('click', async () => {
-  await setRecipe(recipe10Mise.value);
-  await letsBake();
-  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
-  miseEnPlaceText.setAttribute('class', 'miseEnPlaceVisible');
-})
-
 aboutUsButton.addEventListener('click', () => {
   sayMore.classList.add('class', 'sayMoreVisible');
   footer.classList.add('class', 'aboutUsVisible');
@@ -542,3 +389,62 @@ homeButton.addEventListener('click', () => {
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
   recipeSelector.setAttribute('class', 'opener');
 })
+
+document.addEventListener( "click", previewListener);
+document.addEventListener('click', miseListener);
+
+
+async function previewListener(event){
+  var element = event.target;
+
+  const recipe1View = document.getElementById('recipe1View');
+  const recipe2View = document.getElementById('recipe2View');
+  const recipe3View = document.getElementById('recipe3View');
+  const recipe4View = document.getElementById('recipe4View');
+  const recipe5View = document.getElementById('recipe5View');
+  const recipe6View = document.getElementById('recipe6View');
+  const recipe7View = document.getElementById('recipe7View');
+  const recipe8View = document.getElementById('recipe8View');
+  const recipe9View = document.getElementById('recipe9View');
+  const recipe10View = document.getElementById('recipe10View');
+
+  var buttonArray = [recipe1View, recipe2View, recipe3View, recipe4View, recipe5View, recipe6View, recipe7View, recipe8View, recipe9View, recipe10View]
+
+  for (i = 0; i < buttonArray.length; i++) {
+
+    if(element.id == buttonArray[i].id && element.classList.contains("readMoreButton")){
+      recipeIdTag = document.getElementById(`${buttonArray[i].id}`).value
+      await setRecipe(recipeIdTag);
+      await readMore();
+      recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
+      recipePreview.setAttribute('class', 'recipePreviewVisible');
+    }
+  }
+}
+
+async function miseListener(event) {
+  var element = event.target;
+
+  const recipe1Mise = document.getElementById('recipe1Mise');
+  const recipe2Mise = document.getElementById('recipe2Mise');
+  const recipe3Mise = document.getElementById('recipe3Mise');
+  const recipe4Mise = document.getElementById('recipe4Mise');
+  const recipe5Mise = document.getElementById('recipe5Mise');
+  const recipe6Mise = document.getElementById('recipe6Mise');
+  const recipe7Mise = document.getElementById('recipe7Mise');
+  const recipe8Mise = document.getElementById('recipe8Mise');
+  const recipe9Mise = document.getElementById('recipe9Mise');
+  const recipe10Mise = document.getElementById('recipe10Mise');
+
+  var buttonArray = [recipe1Mise, recipe2Mise, recipe3Mise, recipe4Mise, recipe5Mise, recipe6Mise, recipe7Mise, recipe8Mise, recipe9Mise, recipe10Mise];
+  for (i = 0; i < buttonArray.length; i++) {
+
+    if(element.id == buttonArray[i].id && element.classList.contains("readMoreButton")){
+      recipeIdTag = document.getElementById(`${buttonArray[i].id}`).value
+      await setRecipe(recipeIdTag);
+      await letsBake();
+      recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
+      miseEnPlaceText.setAttribute('class', 'miseEnPlaceVisible');
+    }
+  }
+}

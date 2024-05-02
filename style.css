@@ -159,7 +159,7 @@ body {
   .columnPreview {
     float: left;
     width: 30%;
-    overflow: hidden;
+    overflow: scroll;
   }
 
   .rowPreview:after {
