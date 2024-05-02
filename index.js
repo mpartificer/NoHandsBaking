@@ -1,4 +1,5 @@
 const footer = document.getElementById('footer');
+const wrapper = document.getElementById('wrapper');
 const exitAboutUs = document.getElementById('exitAboutUs');
 const backToResults = document.getElementById('backToResults');
 const backToResults2 = document.getElementById('backToResults2');
@@ -234,12 +235,25 @@ async function letsBake() {
   recipeTitle.innerHTML = parsedTitle;
 }
 
+async function buildSelectionScreen(i) {
+  wrapper.innerHTML += `<div class="column" value="">`;
+  wrapper.innerHTML += `<div id="Recipe${i+1}" class="recipeSelectionTitle"></div>`;
+  wrapper.innerHTML += `<div class="buttonWrangler" id="buttonWrangler">`;
+  wrapper.innerHTML += `<button id="recipe${i+1}View" class="readMoreButton" value="">Read more</button>`;
+  wrapper.innerHTML += `<button id="recipe${i+1}Mise" class="readMoreButton" value="">Let's Bake!</button>`;
+  wrapper.innerHTML += `</div></div>`;
+}
+
 async function recipeWaiter(recipesList) {
+  wrapper.innerHTML = "";
+
   for (i = 0; i < recipesList.length; i++) {
     if (sessionStorage.getItem(`Title${i}`) != null) {
       sessionStorage.removeItem(`Title${i}`);
       sessionStorage.removeItem(`Id${i}`);
     }
+
+    await buildSelectionScreen(i);
     const recipeObj = document.getElementById(`Recipe${i+1}`)
     recipeObj.textContent = recipesList[i].title;
     document.getElementById(`recipe${i+1}View`).value = recipesList[i].id;

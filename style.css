@@ -103,6 +103,7 @@ body {
     grid-template-columns: repeat(2, 50%);
     grid-template-rows: 16% 16% 16% 16% 16%;
     grid-auto-flow: row;
+    justify-content: space-around;
   }
 
   .recipeSelectionTitle {
@@ -120,7 +121,7 @@ body {
     padding: 20px;
     font-size: 100%;
     display: flex;
-    flex: 1 0 40%;
+    flex: 1 0 46%;
     flex-direction: column;
     justify-content: space-between;
   }
@@ -188,6 +189,7 @@ body {
     visibility: hidden;
     overflow: hidden;
     position: absolute;
+    justify-content: space-around;
   }
 
   .alignPageInfo {
