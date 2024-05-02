@@ -236,12 +236,12 @@ async function letsBake() {
 }
 
 async function buildSelectionScreen(i) {
-  wrapper.innerHTML += `<div class="column" value="">`;
-  wrapper.innerHTML += `<div id="Recipe${i+1}" class="recipeSelectionTitle"></div>`;
-  wrapper.innerHTML += `<div class="buttonWrangler" id="buttonWrangler">`;
-  wrapper.innerHTML += `<button id="recipe${i+1}View" class="readMoreButton" value="">Read more</button>`;
-  wrapper.innerHTML += `<button id="recipe${i+1}Mise" class="readMoreButton" value="">Let's Bake!</button>`;
-  wrapper.innerHTML += `</div></div>`;
+  wrapper.innerHTML += `<div class="column" value="">
+  <div id="Recipe${i+1}" class="recipeSelectionTitle"></div>
+  <div class="buttonWrangler" id="buttonWrangler">
+  <button id="recipe${i+1}View" class="readMoreButton" value="">Read more</button>
+  <button id="recipe${i+1}Mise" class="readMoreButton" value="">Let's Bake!</button>
+  </div></div>`;
 }
 
 async function recipeWaiter(recipesList) {

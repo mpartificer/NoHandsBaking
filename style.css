@@ -95,15 +95,16 @@ body {
   }
 
   .wrapper{
-    width: 80%;
+    width: 100%;
     text-align: center;
     display: flex;
     flex-wrap: wrap;
-    grid-gap: 10px;
+    gap: 10px;
+    /* grid-gap: 10px;
     grid-template-columns: repeat(2, 50%);
     grid-template-rows: 16% 16% 16% 16% 16%;
-    grid-auto-flow: row;
-    justify-content: space-around;
+    grid-auto-flow: row; */
+    justify-content: center;
   }
 
   .recipeSelectionTitle {
@@ -121,7 +122,8 @@ body {
     padding: 20px;
     font-size: 100%;
     display: flex;
-    flex: 1 0 46%;
+    width: 50%;
+    flex: 1 0 42%;
     flex-direction: column;
     justify-content: space-between;
   }
