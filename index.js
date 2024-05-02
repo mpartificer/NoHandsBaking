@@ -73,21 +73,27 @@ async function retrieveRecipes(offset) {
 async function manageInstructions(parsedInstructions) {
   const yesOrNot = parsedInstructions.startsWith('<ol>');
   if (yesOrNot == true) {
+    var instructionInsert = `<div class="instructionsVisible--container">`;
+    instructionInsert += `<ul class="content__container__list">`;
+    instructionInsert += parsedInstructions;
+    instructionInsert += `</div>`
     return parsedInstructions;
   }
   else {
     const instructionsArray = parsedInstructions.split('. ');
 
     var instructionInsert = "";
-    instructionInsert += '<ol>';
+    instructionInsert = `<div class="instructionsVisible__container">`
+    instructionInsert += '<ol class="instructionsVisible__container__list">';
 
     for (i = 0; i < instructionsArray.length; i++) {
-      instructionInsert += `<li>`;
+      instructionInsert += `<li class="instructionsVisible__container__list__item">`;
       instructionInsert += instructionsArray[i];
       instructionInsert += `</li>`;
     }
 
-    instructionInsert += `</ol>`;
+    instructionInsert += `</ol></div>`;
+
 
     console.log(instructionInsert)
 
@@ -117,6 +123,39 @@ async function ingredientArray() {
   return ingredientHTML;
 }
 
+function resizeImage(image) {
+  var canvas = document.createElement('canvas');
+  var maxWidth = window.innerWidth * 0.40; // Define the maximum width of the image
+  var maxHeight = 600; // Define the maximum height of the image
+  var width = image.width;
+  var height = image.height;
+
+  // Calculate the new dimensions, maintaining the aspect ratio
+  if (width > height) {
+    if (width > maxWidth) {
+      height *= maxWidth / width;
+      width = maxWidth;
+    }
+  } else {
+    if (height > maxHeight) {
+      width *= maxHeight / height;
+      height = maxHeight;
+    }
+  }
+
+  // Set the canvas dimensions to the new dimensions
+  canvas.width = width;
+  canvas.height = height;
+
+  // Draw the resized image on the canvas
+  var ctx = canvas.getContext('2d');
+  ctx.drawImage(image, 0, 0, width, height);
+
+  // Insert the canvas into the DOM or use it otherwise
+  imagePreview.innerHTML = "";
+  imagePreview.appendChild(canvas);
+}
+
 async function readMore() {
 
   const image = sessionStorage.getItem('storedRecipeImage');
@@ -124,8 +163,9 @@ async function readMore() {
 
   var img = document.createElement("img");
   img.src = parsedImage;
-  imagePreview.innerHTML = "";
-  imagePreview.appendChild(img);
+  img.onload = function() {
+    resizeImage(img);
+  };
 
   const storedIngredients = sessionStorage.getItem('storedRecipeIngredients');
   const parsedIngredients = JSON.parse(storedIngredients);
@@ -299,7 +339,7 @@ previousPage.addEventListener('click', async () => {
 
 miseEnPlaceSet.addEventListener('click', async () => {
   await instructionLoad();
-  instructions.setAttribute('class', 'instructionsVisible');
+  instructions.classList.add('instructionsVisible');
   miseEnPlaceText.setAttribute('class', 'miseEnPlace');
 }
 )
