@@ -116,7 +116,7 @@ async function manageInstructions(parsedInstructions) {
     const instructionsArray = parsedInstructions.split('. ');
 
     var instructionInsert = "";
-    instructionInsert += '<ol>';
+    instructionInsert += '<ul>';
 
     for (i = 0; i < instructionsArray.length; i++) {
       instructionInsert += `<li id="instructionList${i}">`;
@@ -124,7 +124,7 @@ async function manageInstructions(parsedInstructions) {
       instructionInsert += `</li>`;
     }
 
-    instructionInsert += `</ol>`;
+    instructionInsert += `</ul>`;
 
 
     console.log(instructionInsert)
