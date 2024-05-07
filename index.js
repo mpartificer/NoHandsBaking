@@ -26,6 +26,9 @@ const previousPage = document.getElementById('previousPage');
 const nextPage = document.getElementById('nextPage');
 const selectRecipe = document.getElementById('selectRecipe');
 const readTest = document.getElementById('readTest');
+const previousStep = document.getElementById('previousStep');
+const repeatStep = document.getElementById('repeatStep');
+const nextStep = document.getElementById('nextStep');
 const spoonacularKey = "3c5ec8b2939641a99e28c6023598b2d4";
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
 var SpeechGrammarList = SpeechGrammarList || window.webkitSpeechGrammarList
@@ -112,16 +115,15 @@ async function manageInstructions(parsedInstructions) {
     const instructionsArray = parsedInstructions.split('. ');
 
     var instructionInsert = "";
-    instructionInsert = `<div class="instructionsVisible__container">`
-    instructionInsert += '<ol class="instructionsVisible__container__list">';
+    instructionInsert += '<ol>';
 
     for (i = 0; i < instructionsArray.length; i++) {
-      instructionInsert += `<li class="instructionsVisible__container__list__item" id="instructionList${i}>`;
+      instructionInsert += `<li id="instructionList${i}">`;
       instructionInsert += instructionsArray[i];
       instructionInsert += `</li>`;
     }
 
-    instructionInsert += `</ol></div>`;
+    instructionInsert += `</ol>`;
 
 
     console.log(instructionInsert)
@@ -220,6 +222,7 @@ async function instructionLoad() {
   const parsedInstructions = JSON.parse(storedInstructions);
   var formattedInstructions = await manageInstructions(parsedInstructions);
   instructionsText.innerHTML = formattedInstructions;
+  currentInstruction = 0;
 }
 
 async function setRecipe(recipeID) {
@@ -388,6 +391,11 @@ previousPage.addEventListener('click', async () => {
 
 miseEnPlaceSet.addEventListener('click', async () => {
   await instructionLoad();
+  const setAnimation = document.getElementById(`instructionList${currentInstruction}`);
+  const setNextAnimation = document.getElementById(`instructionList${currentInstruction + 1}`);
+  nextStep.disable = true;
+  setAnimation.setAttribute('class', 'currentInstruction');
+  setNextAnimation.setAttribute('class', 'nextInstruction');
   instructions.classList.add('instructionsVisible');
   miseEnPlaceText.setAttribute('class', 'miseEnPlace');
 }
@@ -437,6 +445,41 @@ homeButton.addEventListener('click', () => {
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
   recipeSelector.setAttribute('class', 'opener');
 })
+
+previousStep.addEventListener('click', () => {
+  currentInstruction -= 1;
+  const setPreviousAnimation = document.getElementById(`instructionList${currentInstruction - 1}`);
+  const setAnimation = document.getElementById(`instructionList${currentInstruction}`);
+  const setNextAnimation = document.getElementById(`instructionList${currentInstruction + 1}`);
+  const removeNextAnimation = document.getElementById(`instructionList${currentInstruction + 2}`);
+  setAnimation.classList.add('currentInstruction');
+  setNextAnimation.classList.add('nextInstruction');
+  removeNextAnimation.classList.remove('nextInstruction');
+  setPreviousAnimation.classList.add(`previousInstruction`);
+  setNextAnimation.classList.remove('currentInstruction');
+
+
+})
+
+nextStep.addEventListener('click', () => {
+  currentInstruction += 1;
+  const removeFrontLine = document.getElementById(`instructionList${currentInstruction - 2}`);
+  const setAnimation = document.getElementById(`instructionList${currentInstruction}`);
+  const setNextAnimation = document.getElementById(`instructionList${currentInstruction + 1}`);
+  const setPrevAnimation = document.getElementById(`instructionList${currentInstruction - 1}`);
+  removeFrontLine.classList.remove('exitInstructionFront')
+  setPrevAnimation.classList.add('previousInstruction');
+  setPrevAnimation.classList.remove('currentInstruction');
+  setAnimation.classList.add('currentInstruction');
+  setAnimation.classList.remove('nextInstruction');
+  setNextAnimation.classList.add('nextInstruction');
+  if (currentInstruction > 1) {
+    const exitingInstructionLoop = document.getElementById(`instructionList${currentInstruction - 2}`);
+    exitingInstructionLoop.classList.remove('previousInstruction');
+    exitingInstructionLoop.classList.add('exitInstructionFront')
+  }
+}
+)
 
 document.addEventListener( "click", previewListener);
 document.addEventListener('click', miseListener);
