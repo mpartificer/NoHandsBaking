@@ -394,7 +394,7 @@ miseEnPlaceSet.addEventListener('click', async () => {
   await instructionLoad();
   const setAnimation = document.getElementById(`instructionList${currentInstruction}`);
   const setNextAnimation = document.getElementById(`instructionList${currentInstruction + 1}`);
-  nextStep.disable = true;
+  previousStep.disabled = true;
   setAnimation.setAttribute('class', 'currentInstruction');
   setNextAnimation.setAttribute('class', 'nextInstruction');
   instructions.classList.add('instructionsVisible');
@@ -452,23 +452,25 @@ homeButton.addEventListener('click', () => {
 
 previousStep.addEventListener('click', () => {
   currentInstruction -= 1;
-  const setPreviousAnimation = document.getElementById(`instructionList${currentInstruction - 1}`);
   const setAnimation = document.getElementById(`instructionList${currentInstruction}`);
   const setNextAnimation = document.getElementById(`instructionList${currentInstruction + 1}`);
   const removeNextAnimation = document.getElementById(`instructionList${currentInstruction + 2}`);
   setAnimation.classList.add('currentInstruction');
   setNextAnimation.classList.add('nextInstruction');
   removeNextAnimation.classList.remove('nextInstruction');
-  setPreviousAnimation.classList.add(`previousInstruction`);
   setNextAnimation.classList.remove('currentInstruction');
 
+  if (currentInstruction > 1) {
+    const setPreviousAnimation = document.getElementById(`instructionList${currentInstruction - 1}`);
+    setPreviousAnimation.classList.add(`previousInstruction`);
+  }
   const utterThis = new SpeechSynthesisUtterance(setAnimation.innerText);
   synth.speak(utterThis)
 })
 
 nextStep.addEventListener('click', () => {
   currentInstruction += 1;
-  const removeFrontLine = document.getElementById(`instructionList${currentInstruction - 2}`);
+  previousStep.disabled = false;
   const setAnimation = document.getElementById(`instructionList${currentInstruction}`);
   const setNextAnimation = document.getElementById(`instructionList${currentInstruction + 1}`);
   const setPrevAnimation = document.getElementById(`instructionList${currentInstruction - 1}`);
@@ -487,6 +489,12 @@ nextStep.addEventListener('click', () => {
   synth.speak(utterThis)
 }
 )
+
+repeatStep.addEventListener('click', () => {
+  const setAnimation = document.getElementById(`instructionList${currentInstruction}`);
+  const utterThis = new SpeechSynthesisUtterance(setAnimation.innerText);
+  synth.speak(utterThis)
+})
 
 document.addEventListener( "click", previewListener);
 document.addEventListener('click', miseListener);
