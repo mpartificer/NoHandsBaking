@@ -30,6 +30,7 @@ const previousStep = document.getElementById('previousStep');
 const repeatStep = document.getElementById('repeatStep');
 const nextStep = document.getElementById('nextStep');
 const spoonacularKey = "3c5ec8b2939641a99e28c6023598b2d4";
+const synth = window.speechSynthesis;
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
 var SpeechGrammarList = SpeechGrammarList || window.webkitSpeechGrammarList
 var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
@@ -398,6 +399,9 @@ miseEnPlaceSet.addEventListener('click', async () => {
   setNextAnimation.setAttribute('class', 'nextInstruction');
   instructions.classList.add('instructionsVisible');
   miseEnPlaceText.setAttribute('class', 'miseEnPlace');
+
+  const utterThis = new SpeechSynthesisUtterance(setAnimation.innerText);
+  synth.speak(utterThis)
 }
 )
 
@@ -458,7 +462,8 @@ previousStep.addEventListener('click', () => {
   setPreviousAnimation.classList.add(`previousInstruction`);
   setNextAnimation.classList.remove('currentInstruction');
 
-
+  const utterThis = new SpeechSynthesisUtterance(setAnimation.innerText);
+  synth.speak(utterThis)
 })
 
 nextStep.addEventListener('click', () => {
@@ -467,17 +472,19 @@ nextStep.addEventListener('click', () => {
   const setAnimation = document.getElementById(`instructionList${currentInstruction}`);
   const setNextAnimation = document.getElementById(`instructionList${currentInstruction + 1}`);
   const setPrevAnimation = document.getElementById(`instructionList${currentInstruction - 1}`);
-  removeFrontLine.classList.remove('exitInstructionFront')
   setPrevAnimation.classList.add('previousInstruction');
   setPrevAnimation.classList.remove('currentInstruction');
   setAnimation.classList.add('currentInstruction');
   setAnimation.classList.remove('nextInstruction');
   setNextAnimation.classList.add('nextInstruction');
-  if (currentInstruction > 1) {
+  if (currentInstruction > 2) {
     const exitingInstructionLoop = document.getElementById(`instructionList${currentInstruction - 2}`);
     exitingInstructionLoop.classList.remove('previousInstruction');
     exitingInstructionLoop.classList.add('exitInstructionFront')
   }
+
+  const utterThis = new SpeechSynthesisUtterance(setAnimation.innerText);
+  synth.speak(utterThis)
 }
 )
 
