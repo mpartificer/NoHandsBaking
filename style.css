@@ -195,10 +195,8 @@ body {
   }
 
   .alignPageInfo {
-    /* display: inline-block; */
     display: flex;
     justify-content:space-evenly;
-    /* text-align: center; */
   }
 
   .recipeSelectionScreenVisible {
@@ -211,8 +209,6 @@ body {
     border-radius: 20 px;
     font-family: 'Futura';
     border: none;
-    /* display: inline-block;
-    text-align: center; */
   }
 
   .pageCounter {
@@ -283,9 +279,70 @@ body {
         line-height:40px;
         margin:0;
       }
-    }
+      
     }
   }
+}
+
+  .previousInstruction {
+    height: 80px;
+    animation: previousInstructionAnim 1s;
+  }
+
+  .currentInstruction {
+    height: 160px;
+    animation: currentInstuctionAnim 1s;
+  }
+
+  .nextInstruction {
+    height: 80 px;
+    animation: nextInstructionAnim 1s;
+  }
+    
+  @keyframes currentInstructionAnim {
+    0% {
+      font-size: 80px;}
+    50% {
+      font-size: 120px;
+    }
+  }
+
+  @keyframes nextInstructionAnim {
+    0% {
+      font-size: 40 px;
+    }
+    50% {
+      font-size: 60 px;
+    }
+  }
+
+  @keyframes previousInstructionAnim {
+    0% {
+      font-size: 160 px;
+    }
+    50% {
+      font-size: 120 px;
+    }
+  }
+
+  @keyframes leaveInstructionAnim {
+    0% {
+      font-size: 80 px;
+    }
+    50% {
+      font-size: 60 px;
+    }
+  }
+
+  @keyframes enterInstructionAnim {
+    0% {
+      font-size: 40 px;
+    }
+    50% {
+      font-size: 60 px;
+    }
+  }
+  
 
 @-webkit-keyframes change {
   0%, 12.66%, 100% {transform:translate3d(0,0,0);}

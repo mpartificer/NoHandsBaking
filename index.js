@@ -8,7 +8,6 @@ const homeButton = document.getElementById('homeButton');
 const backToMise = document.getElementById('backToMise');
 const buttonLink = document.getElementById('letsGoButton');
 const recipeTitle = document.getElementById('recipeTitle');
-var columnPreview = document.getElementsByClassName('columnPreview');
 const miseEnPlaceSet = document.getElementById('lockedAndLoadedButton');
 const miseEnPlaceText = document.getElementById('miseEnPlace');
 const recipeSelector = document.getElementById('recipeSelector');
@@ -27,10 +26,12 @@ const previousPage = document.getElementById('previousPage');
 const nextPage = document.getElementById('nextPage');
 const selectRecipe = document.getElementById('selectRecipe');
 const readTest = document.getElementById('readTest');
+const spoonacularKey = "3c5ec8b2939641a99e28c6023598b2d4";
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
 var SpeechGrammarList = SpeechGrammarList || window.webkitSpeechGrammarList
 var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
-const spoonacularKey = "3c5ec8b2939641a99e28c6023598b2d4";
+var columnPreview = document.getElementsByClassName('columnPreview');
+var currentInstruction;
 var recipeList;
 var offset;
 var pageNumber;
@@ -102,9 +103,9 @@ async function manageInstructions(parsedInstructions) {
   const yesOrNot = parsedInstructions.startsWith('<ol>');
   if (yesOrNot == true) {
     var instructionInsert = `<div class="instructionsVisible--container">`;
-    instructionInsert += `<ul class="content__container__list">`;
+    instructionInsert += `<ol class="content__container__list">`;
     instructionInsert += parsedInstructions;
-    instructionInsert += `</div>`
+    instructionInsert += `</ol></div>`
     return parsedInstructions;
   }
   else {
@@ -115,7 +116,7 @@ async function manageInstructions(parsedInstructions) {
     instructionInsert += '<ol class="instructionsVisible__container__list">';
 
     for (i = 0; i < instructionsArray.length; i++) {
-      instructionInsert += `<li class="instructionsVisible__container__list__item">`;
+      instructionInsert += `<li class="instructionsVisible__container__list__item" id="instructionList${i}>`;
       instructionInsert += instructionsArray[i];
       instructionInsert += `</li>`;
     }
