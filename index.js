@@ -43,9 +43,8 @@ var totalPages;
 var i;
 
 
-const grammarArray = ['aqua', 'azure', 'white', 'yellow']
+const grammarArray = ['next', 'back', 'repeat']
 const grammar = `#JSGF V1.0; grammar colors; public <color> = ${grammarArray.join(' | ')} ;`;
-// const grammar = "#JSGF V1.0; grammar colors; public <color> = aqua | azure | white | yellow ;";
 const recognition = new SpeechRecognition();
 const speechRecognitionList = new SpeechGrammarList();
 speechRecognitionList.addFromString(grammar, 1);
@@ -55,9 +54,6 @@ recognition.lang = "en-US";
 recognition.interimResults = false;
 recognition.maxAlternatives = 1;
 
-// const diagnostic = document.querySelector(".output");
-// const bg = document.querySelector("html");
-
 readTest.addEventListener('click', () => {
   recognition.start();
   console.log("Ready to receive a color command.");
@@ -65,19 +61,29 @@ readTest.addEventListener('click', () => {
 
 recognition.onresult = (event) => {
   const color = event.results[0][0].transcript.toLowerCase();
-  console.log(`Result received: ${color}`)
 
-  if (grammarArray.includes(color)) {
-    console.log('yup')
-  } else {
-    console.log('nope')
+  if (color == "back") {
+
   }
+  else if(color == "repeat") {
 
-  // diagnostic.textContent = `Result received: ${color}`;
-  // bg.style.backgroundColor = color;
+  }
+  else if (color == "next") {
 
-  const confidence = event.results[0][0].confidence
-  console.log(`Confidence: ${confidence}`)
+  }
+  else {
+
+  }
+  // console.log(`Result received: ${color}`)
+
+  // if (grammarArray.includes(color)) {
+  //   console.log('yup')
+  // } else {
+  //   console.log('nope')
+  // }
+
+  // const confidence = event.results[0][0].confidence
+  // console.log(`Confidence: ${confidence}`)
 };
 
 // on stop
@@ -402,6 +408,8 @@ miseEnPlaceSet.addEventListener('click', async () => {
 
   const utterThis = new SpeechSynthesisUtterance(setAnimation.innerText);
   synth.speak(utterThis)
+
+  recognition.start();
 }
 )
 
@@ -466,6 +474,8 @@ previousStep.addEventListener('click', () => {
   }
   const utterThis = new SpeechSynthesisUtterance(setAnimation.innerText);
   synth.speak(utterThis)
+
+  recognition.start();
 })
 
 nextStep.addEventListener('click', () => {
@@ -487,6 +497,8 @@ nextStep.addEventListener('click', () => {
 
   const utterThis = new SpeechSynthesisUtterance(setAnimation.innerText);
   synth.speak(utterThis)
+
+  recognition.start();
 }
 )
 
@@ -494,6 +506,8 @@ repeatStep.addEventListener('click', () => {
   const setAnimation = document.getElementById(`instructionList${currentInstruction}`);
   const utterThis = new SpeechSynthesisUtterance(setAnimation.innerText);
   synth.speak(utterThis)
+
+  recognition.start();
 })
 
 document.addEventListener( "click", previewListener);
