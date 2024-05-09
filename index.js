@@ -54,10 +54,6 @@ recognition.lang = "en-US";
 recognition.interimResults = false;
 recognition.maxAlternatives = 1;
 
-readTest.addEventListener('click', async () => {
-  recognition.start();
-  console.log("Ready to receive a command.");
-})
 
 recognition.onresult = async (event) => {
 

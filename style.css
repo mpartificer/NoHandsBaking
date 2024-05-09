@@ -54,7 +54,6 @@
   color:black;
   background-color:#F25278;
   position: absolute;
-  /* bottom: -100%; */
   left: 50%;
   transform: translateX(-50%);
   animation: smooth-appear 2s ease forwards;
@@ -104,10 +103,6 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    /* grid-gap: 10px;
-    grid-template-columns: repeat(2, 50%);
-    grid-template-rows: 16% 16% 16% 16% 16%;
-    grid-auto-flow: row; */
     justify-content: center;
   }
 
@@ -205,7 +200,6 @@ body {
 
   .recipeSelectionScreenVisible {
     visibility: visible;
-
     top: 10%;
   }
 
@@ -256,6 +250,27 @@ body {
   .instructionsVisible {
     visibility: visible;
     }
+
+  .informationPanel {
+    background-color:#F25278;
+    border: 5px solid #ec325e;
+    border-radius: 4px;
+    display: flex;
+    margin: 25%;
+    visibility: visible;
+    font-size: x-large;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    z-index: -1;
+  }
+
+  .exitInfoPanel {
+    display: flex;
+    justify-content: right;
+    align-self: flex-start;
+    visibility: visible;
+  }
 
   .previousInstruction {
     font-size: 20px;
