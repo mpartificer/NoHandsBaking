@@ -44,39 +44,47 @@ var i;
 
 
 const grammarArray = ['next', 'back', 'repeat']
-const grammar = `#JSGF V1.0; grammar colors; public <color> = ${grammarArray.join(' | ')} ;`;
+const grammar = `#JSGF V1.0; grammar commandWords; public <commandWord> = ${grammarArray.join(' | ')} ;`;
 const recognition = new SpeechRecognition();
 const speechRecognitionList = new SpeechGrammarList();
 speechRecognitionList.addFromString(grammar, 1);
 recognition.grammars = speechRecognitionList;
-recognition.continuous = false;
+recognition.continuous = true;
 recognition.lang = "en-US";
 recognition.interimResults = false;
 recognition.maxAlternatives = 1;
 
-readTest.addEventListener('click', () => {
+readTest.addEventListener('click', async () => {
   recognition.start();
-  console.log("Ready to receive a color command.");
+  console.log("Ready to receive a command.");
 })
 
-recognition.onresult = (event) => {
-  const color = event.results[0][0].transcript.toLowerCase();
+recognition.onresult = async (event) => {
 
-  if (color == "back") {
+  if (event.results.length > 0) {
+  const mostRecentResult = event.results.length - 1;
 
+  const commandWord = event.results[mostRecentResult][0].transcript.toLowerCase().trim();
+  const confidence = event.results[mostRecentResult][0].confidence
+
+  console.log(event.results)
+
+  if (commandWord == "back" && confidence > 0.5) {
+    previousFunction();
   }
-  else if(color == "repeat") {
-
+  else if(commandWord == "repeat" && confidence > 0.5) {
+    repeatFunction();
   }
-  else if (color == "next") {
-
+  else if (commandWord == "next" && confidence > 0.5) {
+    nextFunction();
   }
   else {
-
+    console.log('Please try command again')
+    console.log(commandWord)
   }
-  // console.log(`Result received: ${color}`)
+  // console.log(`Result received: ${commandWord}`)
 
-  // if (grammarArray.includes(color)) {
+  // if (grammarArray.includes(commandWord)) {
   //   console.log('yup')
   // } else {
   //   console.log('nope')
@@ -84,11 +92,67 @@ recognition.onresult = (event) => {
 
   // const confidence = event.results[0][0].confidence
   // console.log(`Confidence: ${confidence}`)
+}
 };
+
+
 
 // on stop
 
 // on no match 
+
+function repeatFunction() {
+  const setAnimation = document.getElementById(`instructionList${currentInstruction}`);
+  waitYourTurn(setAnimation.innerText)
+}
+
+function previousFunction() {
+  currentInstruction -= 1;
+  const setAnimation = document.getElementById(`instructionList${currentInstruction}`);
+  const setNextAnimation = document.getElementById(`instructionList${currentInstruction + 1}`);
+  const removeNextAnimation = document.getElementById(`instructionList${currentInstruction + 2}`);
+  setAnimation.classList.add('currentInstruction');
+  setNextAnimation.classList.add('nextInstruction');
+  removeNextAnimation.classList.remove('nextInstruction');
+  setNextAnimation.classList.remove('currentInstruction');
+
+  if (currentInstruction > 1) {
+    const setPreviousAnimation = document.getElementById(`instructionList${currentInstruction - 1}`);
+    setPreviousAnimation.classList.add(`previousInstruction`);
+  }
+
+  waitYourTurn(setAnimation.innerText)
+}
+
+function nextFunction() {
+  currentInstruction += 1;
+  previousStep.disabled = false;
+  const setAnimation = document.getElementById(`instructionList${currentInstruction}`);
+  const setNextAnimation = document.getElementById(`instructionList${currentInstruction + 1}`);
+  const setPrevAnimation = document.getElementById(`instructionList${currentInstruction - 1}`);
+  setPrevAnimation.classList.add('previousInstruction');
+  setPrevAnimation.classList.remove('currentInstruction');
+  setAnimation.classList.add('currentInstruction');
+  setAnimation.classList.remove('nextInstruction');
+  setNextAnimation.classList.add('nextInstruction');
+  if (currentInstruction > 2) {
+    const exitingInstructionLoop = document.getElementById(`instructionList${currentInstruction - 2}`);
+    exitingInstructionLoop.classList.remove('previousInstruction');
+    exitingInstructionLoop.classList.add('exitInstructionFront')
+  }
+
+  waitYourTurn(setAnimation.innerText)
+}
+
+function waitYourTurn(utterance) {
+  recognition.stop()
+  const utterThis = new SpeechSynthesisUtterance(utterance);
+  synth.speak(utterThis)
+
+  utterThis.addEventListener("end", (event) => {
+    recognition.start();
+  });
+}
 
 async function retrieveRecipes(offset) {
   const searchValue = webpage.value;
@@ -458,56 +522,16 @@ homeButton.addEventListener('click', () => {
   recipeSelector.setAttribute('class', 'opener');
 })
 
-previousStep.addEventListener('click', () => {
-  currentInstruction -= 1;
-  const setAnimation = document.getElementById(`instructionList${currentInstruction}`);
-  const setNextAnimation = document.getElementById(`instructionList${currentInstruction + 1}`);
-  const removeNextAnimation = document.getElementById(`instructionList${currentInstruction + 2}`);
-  setAnimation.classList.add('currentInstruction');
-  setNextAnimation.classList.add('nextInstruction');
-  removeNextAnimation.classList.remove('nextInstruction');
-  setNextAnimation.classList.remove('currentInstruction');
-
-  if (currentInstruction > 1) {
-    const setPreviousAnimation = document.getElementById(`instructionList${currentInstruction - 1}`);
-    setPreviousAnimation.classList.add(`previousInstruction`);
-  }
-  const utterThis = new SpeechSynthesisUtterance(setAnimation.innerText);
-  synth.speak(utterThis)
-
-  recognition.start();
+previousStep.addEventListener('click', async () => {
+  previousFunction();
 })
 
-nextStep.addEventListener('click', () => {
-  currentInstruction += 1;
-  previousStep.disabled = false;
-  const setAnimation = document.getElementById(`instructionList${currentInstruction}`);
-  const setNextAnimation = document.getElementById(`instructionList${currentInstruction + 1}`);
-  const setPrevAnimation = document.getElementById(`instructionList${currentInstruction - 1}`);
-  setPrevAnimation.classList.add('previousInstruction');
-  setPrevAnimation.classList.remove('currentInstruction');
-  setAnimation.classList.add('currentInstruction');
-  setAnimation.classList.remove('nextInstruction');
-  setNextAnimation.classList.add('nextInstruction');
-  if (currentInstruction > 2) {
-    const exitingInstructionLoop = document.getElementById(`instructionList${currentInstruction - 2}`);
-    exitingInstructionLoop.classList.remove('previousInstruction');
-    exitingInstructionLoop.classList.add('exitInstructionFront')
-  }
+nextStep.addEventListener('click', async () => {
+  nextFunction();
+})
 
-  const utterThis = new SpeechSynthesisUtterance(setAnimation.innerText);
-  synth.speak(utterThis)
-
-  recognition.start();
-}
-)
-
-repeatStep.addEventListener('click', () => {
-  const setAnimation = document.getElementById(`instructionList${currentInstruction}`);
-  const utterThis = new SpeechSynthesisUtterance(setAnimation.innerText);
-  synth.speak(utterThis)
-
-  recognition.start();
+repeatStep.addEventListener('click', async () => {
+  repeatFunction();
 })
 
 document.addEventListener( "click", previewListener);
