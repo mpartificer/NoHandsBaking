@@ -82,24 +82,9 @@ recognition.onresult = async (event) => {
     console.log('Please try command again')
     console.log(commandWord)
   }
-  // console.log(`Result received: ${commandWord}`)
-
-  // if (grammarArray.includes(commandWord)) {
-  //   console.log('yup')
-  // } else {
-  //   console.log('nope')
-  // }
-
-  // const confidence = event.results[0][0].confidence
-  // console.log(`Confidence: ${confidence}`)
 }
 };
 
-
-
-// on stop
-
-// on no match 
 
 function repeatFunction() {
   const setAnimation = document.getElementById(`instructionList${currentInstruction}`);
@@ -156,7 +141,6 @@ function waitYourTurn(utterance) {
 
 async function retrieveRecipes(offset) {
   const searchValue = webpage.value;
-  // template literals
 
   const recipeSearch = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonacularKey}&query=${searchValue}&instructionsRequired=true&offset=${offset}`
   
@@ -174,34 +158,23 @@ async function retrieveRecipes(offset) {
 }
 
 async function manageInstructions(parsedInstructions) {
-  const yesOrNot = parsedInstructions.startsWith('<ol>');
-  if (yesOrNot == true) {
-    var instructionInsert = `<div class="instructionsVisible--container">`;
-    instructionInsert += `<ol class="content__container__list">`;
-    instructionInsert += parsedInstructions;
-    instructionInsert += `</ol></div>`
-    return parsedInstructions;
+
+  var instructionInsert = "";
+  instructionInsert += '<ul>';
+
+  for (i = 0; i < parsedInstructions.length; i++) {
+    instructionInsert += `<li id="instructionList${i}">`;
+    instructionInsert += parsedInstructions[i];
+    instructionInsert += `</li>`;
   }
-  else {
-    const instructionsArray = parsedInstructions.split('. ');
 
-    var instructionInsert = "";
-    instructionInsert += '<ul>';
+  instructionInsert += `</ul>`;
 
-    for (i = 0; i < instructionsArray.length; i++) {
-      instructionInsert += `<li id="instructionList${i}">`;
-      instructionInsert += instructionsArray[i];
-      instructionInsert += `</li>`;
-    }
+  console.log(instructionInsert)
 
-    instructionInsert += `</ul>`;
-
-
-    console.log(instructionInsert)
-
-    return instructionInsert;
+  return instructionInsert;
     
-  }
+  // }
 }
 
 async function ingredientArray() {
@@ -319,7 +292,17 @@ async function setRecipe(recipeID) {
   const jsonObjectId = JSON.stringify(findMyRecipe.id);
   const jsonObjectIngredients = JSON.stringify(findMyRecipe.extendedIngredients);
   const jsonObjectImage = JSON.stringify(findMyRecipe.image);
-  const jsonObjectInstructions = JSON.stringify(findMyRecipe.instructions);
+  // const jsonObjectInstructions = JSON.stringify(findMyRecipe.instructions);
+  const instructionsArray = [];
+  for (i = 0; i < findMyRecipe.analyzedInstructions[0].steps.length; i++) {
+    instructionsArray.push(findMyRecipe.analyzedInstructions[0].steps[i].step)
+  }
+
+  // const jsonObjectInstructions = JSON.stringify(findMyRecipe.analyzedInstructions[0].steps)
+
+  const jsonObjectInstructions = JSON.stringify(instructionsArray)
+
+  console.log(jsonObjectInstructions);
 
   sessionStorage.setItem('storedRecipeTitle', jsonObjectTitle);
   sessionStorage.setItem('storedRecipeId', jsonObjectId);
