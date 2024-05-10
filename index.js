@@ -37,8 +37,9 @@ var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
 var SpeechGrammarList = SpeechGrammarList || window.webkitSpeechGrammarList
 var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
 var columnPreview = document.getElementsByClassName('columnPreview');
-var currentInstruction;
+var currentInstruction = 0;
 var recipeList;
+var stepCount;
 var offset;
 var pageNumber;
 var totalPages;
@@ -104,6 +105,23 @@ function previousFunction() {
     setPreviousAnimation.classList.add(`previousInstruction`);
   }
 
+  if (currentInstruction == stepCount) {
+    nextStep.disabled = true;
+  }
+
+  if (currentInstruction == 0) {
+    previousStep.disabled == true;
+  }
+
+  if (currentInstruction != 0) {
+    previousStep.disabled = false;
+  }
+
+  if (currentInstruction != stepCount) {
+    nextStep.disabled = false;
+  }
+
+  console.log(currentInstruction)
   waitYourTurn(setAnimation.innerText)
 }
 
@@ -117,13 +135,30 @@ function nextFunction() {
   setPrevAnimation.classList.remove('currentInstruction');
   setAnimation.classList.add('currentInstruction');
   setAnimation.classList.remove('nextInstruction');
-  setNextAnimation.classList.add('nextInstruction');
+  !setNextAnimation.classList.add('nextInstruction');
   if (currentInstruction > 2) {
     const exitingInstructionLoop = document.getElementById(`instructionList${currentInstruction - 2}`);
     exitingInstructionLoop.classList.remove('previousInstruction');
     exitingInstructionLoop.classList.add('exitInstructionFront')
   }
 
+  if (currentInstruction == stepCount) {
+    nextStep.disabled = true;
+  }
+
+  if (currentInstruction == 0) {
+    previousStep.disabled == true;
+  }
+
+  if (currentInstruction != 0) {
+    previousStep.disabled = false;
+  }
+
+  if (currentInstruction != stepCount) {
+    nextStep.disabled = false;
+  }
+
+  console.log(currentInstruction);
   waitYourTurn(setAnimation.innerText)
 }
 
@@ -167,6 +202,8 @@ async function manageInstructions(parsedInstructions) {
   }
 
   instructionInsert += `</ul>`;
+
+  stepCount = parsedInstructions.length;
 
   console.log(instructionInsert)
 
