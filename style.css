@@ -241,15 +241,27 @@ body {
 
   .instructions {
     top: 10%;
+    width: 100%;
     visibility: hidden;
     overflow: hidden;
     position: absolute;
-    display: block;
+    display: flex;
+    align-items: center;
   }
 
   .instructionsVisible {
     visibility: visible;
     }
+
+  .instructionManipulationButton {
+    border: 1px solid #F25278;
+    background-color: #F25278;
+    color: black;
+  }
+
+  .instructionManipulationButton:hover {
+    color:white;
+  }
 
   .informationPanel {
     background-color:#F25278;
@@ -270,6 +282,11 @@ body {
     justify-content: right;
     align-self: flex-start;
     visibility: visible;
+    font-family: Futura;
+    border: none;
+    background-color:#F25278;
+    color: white;
+    font-size: large;
   }
 
   .previousInstruction {

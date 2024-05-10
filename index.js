@@ -8,11 +8,13 @@ const homeButton = document.getElementById('homeButton');
 const backToMise = document.getElementById('backToMise');
 const buttonLink = document.getElementById('letsGoButton');
 const recipeTitle = document.getElementById('recipeTitle');
+const exitInfoPanel = document.getElementById('exitInfoPanel');
 const miseEnPlaceSet = document.getElementById('lockedAndLoadedButton');
 const miseEnPlaceText = document.getElementById('miseEnPlace');
 const recipeSelector = document.getElementById('recipeSelector');
 const instructions = document.getElementById('instructions');
 const recipeSelectionScreen = document.getElementById('recipeSelectionScreen');
+const informationPanel = document.getElementById('informationPanel');
 const recipePreview = document.getElementById('recipePreview');
 const imagePreview = document.getElementById('imagePreview');
 const ingredientsPreview = document.getElementById('ingredientsPreview');
@@ -511,6 +513,11 @@ nextStep.addEventListener('click', async () => {
 
 repeatStep.addEventListener('click', async () => {
   repeatFunction();
+})
+
+exitInfoPanel.addEventListener('click', () => {
+  informationPanel.style.visibility = "hidden";
+  exitInfoPanel.style.visibility = "hidden";
 })
 
 document.addEventListener( "click", previewListener);
