@@ -12,6 +12,7 @@ const exitInfoPanel = document.getElementById('exitInfoPanel');
 const miseEnPlaceSet = document.getElementById('lockedAndLoadedButton');
 const miseEnPlaceText = document.getElementById('miseEnPlace');
 const recipeSelector = document.getElementById('recipeSelector');
+const enterInstructionMode = document.getElementById('enterInstructionMode');
 const instructions = document.getElementById('instructions');
 const recipeSelectionScreen = document.getElementById('recipeSelectionScreen');
 const informationPanel = document.getElementById('informationPanel');
@@ -105,21 +106,7 @@ function previousFunction() {
     setPreviousAnimation.classList.add(`previousInstruction`);
   }
 
-  if (currentInstruction == stepCount) {
-    nextStep.disabled = true;
-  }
-
-  if (currentInstruction == 0) {
-    previousStep.disabled == true;
-  }
-
-  if (currentInstruction != 0) {
-    previousStep.disabled = false;
-  }
-
-  if (currentInstruction != stepCount) {
-    nextStep.disabled = false;
-  }
+  buttonCheck();
 
   console.log(currentInstruction)
   waitYourTurn(setAnimation.innerText)
@@ -135,13 +122,23 @@ function nextFunction() {
   setPrevAnimation.classList.remove('currentInstruction');
   setAnimation.classList.add('currentInstruction');
   setAnimation.classList.remove('nextInstruction');
-  !setNextAnimation.classList.add('nextInstruction');
+  
   if (currentInstruction > 2) {
     const exitingInstructionLoop = document.getElementById(`instructionList${currentInstruction - 2}`);
     exitingInstructionLoop.classList.remove('previousInstruction');
     exitingInstructionLoop.classList.add('exitInstructionFront')
   }
+  if (currentInstruction != stepCount) {
+    setNextAnimation.classList.add('nextInstruction');
+  }
 
+  buttonCheck();
+
+  console.log(currentInstruction);
+  waitYourTurn(setAnimation.innerText)
+}
+
+function buttonCheck() {
   if (currentInstruction == stepCount) {
     nextStep.disabled = true;
   }
@@ -157,9 +154,6 @@ function nextFunction() {
   if (currentInstruction != stepCount) {
     nextStep.disabled = false;
   }
-
-  console.log(currentInstruction);
-  waitYourTurn(setAnimation.innerText)
 }
 
 function waitYourTurn(utterance) {
@@ -208,8 +202,6 @@ async function manageInstructions(parsedInstructions) {
   console.log(instructionInsert)
 
   return instructionInsert;
-    
-  // }
 }
 
 async function ingredientArray() {
@@ -327,14 +319,10 @@ async function setRecipe(recipeID) {
   const jsonObjectId = JSON.stringify(findMyRecipe.id);
   const jsonObjectIngredients = JSON.stringify(findMyRecipe.extendedIngredients);
   const jsonObjectImage = JSON.stringify(findMyRecipe.image);
-  // const jsonObjectInstructions = JSON.stringify(findMyRecipe.instructions);
   const instructionsArray = [];
   for (i = 0; i < findMyRecipe.analyzedInstructions[0].steps.length; i++) {
     instructionsArray.push(findMyRecipe.analyzedInstructions[0].steps[i].step)
   }
-
-  // const jsonObjectInstructions = JSON.stringify(findMyRecipe.analyzedInstructions[0].steps)
-
   const jsonObjectInstructions = JSON.stringify(instructionsArray)
 
   console.log(jsonObjectInstructions);
@@ -487,13 +475,10 @@ miseEnPlaceSet.addEventListener('click', async () => {
   setNextAnimation.setAttribute('class', 'nextInstruction');
   instructions.classList.add('instructionsVisible');
   miseEnPlaceText.setAttribute('class', 'miseEnPlace');
-
-  const utterThis = new SpeechSynthesisUtterance(setAnimation.innerText);
-  synth.speak(utterThis)
-
-  recognition.start();
+  informationPanel.style.visibility = 'visible';
 }
 )
+
 
 selectRecipe.addEventListener('click', async () => {
   await letsBake();
@@ -555,6 +540,10 @@ repeatStep.addEventListener('click', async () => {
 exitInfoPanel.addEventListener('click', () => {
   informationPanel.style.visibility = "hidden";
   exitInfoPanel.style.visibility = "hidden";
+
+  repeatFunction();
+
+  recognition.start();
 })
 
 document.addEventListener( "click", previewListener);
