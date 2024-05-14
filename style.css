@@ -268,7 +268,7 @@ body {
 
   .switch {
     position: relative;
-    display: inline-block;
+    display: flex;
     width: 60px;
     height: 34px;
   }
@@ -304,11 +304,11 @@ body {
   }
   
   input:checked + .slider {
-    background-color: #F25278;
+    background-color: #f2073e;
   }
   
   input:focus + .slider {
-    box-shadow: 0 0 1px #F25278;
+    box-shadow: 0 0 1px #f2073e;
   }
   
   input:checked + .slider:before {
@@ -331,10 +331,12 @@ body {
     border: 5px solid #ec325e;
     border-radius: 4px;
     display: flex;
-    margin: 25%;
+    margin-left: 25%;
+    margin-right: 25%;
     visibility: hidden;
     font-size: x-large;
     justify-content: center;
+    flex-direction: column;
     text-align: center;
     align-items: center;
     z-index: -1;
@@ -368,14 +370,6 @@ body {
 
   .exitInstructionFront {
     animation: leaveInstructionAnim 1s;
-  }
-
-  .instructionOptionsPanel {
-    background-color: #F25278;
-    border: 1px solid black;
-    display: flex;
-    justify-content: center;
-    margin: 25%;
   }
 
     
