@@ -15,15 +15,23 @@
     animation: animate 2s linear forwards;
 }
 
+.backToHome {
+  border: none;
+  padding: 0;
+  background: none;
+}
+
 .homeButton {
   text-align: left;
   position: absolute;
+  border: none;
+  padding: 0;
+  background: none;
   top: 0;
   left: 0;
   margin-top: 20px;
   opacity: 0;
   z-index: -1;
-  background-color: rgb(255, 182, 193);
   width: 60px;
   height: 60px;
   animation: opacity 1s linear forwards;
@@ -240,12 +248,15 @@ body {
   }
 
   .instructions {
-    top: 10%;
+    top: 15%;
+    width: 100%;
     visibility: hidden;
     overflow: hidden;
     position: absolute;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
+    /* align-items: center; */
   }
 
   .instructionsVisible {
@@ -256,14 +267,31 @@ body {
     width: 100%;
   }
 
+  .instructionManipulation {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center; */
+    align-items: center;
+    width: 100%;
+  }
+
   .instructionManipulationButton {
+    font-family: 'Futura';
+    /* justify-content: space-evenly; */
     border: 1px solid #F25278;
+    background-color: #f0b7c5;
     color: black;
+    border-radius: 5px;
+    /* align-items: center; */
   }
 
   .instructionManipulationButton:hover {
     color:white;
     background-color: #F25278;
+  }
+
+  .instructionManipulationButton:disabled {
+    background-color: rgb(210, 209, 209);
   }
 
   .switch {
@@ -351,6 +379,24 @@ body {
     background-color:#F25278;
     color: white;
     font-size: large;
+  }
+
+  .instructionExits {
+    display: flex;
+    justify-content: center;
+    flex-direction: column-reverse;
+  }
+
+  .instructionExitsButtons {
+    font-family: 'Futura';
+    border: none;
+    font-size:large;
+    background-color: rgb(255, 182, 193);
+    text-align: left;
+  }
+
+  .instructionExitsButtons:hover {
+    color:white;
   }
 
   .previousInstruction {
