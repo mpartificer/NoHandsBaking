@@ -78,6 +78,7 @@
 
 ul {
   list-style-type: none;
+  padding-inline-start: 0;
 }
 
 body {
@@ -408,6 +409,7 @@ body {
   .instructionExits {
     display: flex;
     justify-content: flex-start;
+    padding-left: 15 px;
     align-items: flex-start;
     align-self: flex-start;
     flex-direction: column;
