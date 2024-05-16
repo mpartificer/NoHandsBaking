@@ -17,8 +17,7 @@
 
 .backToHome {
   border: none;
-  padding-inline: -6px;
-  padding-block: -1px;
+  visibility: hidden;
   background: none;
 }
 
@@ -79,6 +78,15 @@
 ul {
   list-style-type: none;
   padding-inline-start: 0;
+  display: flex;
+  flex-direction:column;
+  row-gap: 20px;
+}
+
+button {
+  padding-inline:0px;
+  padding-block:0px;
+  border-width:0px;
 }
 
 body {
@@ -86,8 +94,10 @@ body {
     background-color: rgb(255, 182, 193);
     width:100%;
     height:100%;
+    font-size: 16px;
     text-align: center;
     position: absolute;
+    
     top: 50%;
     left: 50%;
     margin: 0px;
@@ -263,11 +273,6 @@ body {
     visibility: visible;
     }
 
-  .instructionsText {
-    margin-left: 10%;
-    margin-right: 10%;
-  }
-
   .instructionManipulation {
     display: flex;
     flex-direction: row;
@@ -428,63 +433,73 @@ body {
   }
 
   .previousInstruction {
-    font-size: 20px;
+    /* font-size: 20px; */
     animation: previousInstructionAnim 1s;
     animation-fill-mode: forwards;
 
   }
 
   .currentInstruction {
-    font-size: 40px;
-    animation: currentInstuctionAnim 1s;
+    /* font-size: 40px; */
+    animation: currentInstructionAnim 1s;
     animation-fill-mode: forwards;
   }
 
   .nextInstruction {
-    font-size: 20 px;
+    /* font-size: 20 px; */
     animation: nextInstructionAnim 1s;
     animation-fill-mode: forwards;
   }
 
   .exitInstructionFront {
+    /* font-size: 10px; */
     animation: leaveInstructionAnim 1s;
+    animation-fill-mode: forwards;
   }
 
 
   @keyframes currentInstructionAnim {
     from {
-      transform: scale(1)
+      /* transform: scale(2) */
+      font-size: 25px;
     }  
     to {
-      transform: scale(1.25)
+      /* transform: scale(3) */
+      font-size: 40px;
     }
 }  
 
 
   @keyframes nextInstructionAnim {
     from {
-      transform: scale(1)
+      /* transform: scale(1) */
+      font-size: 16px;
     }
     to {
-      transform: scale(1.25);
-    }
+      /* transform: scale(2); */
+
+font-size: 25px;    }
   }
 
   @keyframes previousInstructionAnim {
     from {
-      transform: scale(1);
+      /* transform: scale(3); */
+      font-size: 40px;
     }
     to {
-      transform: scale(0.8);
+      /* transform: scale(2); */
+      font-size: 25px;
     }
   }
 
   @keyframes leaveInstructionAnim {
     from {
-      transform: scale(1);
+      /* transform: scale(2); */
+      font-size: 25px;
     }
-    50% {
-      transform: scale(0.8);
+    to {
+      /* transform: scale(1); */
+      font-size: 16px;
     }
   } 
 

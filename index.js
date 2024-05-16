@@ -103,19 +103,28 @@ function previousFunction() {
 
   if (currentInstruction > 0) {
     const setPreviousAnimation = document.getElementById(`instructionList${currentInstruction - 1}`);
+    
+    if (setPreviousAnimation) {
     setPreviousAnimation.classList = "";
     setPreviousAnimation.classList.add(`previousInstruction`);
+    }
   }
 
   if (currentInstruction < stepCount - 1) {
     const removeNextAnimation = document.getElementById(`instructionList${currentInstruction + 2}`);
+
+    if (removeNextAnimation) {
     removeNextAnimation.classList = "";
     removeNextAnimation.classList.add('exitInstructionFront');
+    }
   }
 
-  if (currentInstruction < stepCount - 1) {
+  if (currentInstruction < stepCount - 2) {
     const removeExit = document.getElementById(`instructionList${currentInstruction + 3}`);
+
+    if (removeExit) {
     removeExit.classList = "";
+    }
   }
 
   buttonCheck();
@@ -130,23 +139,34 @@ function nextFunction() {
   const setNextAnimation = document.getElementById(`instructionList${currentInstruction + 1}`);
   const setPrevAnimation = document.getElementById(`instructionList${currentInstruction - 1}`);
   
+  if (setPrevAnimation) {
   setPrevAnimation.classList = "";
   setPrevAnimation.classList.add('previousInstruction');
+  }
+
+  if (setAnimation) {
   setAnimation.classList = "";
   setAnimation.classList.add('currentInstruction');
+  }
 
   if (currentInstruction > 1) {
     const exitingInstructionLoop = document.getElementById(`instructionList${currentInstruction - 2}`);
+    if (exitingInstructionLoop) {
     exitingInstructionLoop.classList = "";
     exitingInstructionLoop.classList.add('exitInstructionFront')
+    }
   }
   if (currentInstruction > 2) {
     const finalExit = document.getElementById(`instructionList${currentInstruction - 3}`);
+    if (finalExit) {
     finalExit.classList = "";
+    }
   }
   if (currentInstruction + 1 != stepCount) {
+    if (setNextAnimation) {
     setNextAnimation.classList = "";
     setNextAnimation.classList.add('nextInstruction');
+    }
   }
 
   buttonCheck();
@@ -165,14 +185,16 @@ function buttonCheck() {
     nextStep.disabled = true;
   }
   else {
+    console.log(trueCount);
+    console.log(stepCount);
     nextStep.disabled = false;
   }
 
   if (trueCount == 1) {
-    previousStep.disabled == true;
+    previousStep.disabled = true;
   }
   else {
-    previousStep.disabled == false;
+    previousStep.disabled = false;
   }
 }
 
@@ -207,7 +229,7 @@ async function retrieveRecipes(offset) {
 async function manageInstructions(parsedInstructions) {
 
   var instructionInsert = "";
-  instructionInsert += '<ul>';
+  instructionInsert += '<ul class="instructionListManager">';
 
   for (i = 0; i < parsedInstructions.length; i++) {
     instructionInsert += `<li id="instructionList${i}">`;
