@@ -95,15 +95,27 @@ function previousFunction() {
   currentInstruction -= 1;
   const setAnimation = document.getElementById(`instructionList${currentInstruction}`);
   const setNextAnimation = document.getElementById(`instructionList${currentInstruction + 1}`);
-  const removeNextAnimation = document.getElementById(`instructionList${currentInstruction + 2}`);
+  setAnimation.classList = "";
   setAnimation.classList.add('currentInstruction');
+  setNextAnimation.classList = "";
   setNextAnimation.classList.add('nextInstruction');
-  removeNextAnimation.classList.remove('nextInstruction');
-  setNextAnimation.classList.remove('currentInstruction');
+  
 
-  if (currentInstruction > 1) {
+  if (currentInstruction > 0) {
     const setPreviousAnimation = document.getElementById(`instructionList${currentInstruction - 1}`);
+    setPreviousAnimation.classList = "";
     setPreviousAnimation.classList.add(`previousInstruction`);
+  }
+
+  if (currentInstruction < stepCount - 1) {
+    const removeNextAnimation = document.getElementById(`instructionList${currentInstruction + 2}`);
+    removeNextAnimation.classList = "";
+    removeNextAnimation.classList.add('exitInstructionFront');
+  }
+
+  if (currentInstruction < stepCount - 1) {
+    const removeExit = document.getElementById(`instructionList${currentInstruction + 3}`);
+    removeExit.classList = "";
   }
 
   buttonCheck();
@@ -114,45 +126,53 @@ function previousFunction() {
 
 function nextFunction() {
   currentInstruction += 1;
-  previousStep.disabled = false;
   const setAnimation = document.getElementById(`instructionList${currentInstruction}`);
   const setNextAnimation = document.getElementById(`instructionList${currentInstruction + 1}`);
   const setPrevAnimation = document.getElementById(`instructionList${currentInstruction - 1}`);
-  setPrevAnimation.classList.add('previousInstruction');
-  setPrevAnimation.classList.remove('currentInstruction');
-  setAnimation.classList.add('currentInstruction');
-  setAnimation.classList.remove('nextInstruction');
   
-  if (currentInstruction > 2) {
+  setPrevAnimation.classList = "";
+  setPrevAnimation.classList.add('previousInstruction');
+  setAnimation.classList = "";
+  setAnimation.classList.add('currentInstruction');
+
+  if (currentInstruction > 1) {
     const exitingInstructionLoop = document.getElementById(`instructionList${currentInstruction - 2}`);
-    exitingInstructionLoop.classList.remove('previousInstruction');
+    exitingInstructionLoop.classList = "";
     exitingInstructionLoop.classList.add('exitInstructionFront')
   }
-  if (currentInstruction != stepCount) {
+  if (currentInstruction > 2) {
+    const finalExit = document.getElementById(`instructionList${currentInstruction - 3}`);
+    finalExit.classList = "";
+  }
+  if (currentInstruction + 1 != stepCount) {
+    setNextAnimation.classList = "";
     setNextAnimation.classList.add('nextInstruction');
   }
 
   buttonCheck();
 
-  console.log(currentInstruction);
+  
   waitYourTurn(setAnimation.innerText)
 }
 
 function buttonCheck() {
-  if (currentInstruction == stepCount) {
+  
+  const trueCount = currentInstruction + 1;
+  console.log(trueCount);
+  console.log(stepCount);
+
+  if (stepCount == trueCount) {
     nextStep.disabled = true;
   }
+  else {
+    nextStep.disabled = false;
+  }
 
-  if (currentInstruction == 0) {
+  if (trueCount == 1) {
     previousStep.disabled == true;
   }
-
-  if (currentInstruction != 0) {
-    previousStep.disabled = false;
-  }
-
-  if (currentInstruction != stepCount) {
-    nextStep.disabled = false;
+  else {
+    previousStep.disabled == false;
   }
 }
 
