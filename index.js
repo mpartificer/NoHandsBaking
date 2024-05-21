@@ -5,6 +5,7 @@ const backToResults = document.getElementById('backToResults');
 const backToResults2 = document.getElementById('backToResults2');
 const backToResults3 = document.getElementById('backToResults3');
 const homeButton = document.getElementById('homeButton');
+const settingsButton = document.getElementById('settingsButton');
 const backToMise = document.getElementById('backToMise');
 const buttonLink = document.getElementById('letsGoButton');
 const recipeTitle = document.getElementById('recipeTitle');
@@ -586,6 +587,11 @@ exitInfoPanel.addEventListener('click', () => {
   repeatFunction();
 
   recognition.start();
+})
+
+settingsButton.addEventListener('click', () => {
+  informationPanel.style.visibility = "visible";
+  exitInfoPanel.style.visibility = "visible";
 })
 
 document.addEventListener( "click", previewListener);
