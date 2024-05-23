@@ -45,8 +45,7 @@
   flex-direction: row;
   justify-content: flex-end;
   padding-right: 15 px;
-  align-items: flex-end;
-  /* align-self: flex-end;  */
+  align-self: flex-end; 
   text-align: right;
 }
 
@@ -419,7 +418,7 @@ body {
 
   .informationPanel {
     background-color:#F25278;
-    border: 5px solid #ec325e;
+    border: 5px solid white;
     border-radius: 4px;
     display: flex;
     margin-left: 25%;

@@ -205,6 +205,7 @@ function buttonCheck() {
 function waitYourTurn(utterance) {
   recognition.stop()
   const utterThis = new SpeechSynthesisUtterance(utterance);
+  utterThis.voice = voice;
   synth.speak(utterThis)
 
   utterThis.addEventListener("end", (event) => {
@@ -388,9 +389,9 @@ var voices = synth.getVoices();
   for (n = 0; n < voices.length; n++){
   if (voices[n].name == "Daniel (English (United Kingdom))") {
     voice = voices[n];
+    console.log(voice);
   }
   }
-  console.log(voices);
 }
 
 async function letsBake() {
@@ -535,8 +536,7 @@ miseEnPlaceSet.addEventListener('click', async () => {
   instructions.classList.add('instructionsVisible');
   miseEnPlaceText.setAttribute('class', 'miseEnPlace');
   informationPanel.style.visibility = 'visible';
-}
-)
+})
 
 
 selectRecipe.addEventListener('click', async () => {
