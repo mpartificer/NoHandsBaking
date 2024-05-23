@@ -44,6 +44,7 @@ var columnPreview = document.getElementsByClassName('columnPreview');
 var currentInstruction = 0;
 var recipeList;
 var stepCount;
+var voice;
 var offset;
 var pageNumber;
 var totalPages;
@@ -381,6 +382,17 @@ async function setRecipe(recipeID) {
 
 }
 
+async function setVoice() {
+var voices = synth.getVoices();
+
+  for (n = 0; n < voices.length; n++){
+  if (voices[n].name == "Daniel (English (United Kingdom))") {
+    voice = voices[n];
+  }
+  }
+  console.log(voices);
+}
+
 async function letsBake() {
 
   const storedIngredients = sessionStorage.getItem('storedRecipeIngredients');
@@ -514,6 +526,7 @@ previousPage.addEventListener('click', async () => {
 
 miseEnPlaceSet.addEventListener('click', async () => {
   await instructionLoad();
+  await setVoice();
   const setAnimation = document.getElementById(`instructionList${currentInstruction}`);
   const setNextAnimation = document.getElementById(`instructionList${currentInstruction + 1}`);
   previousStep.disabled = true;
@@ -568,6 +581,7 @@ homeButton.addEventListener('click', () => {
   miseEnPlaceText.setAttribute('class', 'miseEnPlace');
   recipePreview.setAttribute('class', 'recipePreview');
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
+  recipeTitle.innerHTML = "No Hands Baking!"
   recipeSelector.setAttribute('class', 'opener');
 })
 
