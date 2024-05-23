@@ -102,10 +102,17 @@ ul {
   row-gap: 20px;
 }
 
+.enterText {
+  font-family: 'Futura';
+  width: 200px;
+}
+
 button {
   padding-inline:0px;
   padding-block:0px;
   border-width:0px;
+  background: none;
+  font-family: 'Futura';
 }
 
 body {
@@ -149,7 +156,8 @@ body {
   }
 
   .buttonWrangler {
-    justify-content: space-evenly;
+    justify-content: center;
+    gap:20px;
   }
 
   .column {
@@ -246,6 +254,13 @@ body {
     border: none;
   }
 
+  .pageButtons:hover {
+    color: white;
+  }
+
+  .miseOrientationButtons:hover {
+    color: white;
+  }
   .pageCounter {
     display: inline-block;
     text-align: center;
@@ -535,7 +550,7 @@ font-size: 25px;    }
 @keyframes opacity {
   0% {opacity:1;}
   100% {opacity:0;}
-  
+
 }
 
 @keyframes animate {
