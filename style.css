@@ -6,7 +6,7 @@
   padding: 0px;
   text-align: center;
   white-space: nowrap;
-  z-index: -2;
+  z-index: 2;
   display: inline;
   visibility: visible;
   width:100%;
@@ -100,6 +100,8 @@ ul {
   display: flex;
   flex-direction:column;
   row-gap: 20px;
+  color: rgb(216, 216, 216);
+  font-weight: bold;
 }
 
 .enterText {
@@ -138,7 +140,7 @@ body {
 
   .hideTheOpener {
     visibility: hidden;
-    display: block;
+    display: flex;
     position: absolute;
   }
 
@@ -230,11 +232,11 @@ body {
     top: 10%;
     white-space: nowrap;
     padding: 5px;
-    display: block;
+    display: flex;
     width: 100%;
     visibility: hidden;
     overflow: hidden;
-    position: absolute;
+    /* position: absolute; */
     justify-content: space-around;
   }
 
@@ -245,7 +247,6 @@ body {
 
   .recipeSelectionScreenVisible {
     visibility: visible;
-    top: 10%;
   }
 
   .pageButtons {
@@ -469,19 +470,21 @@ body {
     /* font-size: 20px; */
     animation: previousInstructionAnim 1s;
     animation-fill-mode: forwards;
-
+    color: rgb(152, 152, 152);
   }
 
   .currentInstruction {
     /* font-size: 40px; */
     animation: currentInstructionAnim 1s;
     animation-fill-mode: forwards;
+    color:black;
   }
 
   .nextInstruction {
     /* font-size: 20 px; */
     animation: nextInstructionAnim 1s;
     animation-fill-mode: forwards;
+    color:rgb(152, 152, 152);
   }
 
   .exitInstructionFront {

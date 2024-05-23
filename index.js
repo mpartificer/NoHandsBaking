@@ -33,6 +33,8 @@ const readTest = document.getElementById('readTest');
 const previousStep = document.getElementById('previousStep');
 const repeatStep = document.getElementById('repeatStep');
 const nextStep = document.getElementById('nextStep');
+const muteOration = document.getElementById('muteOration');
+const pauseMicrophone = document.getElementById('pauseMicrophone');
 const spoonacularKey = "3c5ec8b2939641a99e28c6023598b2d4";
 const synth = window.speechSynthesis;
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
@@ -335,6 +337,7 @@ async function instructionLoad() {
   const storedInstructions = sessionStorage.getItem('storedRecipeInstructions');
   const parsedInstructions = JSON.parse(storedInstructions);
   var formattedInstructions = await manageInstructions(parsedInstructions);
+  instructionsText.innerHTML = "";
   instructionsText.innerHTML = formattedInstructions;
   currentInstruction = 0;
 }
@@ -652,3 +655,16 @@ async function miseListener(event) {
     }
   }
 }
+
+
+  if (muteOration.checked == true){
+    text.style.display = "block";
+  } else {
+     text.style.display = "none";
+  }
+
+  if (pauseMicrophone.checked == true){
+    text.style.display = "block";
+  } else {
+     text.style.display = "none";
+  }
