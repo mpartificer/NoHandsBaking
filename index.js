@@ -615,6 +615,39 @@ document.addEventListener( "click", previewListener);
 document.addEventListener('click', miseListener);
 
 
+
+
+// const recipe1View = document.getElementById('recipe1View');
+// const recipe2View = document.getElementById('recipe2View');
+// const recipe3View = document.getElementById('recipe3View');
+// const recipe4View = document.getElementById('recipe4View');
+// const recipe5View = document.getElementById('recipe5View');
+// const recipe6View = document.getElementById('recipe6View');
+// const recipe7View = document.getElementById('recipe7View');
+// const recipe8View = document.getElementById('recipe8View');
+// const recipe9View = document.getElementById('recipe9View');
+// const recipe10View = document.getElementById('recipe10View');
+
+// var buttonArray = [recipe1View, recipe2View, recipe3View, recipe4View, recipe5View, recipe6View, recipe7View, recipe8View, recipe9View, recipe10View]
+
+
+// for (i = 0; i < buttonArray.length; i++) {
+
+//   const myButton = buttonArray[i]
+
+//   myButton.addEventListener(async () => {
+//     recipeIdTag = document.getElementById(`${myButton.id}`).value
+//     await setRecipe(recipeIdTag);
+//     await readMore();
+//     recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
+//     recipePreview.setAttribute('class', 'recipePreviewVisible');
+//   })
+// }
+
+
+
+
+
 async function previewListener(event){
   var element = event.target;
 
@@ -671,14 +704,16 @@ async function miseListener(event) {
 }
 
 
-  if (muteOration.checked == true){
-    text.style.display = "block";
-  } else {
-     text.style.display = "none";
-  }
+// if (muteOration.checked == true){
+    
+//   } else {
+//      text.style.display = "none";
+//   }
 
-  if (pauseMicrophone.checked == true){
-    text.style.display = "block";
-  } else {
-     text.style.display = "none";
-  }
+// if (pauseMicrophone.checked == true){
+//     if microphone is already paused {
+//       do nothing
+//     }
+//   } else {
+//      start listening
+//   }
