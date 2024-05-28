@@ -443,6 +443,7 @@ async function recipeWaiter(recipesList) {
 buttonLink.addEventListener('click', async () => {
   offset = 0;
   pageNumber = 1;
+  document.body.style.cursor='wait';
   previousPage.disabled = true;
   recipeList = await retrieveRecipes(offset);
   totalPages = recipeList.totalResults / 10
@@ -472,6 +473,7 @@ buttonLink.addEventListener('click', async () => {
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible'); 
 
   recipeSelector.setAttribute('class', 'hideTheOpener');
+  window.onload=function(){document.body.style.cursor='default';}
 })
 
 nextPage.addEventListener('click', async () => {
@@ -551,8 +553,9 @@ aboutUsButton.addEventListener('click', () => {
 })
 
 exitAboutUs.addEventListener('click', () => {
-  footer.classList.add('class', 'aboutUsExitButton');
-  footer.setAttribute('class', 'footer');
+  footer.classList.add('aboutUsExitButton');
+  footer.classList.add('goAwayAbout');
+  // footer.classList.remove('aboutUsVisible');
   sayMore.setAttribute('class', 'sayMore');
 })
 
