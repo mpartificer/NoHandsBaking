@@ -35,6 +35,7 @@ const repeatStep = document.getElementById('repeatStep');
 const nextStep = document.getElementById('nextStep');
 const muteOration = document.getElementById('muteOration');
 const pauseMicrophone = document.getElementById('pauseMicrophone');
+const errorPanel = document.getElementById('errorPanel');
 const spoonacularKey = "3c5ec8b2939641a99e28c6023598b2d4";
 const synth = window.speechSynthesis;
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
@@ -214,6 +215,7 @@ function waitYourTurn(utterance) {
 }
 
 async function retrieveRecipes(offset) {
+  try {
   const searchValue = webpage.value;
 
   const recipeSearch = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonacularKey}&query=${searchValue}&instructionsRequired=true&offset=${offset}`
@@ -225,10 +227,26 @@ async function retrieveRecipes(offset) {
   }});
   
   recipeList = await findMyRecipe.json();
-  console.log(recipeList);
-  console.log(recipeList.results)
-
   return recipeList;
+}
+catch {
+  if (err.code == "402") {
+    errorPanel.innerHTML = "No Hands Baking has exhausted its Spoonacular calls for the day. Try again after 9:00 p.m. UTC.";
+    errorPanel.style.visibility = 'visible';
+    setTimeout(function(){
+  }, 2000);
+  errorPanel.style.visibility = 'hidden';
+
+  }
+  else {
+    errorPanel.innerHTML = "Something has gone wrong, please try again";
+    errorPanel.style.visibility = "visible";
+    setTimeout(function(){
+  }, 2000);
+  errorPanel.style.visibility = 'hidden';
+    
+  }
+}
 }
 
 async function manageInstructions(parsedInstructions) {
@@ -441,11 +459,16 @@ async function recipeWaiter(recipesList) {
 }
 
 buttonLink.addEventListener('click', async () => {
+
   offset = 0;
   pageNumber = 1;
   document.body.style.cursor='wait';
   previousPage.disabled = true;
+
+  try {
   recipeList = await retrieveRecipes(offset);
+  console.log(recipeList)
+
   totalPages = recipeList.totalResults / 10
   if (totalPages % 10 != 0) {
     totalPages = Math.floor(recipeList.totalResults/10) + 1;
@@ -466,7 +489,6 @@ buttonLink.addEventListener('click', async () => {
     nextPage.disabled = false;
     previousPage.disabled = false;
   }
-  
   console.log(totalPages)
   await recipeWaiter(recipeList.results);
   document.getElementById('selectorPageTracker').innerHTML = `Page ${pageNumber} of ${totalPages}`
@@ -474,6 +496,25 @@ buttonLink.addEventListener('click', async () => {
 
   recipeSelector.setAttribute('class', 'hideTheOpener');
   window.onload=function(){document.body.style.cursor='default';}
+}
+  catch(err) {
+    if (err.code == "402") {
+      errorPanel.innerHTML = "No Hands Baking has exhausted its Spoonacular calls for the day. Try again after 9:00 p.m. UTC.";
+      errorPanel.style.visibility = 'visible';
+      setTimeout(function(){
+    }, 2000);
+    errorPanel.style.visibility = 'hidden';
+
+    }
+    else {
+      errorPanel.innerHTML = "Something has gone wrong, please try again";
+      errorPanel.style.visibility = "visible";
+      setTimeout(function(){
+    }, 2000);
+    errorPanel.style.visibility = 'hidden';
+      
+    }
+  }
 })
 
 nextPage.addEventListener('click', async () => {
