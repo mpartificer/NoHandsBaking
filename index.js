@@ -495,7 +495,7 @@ buttonLink.addEventListener('click', async () => {
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible'); 
 
   recipeSelector.setAttribute('class', 'hideTheOpener');
-  window.onload=function(){document.body.style.cursor='default';}
+  document.body.style.cursor='default';
 }
   catch(err) {
     if (err.code == "402") {
@@ -741,23 +741,22 @@ async function miseListener(event) {
       recipeIdTag = document.getElementById(`${buttonArray[i].id}`).value
       await setRecipe(recipeIdTag);
       await letsBake();
-      recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
+      recipeSelectionScreen.style.visibility = 'hidden';
+      recipeSelectionScreen.style.height = 0;
       miseEnPlaceText.setAttribute('class', 'miseEnPlaceVisible');
     }
   }
 }
 
 
-// if (muteOration.checked == true){
+if (muteOration.checked == true){
     
-//   } else {
-//      text.style.display = "none";
-//   }
+  } else {
+     text.style.display = "none";
+  }
 
-// if (pauseMicrophone.checked == true){
-//     if microphone is already paused {
-//       do nothing
-//     }
-//   } else {
-//      start listening
-//   }
+if (pauseMicrophone.checked == true){
+    recognition.stop();
+  } else {
+    recognition.start();
+  }

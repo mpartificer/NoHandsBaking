@@ -159,7 +159,9 @@ body {
   }
 
   .buttonWrangler {
+    display: flex;
     justify-content: center;
+    background-color: none;
     gap:20px;
   }
 
@@ -298,6 +300,7 @@ body {
 
   .instructions {
     top: 15%;
+    max-height: 35vh;
     width: 100%;
     visibility: hidden;
     overflow: visible;
@@ -305,6 +308,11 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  .instructionListManager {
+    max-height: 55vh;
+    overflow:scroll;
   }
 
   .instructionsVisible {
@@ -584,6 +592,7 @@ body {
 
   .header {
     animation: none;
+    font-size: 12px;
     /* font-size: 20px; */
     /* min-height:15vh; */
   }
@@ -596,9 +605,9 @@ body {
   }
 
   .informationPanel {
-    margin-left: 25%;
-    margin-right: 25%;
-    margin-top: 20%;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 30%;
     margin-bottom:20%;
   }
 
