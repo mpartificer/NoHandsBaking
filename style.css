@@ -116,10 +116,20 @@ button {
   border-width:0px;
   background: none;
   font-family: 'Futura';
+  cursor: pointer;
 }
 
 button:hover {
   color:white;
+}
+
+button:disabled {
+  cursor:default;
+  color:rgba(16, 16, 16, 0.3);
+}
+
+button:disabled:hover {
+  color:rgba(16, 16, 16, 0.3);
 }
 
 body {
@@ -232,7 +242,7 @@ body {
     display: block;
     visibility: hidden;
     width:100%;
-    overflow: hidden;
+    /* overflow: hidden; */
     position: absolute;
   }
 
@@ -323,7 +333,7 @@ body {
   .instructionListManager {
     color:black;
     max-height: 55vh;
-    overflow:scroll;
+    overflow: scroll;
   }
 
   .instructionsVisible {
@@ -476,7 +486,11 @@ body {
     font-size: large;
   }
 
- * .instructionExits {
+  .imggg {
+    width: 80%;
+  }
+
+  .instructionExits {
     display: flex;
     justify-content: flex-start;
     padding-left: 15 px;
@@ -602,17 +616,14 @@ body {
 
   .wrapper{
     max-height:65vh;
-    overflow: scroll;
-  }
-
-  .recipePreview {
-    overflow:scroll;
+    overflow-y: scroll;
   }
 
   .imageColumn {
     min-width: 100%;
     align-items: center;
   }
+
   .header {
     animation: none;
     font-size: 12px;
@@ -627,6 +638,10 @@ body {
     overflow: hidden;
   }
 
+  .recipePreviewVisible {
+    overflow:scroll !important;
+  }
+  
   .informationPanel {
     margin-left: 15%;
     margin-right: 15%;

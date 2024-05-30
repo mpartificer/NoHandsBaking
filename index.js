@@ -218,8 +218,9 @@ async function retrieveRecipes(offset) {
   try {
   const searchValue = webpage.value;
 
-  const recipeSearch = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonacularKey}&query=${searchValue}&instructionsRequired=true&offset=${offset}`
-  
+  // const recipeSearch = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonacularKey}&query=${searchValue}&instructionsRequired=true&offset=${offset}`
+  const recipeSearch = `https://api.spoonacular.commmmmmmm/recipes/complexSearch?apiKey=${spoonacularKey}&query=${searchValue}&instructionsRequired=true&offset=${offset}`
+
 
   const findMyRecipe = await fetch(recipeSearch, {
     headers: 
@@ -227,9 +228,18 @@ async function retrieveRecipes(offset) {
   }});
   
   recipeList = await findMyRecipe.json();
+
+  const isItOk = findMyRecipe.ok;
+  const whatIsStatus = findMyRecipe.status;
+
+  console.log('isItOk', isItOk)
+  console.log('whatIsStatus', whatIsStatus)
+
+
   return recipeList;
 }
-catch {
+catch (err) {
+  console.log('here is the error!!', err)
   if (err.code == "402") {
     errorPanel.innerHTML = "No Hands Baking has exhausted its Spoonacular calls for the day. Try again after 9:00 p.m. UTC.";
     errorPanel.style.visibility = 'visible';
@@ -336,9 +346,14 @@ async function readMore() {
 
   var img = document.createElement("img");
   img.src = parsedImage;
-  img.onload = function() {
-    resizeImage(img);
-  };
+
+  img.setAttribute('class', 'imggg'); 
+
+  imagePreview.appendChild(img);
+
+  // img.onload = function() {
+  //   resizeImage(img);
+  // };
 
   const storedIngredients = sessionStorage.getItem('storedRecipeIngredients');
   const parsedIngredients = JSON.parse(storedIngredients);
