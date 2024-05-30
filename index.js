@@ -252,7 +252,7 @@ catch {
 async function manageInstructions(parsedInstructions) {
 
   var instructionInsert = "";
-  instructionInsert += '<ul class="instructionListManager">';
+  instructionInsert += '<ul class="instructionListManager"><b>Instructions</b>';
 
   for (i = 0; i < parsedInstructions.length; i++) {
     instructionInsert += `<li id="instructionList${i}">`;
@@ -277,12 +277,13 @@ async function ingredientArray() {
   const parsedId = JSON.parse(storedId);
 
   const ingredientsList = parsedIngredients;
-  var ingredientHTML = document.createElement("p");
-  ingredientHTML.innerHTML = '<ul>';
+  var ingredientHTML;
+  ingredientHTML = '';
+  ingredientHTML = '<ul class="instructionListManager"><b>Ingredients</b>';
     for (i = 0; i < ingredientsList.length; i++) {
-      ingredientHTML.innerHTML += '<li>' + ingredientsList[i].original + '</li>';
+      ingredientHTML += '<li>' + ingredientsList[i].original + '</li>'; 
     }
-  ingredientHTML.innerHTML += `</ul>`;
+  ingredientHTML += `</ul>`;
 
   console.log(ingredientsList);
 
@@ -343,8 +344,7 @@ async function readMore() {
   const parsedIngredients = JSON.parse(storedIngredients);
 
   var ingredientHTML = await ingredientArray(parsedIngredients);
-  ingredientsPreview.innerHTML = "";
-  ingredientsPreview.appendChild(ingredientHTML);
+  ingredientsPreview.innerHTML = ingredientHTML;
 
   const storedInstructions = sessionStorage.getItem('storedRecipeInstructions');
   const parsedInstructions = JSON.parse(storedInstructions);
@@ -417,7 +417,7 @@ async function letsBake() {
   const storedIngredients = sessionStorage.getItem('storedRecipeIngredients');
   const parsedIngredients = JSON.parse(storedIngredients);
   var ingredientHTML = await ingredientArray(parsedIngredients);
-  ingredients.appendChild(ingredientHTML);
+  ingredients.innerHTML = ingredientHTML;
 
   const storedTitle = sessionStorage.getItem('storedRecipeTitle');
   const parsedTitle = JSON.parse(storedTitle);
@@ -597,7 +597,10 @@ exitAboutUs.addEventListener('click', () => {
   footer.classList.add('aboutUsExitButton');
   footer.classList.add('goAwayAbout');
   sayMore.setAttribute('class', 'sayMore');
+  setTimeout(function(){
+  }, 2000);
   footer.classList.remove('aboutUsVisible');
+  footer.classList.remove('goAwayAbout');
 })
 
 backToResults.addEventListener('click', () => {

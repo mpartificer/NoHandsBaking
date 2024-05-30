@@ -299,6 +299,7 @@ body {
   .goAwayAbout {
     animation: smooth-appear 2s ease reverse;
     animation-direction: reverse;
+    animation-fill-mode: backwards;
   }
 
   /* .aboutUsExitButton {
@@ -604,14 +605,19 @@ body {
     overflow: scroll;
   }
 
+  .recipePreview {
+    overflow:scroll;
+  }
+
   .imageColumn {
-    max-width: 100%;
+    min-width: 100%;
+    align-items: center;
   }
   .header {
     animation: none;
     font-size: 12px;
     /* font-size: 20px; */
-    /* min-height:15vh; */
+    min-height:10vh;
   }
 
   body {
