@@ -596,8 +596,8 @@ aboutUsButton.addEventListener('click', () => {
 exitAboutUs.addEventListener('click', () => {
   footer.classList.add('aboutUsExitButton');
   footer.classList.add('goAwayAbout');
-  // footer.classList.remove('aboutUsVisible');
   sayMore.setAttribute('class', 'sayMore');
+  footer.classList.remove('aboutUsVisible');
 })
 
 backToResults.addEventListener('click', () => {
@@ -714,7 +714,12 @@ async function previewListener(event){
       recipeIdTag = document.getElementById(`${buttonArray[i].id}`).value
       await setRecipe(recipeIdTag);
       await readMore();
+      const storedTitle = sessionStorage.getItem('storedRecipeTitle');
+      const parsedTitle = JSON.parse(storedTitle);
+      document.title = parsedTitle + " | No Hands Baking!";
+      recipeTitle.innerHTML = parsedTitle;
       recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
+      recipeSelectionScreen.style.height = 0;
       recipePreview.setAttribute('class', 'recipePreviewVisible');
     }
   }

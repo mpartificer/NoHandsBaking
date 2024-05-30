@@ -74,6 +74,7 @@
   padding:20px;
   background-color:#F25278;
   font-family:'Futura';
+  z-index: 1;
 }
 
 .aboutUsVisible {
@@ -84,6 +85,7 @@
   transform: translateX(-50%);
   animation: smooth-appear 2s ease forwards;
   text-align: center;
+  z-index: 1;
 }
 
 .aboutUsButton {
@@ -114,6 +116,10 @@ button {
   border-width:0px;
   background: none;
   font-family: 'Futura';
+}
+
+button:hover {
+  color:white;
 }
 
 body {
@@ -207,7 +213,10 @@ body {
 
   .columnPreview {
     float: left;
+    display: flex;
+    flex-direction: column;
     width: 30%;
+    row-gap: 20px;
     overflow: scroll;
   }
 
@@ -311,6 +320,7 @@ body {
   }
 
   .instructionListManager {
+    color:black;
     max-height: 55vh;
     overflow:scroll;
   }
@@ -585,11 +595,18 @@ body {
     width: 100%;
   }
 
+  .columnPreview {
+    width: 100%;
+  }
+
   .wrapper{
     max-height:65vh;
     overflow: scroll;
   }
 
+  .imageColumn {
+    max-width: 100%;
+  }
   .header {
     animation: none;
     font-size: 12px;
