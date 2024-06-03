@@ -218,8 +218,8 @@ async function retrieveRecipes(offset) {
   try {
   const searchValue = webpage.value;
 
-  // const recipeSearch = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonacularKey}&query=${searchValue}&instructionsRequired=true&offset=${offset}`
-  const recipeSearch = `https://api.spoonacular.commmmmmmm/recipes/complexSearch?apiKey=${spoonacularKey}&query=${searchValue}&instructionsRequired=true&offset=${offset}`
+  const recipeSearch = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonacularKey}&query=${searchValue}&instructionsRequired=true&offset=${offset}`
+  // const recipeSearch = `https://api.spoonacular.commmmmmmm/recipes/complexSearch?apiKey=${spoonacularKey}&query=${searchValue}&instructionsRequired=true&offset=${offset}`
 
 
   const findMyRecipe = await fetch(recipeSearch, {
