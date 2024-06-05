@@ -52,7 +52,6 @@
 .settingsButton {
   text-align:right;
   align-self:flex-end;
-  background-color: rgb(255, 182, 193);
   border: none;
   width:30px;
   height:30px;
@@ -65,21 +64,21 @@
   width: 100%;
   text-align: center;
   margin-top: auto;
-  background-color: #F25278;
+  background-color: #f1839d;
 }
 
 .aboutUs { 
   position: relative;
   border: none;
   padding:20px;
-  background-color:#F25278;
+  background-color:#f1839d;
   font-family:'Futura';
   z-index: 1;
 }
 
 .aboutUsVisible {
   color:black;
-  background-color:#F25278;
+  background-color:#f1839d;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -89,7 +88,7 @@
 }
 
 .aboutUsButton {
-  background-color: #F25278;
+  background-color: #f1839d;
   border: none;
   font-family:'Futura';
   z-index: 1;
@@ -107,20 +106,26 @@ ul {
 
 .enterText {
   font-family: 'Futura';
+  font-size:15px;
   width: 200px;
 }
 
 button {
-  padding-inline:0px;
-  padding-block:0px;
-  border-width:0px;
+  /* height: 40px; */
+  /* padding-inline:0px;
+  padding-block:0px; */
+  padding: 5px;
+  border:1px solid;
+  border-radius: 5px;
   background: none;
   font-family: 'Futura';
+  font-size: 15px;
   cursor: pointer;
 }
 
 button:hover {
   color:white;
+  border: 1px solid black;
 }
 
 button:disabled {
@@ -134,7 +139,7 @@ button:disabled:hover {
 
 body {
     font-family: 'Futura';
-    background-color: rgb(255, 182, 193);
+    background-color: rgb(255, 240, 242);
     width:100%;
     height:100%;
     font-size: 16px;
@@ -166,7 +171,6 @@ body {
     text-align: center;
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
     justify-content: center;
   }
 
@@ -181,8 +185,12 @@ body {
     gap:20px;
   }
 
+  .backToHome {
+    border:none;
+  }
+
   .column {
-    background-color: rgb(246, 121, 142);
+    background-color: #fbcdd8;
     color: #000;
     border-radius: 5px;
     padding: 20px;
@@ -192,13 +200,17 @@ body {
     flex: 1 0 42%;
     flex-direction: column;
     justify-content: space-between;
+    column-gap: 10px;
+    margin-inline-start: 10px;
+    margin-inline-end: 10px;
+    margin-block-start: 10px;
   }
   
   .readMoreButton {
-    border: none;
     font-family: 'Futura';
-    background-color: rgb(246, 121, 142);
+    font-size: 12px;
     justify-content: space-between;
+    margin-top:10px;
   }
 
   .readMoreButton:hover {
@@ -253,7 +265,7 @@ body {
   .recipeSelectionScreen {
     white-space: nowrap;
     /* padding: 5px; */
-    display: flex;
+    display: block;
     width: 100%;
     visibility: hidden;
     overflow: hidden;
@@ -272,7 +284,7 @@ body {
   .pageButtons {
     border-radius: 20 px;
     font-family: 'Futura';
-    border: none;
+    /* border: none; */
   }
 
   .pageButtons:hover {
@@ -283,8 +295,7 @@ body {
     color: white;
   }
   .pageCounter {
-    display: inline-block;
-    text-align: center;
+    align-self:center;
   }
 
   .miseEnPlace {
@@ -312,11 +323,9 @@ body {
     animation-fill-mode: backwards;
   }
 
-  /* .aboutUsExitButton {
-    animation: smooth-appear 2s ease;
-    animation-direction: reverse;
-    animation-fill-mode: backwards;
-  } */
+  .instructionSettingsButton {
+    border: none;
+  }
 
   .instructions {
     top: 15%;
@@ -336,6 +345,10 @@ body {
     overflow: scroll;
   }
 
+  .instructionsText {
+    color: white;
+  }
+
   .instructionsVisible {
     visibility: visible;
     }
@@ -349,22 +362,16 @@ body {
   }
 
   .instructionManipulationButton {
-    font-family: 'Futura';
-    border: 1px solid #F25278;
-    background-color: #f0b7c5;
-    color: black;
     border-radius: 5px;
+    margin: 5px;
+    padding: 15px;
+    width: 100px;
   }
 
   .accentText {
     line-height: 1.5;
     color: #f3e1e5;
     font-size: x-large;
-  }
-
-  .instructionManipulationButton:hover {
-    color:white;
-    background-color: #F25278;
   }
 
   .instructionManipulationButton:disabled {
@@ -450,9 +457,10 @@ body {
   }
 
   .informationPanel {
-    background-color:#F25278;
+    background-color:#f1839d;
     border: 5px solid white;
     border-radius: 4px;
+    width: 50%;
     display: flex;
     margin-left: 25%;
     margin-right: 25%;
@@ -468,11 +476,6 @@ body {
     padding-bottom: 3%;
   }
 
-  .letsGoButton {
-    border:1px solid black;
-    padding-inline: 5px;
-    
-  }
 
   .exitInfoPanel {
     width: 100%;
@@ -481,7 +484,7 @@ body {
     align-self: flex-start;
     font-family: 'Futura';
     border: none;
-    background-color:#F25278;
+    background-color:#f1839d;
     color: white;
     font-size: large;
   }
@@ -500,10 +503,6 @@ body {
   }
 
   .instructionExitsButtons {
-    font-family: 'Futura';
-    border: none;
-    font-size:medium ;
-    background-color: rgb(255, 182, 193);
     text-align: left;
   }
 

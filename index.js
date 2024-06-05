@@ -436,8 +436,6 @@ async function letsBake() {
 
   const storedTitle = sessionStorage.getItem('storedRecipeTitle');
   const parsedTitle = JSON.parse(storedTitle);
-  document.title = parsedTitle + " | No Hands Baking!";
-  recipeTitle.innerHTML = parsedTitle;
 }
 
 async function buildSelectionScreen(i) {
@@ -507,7 +505,7 @@ buttonLink.addEventListener('click', async () => {
   console.log(totalPages)
   await recipeWaiter(recipeList.results);
   document.getElementById('selectorPageTracker').innerHTML = `Page ${pageNumber} of ${totalPages}`
-  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible'); 
+  recipeSelectionScreen.style.visibility = 'visible';
 
   recipeSelector.setAttribute('class', 'hideTheOpener');
   document.body.style.cursor='default';
@@ -643,7 +641,6 @@ homeButton.addEventListener('click', () => {
   miseEnPlaceText.setAttribute('class', 'miseEnPlace');
   recipePreview.setAttribute('class', 'recipePreview');
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
-  recipeTitle.innerHTML = "No Hands Baking!"
   recipeSelector.setAttribute('class', 'opener');
 })
 
@@ -734,8 +731,6 @@ async function previewListener(event){
       await readMore();
       const storedTitle = sessionStorage.getItem('storedRecipeTitle');
       const parsedTitle = JSON.parse(storedTitle);
-      document.title = parsedTitle + " | No Hands Baking!";
-      recipeTitle.innerHTML = parsedTitle;
       recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
       recipeSelectionScreen.style.height = 0;
       recipePreview.setAttribute('class', 'recipePreviewVisible');

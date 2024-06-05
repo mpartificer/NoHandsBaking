@@ -9,7 +9,7 @@
     <body>
 
     <div id="header" class="header">
-        <button id="backToHome"><img id="homeButton" class="homeButton" src='https://static.thenounproject.com/png/5566533-200.png'></button>
+        <button id="backToHome" class="backToHome"><img id="homeButton" class="homeButton" src='https://static.thenounproject.com/png/5566533-200.png'></button>
         <h1 id="recipeTitle" class="recipeTitle">No Hands Baking!</h1></div>
     <p></p>
     <div class="footer" id="footer"><div id="aboutUs" class="aboutUs">
@@ -29,14 +29,14 @@
             What are we baking today?
 
                 <input type="text" id="webpage" class="enterText" placeholder="What do you want to bake?"> 
-                <button id="letsGoButton" class="letsGoButton"onclick="document.body.style.cursor='wait'; return true;"> Search </button>
+                <button id="letsGoButton" onclick="document.body.style.cursor='wait'; return true;"> Search </button>
         </div>
 
         <div id="recipeSelectionScreen" class="recipeSelectionScreen">
 
             <div class="wrapper" id="wrapper">
             </div>
-
+<p>
             <div class="alignPageInfo">
             <button id="previousPage" class="pageButtons">Previous Page</button>
             <div id="selectorPageTracker" class="pageCounter"></div>
@@ -79,8 +79,8 @@
 
         <div id = "instructions" class="instructions">
             <div class="instructionsWrapper">
-            <button id="instructionSettingsButton"><img id="settingsButton" class="settingsButton" src='https://www.pngall.com/wp-content/uploads/4/Settings-PNG-Free-Download.png'></button></div>
-            <div id="instructionsText"></div>
+            <button id="instructionSettingsButton" class="instructionSettingsButton"><img id="settingsButton" class="settingsButton" src='https://www.pngall.com/wp-content/uploads/4/Settings-PNG-Free-Download.png'></button></div>
+            <div id="instructionsText" class="instructionsText"></div>
 
             <div id="instructionManipulation">
             <button id="previousStep" class="instructionManipulationButton">Previous</button>
