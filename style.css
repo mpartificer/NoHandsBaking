@@ -18,8 +18,12 @@
 
 .backToHome {
   border: none;
-  visibility: hidden;
+  visibility: visible;
   background: none;
+}
+
+.backToHome:hover {
+  border: none;
 }
 
 .homeButton {
@@ -39,6 +43,13 @@
   animation-direction: reverse;
   animation-fill-mode: forwards;
   animation-delay: 2s
+}
+
+.socialButtons {
+  border: none;
+  z-index: 2;
+  width: 50px;
+  height:50px;
 }
 
 .instructionsWrapper {
@@ -94,6 +105,33 @@
   z-index: 1;
 }
 
+.aboutUsButton:hover {
+  border:none;
+}
+
+.aboutUsExitButton {
+  border: none; 
+  visibility: hidden;
+  animation: opacity 2s linear forwards;
+  /* animation-direction:normal; */
+}
+
+.aboutUsExitVisible {
+  border: none;
+  text-align: right;
+  visibility:visible;
+  animation: opacity 2s linear forwards;
+  animation-direction: reverse;
+  /* animation-fill-mode: both; */
+  display: inline-block;
+  justify-content: right;
+  /* align-self: flex-end;
+  width: 100%; */
+}
+
+.aboutUsExitVisible:hover {
+  border: none;
+}
 
 ul {
   list-style-type: none;
@@ -327,6 +365,10 @@ body {
     border: none;
   }
 
+  .instructionSettingsButton:hover {
+    border: none;
+  }
+
   .instructions {
     top: 15%;
     max-height: 35vh;
@@ -489,6 +531,10 @@ body {
     font-size: large;
   }
 
+  .exitInfoPanel:hover {
+    border: none;
+  }
+
   .imggg {
     width: 80%;
   }
@@ -515,6 +561,10 @@ body {
     animation: previousInstructionAnim 1s;
     animation-fill-mode: forwards;
     color: rgb(152, 152, 152);
+  }
+
+  .searchTerm {
+    display:inline;
   }
 
   .currentInstruction {

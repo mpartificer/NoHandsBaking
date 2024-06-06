@@ -7,6 +7,7 @@ const backToResults3 = document.getElementById('backToResults3');
 const homeButton = document.getElementById('homeButton');
 const settingsButton = document.getElementById('settingsButton');
 const backToMise = document.getElementById('backToMise');
+const searchTerm = document.getElementById('searchTerm');
 const buttonLink = document.getElementById('letsGoButton');
 const recipeTitle = document.getElementById('recipeTitle');
 const exitInfoPanel = document.getElementById('exitInfoPanel');
@@ -218,6 +219,8 @@ async function retrieveRecipes(offset) {
   try {
   const searchValue = webpage.value;
 
+  searchTerm.innerHTML = "";
+  searchTerm.innerHTML = searchValue;
   const recipeSearch = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonacularKey}&query=${searchValue}&instructionsRequired=true&offset=${offset}`
   // const recipeSearch = `https://api.spoonacular.commmmmmmm/recipes/complexSearch?apiKey=${spoonacularKey}&query=${searchValue}&instructionsRequired=true&offset=${offset}`
 
@@ -274,8 +277,6 @@ async function manageInstructions(parsedInstructions) {
 
   stepCount = parsedInstructions.length;
 
-  console.log(instructionInsert)
-
   return instructionInsert;
 }
 
@@ -301,44 +302,6 @@ async function ingredientArray() {
   return ingredientHTML;
 }
 
-
-function resizeImage(image) {
-  var canvas = document.createElement('canvas');
-  var maxWidth = window.innerWidth * 0.40; // Define the maximum width of the image
-  var maxHeight = 600; // Define the maximum height of the image
-  var width = image.width;
-  var height = image.height;
-
-  // Calculate the new dimensions, maintaining the aspect ratio
-  if (width > height) {
-    if (width > maxWidth) {
-      height *= maxWidth / width;
-      width = maxWidth;
-    }
-  } else {
-    if (height > maxHeight) {
-      width *= maxHeight / height;
-      height = maxHeight;
-    }
-  }
-
-  // Set the canvas dimensions to the new dimensions
-  canvas.width = width;
-  canvas.height = height;
-
-  for(i = 0; i < columnPreview.length; i++) {
-    columnPreview[i].style.height = height;
-  }
-
-  // Draw the resized image on the canvas
-  var ctx = canvas.getContext('2d');
-  ctx.drawImage(image, 0, 0, width, height);
-
-  // Insert the canvas into the DOM or use it otherwise
-  imagePreview.innerHTML = "";
-  imagePreview.appendChild(canvas);
-}
-
 async function readMore() {
 
   const image = sessionStorage.getItem('storedRecipeImage');
@@ -348,12 +311,8 @@ async function readMore() {
   img.src = parsedImage;
 
   img.setAttribute('class', 'imggg'); 
-
+  imagePreview.innerHTML = "";
   imagePreview.appendChild(img);
-
-  // img.onload = function() {
-  //   resizeImage(img);
-  // };
 
   const storedIngredients = sessionStorage.getItem('storedRecipeIngredients');
   const parsedIngredients = JSON.parse(storedIngredients);
@@ -374,7 +333,6 @@ async function instructionLoad() {
   var formattedInstructions = await manageInstructions(parsedInstructions);
   instructionsText.innerHTML = "";
   instructionsText.innerHTML = formattedInstructions;
-  currentInstruction = 0;
 }
 
 async function setRecipe(recipeID) {
@@ -433,9 +391,6 @@ async function letsBake() {
   const parsedIngredients = JSON.parse(storedIngredients);
   var ingredientHTML = await ingredientArray(parsedIngredients);
   ingredients.innerHTML = ingredientHTML;
-
-  const storedTitle = sessionStorage.getItem('storedRecipeTitle');
-  const parsedTitle = JSON.parse(storedTitle);
 }
 
 async function buildSelectionScreen(i) {
@@ -443,13 +398,11 @@ async function buildSelectionScreen(i) {
   <div id="Recipe${i+1}" class="recipeSelectionTitle"></div>
   <div class="buttonWrangler" id="buttonWrangler">
   <button id="recipe${i+1}View" class="readMoreButton" value="">Read more</button>
-  <button id="recipe${i+1}Mise" class="readMoreButton" value="">Let's Bake!</button>
   </div></div>`;
 }
 
 async function recipeWaiter(recipesList) {
   wrapper.innerHTML = "";
-
   for (i = 0; i < recipesList.length; i++) {
     if (sessionStorage.getItem(`Title${i}`) != null) {
       sessionStorage.removeItem(`Title${i}`);
@@ -457,10 +410,10 @@ async function recipeWaiter(recipesList) {
     }
 
     await buildSelectionScreen(i);
+
     const recipeObj = document.getElementById(`Recipe${i+1}`)
     recipeObj.textContent = recipesList[i].title;
     document.getElementById(`recipe${i+1}View`).value = recipesList[i].id;
-    document.getElementById(`recipe${i+1}Mise`).value = recipesList[i].id;
 
     console.log(document.getElementById(`recipe${i+1}View`).value)
 
@@ -468,6 +421,7 @@ async function recipeWaiter(recipesList) {
     const jsonObjectId = JSON.stringify(recipesList[i].id);
     sessionStorage.setItem(`Title${i}`, jsonObjectTitle);
     sessionStorage.setItem(`Id${i}`, jsonObjectId);
+
   }
 }
 
@@ -584,6 +538,7 @@ previousPage.addEventListener('click', async () => {
 miseEnPlaceSet.addEventListener('click', async () => {
   await instructionLoad();
   await setVoice();
+  currentInstruction = 0;
   const setAnimation = document.getElementById(`instructionList${currentInstruction}`);
   const setNextAnimation = document.getElementById(`instructionList${currentInstruction + 1}`);
   previousStep.disabled = true;
@@ -604,14 +559,17 @@ selectRecipe.addEventListener('click', async () => {
 aboutUsButton.addEventListener('click', () => {
   sayMore.classList.add('class', 'sayMoreVisible');
   footer.classList.add('class', 'aboutUsVisible');
+  exitAboutUs.setAttribute('class', 'aboutUsExitVisible')
 })
 
 exitAboutUs.addEventListener('click', () => {
-  footer.classList.add('aboutUsExitButton');
   footer.classList.add('goAwayAbout');
   sayMore.setAttribute('class', 'sayMore');
+  exitAboutUs.setAttribute('class', 'aboutUsExitButton')
+  
   setTimeout(function(){
   }, 2000);
+  console.log(3);
   footer.classList.remove('aboutUsVisible');
   footer.classList.remove('goAwayAbout');
 })
@@ -671,7 +629,7 @@ settingsButton.addEventListener('click', () => {
 })
 
 document.addEventListener( "click", previewListener);
-document.addEventListener('click', miseListener);
+// document.addEventListener('click', miseListener);
 
 
 
@@ -738,43 +696,43 @@ async function previewListener(event){
   }
 }
 
-async function miseListener(event) {
-  var element = event.target;
+// async function miseListener(event) {
+//   var element = event.target;
 
-  const recipe1Mise = document.getElementById('recipe1Mise');
-  const recipe2Mise = document.getElementById('recipe2Mise');
-  const recipe3Mise = document.getElementById('recipe3Mise');
-  const recipe4Mise = document.getElementById('recipe4Mise');
-  const recipe5Mise = document.getElementById('recipe5Mise');
-  const recipe6Mise = document.getElementById('recipe6Mise');
-  const recipe7Mise = document.getElementById('recipe7Mise');
-  const recipe8Mise = document.getElementById('recipe8Mise');
-  const recipe9Mise = document.getElementById('recipe9Mise');
-  const recipe10Mise = document.getElementById('recipe10Mise');
+//   const recipe1Mise = document.getElementById('recipe1Mise');
+//   const recipe2Mise = document.getElementById('recipe2Mise');
+//   const recipe3Mise = document.getElementById('recipe3Mise');
+//   const recipe4Mise = document.getElementById('recipe4Mise');
+//   const recipe5Mise = document.getElementById('recipe5Mise');
+//   const recipe6Mise = document.getElementById('recipe6Mise');
+//   const recipe7Mise = document.getElementById('recipe7Mise');
+//   const recipe8Mise = document.getElementById('recipe8Mise');
+//   const recipe9Mise = document.getElementById('recipe9Mise');
+//   const recipe10Mise = document.getElementById('recipe10Mise');
 
-  var buttonArray = [recipe1Mise, recipe2Mise, recipe3Mise, recipe4Mise, recipe5Mise, recipe6Mise, recipe7Mise, recipe8Mise, recipe9Mise, recipe10Mise];
-  for (i = 0; i < buttonArray.length; i++) {
+//   var buttonArray = [recipe1Mise, recipe2Mise, recipe3Mise, recipe4Mise, recipe5Mise, recipe6Mise, recipe7Mise, recipe8Mise, recipe9Mise, recipe10Mise];
+//   for (i = 0; i < buttonArray.length; i++) {
 
-    if(element.id == buttonArray[i].id && element.classList.contains("readMoreButton")){
-      recipeIdTag = document.getElementById(`${buttonArray[i].id}`).value
-      await setRecipe(recipeIdTag);
-      await letsBake();
-      recipeSelectionScreen.style.visibility = 'hidden';
-      recipeSelectionScreen.style.height = 0;
-      miseEnPlaceText.setAttribute('class', 'miseEnPlaceVisible');
-    }
-  }
-}
+//     if(element.id == buttonArray[i].id && element.classList.contains("readMoreButton")){
+//       recipeIdTag = document.getElementById(`${buttonArray[i].id}`).value
+//       await setRecipe(recipeIdTag);
+//       await letsBake();
+//       recipeSelectionScreen.style.visibility = 'hidden';
+//       recipeSelectionScreen.style.height = 0;
+//       miseEnPlaceText.setAttribute('class', 'miseEnPlaceVisible');
+//     }
+//   }
+// }
 
 
-if (muteOration.checked == true){
+// if (muteOration.checked == true){
     
-  } else {
-     text.style.display = "none";
-  }
+//   } else {
+//      text.style.display = "none";
+//   }
 
-if (pauseMicrophone.checked == true){
-    recognition.stop();
-  } else {
-    recognition.start();
-  }
+// if (pauseMicrophone.checked == true){
+//     recognition.stop();
+//   } else {
+//     recognition.start();
+//   }
