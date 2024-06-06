@@ -262,7 +262,7 @@ catch (err) {
 }
 }
 
-async function manageInstructions(parsedInstructions) {
+async function manageInstructionsPreview(parsedInstructions) {
 
   var instructionInsert = "";
   instructionInsert += '<ul class="instructionListManager"><b>Instructions</b>';
@@ -280,6 +280,21 @@ async function manageInstructions(parsedInstructions) {
   return instructionInsert;
 }
 
+async function manageInstructions(parsedInstructions) {
+  var instructionInsert = "";
+  instructionInsert += '<ul class="instructionListManager"><b>Instructions</b>';
+
+  for (i=0; i < parsedInstructions.length; i++) {
+    instructionInsert += `<li id=instructionList${i}">`;
+    instructionInsert += parsedInstructions[i];
+    instructionInsert += `</li>`
+  }
+
+  instructionInsert += '</ul>';
+  stepCount = parsedInstructions.length;
+
+  return instructionInsert;
+}
 async function ingredientArray() {
 
   const storedIngredients = sessionStorage.getItem('storedRecipeIngredients');
@@ -322,7 +337,7 @@ async function readMore() {
 
   const storedInstructions = sessionStorage.getItem('storedRecipeInstructions');
   const parsedInstructions = JSON.parse(storedInstructions);
-  var formattedInstructions = await manageInstructions(parsedInstructions);
+  var formattedInstructions = await manageInstructionsPreview(parsedInstructions);
   console.log(formattedInstructions) // .split(". ")
   instructionsPreview.innerHTML = formattedInstructions;
 }
@@ -545,15 +560,14 @@ miseEnPlaceSet.addEventListener('click', async () => {
   setAnimation.setAttribute('class', 'currentInstruction');
   setNextAnimation.setAttribute('class', 'nextInstruction');
   instructions.classList.add('instructionsVisible');
-  miseEnPlaceText.setAttribute('class', 'miseEnPlace');
+  recipePreview.style.visibility = 'hidden';
+  miseEnPlaceText.style.visibility = 'hidden';
   informationPanel.style.visibility = 'visible';
 })
 
 
 selectRecipe.addEventListener('click', async () => {
-  await letsBake();
-  recipePreview.setAttribute('class', 'recipePreview');
-  miseEnPlaceText.setAttribute('class', 'miseEnPlaceVisible');
+  miseEnPlaceText.style.visibility = 'visible';
 })
 
 aboutUsButton.addEventListener('click', () => {
