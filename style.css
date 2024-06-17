@@ -24,6 +24,7 @@
 
 .backToHome:hover {
   border: none;
+  background-color: none;
 }
 
 .homeButton {
@@ -41,7 +42,6 @@
   height: 60px;
   animation: opacity 1s linear forwards;
   animation-direction: reverse;
-  animation-fill-mode: forwards;
   animation-delay: 2s
 }
 
@@ -82,20 +82,21 @@
   position: relative;
   border: none;
   padding:20px;
-  background-color:#f1839d;
+  /* background-color:#f1839d; */
   font-family:'Futura';
   z-index: 1;
 }
 
 .aboutUsVisible {
   color:black;
-  background-color:#f1839d;
+  /* background-color:#f1839d; */
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   animation: smooth-appear 2s ease forwards;
   text-align: center;
   z-index: 1;
+  width:100%;
 }
 
 .aboutUsButton {
@@ -107,13 +108,14 @@
 
 .aboutUsButton:hover {
   border:none;
+  background-color: none;
 }
 
 .aboutUsExitButton {
   border: none; 
   visibility: hidden;
-  animation: opacity 2s linear forwards;
-  /* animation-direction:normal; */
+  /* animation: opacity 2s linear forwards; 
+  animation-direction:normal; */
 }
 
 .aboutUsExitVisible {
@@ -131,6 +133,7 @@
 
 .aboutUsExitVisible:hover {
   border: none;
+  background-color: none;
 }
 
 ul {
@@ -164,6 +167,7 @@ button {
 button:hover {
   color:white;
   border: 1px solid black;
+  background-color: black;
 }
 
 button:disabled {
@@ -356,9 +360,12 @@ body {
   }
 
   .goAwayAbout {
-    animation: smooth-appear 2s ease reverse;
-    animation-direction: reverse;
-    animation-fill-mode: backwards;
+    /* animation: smooth-appear 2s ease backwards;
+    animation-direction: reverse; */
+
+    animation: smooth-disappear 2s ease forwards;
+
+    /* animation-fill-mode: backwards; */
   }
 
   .instructionSettingsButton {
@@ -412,7 +419,7 @@ body {
 
   .accentText {
     line-height: 1.5;
-    color: #f3e1e5;
+    color: white;
     font-size: x-large;
   }
 
@@ -572,6 +579,7 @@ body {
     animation: currentInstructionAnim 1s;
     animation-fill-mode: forwards;
     color:black;
+    
   }
 
   .nextInstruction {
@@ -692,9 +700,10 @@ body {
   }
   
   .informationPanel {
-    margin-left: 15%;
-    margin-right: 15%;
-    margin-top: 30%;
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 35%;
     margin-bottom:20%;
   }
 
@@ -713,11 +722,29 @@ body {
   }
 }
 
+@keyframes smooth-disappear {
+  0%{
+    height: 25%;
+  }
+  100%{
+    height: 7%;
+  }
+}
+
 @keyframes smooth-appear-mobile {
   0%{
     height: 7%;
   }
   100%{
     height: 35%;
+  }
+}
+
+@keyframes smooth-disappear-mobile {
+  0% {
+    height: 35%;
+  }
+  100% {
+    height: 7%;
   }
 }

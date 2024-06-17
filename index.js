@@ -93,14 +93,14 @@ recognition.onresult = async (event) => {
 
 
 function repeatFunction() {
-  const setAnimation = document.getElementById(`instructionList${currentInstruction}`);
+  const setAnimation = document.getElementById(`instructionListItem${currentInstruction}`);
   waitYourTurn(setAnimation.innerText)
 }
 
 function previousFunction() {
   currentInstruction -= 1;
-  const setAnimation = document.getElementById(`instructionList${currentInstruction}`);
-  const setNextAnimation = document.getElementById(`instructionList${currentInstruction + 1}`);
+  const setAnimation = document.getElementById(`instructionListItem${currentInstruction}`);
+  const setNextAnimation = document.getElementById(`instructionListItem${currentInstruction + 1}`);
   setAnimation.classList = "";
   setAnimation.classList.add('currentInstruction');
   setNextAnimation.classList = "";
@@ -108,7 +108,7 @@ function previousFunction() {
   
 
   if (currentInstruction > 0) {
-    const setPreviousAnimation = document.getElementById(`instructionList${currentInstruction - 1}`);
+    const setPreviousAnimation = document.getElementById(`instructionListItem${currentInstruction - 1}`);
     
     if (setPreviousAnimation) {
     setPreviousAnimation.classList = "";
@@ -117,7 +117,7 @@ function previousFunction() {
   }
 
   if (currentInstruction < stepCount - 1) {
-    const removeNextAnimation = document.getElementById(`instructionList${currentInstruction + 2}`);
+    const removeNextAnimation = document.getElementById(`instructionListItem${currentInstruction + 2}`);
 
     if (removeNextAnimation) {
     removeNextAnimation.classList = "";
@@ -126,7 +126,7 @@ function previousFunction() {
   }
 
   if (currentInstruction < stepCount - 2) {
-    const removeExit = document.getElementById(`instructionList${currentInstruction + 3}`);
+    const removeExit = document.getElementById(`instructionListItem${currentInstruction + 3}`);
 
     if (removeExit) {
     removeExit.classList = "";
@@ -141,9 +141,9 @@ function previousFunction() {
 
 function nextFunction() {
   currentInstruction += 1;
-  const setAnimation = document.getElementById(`instructionList${currentInstruction}`);
-  const setNextAnimation = document.getElementById(`instructionList${currentInstruction + 1}`);
-  const setPrevAnimation = document.getElementById(`instructionList${currentInstruction - 1}`);
+  const setAnimation = document.getElementById(`instructionListItem${currentInstruction}`);
+  const setNextAnimation = document.getElementById(`instructionListItem${currentInstruction + 1}`);
+  const setPrevAnimation = document.getElementById(`instructionListItem${currentInstruction - 1}`);
   
   if (setPrevAnimation) {
   setPrevAnimation.classList = "";
@@ -268,7 +268,7 @@ async function manageInstructionsPreview(parsedInstructions) {
   instructionInsert += '<ul class="instructionListManager"><b>Instructions</b>';
 
   for (i = 0; i < parsedInstructions.length; i++) {
-    instructionInsert += `<li id="instructionList${i}">`;
+    instructionInsert += `<li id="instructionList${i}" class="">`;
     instructionInsert += parsedInstructions[i];
     instructionInsert += `</li>`;
   }
@@ -285,7 +285,7 @@ async function manageInstructions(parsedInstructions) {
   instructionInsert += '<ul class="instructionListManager"><b>Instructions</b>';
 
   for (i=0; i < parsedInstructions.length; i++) {
-    instructionInsert += `<li id=instructionList${i}">`;
+    instructionInsert += `<li id="instructionListItem${i}" class="">`;
     instructionInsert += parsedInstructions[i];
     instructionInsert += `</li>`
   }
@@ -554,10 +554,11 @@ miseEnPlaceSet.addEventListener('click', async () => {
   await instructionLoad();
   await setVoice();
   currentInstruction = 0;
-  const setAnimation = document.getElementById(`instructionList${currentInstruction}`);
-  const setNextAnimation = document.getElementById(`instructionList${currentInstruction + 1}`);
+  const setAnimation = document.getElementById(`instructionListItem${currentInstruction}`);
+  const setNextAnimation = document.getElementById(`instructionListItem${currentInstruction + 1}`);
+  console.log(setAnimation)
   previousStep.disabled = true;
-  setAnimation.setAttribute('class', 'currentInstruction');
+  setAnimation.classList.add('currentInstruction');
   setNextAnimation.setAttribute('class', 'nextInstruction');
   instructions.classList.add('instructionsVisible');
   recipePreview.style.visibility = 'hidden';
@@ -571,21 +572,22 @@ selectRecipe.addEventListener('click', async () => {
 })
 
 aboutUsButton.addEventListener('click', () => {
-  sayMore.classList.add('class', 'sayMoreVisible');
-  footer.classList.add('class', 'aboutUsVisible');
+  sayMore.classList.add('sayMoreVisible');
+  footer.classList.add('aboutUsVisible');
   exitAboutUs.setAttribute('class', 'aboutUsExitVisible')
 })
 
 exitAboutUs.addEventListener('click', () => {
+  footer.classList.remove('aboutUsVisible');
   footer.classList.add('goAwayAbout');
-  sayMore.setAttribute('class', 'sayMore');
+  // sayMore.setAttribute('class', 'sayMore'); // maybe not required because it does not seem to allow scroll down
   exitAboutUs.setAttribute('class', 'aboutUsExitButton')
   
   setTimeout(function(){
+    footer.classList.remove('goAwayAbout');
   }, 2000);
-  console.log(3);
-  footer.classList.remove('aboutUsVisible');
-  footer.classList.remove('goAwayAbout');
+  
+  // footer.classList.remove('aboutUsVisible');
 })
 
 backToResults.addEventListener('click', () => {
@@ -605,7 +607,7 @@ backToResults3.addEventListener('click', () => {
 
 backToMise.addEventListener('click', () => {
   instructions.setAttribute('class', 'instructions');
-  miseEnPlaceText.setAttribute('class', 'miseEnPlaceVisible')
+  recipePreview.setAttribute('class', 'recipePreviewVisible')
 })
 
 homeButton.addEventListener('click', () => {
@@ -643,10 +645,6 @@ settingsButton.addEventListener('click', () => {
 })
 
 document.addEventListener( "click", previewListener);
-// document.addEventListener('click', miseListener);
-
-
-
 
 // const recipe1View = document.getElementById('recipe1View');
 // const recipe2View = document.getElementById('recipe2View');
