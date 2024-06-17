@@ -183,30 +183,21 @@ function nextFunction() {
 }
 
 function scrollParentToChild(parent, child) {
-
-  // Where is the parent on page
   var parentRect = parent.getBoundingClientRect();
-  // What can you see?
   var parentViewableArea = {
     height: parent.clientHeight,
     width: parent.clientWidth
   };
 
-  // Where is the child
   var childRect = child.getBoundingClientRect();
-  // Is the child viewable?
   var isViewable = (childRect.top >= parentRect.top) && (childRect.bottom <= parentRect.top + parentViewableArea.height);
 
-  // if you can't see the child try to scroll parent
   if (!isViewable) {
-        // Should we scroll using top or bottom? Find the smaller ABS adjustment
         const scrollTop = childRect.top - parentRect.top;
         const scrollBot = childRect.bottom - parentRect.bottom;
         if (Math.abs(scrollTop) < Math.abs(scrollBot)) {
-            // we're near the top of the list
             parent.scrollTop += scrollTop;
         } else {
-            // we're near the bottom of the list
             parent.scrollTop += scrollBot;
         }
   }
@@ -639,11 +630,6 @@ backToResults.addEventListener('click', () => {
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible');
 })
 
-// backToResults2.addEventListener('click', () => {
-//   miseEnPlaceText.setAttribute('class', 'miseEnPlace');
-//   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible');
-// })
-
 backToResults3.addEventListener('click', () => {
   instructions.setAttribute('class', 'instructions');
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible');
@@ -651,7 +637,7 @@ backToResults3.addEventListener('click', () => {
 
 backToMise.addEventListener('click', () => {
   instructions.setAttribute('class', 'instructions');
-  recipePreview.setAttribute('class', 'recipePreviewVisible')
+  recipePreview.style.visibility = "visible";
 })
 
 homeButton.addEventListener('click', () => {
@@ -719,8 +705,6 @@ document.addEventListener( "click", previewListener);
 
 
 
-
-
 async function previewListener(event){
   var element = event.target;
 
@@ -742,42 +726,12 @@ async function previewListener(event){
       recipeIdTag = document.getElementById(`${buttonArray[i].id}`).value
       await setRecipe(recipeIdTag);
       await readMore();
-      const storedTitle = sessionStorage.getItem('storedRecipeTitle');
-      const parsedTitle = JSON.parse(storedTitle);
       recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
       recipeSelectionScreen.style.height = 0;
       recipePreview.setAttribute('class', 'recipePreviewVisible');
     }
   }
 }
-
-// async function miseListener(event) {
-//   var element = event.target;
-
-//   const recipe1Mise = document.getElementById('recipe1Mise');
-//   const recipe2Mise = document.getElementById('recipe2Mise');
-//   const recipe3Mise = document.getElementById('recipe3Mise');
-//   const recipe4Mise = document.getElementById('recipe4Mise');
-//   const recipe5Mise = document.getElementById('recipe5Mise');
-//   const recipe6Mise = document.getElementById('recipe6Mise');
-//   const recipe7Mise = document.getElementById('recipe7Mise');
-//   const recipe8Mise = document.getElementById('recipe8Mise');
-//   const recipe9Mise = document.getElementById('recipe9Mise');
-//   const recipe10Mise = document.getElementById('recipe10Mise');
-
-//   var buttonArray = [recipe1Mise, recipe2Mise, recipe3Mise, recipe4Mise, recipe5Mise, recipe6Mise, recipe7Mise, recipe8Mise, recipe9Mise, recipe10Mise];
-//   for (i = 0; i < buttonArray.length; i++) {
-
-//     if(element.id == buttonArray[i].id && element.classList.contains("readMoreButton")){
-//       recipeIdTag = document.getElementById(`${buttonArray[i].id}`).value
-//       await setRecipe(recipeIdTag);
-//       await letsBake();
-//       recipeSelectionScreen.style.visibility = 'hidden';
-//       recipeSelectionScreen.style.height = 0;
-//       miseEnPlaceText.setAttribute('class', 'miseEnPlaceVisible');
-//     }
-//   }
-// }
 
 
 // if (muteOration.checked == true){

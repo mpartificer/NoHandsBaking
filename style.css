@@ -338,7 +338,6 @@ body {
 
   .recipeSelectionScreen {
     white-space: nowrap;
-    /* padding: 5px; */
     display: block;
     width: 100%;
     visibility: hidden;
@@ -358,7 +357,6 @@ body {
   .pageButtons {
     border-radius: 20 px;
     font-family: 'Futura';
-    /* border: none; */
   }
 
   .pageButtons:hover {
@@ -526,7 +524,6 @@ body {
     transform: translateX(26px);
   }
   
-  /* Rounded sliders */
   .slider.round {
     border-radius: 34px;
   }
