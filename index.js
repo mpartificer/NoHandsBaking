@@ -280,7 +280,7 @@ async function manageInstructionsPreview(parsedInstructions) {
 
 async function manageInstructions(parsedInstructions) {
   var instructionInsert = "";
-  instructionInsert += '<ul class="instructionListManager"><b>Instructions</b>';
+  instructionInsert += '<ul>';
 
   for (i=0; i < parsedInstructions.length; i++) {
     instructionInsert += `<li id="instructionListItem${i}" class="">`;

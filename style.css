@@ -422,7 +422,9 @@ body {
   }
 
   .instructionsText {
-    color: white;
+    color: white !important;
+    min-height: 55vh;
+    overflow: scroll;
   }
 
   .instructionsVisible {
