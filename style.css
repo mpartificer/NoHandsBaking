@@ -425,6 +425,7 @@ body {
     color: white !important;
     min-height: 55vh;
     overflow: scroll;
+    padding: 40px;
   }
 
   .instructionsVisible {
