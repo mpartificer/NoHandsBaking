@@ -49,26 +49,22 @@
             </div>
         </div>
 
+        
         <div class="recipePreview" id="recipePreview">
+        <div class="backButtonAlign">
+        <button id="backToResults" class="backButton">Back to Results</button></div>
         <div class="rowPreview">
             <div class="imageColumn" id="imagePreview"></div>
             <div class="columnPreview" id="ingredientsPreview"></div>
             <div class="columnPreview" id="instructionsPreview"></div>
         </div>
-        <div class="buttonWrangler">
-        <button id="backToResults">Back to Results</button>
-        <button id="selectRecipe">Let's Bake!</button>
+        <div class="nextButtonAlign">
+        <button id="selectRecipe">Let's Bake!</button> </div>
         </div>
         </div>
 
         <div id = "miseEnPlace" class="informationPanel"><h3>Prepare your Ingredients before moving on!</h3>
             <button id="lockedAndLoadedButton" class="miseOrientationButtons">Go To Instructions</button>
-            <div id="ingredients">
-
-            </div>
-            <div class="buttonWrangler">
-            <button id="backToResults2" class="miseOrientationButtons">Back to Results</button>
-            </div>
         </div>
 
         <div id="informationPanel" class="informationPanel"><button id="exitInfoPanel" class="exitInfoPanel">x</button>Use the voice commands<br><div class="accentText"> "Back",<br> "Repeat",<br></div> and<br><div class="accentText"> "Next"<br></div> to move through the steps of the recipe! <br>
@@ -85,6 +81,10 @@
 
         <div id = "instructions" class="instructions">
             <div class="instructionsWrapper">
+                <div id="instructionExits" class="instructionExits">
+                    <button id="backToMise" class="instructionExitsButtons">&lt;  Back to Preview</button>
+                    <button id="backToResults3" class="instructionExitsButtons">&lt;  Back to Results</button>
+                    </div>
             <button id="instructionSettingsButton" class="instructionSettingsButton"><img id="settingsButton" class="settingsButton" src='https://www.pngall.com/wp-content/uploads/4/Settings-PNG-Free-Download.png'></button></div>
             <div id="instructionsText" class="instructionsText"></div>
 
@@ -94,10 +94,7 @@
             <button id="nextStep" class="instructionManipulationButton">Next</button>
             </div>
             
-            <div id="instructionExits" class="instructionExits">
-            <button id="backToMise" class="instructionExitsButtons">&lt;  Back to Preview</button>
-            <button id="backToResults3" class="instructionExitsButtons">&lt;  Back to Results</button>
-            </div>
+            
         </div>
 
         <script src="index.js"></script>

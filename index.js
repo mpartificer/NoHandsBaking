@@ -607,10 +607,10 @@ backToResults.addEventListener('click', () => {
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible');
 })
 
-backToResults2.addEventListener('click', () => {
-  miseEnPlaceText.setAttribute('class', 'miseEnPlace');
-  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible');
-})
+// backToResults2.addEventListener('click', () => {
+//   miseEnPlaceText.setAttribute('class', 'miseEnPlace');
+//   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible');
+// })
 
 backToResults3.addEventListener('click', () => {
   instructions.setAttribute('class', 'instructions');
@@ -706,7 +706,6 @@ async function previewListener(event){
   var buttonArray = [recipe1View, recipe2View, recipe3View, recipe4View, recipe5View, recipe6View, recipe7View, recipe8View, recipe9View, recipe10View]
 
   for (i = 0; i < buttonArray.length; i++) {
-
     if(element.id == buttonArray[i].id && element.classList.contains("readMoreButton")){
       recipeIdTag = document.getElementById(`${buttonArray[i].id}`).value
       await setRecipe(recipeIdTag);
