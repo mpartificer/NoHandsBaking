@@ -81,7 +81,7 @@
 .aboutUs { 
   position: relative;
   border: none;
-  padding:20px;
+  padding:16px;
   /* background-color:#f1839d; */
   font-family:'Futura';
   z-index: 1;
@@ -114,8 +114,11 @@
 .aboutUsExitButton {
   border: none; 
   visibility: hidden;
-  /* animation: opacity 2s linear forwards; 
-  animation-direction:normal; */
+}
+.aboutUsExitAnimation{
+  animation: opacityReverse 2s linear forwards;
+  animation-direction:reverse;
+  border: none;
 }
 
 .aboutUsExitVisible {
@@ -124,11 +127,8 @@
   visibility:visible;
   animation: opacity 2s linear forwards;
   animation-direction: reverse;
-  /* animation-fill-mode: both; */
   display: inline-block;
   justify-content: right;
-  /* align-self: flex-end;
-  width: 100%; */
 }
 
 .aboutUsExitVisible:hover {
@@ -152,9 +152,6 @@ ul {
 }
 
 button {
-  /* height: 40px; */
-  /* padding-inline:0px;
-  padding-block:0px; */
   padding: 5px;
   border:1px solid;
   border-radius: 5px;
@@ -218,6 +215,8 @@ body {
 
   .recipeSelectionTitle {
     font-size: 20px;
+    overflow:visible;
+    text-wrap: wrap;
   }
 
   .buttonWrangler {
@@ -227,18 +226,35 @@ body {
     gap:20px;
   }
 
+  .cardImage {
+    overflow: hidden;
+    padding: 0px;
+    max-height:fit-content
+  }
+
   .backToHome {
     border:none;
   }
 
-  .column {
+  .row {
+    display: flex;
+    flex-direction: row;
     background-color: #fbcdd8;
     color: #000;
     border-radius: 5px;
-    padding: 20px;
     font-size: 100%;
+    width: 42%;
+    column-gap: 0px;
+    margin-inline-start: 8px;
+    margin-inline-end: 8px;
+    margin-block-start: 8px;
+    height:10%;
+  }
+
+  .column {
+    width: 40%;
+    padding: 15px;
     display: flex;
-    width: 50%;
     flex: 1 0 42%;
     flex-direction: column;
     justify-content: space-between;
@@ -646,6 +662,11 @@ body {
   0% {opacity:1;}
   100% {opacity:0;}
 
+}
+
+@keyframes opacityReverse {
+  0% {opacity:0;}
+  100% {opacity:1;}
 }
 
 @keyframes animate {

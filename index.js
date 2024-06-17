@@ -222,8 +222,6 @@ async function retrieveRecipes(offset) {
   searchTerm.innerHTML = "";
   searchTerm.innerHTML = searchValue;
   const recipeSearch = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${spoonacularKey}&query=${searchValue}&instructionsRequired=true&offset=${offset}`
-  // const recipeSearch = `https://api.spoonacular.commmmmmmm/recipes/complexSearch?apiKey=${spoonacularKey}&query=${searchValue}&instructionsRequired=true&offset=${offset}`
-
 
   const findMyRecipe = await fetch(recipeSearch, {
     headers: 
@@ -409,11 +407,11 @@ async function letsBake() {
 }
 
 async function buildSelectionScreen(i) {
-  wrapper.innerHTML += `<div class="column" value="">
+  wrapper.innerHTML += `<div class="row"><div class="column" value="">
   <div id="Recipe${i+1}" class="recipeSelectionTitle"></div>
   <div class="buttonWrangler" id="buttonWrangler">
   <button id="recipe${i+1}View" class="readMoreButton" value="">Read more</button>
-  </div></div>`;
+  </div></div><div class="cardImage" id="cardImage${i+1}"></div></div>`;
 }
 
 async function recipeWaiter(recipesList) {
@@ -422,18 +420,34 @@ async function recipeWaiter(recipesList) {
     if (sessionStorage.getItem(`Title${i}`) != null) {
       sessionStorage.removeItem(`Title${i}`);
       sessionStorage.removeItem(`Id${i}`);
+      sessionStorage.removeItem(`Image${i}`);
     }
 
     await buildSelectionScreen(i);
 
     const recipeObj = document.getElementById(`Recipe${i+1}`)
     recipeObj.textContent = recipesList[i].title;
+
+    var img = document.createElement("img");
+    img.src = recipesList[i].image;
+
+
+    img.setAttribute('class', 'cardImage'); 
+    const cardImage = document.getElementById(`cardImage${i+1}`)
+    console.log(cardImage);
+
+    cardImage.innerHTML = "";
+    cardImage.appendChild(img);
+    
+
     document.getElementById(`recipe${i+1}View`).value = recipesList[i].id;
 
     console.log(document.getElementById(`recipe${i+1}View`).value)
 
+    const jsonObjectImage = JSON.stringify(recipesList[i].image);
     const jsonObjectTitle = JSON.stringify(recipesList[i].title);
     const jsonObjectId = JSON.stringify(recipesList[i].id);
+    sessionStorage.setItem(`Image${i}`, jsonObjectImage);
     sessionStorage.setItem(`Title${i}`, jsonObjectTitle);
     sessionStorage.setItem(`Id${i}`, jsonObjectId);
 
@@ -580,15 +594,13 @@ aboutUsButton.addEventListener('click', () => {
 exitAboutUs.addEventListener('click', () => {
   footer.classList.remove('aboutUsVisible');
   footer.classList.add('goAwayAbout');
-  // sayMore.setAttribute('class', 'sayMore'); // maybe not required because it does not seem to allow scroll down
-  exitAboutUs.setAttribute('class', 'aboutUsExitButton')
+  exitAboutUs.setAttribute('class', 'aboutUsExitAnimation')
   
   setTimeout(function(){
     footer.classList.remove('goAwayAbout');
+    exitAboutUs.setAttribute('class', 'aboutUsExitButton')
   }, 2000);
-  
-  // footer.classList.remove('aboutUsVisible');
-})
+  })
 
 backToResults.addEventListener('click', () => {
   recipePreview.setAttribute('class', 'recipePreview');
