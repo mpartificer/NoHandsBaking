@@ -56,6 +56,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items:center;
   padding-right: 15px;
   width: 100%;
 }
@@ -76,23 +77,32 @@
   text-align: center;
   margin-top: auto;
   background-color: #f1839d;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .aboutUs { 
   position: relative;
   border: none;
   padding:16px;
-  /* background-color:#f1839d; */
+  margin-right:20px;
   font-family:'Futura';
   z-index: 1;
 }
 
+.aboutUsButtonBox {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+}
+
 .aboutUsVisible {
   color:black;
-  /* background-color:#f1839d; */
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  /* left: 50%;
+  transform: translateX(-50%); */
   animation: smooth-appear 2s ease forwards;
   text-align: center;
   z-index: 1;
@@ -104,6 +114,7 @@
   border: none;
   font-family:'Futura';
   z-index: 1;
+  margin-left: 35px;
 }
 
 .aboutUsButton:hover {
@@ -113,22 +124,40 @@
 
 .aboutUsExitButton {
   border: none; 
+  /* display: flex; */
+  /* justify-self: end; */
+  /* margin-left:40px; */
+  /* flex-grow: 0.5; */
+  position:absolute;
+  right:0;  
+  margin-right: 20px;
   visibility: hidden;
 }
 .aboutUsExitAnimation{
-  animation: opacityReverse 2s linear forwards;
-  animation-direction:reverse;
+  animation: opacityReverse 2s linear reverse;
+  animation-fill-mode: forwards;
   border: none;
+  position:absolute;
+  right:0;  
+  margin-right: 20px;
 }
 
 .aboutUsExitVisible {
   border: none;
-  text-align: right;
+  position:absolute;
+  right:0;  
+  margin-right: 20px;
+
+  /* justify-self: right;
+  align-self: flex-start;
+  align-self: flex-end; */
+  /* text-align: right; */
   visibility:visible;
-  animation: opacity 2s linear forwards;
-  animation-direction: reverse;
-  display: inline-block;
-  justify-content: right;
+  animation: opacity 2s linear reverse;
+  /* animation-direction: reverse; */
+  /* display: flex;
+  flex-direction: row; */
+  /* justify-content: right; */
 }
 
 .aboutUsExitVisible:hover {
@@ -219,7 +248,7 @@ body {
   .hideTheOpener {
     visibility: hidden;
     display: flex;
-    position: absolute;
+    /* position: absolute; */
   }
 
   .wrapper{
@@ -251,6 +280,10 @@ body {
 
   .backToHome {
     border:none;
+  }
+
+  .backToHome:hover {
+    background-color: rgb(255, 240, 242);
   }
 
   .row {
@@ -294,12 +327,13 @@ body {
 
   .sayMore {
     visibility: hidden;
-    display: block;
+    /* display: block; */
     position: absolute;
   }
 
   .sayMoreVisible {
     visibility: visible;
+    width: 100%;
   }
 
   .imageColumn {
@@ -390,7 +424,8 @@ body {
   }
 
   .goAwayAbout {
-    animation: smooth-disappear 2s ease forwards;
+    animation: smooth-disappear 2s ease;
+    animation-fill-mode: forwards;
   }
 
   .instructionSettingsButton {

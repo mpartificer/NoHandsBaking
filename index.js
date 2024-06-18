@@ -641,10 +641,10 @@ backToMise.addEventListener('click', () => {
 })
 
 homeButton.addEventListener('click', () => {
-  instructions.setAttribute('class', 'instructions');
-  miseEnPlaceText.setAttribute('class', 'miseEnPlace');
-  recipePreview.setAttribute('class', 'recipePreview');
-  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
+  instructions.style.visibility = "hidden";
+  miseEnPlaceText.style.visibility = "hidden";
+  recipePreview.style.visibility = "hidden";
+  recipeSelectionScreen.visibility = "hidden";
   recipeSelector.setAttribute('class', 'opener');
 })
 
