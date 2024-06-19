@@ -45,6 +45,8 @@ var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEv
 var columnPreview = document.getElementsByClassName('columnPreview');
 var currentInstruction = 0;
 var recipeList;
+var synthVolume;
+var microphoneBox;
 var stepCount;
 var voice;
 var offset;
@@ -72,8 +74,6 @@ recognition.onresult = async (event) => {
 
   const commandWord = event.results[mostRecentResult][0].transcript.toLowerCase().trim();
   const confidence = event.results[mostRecentResult][0].confidence
-
-  console.log(event.results)
 
   if (commandWord == "back" && confidence > 0.5) {
     previousFunction();
@@ -136,7 +136,6 @@ function previousFunction() {
   scrollParentToChild(instructionsText, setAnimation);
   buttonCheck();
 
-  console.log(currentInstruction)
   waitYourTurn(setAnimation.innerText)
 }
 
@@ -207,15 +206,11 @@ function scrollParentToChild(parent, child) {
 function buttonCheck() {
   
   const trueCount = currentInstruction + 1;
-  console.log(trueCount);
-  console.log(stepCount);
 
   if (stepCount == trueCount) {
     nextStep.disabled = true;
   }
   else {
-    console.log(trueCount);
-    console.log(stepCount);
     nextStep.disabled = false;
   }
 
@@ -227,20 +222,24 @@ function buttonCheck() {
   }
 }
 
-function waitYourTurn(utterance) {
+function waitYourTurn(utterance, synthVolume) {
   recognition.stop()
   const utterThis = new SpeechSynthesisUtterance(utterance);
   utterThis.voice = voice;
+  utterThis.volume = synthVolume;
   synth.speak(utterThis)
 
   utterThis.addEventListener("end", (event) => {
-    recognition.start();
+    if (microphoneBox = 0) {
+      recognition.start();
+    }
   });
 }
 
 async function retrieveRecipes(offset) {
   try {
   const searchValue = webpage.value;
+  console.log(searchValue);
 
   searchTerm.innerHTML = "";
   searchTerm.innerHTML = searchValue;
@@ -332,8 +331,6 @@ async function ingredientArray() {
     }
   ingredientHTML += `</ul>`;
 
-  console.log(ingredientsList);
-
   document.getElementById('lockedAndLoadedButton').value = parsedId;
   return ingredientHTML;
 }
@@ -359,7 +356,6 @@ async function readMore() {
   const storedInstructions = sessionStorage.getItem('storedRecipeInstructions');
   const parsedInstructions = JSON.parse(storedInstructions);
   var formattedInstructions = await manageInstructionsPreview(parsedInstructions);
-  console.log(formattedInstructions) // .split(". ")
   instructionsPreview.innerHTML = formattedInstructions;
 }
 
@@ -380,7 +376,6 @@ async function setRecipe(recipeID) {
   }});
   
   const findMyRecipe = await selectMyRecipe.json();
-  console.log(findMyRecipe);
 
   if (sessionStorage.getItem('storedRecipeTitle') != undefined) {
     sessionStorage.removeItem('storedRecipeTitle');
@@ -400,8 +395,6 @@ async function setRecipe(recipeID) {
   }
   const jsonObjectInstructions = JSON.stringify(instructionsArray)
 
-  console.log(jsonObjectInstructions);
-
   sessionStorage.setItem('storedRecipeTitle', jsonObjectTitle);
   sessionStorage.setItem('storedRecipeId', jsonObjectId);
   sessionStorage.setItem('storedRecipeInstructions', jsonObjectInstructions);
@@ -416,7 +409,6 @@ var voices = synth.getVoices();
   for (n = 0; n < voices.length; n++){
   if (voices[n].name == "Daniel (English (United Kingdom))") {
     voice = voices[n];
-    console.log(voice);
   }
   }
 }
@@ -457,15 +449,12 @@ async function recipeWaiter(recipesList) {
 
     img.setAttribute('class', 'cardImage'); 
     const cardImage = document.getElementById(`cardImage${i+1}`)
-    console.log(cardImage);
 
     cardImage.innerHTML = "";
     cardImage.appendChild(img);
     
 
     document.getElementById(`recipe${i+1}View`).value = recipesList[i].id;
-
-    console.log(document.getElementById(`recipe${i+1}View`).value)
 
     const jsonObjectImage = JSON.stringify(recipesList[i].image);
     const jsonObjectTitle = JSON.stringify(recipesList[i].title);
@@ -486,7 +475,6 @@ buttonLink.addEventListener('click', async () => {
 
   try {
   recipeList = await retrieveRecipes(offset);
-  console.log(recipeList)
 
   totalPages = recipeList.totalResults / 10
   if (totalPages % 10 != 0) {
@@ -508,7 +496,7 @@ buttonLink.addEventListener('click', async () => {
     nextPage.disabled = false;
     previousPage.disabled = false;
   }
-  console.log(totalPages)
+
   await recipeWaiter(recipeList.results);
   document.getElementById('selectorPageTracker').innerHTML = `Page ${pageNumber} of ${totalPages}`
   recipeSelectionScreen.style.visibility = 'visible';
@@ -557,7 +545,6 @@ nextPage.addEventListener('click', async () => {
     previousPage.disabled = false;
   }
   await recipeWaiter(recipeList.results);
-  console.log(totalPages)
   document.getElementById('selectorPageTracker').innerHTML = `Page ${pageNumber} of ${totalPages}`
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible'); 
 })
@@ -593,7 +580,6 @@ miseEnPlaceSet.addEventListener('click', async () => {
   currentInstruction = 0;
   const setAnimation = document.getElementById(`instructionListItem${currentInstruction}`);
   const setNextAnimation = document.getElementById(`instructionListItem${currentInstruction + 1}`);
-  console.log(setAnimation)
   previousStep.disabled = true;
   setAnimation.classList.add('currentInstruction');
   setNextAnimation.setAttribute('class', 'nextInstruction');
@@ -644,7 +630,7 @@ homeButton.addEventListener('click', () => {
   instructions.style.visibility = "hidden";
   miseEnPlaceText.style.visibility = "hidden";
   recipePreview.style.visibility = "hidden";
-  recipeSelectionScreen.visibility = "hidden";
+  recipeSelectionScreen.style.visibility = "hidden";
   recipeSelector.setAttribute('class', 'opener');
 })
 
@@ -665,8 +651,9 @@ exitInfoPanel.addEventListener('click', () => {
   exitInfoPanel.style.visibility = "hidden";
 
   repeatFunction();
-
-  recognition.start();
+  if (microphoneBox = 0) {
+    recognition.start();
+  }
 })
 
 settingsButton.addEventListener('click', () => {
@@ -733,15 +720,20 @@ async function previewListener(event){
   }
 }
 
+function checkVoice () {
+  console.log("i'm here");
+  if (muteOration.checked == true){
+      synthVolume = 0;
+      console.log(synthVolume);
+    } else {
+      synthVolume = 1;
+    }
+}
 
-// if (muteOration.checked == true){
-    
-//   } else {
-//      text.style.display = "none";
-//   }
-
-// if (pauseMicrophone.checked == true){
-//     recognition.stop();
-//   } else {
-//     recognition.start();
-//   }
+function checkMicrophone() {
+  if (pauseMicrophone.checked == true){
+      microphoneBox = 1;
+    } else {
+      microphoneBox = 0;
+    }
+}
