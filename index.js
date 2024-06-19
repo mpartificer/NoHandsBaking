@@ -626,12 +626,12 @@ exitAboutUs.addEventListener('click', () => {
   })
 
 backToResults.addEventListener('click', () => {
-  recipePreview.setAttribute('class', 'recipePreview');
+  recipePreview.style.visibility = "hidden";
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible');
 })
 
 backToResults3.addEventListener('click', () => {
-  instructions.setAttribute('class', 'instructions');
+  instructions.style.visibility = "hidden";
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible');
 })
 
