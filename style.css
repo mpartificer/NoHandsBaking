@@ -147,17 +147,8 @@
   position:absolute;
   right:0;  
   margin-right: 20px;
-
-  /* justify-self: right;
-  align-self: flex-start;
-  align-self: flex-end; */
-  /* text-align: right; */
   visibility:visible;
   animation: opacity 2s linear reverse;
-  /* animation-direction: reverse; */
-  /* display: flex;
-  flex-direction: row; */
-  /* justify-content: right; */
 }
 
 .aboutUsExitVisible:hover {
@@ -248,7 +239,6 @@ body {
   .hideTheOpener {
     visibility: hidden;
     display: flex;
-    /* position: absolute; */
   }
 
   .wrapper{
@@ -275,7 +265,8 @@ body {
   .cardImage {
     overflow: hidden;
     padding: 0px;
-    max-height:fit-content
+    /* max-height:fit-content */
+    max-height: 100%;
   }
 
   .backToHome {
@@ -298,7 +289,7 @@ body {
     margin-inline-start: 8px;
     margin-inline-end: 8px;
     margin-block-start: 8px;
-    height:10%;
+    height:100px;
   }
 
   .column {
@@ -327,7 +318,6 @@ body {
 
   .sayMore {
     visibility: hidden;
-    /* display: block; */
     position: absolute;
   }
 
@@ -349,6 +339,7 @@ body {
     width: 33%;
     row-gap: 20px;
     overflow: scroll;
+    text-wrap:wrap;
   }
 
   .rowPreview:after {
@@ -358,7 +349,7 @@ body {
   }
 
   .recipePreview {
-    top: 10%;
+    top: 15%;
     white-space: nowrap;
     display: block;
     visibility: hidden;

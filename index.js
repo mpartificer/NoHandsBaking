@@ -45,8 +45,8 @@ var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEv
 var columnPreview = document.getElementsByClassName('columnPreview');
 var currentInstruction = 0;
 var recipeList;
-var synthVolume;
-var microphoneBox;
+var synthVolume = 1;
+var microphoneBox = 0;
 var stepCount;
 var voice;
 var offset;
@@ -222,7 +222,7 @@ function buttonCheck() {
   }
 }
 
-function waitYourTurn(utterance, synthVolume) {
+function waitYourTurn(utterance) {
   recognition.stop()
   const utterThis = new SpeechSynthesisUtterance(utterance);
   utterThis.voice = voice;
@@ -230,7 +230,7 @@ function waitYourTurn(utterance, synthVolume) {
   synth.speak(utterThis)
 
   utterThis.addEventListener("end", (event) => {
-    if (microphoneBox = 0) {
+    if (microphoneBox == 0) {
       recognition.start();
     }
   });
@@ -259,17 +259,23 @@ async function retrieveRecipes(offset) {
   console.log('whatIsStatus', whatIsStatus)
 
 
+  if (!findMyRecipe.ok) { // should be  !findMyRecipe.status == "402"
+    throw new Error('We need to pay them?');
+  };
+
+
   return recipeList;
 }
 catch (err) {
-  console.log('here is the error!!', err)
-  if (err.code == "402") {
+  console.log('here is the error!!', err, typeof err)
+  // if (err.status == "402") {
+  if (err.contains("need to pay")) { // how to check this
+    console.log('it is a 402!!', err)
     errorPanel.innerHTML = "No Hands Baking has exhausted its Spoonacular calls for the day. Try again after 9:00 p.m. UTC.";
     errorPanel.style.visibility = 'visible';
     setTimeout(function(){
-  }, 2000);
-  errorPanel.style.visibility = 'hidden';
-
+      errorPanel.style.visibility = 'hidden';
+    }, 2000);
   }
   else {
     errorPanel.innerHTML = "Something has gone wrong, please try again";
@@ -500,12 +506,13 @@ buttonLink.addEventListener('click', async () => {
   await recipeWaiter(recipeList.results);
   document.getElementById('selectorPageTracker').innerHTML = `Page ${pageNumber} of ${totalPages}`
   recipeSelectionScreen.style.visibility = 'visible';
+  recipeSelectionScreen.style.display = 'block';
 
   recipeSelector.setAttribute('class', 'hideTheOpener');
   document.body.style.cursor='default';
 }
   catch(err) {
-    if (err.code == "402") {
+    if (err.status == "402") {
       errorPanel.innerHTML = "No Hands Baking has exhausted its Spoonacular calls for the day. Try again after 9:00 p.m. UTC.";
       errorPanel.style.visibility = 'visible';
       setTimeout(function(){
@@ -583,10 +590,11 @@ miseEnPlaceSet.addEventListener('click', async () => {
   previousStep.disabled = true;
   setAnimation.classList.add('currentInstruction');
   setNextAnimation.setAttribute('class', 'nextInstruction');
-  instructions.classList.add('instructionsVisible');
+  instructions.style.visibility = 'visible';
   recipePreview.style.visibility = 'hidden';
   miseEnPlaceText.style.visibility = 'hidden';
   informationPanel.style.visibility = 'visible';
+  exitInfoPanel.style.visibility = 'visible';
 })
 
 
@@ -613,12 +621,17 @@ exitAboutUs.addEventListener('click', () => {
 
 backToResults.addEventListener('click', () => {
   recipePreview.style.visibility = "hidden";
-  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible');
+  recipeSelectionScreen.style.visibility = "visible";
+  recipeSelectionScreen.style.display = "block";
+  // recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible');
 })
 
 backToResults3.addEventListener('click', () => {
   instructions.style.visibility = "hidden";
-  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible');
+  recipeSelectionScreen.style.visibility = "visible";
+  recipeSelectionScreen.style.display = "block";
+
+  // recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible');
 })
 
 backToMise.addEventListener('click', () => {
@@ -651,7 +664,7 @@ exitInfoPanel.addEventListener('click', () => {
   exitInfoPanel.style.visibility = "hidden";
 
   repeatFunction();
-  if (microphoneBox = 0) {
+  if (microphoneBox == 0) {
     recognition.start();
   }
 })
@@ -714,14 +727,14 @@ async function previewListener(event){
       await setRecipe(recipeIdTag);
       await readMore();
       recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
-      recipeSelectionScreen.style.height = 0;
-      recipePreview.setAttribute('class', 'recipePreviewVisible');
+      recipeSelectionScreen.style.visibility = "hidden";
+      recipeSelectionScreen.style.display = "none";
+      recipePreview.style.visibility = "visible";
     }
   }
 }
 
 function checkVoice () {
-  console.log("i'm here");
   if (muteOration.checked == true){
       synthVolume = 0;
       console.log(synthVolume);
@@ -731,6 +744,7 @@ function checkVoice () {
 }
 
 function checkMicrophone() {
+  console.log("i'm here microphone", `${pauseMicrophone.checked}`);
   if (pauseMicrophone.checked == true){
       microphoneBox = 1;
     } else {
