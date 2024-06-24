@@ -731,6 +731,10 @@ body {
     width: 100%;
   }
 
+  .row {
+    width: 100%;
+  }
+
   .instructionExitsButtons {
     font-size: 14px;
   }
