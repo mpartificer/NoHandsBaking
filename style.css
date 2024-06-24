@@ -58,7 +58,12 @@
   justify-content: space-between;
   align-items:center;
   padding-right: 15px;
+  padding-left: 15px;
   width: 100%;
+}
+
+.instructionTitle {
+  padding-right: 75px;
 }
 
 .settingsButton {
@@ -366,7 +371,7 @@ body {
     display: block;
     width: 100%;
     visibility: hidden;
-    overflow: hidden;
+    overflow: scroll;
     justify-content: space-around;
   }
 
@@ -421,6 +426,7 @@ body {
 
   .instructionSettingsButton {
     border: none;
+    margin-right: 15px;
   }
 
   .instructionSettingsButton:hover {
@@ -602,10 +608,11 @@ body {
 
   .instructionExits {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     padding-left: 15 px;
-    align-items: flex-end;
-    align-self: flex-end;
+    align-items: flex-start;
+    margin-left: 15px;
+    align-self: flex-start;
     flex-direction: column;
   }
 
@@ -722,6 +729,14 @@ body {
 @media screen and (max-width: 600px) {
   .column {
     width: 100%;
+  }
+
+  .instructionExitsButtons {
+    font-size: 14px;
+  }
+
+  .instructionTitle {
+    padding-right: 60px;
   }
 
   .columnPreview {
