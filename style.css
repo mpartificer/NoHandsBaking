@@ -64,6 +64,7 @@
 
 .instructionTitle {
   padding-right: 75px;
+  font-size: 13px;
 }
 
 .settingsButton {
@@ -106,8 +107,6 @@
 .aboutUsVisible {
   color:black;
   position: absolute;
-  /* left: 50%;
-  transform: translateX(-50%); */
   animation: smooth-appear 2s ease forwards;
   text-align: center;
   z-index: 1;
@@ -129,10 +128,6 @@
 
 .aboutUsExitButton {
   border: none; 
-  /* display: flex; */
-  /* justify-self: end; */
-  /* margin-left:40px; */
-  /* flex-grow: 0.5; */
   position:absolute;
   right:0;  
   margin-right: 20px;
@@ -334,6 +329,7 @@ body {
   .imageColumn {
     float: left;
     overflow: hidden;
+    text-wrap: wrap;
     max-width:33%;
   }
 
@@ -360,6 +356,7 @@ body {
     visibility: hidden;
     width:100%;
     position: absolute;
+    overflow: scroll;
   }
 
   .recipePreviewVisible {
@@ -413,10 +410,8 @@ body {
     visibility: visible;
   }
 
-  .recipeTitleVisible {
-    visibility: visible;
-    border-bottom: 5px solid black;
-    animation: animate 2s linear forwards;
+  .recipeTitle {
+    font-size: 15px;
   }
 
   .goAwayAbout {
@@ -760,8 +755,13 @@ body {
   .header {
     animation: none;
     font-size: 12px;
-    /* font-size: 20px; */
     min-height:10vh;
+  }
+
+  .titleContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   body {
@@ -769,6 +769,10 @@ body {
     min-height:90vh;
     max-height:90vh;
     overflow: hidden;
+  }
+
+  .recipePreview {
+    overflow: scroll !important;
   }
 
   .recipePreviewVisible {

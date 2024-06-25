@@ -332,8 +332,6 @@ async function ingredientArray() {
 
   const storedIngredients = sessionStorage.getItem('storedRecipeIngredients');
   const parsedIngredients = JSON.parse(storedIngredients);
-  const storedId = sessionStorage.getItem('storedRecipeId');
-  const parsedId = JSON.parse(storedId);
 
   const ingredientsList = parsedIngredients;
   var ingredientHTML;
@@ -344,7 +342,6 @@ async function ingredientArray() {
     }
   ingredientHTML += `</ul>`;
 
-  document.getElementById('lockedAndLoadedButton').value = parsedId;
   return ingredientHTML;
 }
 
@@ -362,7 +359,11 @@ async function readMore() {
 
   try {
     const readyInMinutes = sessionStorage.getItem('storedReadyInMinutes');
-    imagePreview.appendChild(readyInMinutes);
+    const parsedMinutes = JSON.parse(readyInMinutes)
+    var minutes = document.createElement("minutes");
+    minutes.setAttribute('class', "pageCounter");
+    minutes.innerHTML = "<p>Ready in " + parsedMinutes + " minutes";
+    imagePreview.appendChild(minutes);
   }
   catch{}
 
@@ -395,6 +396,7 @@ async function setRecipe(recipeID) {
   }});
   
   const findMyRecipe = await selectMyRecipe.json();
+  console.log(findMyRecipe)
 
   if (sessionStorage.getItem('storedRecipeTitle') != undefined) {
     sessionStorage.removeItem('storedRecipeTitle');
@@ -416,6 +418,7 @@ async function setRecipe(recipeID) {
   if (findMyRecipe.readyInMinutes) {
     const jsonObjectReadyInMinutes = JSON.stringify(findMyRecipe.readyInMinutes);
     sessionStorage.setItem('storedReadyInMinutes', jsonObjectReadyInMinutes);
+    console.log(jsonObjectReadyInMinutes)
   }
 
   sessionStorage.setItem('storedRecipeTitle', jsonObjectTitle);
@@ -604,6 +607,9 @@ miseEnPlaceSet.addEventListener('click', async () => {
   currentInstruction = 0;
   const setAnimation = document.getElementById(`instructionListItem${currentInstruction}`);
   const setNextAnimation = document.getElementById(`instructionListItem${currentInstruction + 1}`);
+  var savedRecipeTitle = sessionStorage.getItem('storedRecipeTitle');
+  var parsedRecipeTitle = JSON.parse(savedRecipeTitle);
+  recipeTitle = parsedRecipeTitle;
   previousStep.disabled = true;
   setAnimation.classList.add('currentInstruction');
   setNextAnimation.setAttribute('class', 'nextInstruction');
