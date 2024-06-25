@@ -360,6 +360,12 @@ async function readMore() {
   imagePreview.innerHTML = "";
   imagePreview.appendChild(img);
 
+  try {
+    const readyInMinutes = sessionStorage.getItem('storedReadyInMinutes');
+    imagePreview.appendChild(readyInMinutes);
+  }
+  catch{}
+
   const storedIngredients = sessionStorage.getItem('storedRecipeIngredients');
   const parsedIngredients = JSON.parse(storedIngredients);
 
@@ -407,6 +413,10 @@ async function setRecipe(recipeID) {
     instructionsArray.push(findMyRecipe.analyzedInstructions[0].steps[i].step)
   }
   const jsonObjectInstructions = JSON.stringify(instructionsArray)
+  if (findMyRecipe.readyInMinutes) {
+    const jsonObjectReadyInMinutes = JSON.stringify(findMyRecipe.readyInMinutes);
+    sessionStorage.setItem('storedReadyInMinutes', jsonObjectReadyInMinutes);
+  }
 
   sessionStorage.setItem('storedRecipeTitle', jsonObjectTitle);
   sessionStorage.setItem('storedRecipeId', jsonObjectId);
