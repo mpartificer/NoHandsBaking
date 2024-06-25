@@ -259,17 +259,24 @@ async function retrieveRecipes(offset) {
   console.log('whatIsStatus', whatIsStatus)
 
 
-  if (!findMyRecipe.ok) { // should be  !findMyRecipe.status == "402"
-    throw new Error('We need to pay them?');
+  if (!findMyRecipe.ok) {
+    const responseError = {
+      type: 'Error',
+      message: recipeList.message || 'Something went wrong',
+      data: recipeList.data || '', // Note to Megan: see link about Logical OR operator
+      code: recipeList.code || '',
+    };
+  
+    let error = new Error();
+    error = { ...error, ...responseError }; // Note to Megan: see link about spread syntax
+    throw (error);
   };
-
 
   return recipeList;
 }
 catch (err) {
   console.log('here is the error!!', err, typeof err)
-  // if (err.status == "402") {
-  if (err.contains("need to pay")) { // how to check this
+  if (err.code == "402") {
     console.log('it is a 402!!', err)
     errorPanel.innerHTML = "No Hands Baking has exhausted its Spoonacular calls for the day. Try again after 9:00 p.m. UTC.";
     errorPanel.style.visibility = 'visible';
