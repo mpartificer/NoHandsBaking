@@ -278,19 +278,23 @@ catch (err) {
   console.log('here is the error!!', err, typeof err)
   if (err.code == "402") {
     console.log('it is a 402!!', err)
+    errorPanel.innerHTML = "";
     errorPanel.innerHTML = "No Hands Baking has exhausted its Spoonacular calls for the day. Try again after 9:00 p.m. UTC.";
+    errorPanel.style.visibility = 'visible';
+    console.log("what is going on lol");
+
+    // setTimeout(function(){
+    //   errorPanel.style.visibility = 'hidden';
+    // }, 2000);
+  }
+  else {
+    errorPanel.innerHTML = "";
+    console.log("this one is for the else loop");
+    errorPanel.innerHTML = "Something has gone wrong, please try again";
     errorPanel.style.visibility = 'visible';
     setTimeout(function(){
       errorPanel.style.visibility = 'hidden';
-    }, 2000);
-  }
-  else {
-    errorPanel.innerHTML = "Something has gone wrong, please try again";
-    errorPanel.style.visibility = "visible";
-    setTimeout(function(){
-  }, 2000);
-  errorPanel.style.visibility = 'hidden';
-    
+    }, 2000);    
   }
 }
 }
@@ -499,7 +503,6 @@ buttonLink.addEventListener('click', async () => {
   document.body.style.cursor='wait';
   previousPage.disabled = true;
 
-  try {
   recipeList = await retrieveRecipes(offset);
 
   totalPages = recipeList.totalResults / 10
@@ -530,25 +533,6 @@ buttonLink.addEventListener('click', async () => {
 
   recipeSelector.setAttribute('class', 'hideTheOpener');
   document.body.style.cursor='default';
-}
-  catch(err) {
-    if (err.status == "402") {
-      errorPanel.innerHTML = "No Hands Baking has exhausted its Spoonacular calls for the day. Try again after 9:00 p.m. UTC.";
-      errorPanel.style.visibility = 'visible';
-      setTimeout(function(){
-    }, 2000);
-    errorPanel.style.visibility = 'hidden';
-
-    }
-    else {
-      errorPanel.innerHTML = "Something has gone wrong, please try again";
-      errorPanel.style.visibility = "visible";
-      setTimeout(function(){
-    }, 2000);
-    errorPanel.style.visibility = 'hidden';
-      
-    }
-  }
 })
 
 nextPage.addEventListener('click', async () => {
