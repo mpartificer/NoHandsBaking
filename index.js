@@ -37,6 +37,7 @@ const nextStep = document.getElementById('nextStep');
 const muteOration = document.getElementById('muteOration');
 const pauseMicrophone = document.getElementById('pauseMicrophone');
 const errorPanel = document.getElementById('errorPanel');
+const recipePreviewTitle = document.getElementById('recipePreviewTitle');
 const spoonacularKey = "3c5ec8b2939641a99e28c6023598b2d4";
 const synth = window.speechSynthesis;
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
@@ -281,20 +282,18 @@ catch (err) {
     errorPanel.innerHTML = "";
     errorPanel.innerHTML = "No Hands Baking has exhausted its Spoonacular calls for the day. Try again after 9:00 p.m. UTC.";
     errorPanel.style.visibility = 'visible';
-    console.log("what is going on lol");
 
-    // setTimeout(function(){
-    //   errorPanel.style.visibility = 'hidden';
-    // }, 2000);
+    setTimeout(function(){
+      errorPanel.style.visibility = 'hidden';
+    }, 5000);
   }
   else {
     errorPanel.innerHTML = "";
-    console.log("this one is for the else loop");
     errorPanel.innerHTML = "Something has gone wrong, please try again";
     errorPanel.style.visibility = 'visible';
     setTimeout(function(){
       errorPanel.style.visibility = 'hidden';
-    }, 2000);    
+    }, 5000);    
   }
 }
 }
@@ -370,6 +369,11 @@ async function readMore() {
     imagePreview.appendChild(minutes);
   }
   catch{}
+
+  const recipeTitle = sessionStorage.getItem('storedRecipeTitle');
+  const parsedRecipeTitle = JSON.parse(recipeTitle);
+  recipePreviewTitle.innerHTML = "";
+  recipePreviewTitle.innerHTML = parsedRecipeTitle;
 
   const storedIngredients = sessionStorage.getItem('storedRecipeIngredients');
   const parsedIngredients = JSON.parse(storedIngredients);
@@ -593,7 +597,8 @@ miseEnPlaceSet.addEventListener('click', async () => {
   const setNextAnimation = document.getElementById(`instructionListItem${currentInstruction + 1}`);
   var savedRecipeTitle = sessionStorage.getItem('storedRecipeTitle');
   var parsedRecipeTitle = JSON.parse(savedRecipeTitle);
-  recipeTitle = parsedRecipeTitle;
+  recipeTitle.innerHTML = "";
+  recipeTitle.innerHTML = parsedRecipeTitle;
   previousStep.disabled = true;
   setAnimation.classList.add('currentInstruction');
   setNextAnimation.setAttribute('class', 'nextInstruction');
@@ -682,35 +687,6 @@ settingsButton.addEventListener('click', () => {
 })
 
 document.addEventListener( "click", previewListener);
-
-// const recipe1View = document.getElementById('recipe1View');
-// const recipe2View = document.getElementById('recipe2View');
-// const recipe3View = document.getElementById('recipe3View');
-// const recipe4View = document.getElementById('recipe4View');
-// const recipe5View = document.getElementById('recipe5View');
-// const recipe6View = document.getElementById('recipe6View');
-// const recipe7View = document.getElementById('recipe7View');
-// const recipe8View = document.getElementById('recipe8View');
-// const recipe9View = document.getElementById('recipe9View');
-// const recipe10View = document.getElementById('recipe10View');
-
-// var buttonArray = [recipe1View, recipe2View, recipe3View, recipe4View, recipe5View, recipe6View, recipe7View, recipe8View, recipe9View, recipe10View]
-
-
-// for (i = 0; i < buttonArray.length; i++) {
-
-//   const myButton = buttonArray[i]
-
-//   myButton.addEventListener(async () => {
-//     recipeIdTag = document.getElementById(`${myButton.id}`).value
-//     await setRecipe(recipeIdTag);
-//     await readMore();
-//     recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
-//     recipePreview.setAttribute('class', 'recipePreviewVisible');
-//   })
-// }
-
-
 
 async function previewListener(event){
   var element = event.target;
