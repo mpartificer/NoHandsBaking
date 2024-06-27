@@ -455,13 +455,18 @@ async function letsBake() {
   ingredients.innerHTML = ingredientHTML;
 }
 
-async function buildSelectionScreen(i) {
-  wrapper.innerHTML += `<div class="row"><div class="column" value="">
+async function buildSelectionScreen(i, id) {
+  wrapper.innerHTML += `<div class="row" onclick="previewListener(${id})"><div class="column" value="">
   <div id="Recipe${i+1}" class="recipeSelectionTitle"></div>
   <div class="buttonWrangler" id="buttonWrangler">
-  <button id="recipe${i+1}View" class="readMoreButton" value="">Read more</button>
   </div></div><div class="cardImage" id="cardImage${i+1}"></div></div>`;
 }
+// async function buildSelectionScreen(i, id) {
+//   wrapper.innerHTML += `<div class="row" onclick="previewListener(${id})"><div class="column" value="">
+//   <div id="Recipe${i+1}" class="recipeSelectionTitle"></div>
+//   <div class="buttonWrangler" id="buttonWrangler">
+//   </div></div></div></div>`;
+// }
 
 async function recipeWaiter(recipesList) {
   wrapper.innerHTML = "";
@@ -472,7 +477,7 @@ async function recipeWaiter(recipesList) {
       sessionStorage.removeItem(`Image${i}`);
     }
 
-    await buildSelectionScreen(i);
+    await buildSelectionScreen(i, recipesList[i].id);
 
     const recipeObj = document.getElementById(`Recipe${i+1}`)
     recipeObj.textContent = recipesList[i].title;
@@ -487,9 +492,6 @@ async function recipeWaiter(recipesList) {
     cardImage.innerHTML = "";
     cardImage.appendChild(img);
     
-
-    document.getElementById(`recipe${i+1}View`).value = recipesList[i].id;
-
     const jsonObjectImage = JSON.stringify(recipesList[i].image);
     const jsonObjectTitle = JSON.stringify(recipesList[i].title);
     const jsonObjectId = JSON.stringify(recipesList[i].id);
@@ -686,35 +688,13 @@ settingsButton.addEventListener('click', () => {
   exitInfoPanel.style.visibility = "visible";
 })
 
-document.addEventListener( "click", previewListener);
-
-async function previewListener(event){
-  var element = event.target;
-
-  const recipe1View = document.getElementById('recipe1View');
-  const recipe2View = document.getElementById('recipe2View');
-  const recipe3View = document.getElementById('recipe3View');
-  const recipe4View = document.getElementById('recipe4View');
-  const recipe5View = document.getElementById('recipe5View');
-  const recipe6View = document.getElementById('recipe6View');
-  const recipe7View = document.getElementById('recipe7View');
-  const recipe8View = document.getElementById('recipe8View');
-  const recipe9View = document.getElementById('recipe9View');
-  const recipe10View = document.getElementById('recipe10View');
-
-  var buttonArray = [recipe1View, recipe2View, recipe3View, recipe4View, recipe5View, recipe6View, recipe7View, recipe8View, recipe9View, recipe10View]
-
-  for (i = 0; i < buttonArray.length; i++) {
-    if(element.id == buttonArray[i].id && element.classList.contains("readMoreButton")){
-      recipeIdTag = document.getElementById(`${buttonArray[i].id}`).value
-      await setRecipe(recipeIdTag);
-      await readMore();
-      recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
-      recipeSelectionScreen.style.visibility = "hidden";
-      recipeSelectionScreen.style.display = "none";
-      recipePreview.style.visibility = "visible";
-    }
-  }
+async function previewListener(id){
+  await setRecipe(id);
+  await readMore();
+  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
+  recipeSelectionScreen.style.visibility = "hidden";
+  recipeSelectionScreen.style.display = "none";
+  recipePreview.style.visibility = "visible";
 }
 
 function checkVoice () {
