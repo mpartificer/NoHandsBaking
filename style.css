@@ -198,15 +198,22 @@ button:disabled:hover {
 
 .backButtonAlign {
   display: flex;
+  width:100%;
   justify-content: flex-start;
   margin-left: 20px;
   margin-bottom: 20px;
+  margin-right: 20px;
 }
 
 .nextButtonAlign {
   display: flex;
   justify-content: flex-end;
   margin: 20px;
+}
+
+.backButtonBox {
+  flex:1;
+  text-align:left;
 }
 
 .backButton {
@@ -431,14 +438,19 @@ body {
 
   .instructionSettingsButton {
     border: none;
-    flex:0.333;
+    /* flex:0.333; */
     margin-right: 15px;
     text-align:right;
   }
 
   .instructionSettingsButton:hover {
     border: none;
-    background-color: none;
+    background-color: rgb(255, 240, 242);
+  }
+
+  .instructionSettingsBox {
+    flex:1;
+    text-align: right;
   }
 
   .instructions {
@@ -495,6 +507,10 @@ body {
   .instructionManipulationButton:disabled {
     background-color: rgb(210, 209, 209);
     color: black;
+  }
+
+  .instructionManipulationButton:hover:disabled {
+    color:black;
   }
 
   .boxContainer {
@@ -593,6 +609,16 @@ body {
     padding-bottom: 3%;
   }
 
+  .balanceLine {
+    flex:1;
+  }
+
+  .recipePreviewTitle {
+    margin-right:0.5;
+    align-self: center;
+    font-weight: bold;
+    font-size: 20px;
+  }
 
   .exitInfoPanel {
     width: 100%;
@@ -623,7 +649,7 @@ body {
     margin-left: 15px;
     align-self: flex-start;
     flex-direction: column;
-    flex:0.333;
+    flex:1;
   }
 
   .instructionExitsButtons {
@@ -778,8 +804,9 @@ body {
   }
 
   .recipePreviewTitle {
-    align-self: center;
+    justify-self: center;
     font-weight: bold;
+    background-color: blue;
     font-size: 20px;
   }
 

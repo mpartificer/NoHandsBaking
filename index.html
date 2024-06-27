@@ -60,8 +60,12 @@
         
     <div class="recipePreview" id="recipePreview">
         <div class="backButtonAlign">
-            <button id="backToResults" class="backButton">Back to Results</button>
+            <div class="backButtonBox">
+                <button id="backToResults" class="backButton">Back to Results</button>
+            </div>
             <div class="recipePreviewTitle" id="recipePreviewTitle"></div>
+            <div class="balanceLine">
+            </div>
         </div>
         <div class="rowPreview">
             <div class="imageColumn" id="imagePreview"></div>
@@ -112,7 +116,11 @@
                 <div class="recipeTitle" id="recipeTitle"></div>
                 <div class="instructionTitle"><b>Instructions</b></div>
             </div>
-            <button id="instructionSettingsButton" class="instructionSettingsButton"><img id="settingsButton" class="settingsButton" src='https://www.pngall.com/wp-content/uploads/4/Settings-PNG-Free-Download.png'></button>
+            <div class="instructionSettingsBox">
+                <button id="instructionSettingsButton" class="instructionSettingsButton">
+                    <img id="settingsButton" class="settingsButton" src='https://www.pngall.com/wp-content/uploads/4/Settings-PNG-Free-Download.png'>
+                </button>
+            </div>
         </div>
 
         <div id="instructionsText" class="instructionsText"></div>
