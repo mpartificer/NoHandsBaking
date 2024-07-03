@@ -458,15 +458,8 @@ async function letsBake() {
 async function buildSelectionScreen(i, id) {
   wrapper.innerHTML += `<div class="row" onclick="previewListener(${id})"><div class="column" value="">
   <div id="Recipe${i+1}" class="recipeSelectionTitle"></div>
-  <div class="buttonWrangler" id="buttonWrangler">
-  </div></div><div class="cardImage" id="cardImage${i+1}"></div></div>`;
+  </div><div class="cardImage" id="cardImage${i+1}"></div></div>`;
 }
-// async function buildSelectionScreen(i, id) {
-//   wrapper.innerHTML += `<div class="row" onclick="previewListener(${id})"><div class="column" value="">
-//   <div id="Recipe${i+1}" class="recipeSelectionTitle"></div>
-//   <div class="buttonWrangler" id="buttonWrangler">
-//   </div></div></div></div>`;
-// }
 
 async function recipeWaiter(recipesList) {
   wrapper.innerHTML = "";
@@ -638,19 +631,16 @@ backToResults.addEventListener('click', () => {
   recipePreview.style.visibility = "hidden";
   recipeSelectionScreen.style.visibility = "visible";
   recipeSelectionScreen.style.display = "block";
-  // recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible');
 })
 
 backToResults3.addEventListener('click', () => {
   instructions.style.visibility = "hidden";
   recipeSelectionScreen.style.visibility = "visible";
   recipeSelectionScreen.style.display = "block";
-
-  // recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible');
 })
 
 backToMise.addEventListener('click', () => {
-  instructions.setAttribute('class', 'instructions');
+  instructions.style.visibility = 'hidden';
   recipePreview.style.visibility = "visible";
 })
 

@@ -63,7 +63,6 @@
 }
 
 .instructionTitle {
-  /* padding-right: 75px; */
   font-size: 13px;
 }
 
@@ -238,534 +237,485 @@ body {
     color: #49274A;
   }
 
-  .opener {
-    gap: 15px;
-    visibility: visible;
-    display: flex;
-    flex-direction:column;
-    align-items: center;
-    justify-content: space-between;
-  }
+.opener {
+  gap: 15px;
+  visibility: visible;
+  display: flex;
+  flex-direction:column;
+  align-items: center;
+  justify-content: space-between;
+}
 
-  .hideTheOpener {
-    visibility: hidden;
-    display: flex;
-  }
+.hideTheOpener {
+  visibility: hidden;
+  display: flex;
+}
 
-  .wrapper{
-    width: 100%;
-    text-align: center;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    overflow: scroll;
-  }
+.wrapper{
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  overflow: scroll;
+  max-height: 65vh;
+}
 
-  .recipeSelectionTitle {
-    font-size: 20px;
-    overflow:visible;
-    text-wrap: wrap;
-  }
+.recipeSelectionTitle {
+  font-size: 20px;
+  overflow:visible;
+  text-wrap: wrap;
+}
 
-  .buttonWrangler {
-    display: flex;
-    justify-content: center;
-    background-color: none;
-    gap:20px;
-  }
+.cardImage {
+  overflow: hidden;
+  padding: 0px;
+  /* max-height:fit-content */
+  max-height: 100%;
+  height: 100%;
+}
 
-  .cardImage {
-    overflow: hidden;
-    padding: 0px;
-    /* max-height:fit-content */
-    max-height: 100%;
-    height: 100%;
-  }
+.backToHome {
+  border:none;
+}
 
-  .backToHome {
-    border:none;
-  }
+.backToHome:hover {
+  background-color: rgb(255, 240, 242);
+}
 
-  .backToHome:hover {
-    background-color: rgb(255, 240, 242);
-  }
+.row {
+  display: flex;
+  flex-direction: row;
+  background-color: #DED369;
+  color: #192F01;
+  border: solid #192F01 2px;
+  border-radius: 20px;
+  font-size: 100%;
+  width: 42%;
+  column-gap: 0px;
+  margin-inline-start: 8px;
+  margin-inline-end: 8px;
+  margin-block-start: 8px;
+  margin-inline-end:8px;
+  overflow: hidden;
+  /* height:100px; */
+  /* height: fit-content; */
+}
 
-  .row {
-    display: flex;
-    flex-direction: row;
-    background-color: #DED369;
-    color: #192F01;
-    border: solid #192F01 2px;
-    border-radius: 20px;
-    font-size: 100%;
-    width: 42%;
-    column-gap: 0px;
-    margin-inline-start: 8px;
-    margin-inline-end: 8px;
-    margin-block-start: 8px;
-    margin-inline-end:8px;
-    overflow: hidden;
-    /* height:100px; */
-    /* height: fit-content; */
-  }
+.row:hover {
+  background-color: #f2edc3;
+  cursor:pointer;
+  animation: highlightCard ease 0.5s forwards;
+}
 
-  .row:hover {
-    background-color: #f2edc3;
-    cursor:pointer;
-    animation: highlightCard ease 0.5s forwards;
-  }
+.column {
+  width: 40%;
+  padding: 15px;
+  display: flex;
+  flex: 1 0 42%;
+  flex-direction: column;
+  justify-content: center;
+  column-gap: 10px;
+  margin: 10px;
+}
 
-  .column {
-    width: 40%;
-    padding: 15px;
-    display: flex;
-    flex: 1 0 42%;
-    flex-direction: column;
-    justify-content: center;
-    column-gap: 10px;
-    margin: 10px;
-  }
+.sayMore {
+  visibility: hidden;
+  position: absolute;
+}
+
+.sayMoreVisible {
+  visibility: visible;
+  width: 100%;
+}
+
+.imageColumn {
+  background-color: #DED369;
+  border-radius:20px;
+  float: left;
+  margin:2px;
+  overflow: hidden;
+  text-wrap: wrap;
+  width: 32%;
+  border: solid 2px #94618E;
+  scroll-snap-align: center;
+}
+
+.columnPreview {
+  float: left;
+  background-color: #DED369;
+  border: solid 2px #94618E;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 32%;
+  margin:2px;
+  row-gap: 20px;
+  overflow: scroll;
+  text-wrap:wrap;
+  scroll-snap-align: center;
+}
+
+.rowPreview {
+  overflow: scroll !important;
+  max-height: 65vh;
+}
+
+.rowPreview:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.recipePreview {
+  top: 15%;
+  white-space: nowrap;
+  display: block;
+  visibility: hidden;
+  width:100%;
+  position: absolute;
+  overflow: scroll;
+}
+
+.recipeSelectionScreen {
+  white-space: nowrap;
+  display: block;
+  width: 100%;
+  visibility: hidden;
+  overflow: scroll;
+  justify-content: space-around;
+}
+
+.alignPageInfo {
+  display: flex;
+  justify-content:space-evenly;
+}
+
+.recipeSelectionScreenVisible {
+  visibility: visible;
+}
+
+.pageButtons {
+  border-radius: 20 px;
+  font-family: 'Futura';
+}
+
+h3 {
+  color: #F8EFEA;
+}
+
+.pageButtons:hover {
+  color: white;
+}
+
+.miseOrientationButtons {
+  color: #F8EFEA;
+}
+
+.miseOrientationButtons:hover {
+  color: white;
+}
+.pageCounter {
+  align-self:center;
+}
+
+.recipeTitle {
+  font-size: 20px;
+  align-self:center;
+  font-weight:bold;
+}
+
+.goAwayAbout {
+  animation: smooth-disappear 2s ease;
+  animation-fill-mode: forwards;
+}
+
+.instructionSettingsButton {
+  border: none;
+  /* flex:0.333; */
+  margin-right: 15px;
+  text-align:right;
+}
+
+.instructionSettingsButton:hover {
+  border: none;
+  background-color: rgb(255, 240, 242);
+}
+
+.instructionSettingsBox {
+  flex:1;
+  text-align: right;
+}
+
+.instructions {
+  top: 15%;
+  max-height: 70%;
+  width: 100%;
+  visibility: hidden;
+  overflow: visible;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.instructionListManager {
+  color:black;
+  max-height: 55vh;
+  overflow: scroll;
+}
+
+.instructionsText {
+  color: white !important;
+  height: 40%;
+  max-height: 55%;
+  overflow: scroll;
+  padding: 40px;
+}
+
+.instructionManipulation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+}
+
+.instructionManipulationButton {
+  border-radius: 5px;
+  margin: 5px;
+  padding: 15px;
+  width: 100px;
+}
+
+.accentText {
+  line-height: 1.5;
+  color: #F8EFEA;
+  font-size: x-large;
+}
+
+.instructionManipulationButton:disabled {
+  background-color: rgb(210, 209, 209);
+  color: black;
+}
+
+.instructionManipulationButton:hover:disabled {
+  color:black;
+}
+
+.boxContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.box {
+  margin-top: 25px;
+  width: 50%;
+  align-self:center;
+  align-content:center;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  align-items: center;
+  align-self: center;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
   
-  .readMoreButton {
-    font-family: 'Futura';
-    font-size: 12px;
-    justify-content: space-between;
-    margin-top:10px;
-  }
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #faf8e7;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
 
-  .readMoreButton:hover {
-    color: white;
-  }
-
-  .sayMore {
-    visibility: hidden;
-    position: absolute;
-  }
-
-  .sayMoreVisible {
-    visibility: visible;
-    width: 100%;
-  }
-
-  .imageColumn {
-    background-color: #DED369;
-    border-radius:20px;
-    float: left;
-    margin:2px;
-    overflow: hidden;
-    text-wrap: wrap;
-    width: 32%;
-    border: solid 2px #94618E;
-    scroll-snap-align: center;
-  }
-
-  .item-list {
-    max-width: 950px;
-    width: 100%;
-    display:flex;
-    scroll-behavior: smooth;
-    overflow:auto;
-    scroll-snap-type:x mandatory;
-  }
-
-  .columnPreview {
-    float: left;
-    background-color: #DED369;
-    border: solid 2px #94618E;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    width: 32%;
-    margin:2px;
-    row-gap: 20px;
-    overflow: scroll;
-    text-wrap:wrap;
-    scroll-snap-align: center;
-  }
-
-  .rowPreview {
-    overflow: scroll !important;
-  }
-
-  .rowPreview:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-
-  .recipePreview {
-    top: 15%;
-    white-space: nowrap;
-    display: block;
-    visibility: hidden;
-    width:100%;
-    position: absolute;
-    overflow: scroll;
-  }
-
-  .recipePreviewVisible {
-    visibility: visible;
-  }
-
-  .recipeSelectionScreen {
-    white-space: nowrap;
-    display: block;
-    width: 100%;
-    visibility: hidden;
-    overflow: scroll;
-    justify-content: space-around;
-  }
-
-  .alignPageInfo {
-    display: flex;
-    justify-content:space-evenly;
-  }
-
-  .recipeSelectionScreenVisible {
-    visibility: visible;
-  }
-
-  .pageButtons {
-    border-radius: 20 px;
-    font-family: 'Futura';
-  }
-
-  h3 {
-    color: #F8EFEA;
-  }
-
-  .pageButtons:hover {
-    color: white;
-  }
-
-  .miseOrientationButtons {
-    color: #F8EFEA;
-  }
-
-  .miseOrientationButtons:hover {
-    color: white;
-  }
-  .pageCounter {
-    align-self:center;
-  }
-
-  .miseEnPlace {
-    white-space: nowrap;
-    display: block;
-    visibility: hidden;
-    width:100%;
-    overflow: hidden;
-    position: absolute;
-  }
-
-  .miseEnPlaceVisible {
-    visibility: visible;
-  }
-
-  .recipeTitle {
-    font-size: 20px;
-    align-self:center;
-    font-weight:bold;
-  }
-
-  .goAwayAbout {
-    animation: smooth-disappear 2s ease;
-    animation-fill-mode: forwards;
-  }
-
-  .instructionSettingsButton {
-    border: none;
-    /* flex:0.333; */
-    margin-right: 15px;
-    text-align:right;
-  }
-
-  .instructionSettingsButton:hover {
-    border: none;
-    background-color: rgb(255, 240, 242);
-  }
-
-  .instructionSettingsBox {
-    flex:1;
-    text-align: right;
-  }
-
-  .instructions {
-    top: 15%;
-    max-height: 70%;
-    width: 100%;
-    visibility: hidden;
-    overflow: visible;
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .instructionListManager {
-    color:black;
-    max-height: 55vh;
-    overflow: scroll;
-  }
-
-  .instructionsText {
-    color: white !important;
-    height: 40%;
-    max-height: 55%;
-    overflow: scroll;
-    padding: 40px;
-  }
-
-  .instructionsVisible {
-    visibility: visible;
-    }
-
-  .instructionManipulation {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 100%;
-  }
-
-  .instructionManipulationButton {
-    border-radius: 5px;
-    margin: 5px;
-    padding: 15px;
-    width: 100px;
-  }
-
-  .accentText {
-    line-height: 1.5;
-    color: #F8EFEA;
-    font-size: x-large;
-  }
-
-  .instructionManipulationButton:disabled {
-    background-color: rgb(210, 209, 209);
-    color: black;
-  }
-
-  .instructionManipulationButton:hover:disabled {
-    color:black;
-  }
-
-  .boxContainer {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .box {
-    margin-top: 25px;
-    width: 50%;
-    align-self:center;
-    align-content:center;
-  }
-
-  .switch {
-    position: relative;
-    display: inline-block;
-    text-align: center;
-    align-items: center;
-    align-self: center;
-    width: 60px;
-    height: 34px;
-  }
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: #49274A;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
   
-  .switch input { 
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
+input:checked + .slider {
+  background-color: #DED369;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #c1012ead;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
   
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #faf8e7;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-  
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: #49274A;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-  
-  input:checked + .slider {
-    background-color: #DED369;
-  }
-  
-  input:focus + .slider {
-    box-shadow: 0 0 1px #c1012ead;
-  }
-  
-  input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
-  }
-  
-  .slider.round {
-    border-radius: 34px;
-  }
-  
-  .slider.round:before {
-    border-radius: 50%;
-  }
+.slider.round {
+  border-radius: 34px;
+}
 
-  .informationPanel {
-    background-color:#E0475B;
-    border: 5px solid #49274A;
-    border-radius: 30px;
-    width: 50%;
-    display: flex;
-    margin-left: 25%;
-    margin-right: 25%;
-    margin-top:20%;
-    visibility: hidden;
-    font-size: large;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-    position:fixed;
-    z-index: 1;
-    padding-bottom: 3%;
-    overflow: hidden;
-  }
+.slider.round:before {
+  border-radius: 50%;
+}
 
-  .balanceLine {
-    flex:1;
-  }
+.informationPanel {
+  background-color:#E0475B;
+  border: 5px solid #49274A;
+  border-radius: 30px;
+  width: 50%;
+  display: flex;
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-top:20%;
+  visibility: hidden;
+  font-size: large;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  position:fixed;
+  z-index: 1;
+  padding-bottom: 3%;
+  overflow: hidden;
+}
 
-  .recipePreviewTitle {
-    margin-right:0.5;
-    align-self: center;
-    font-weight: bold;
-    font-size: 20px;
-  }
+.balanceLine {
+  flex:1;
+}
 
-  .exitInfoPanel {
-    width: 100%;
-    display: flex;
-    justify-content: right;
-    align-self: flex-start;
-    font-family: 'Futura';
-    border: none;
-    background-color:#E0475B;
-    color: white;
-    font-size: large;
-    overflow:hidden;
-    position:static;
-  }
+.recipePreviewTitle {
+  margin-right:0.5;
+  align-self: center;
+  font-weight: bold;
+  font-size: 20px;
+}
 
-  .exitInfoPanel:hover {
-    border: none;
-    background-color: #E0475B;
-    color:#49274A;
-  }
+.exitInfoPanel {
+  width: 100%;
+  display: flex;
+  justify-content: right;
+  align-self: flex-start;
+  font-family: 'Futura';
+  border: none;
+  background-color:#E0475B;
+  color: white;
+  font-size: large;
+  overflow:hidden;
+  position:static;
+}
 
-  .imggg {
-    width: 80%;
-  }
+.exitInfoPanel:hover {
+  border: none;
+  background-color: #E0475B;
+  color:#49274A;
+}
 
-  .instructionExits {
-    display: flex;
-    justify-content: flex-start;
-    padding-left: 15 px;
-    align-items: flex-start;
-    margin-left: 15px;
-    align-self: flex-start;
-    flex-direction: column;
-    flex:1;
-  }
+.imggg {
+  width: 80%;
+}
 
-  .instructionExitsButtons {
-    text-align: left;
-  }
+.instructionExits {
+  display: flex;
+  justify-content: center;
+  padding-left: 15 px;
+  align-items: flex-start;
+  margin-left: 15px;
+  flex-direction: column;
+  flex:1;
+}
 
-  .instructionExitsButtons:hover {
-    color:white;
-  }
+.instructionExitsButtons {
+  text-align: left;
+}
 
-  .previousInstruction {
-    /* font-size: 20px; */
-    animation: previousInstructionAnim 1s;
-    animation-fill-mode: forwards;
-    color: rgb(152, 152, 152);
-  }
+.instructionExitsButtons:hover {
+  color:white;
+}
 
-  .searchTerm {
-    display:inline;
-  }
+.previousInstruction {
+  animation: previousInstructionAnim 1s;
+  animation-fill-mode: forwards;
+  color: rgb(152, 152, 152);
+}
 
-  .currentInstruction {
-    animation: currentInstructionAnim 1s;
-    animation-fill-mode: forwards;
-    color:black;
-    
-  }
+.searchTerm {
+  display:inline;
+}
 
-  .nextInstruction {
-    animation: nextInstructionAnim 1s;
-    animation-fill-mode: forwards;
-    color:rgb(152, 152, 152);
-  }
+.currentInstruction {
+  animation: currentInstructionAnim 1s;
+  animation-fill-mode: forwards;
+  color:black;
+}
 
-  .exitInstructionFront {
-    animation: leaveInstructionAnim 1s;
-    animation-fill-mode: forwards;
-  }
+.nextInstruction {
+  animation: nextInstructionAnim 1s;
+  animation-fill-mode: forwards;
+  color:rgb(152, 152, 152);
+}
+
+.exitInstructionFront {
+  animation: leaveInstructionAnim 1s;
+  animation-fill-mode: forwards;
+}
 
 
-  @keyframes currentInstructionAnim {
-    from {
-      font-size: 25px;
-    }  
-    to {
-      font-size: 40px;
-    }
+@keyframes currentInstructionAnim {
+  from {
+    font-size: 25px;
+  }  
+  to {
+    font-size: 40px;
+  }
 }  
 
 
-  @keyframes nextInstructionAnim {
-    from {
-      font-size: 16px;
-    }
-    to {
-      font-size: 25px;    }
+@keyframes nextInstructionAnim {
+  from {
+    font-size: 16px;
   }
+  to {
+    font-size: 25px;    }
+}
 
-  @keyframes previousInstructionAnim {
-    from {
-      font-size: 40px;
-    }
-    to {
-      font-size: 25px;
-    }
+@keyframes previousInstructionAnim {
+  from {
+    font-size: 40px;
   }
+  to {
+    font-size: 25px;
+  }
+}
 
-  @keyframes leaveInstructionAnim {
-    from {
-      font-size: 25px;
-    }
-    to {
-      font-size: 16px;
-    }
-  } 
+@keyframes leaveInstructionAnim {
+  from {
+    font-size: 25px;
+  }
+  to {
+    font-size: 16px;
+  }
+} 
 
 
 @-o-keyframes opacity {
