@@ -600,6 +600,7 @@ miseEnPlaceSet.addEventListener('click', async () => {
   instructions.style.visibility = 'visible';
   recipePreview.style.visibility = 'hidden';
   miseEnPlaceText.style.visibility = 'hidden';
+  exitMisePanel.style.visibility = 'hidden';
   informationPanel.style.visibility = 'visible';
   exitInfoPanel.style.visibility = 'visible';
 })

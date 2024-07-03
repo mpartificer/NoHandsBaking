@@ -12,7 +12,7 @@
   visibility: visible;
   width:100%;
   overflow: hidden;
-  border-bottom: 5px solid #49274A;
+  border-bottom: 5px solid #192F01;
   animation: animate 2s linear forwards;
 }
 
@@ -81,7 +81,7 @@
   width: 100%;
   text-align: center;
   margin-top: auto;
-  background-color: #49274A;
+  background-color: #192F01;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -115,7 +115,7 @@
 
 .aboutUsButton {
   color:#F8EFEA;
-  background-color: #49274A;
+  background-color: #192F01;
   border: none;
   font-family:'Futura';
   z-index: 1;
@@ -180,13 +180,13 @@ button {
   font-family: 'Futura';
   font-size: 15px;
   cursor: pointer;
-  color:#49274A;
+  color:#192F01;
 }
 
 button:hover {
   color:#F4DECB;
-  border: 1px solid #49274A;
-  background-color: #49274A;
+  border: 1px solid #192F01;
+  background-color: #192F01;
 }
 
 button:disabled {
@@ -234,7 +234,7 @@ body {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    color: #49274A;
+    color: #192F01;
   }
 
 .opener {
@@ -259,6 +259,7 @@ body {
   justify-content: center;
   overflow: scroll;
   max-height: 65vh;
+  padding-bottom: 10px;
 }
 
 .recipeSelectionTitle {
@@ -552,7 +553,7 @@ h3 {
   width: 26px;
   left: 4px;
   bottom: 4px;
-  background-color: #49274A;
+  background-color: #192F01;
   -webkit-transition: .4s;
   transition: .4s;
 }
@@ -581,7 +582,7 @@ input:checked + .slider:before {
 
 .informationPanel {
   background-color:#E0475B;
-  border: 5px solid #49274A;
+  border: 5px solid #192F01;
   border-radius: 30px;
   width: 50%;
   display: flex;
@@ -628,7 +629,7 @@ input:checked + .slider:before {
 .exitInfoPanel:hover {
   border: none;
   background-color: #E0475B;
-  color:#49274A;
+  color:#192F01;
 }
 
 .imggg {
