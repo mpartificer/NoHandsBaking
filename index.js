@@ -13,6 +13,7 @@ const recipeTitle = document.getElementById('recipeTitle');
 const exitInfoPanel = document.getElementById('exitInfoPanel');
 const miseEnPlaceSet = document.getElementById('lockedAndLoadedButton');
 const miseEnPlaceText = document.getElementById('miseEnPlace');
+const exitMisePanel = document.getElementById('exitMisePanel');
 const recipeSelector = document.getElementById('recipeSelector');
 const enterInstructionMode = document.getElementById('enterInstructionMode');
 const instructions = document.getElementById('instructions');
@@ -613,6 +614,7 @@ miseEnPlaceSet.addEventListener('click', async () => {
 
 selectRecipe.addEventListener('click', async () => {
   miseEnPlaceText.style.visibility = 'visible';
+  exitMisePanel.style.visibility = 'visible';
 })
 
 aboutUsButton.addEventListener('click', () => {
@@ -680,6 +682,11 @@ exitInfoPanel.addEventListener('click', () => {
   if (microphoneBox == 0) {
     recognition.start();
   }
+})
+
+exitMisePanel.addEventListener('click', () => {
+  miseEnPlaceText.style.visibility = "hidden";
+  exitMisePanel.style.visibility = "hidden";
 })
 
 settingsButton.addEventListener('click', () => {
