@@ -86,6 +86,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  z-index: 1;
 }
 
 .aboutUs { 
@@ -353,20 +354,37 @@ body {
     margin:2px;
     overflow: hidden;
     text-wrap: wrap;
-    max-width:33%;
+    width: 32%;
+    border: solid 2px #94618E;
+    scroll-snap-align: center;
+  }
+
+  .item-list {
+    max-width: 950px;
+    width: 100%;
+    display:flex;
+    scroll-behavior: smooth;
+    overflow:auto;
+    scroll-snap-type:x mandatory;
   }
 
   .columnPreview {
     float: left;
     background-color: #DED369;
+    border: solid 2px #94618E;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
-    width: 33%;
+    width: 32%;
     margin:2px;
     row-gap: 20px;
     overflow: scroll;
     text-wrap:wrap;
+    scroll-snap-align: center;
+  }
+
+  .rowPreview {
+    overflow: scroll !important;
   }
 
   .rowPreview:after {
@@ -412,8 +430,16 @@ body {
     font-family: 'Futura';
   }
 
+  h3 {
+    color: #F8EFEA;
+  }
+
   .pageButtons:hover {
     color: white;
+  }
+
+  .miseOrientationButtons {
+    color: #F8EFEA;
   }
 
   .miseOrientationButtons:hover {
@@ -820,7 +846,6 @@ body {
   .recipePreviewTitle {
     justify-self: center;
     font-weight: bold;
-    background-color: blue;
     font-size: 20px;
   }
 

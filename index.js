@@ -55,7 +55,6 @@ var pageNumber;
 var totalPages;
 var i;
 
-
 const grammarArray = ['next', 'back', 'repeat']
 const grammar = `#JSGF V1.0; grammar commandWords; public <commandWord> = ${grammarArray.join(' | ')} ;`;
 const recognition = new SpeechRecognition();
