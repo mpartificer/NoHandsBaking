@@ -6,6 +6,10 @@ const backToResults2 = document.getElementById('backToResults2');
 const backToResults3 = document.getElementById('backToResults3');
 const homeButton = document.getElementById('homeButton');
 const settingsButton = document.getElementById('settingsButton');
+const ingredientReminderImage = document.getElementById('ingredientReminderImage');
+const ingredientInsert = document.getElementById('ingredientInsert');
+const ingredientReminderPanel = document.getElementById('ingredientReminderPanel');
+const exitIngRemPanel = document.getElementById('exitIngRemPanel');
 const backToMise = document.getElementById('backToMise');
 const searchTerm = document.getElementById('searchTerm');
 const buttonLink = document.getElementById('letsGoButton');
@@ -264,12 +268,12 @@ async function retrieveRecipes(offset) {
     const responseError = {
       type: 'Error',
       message: recipeList.message || 'Something went wrong',
-      data: recipeList.data || '', // Note to Megan: see link about Logical OR operator
+      data: recipeList.data || '', 
       code: recipeList.code || '',
     };
   
     let error = new Error();
-    error = { ...error, ...responseError }; // Note to Megan: see link about spread syntax
+    error = { ...error, ...responseError };
     throw (error);
   };
 
@@ -685,6 +689,31 @@ settingsButton.addEventListener('click', () => {
   exitInfoPanel.style.visibility = "visible";
 })
 
+ingredientReminderImage.addEventListener('click', () => {
+  const storedIngredients = sessionStorage.getItem('storedRecipeIngredients');
+  const parsedIngredients = JSON.parse(storedIngredients);
+
+  const ingredientsList = parsedIngredients;
+  var ingredientHTML;
+  ingredientHTML = '';
+  ingredientHTML = '<ul class="instructionListManager"><b>Ingredients</b>';
+    for (i = 0; i < ingredientsList.length; i++) {
+      ingredientHTML += '<li>' + ingredientsList[i].original + '</li>'; 
+    }
+  ingredientHTML += `</ul>`;  
+
+  ingredientInsert.innerHTML = "";
+  ingredientInsert.innerHTML = ingredientHTML;
+
+  ingredientReminderPanel.style.visibility = 'visible';
+  exitIngRemPanel.style.visibility = 'visible';
+})
+
+exitIngRemPanel.addEventListener('click', () => {
+  ingredientReminderPanel.style.visibility = 'hidden';
+  exitIngRemPanel.style.visibility = 'hidden';
+})
+
 async function previewListener(id){
   await setRecipe(id);
   await readMore();
@@ -698,6 +727,7 @@ function checkVoice () {
   if (muteOration.checked == true){
       synthVolume = 0;
       console.log(synthVolume);
+      synth.cancel();
     } else {
       synthVolume = 1;
     }

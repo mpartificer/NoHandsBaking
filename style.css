@@ -338,14 +338,14 @@ body {
   overflow: hidden;
   text-wrap: wrap;
   width: 32%;
-  border: solid 2px #94618E;
+  border: solid 2px #E0475B;
   scroll-snap-align: center;
 }
 
 .columnPreview {
   float: left;
   background-color: #DED369;
-  border: solid 2px #94618E;
+  border: solid 2px #E0475B;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -358,8 +358,12 @@ body {
 }
 
 .rowPreview {
+  width: 100%;
   overflow: scroll !important;
   max-height: 65vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .rowPreview:after {
@@ -424,6 +428,7 @@ h3 {
   font-size: 20px;
   align-self:center;
   font-weight:bold;
+  text-wrap: wrap;
 }
 
 .goAwayAbout {
@@ -440,7 +445,7 @@ h3 {
 
 .instructionSettingsButton:hover {
   border: none;
-  background-color: rgb(255, 240, 242);
+  background-color: #F8EFEA;
 }
 
 .instructionSettingsBox {
@@ -610,6 +615,7 @@ input:checked + .slider:before {
   align-self: center;
   font-weight: bold;
   font-size: 20px;
+  text-wrap: wrap;
 }
 
 .exitInfoPanel {
@@ -633,7 +639,7 @@ input:checked + .slider:before {
 }
 
 .imggg {
-  width: 80%;
+  width: 90%;
 }
 
 .instructionExits {
@@ -667,7 +673,7 @@ input:checked + .slider:before {
 .currentInstruction {
   animation: currentInstructionAnim 1s;
   animation-fill-mode: forwards;
-  color:black;
+  color:#192F01;
 }
 
 .nextInstruction {
@@ -691,6 +697,15 @@ input:checked + .slider:before {
   }
 }  
 
+@keyframes currentInstructionAnimMobile {
+  from {
+    font-size:20px;
+  }
+  to {
+    font-size: 30px;
+  }
+}
+
 
 @keyframes nextInstructionAnim {
   from {
@@ -698,6 +713,15 @@ input:checked + .slider:before {
   }
   to {
     font-size: 25px;    }
+}
+
+@keyframes nextInstructionAnimMobile {
+  from {
+    font-size: 15px;
+  }
+  to {
+    font-size: 20px;
+  }
 }
 
 @keyframes previousInstructionAnim {
@@ -709,6 +733,15 @@ input:checked + .slider:before {
   }
 }
 
+@keyframes previousInstructionAnimMobile {
+  from {
+    font-size: 30px;
+  }
+  to {
+    font-size: 20px;
+  }
+}
+
 @keyframes leaveInstructionAnim {
   from {
     font-size: 25px;
@@ -717,6 +750,15 @@ input:checked + .slider:before {
     font-size: 16px;
   }
 } 
+
+@keyframes leaveInstructionAnimMobile {
+  from {
+    font-size: 20px;
+  }
+  to {
+    font-size: 15px;
+  }
+}
 
 
 @-o-keyframes opacity {
@@ -775,8 +817,15 @@ input:checked + .slider:before {
     max-width: 34vw;
   }
 
+  .rowPreview {
+    /* display: flex;
+    flex-direction: column; */
+    flex-wrap: wrap;
+    overflow: scroll;
+  }
+
   .columnPreview {
-    width: 100%;
+    width: 95%;
   }
 
   .wrapper{
@@ -785,7 +834,7 @@ input:checked + .slider:before {
   }
 
   .imageColumn {
-    min-width: 100%;
+    min-width: 95%;
     align-items: center;
   }
 
@@ -805,10 +854,8 @@ input:checked + .slider:before {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* align-self:center; */
     flex:0.333;
     text-wrap:wrap;
-    /* justify-content: center; */
   }
 
   body {
@@ -838,6 +885,29 @@ input:checked + .slider:before {
     min-height: 10vh;
     animation: smooth-appear-mobile 2s ease forwards;
   } 
+
+  .currentInstruction {
+    animation: currentInstructionAnimMobile 1s;
+    animation-fill-mode: forwards;
+    color:#192F01;
+  }
+  
+  .nextInstruction {
+    animation: nextInstructionAnimMobile 1s;
+    animation-fill-mode: forwards;
+    color:rgb(152, 152, 152);
+  }
+  
+  .exitInstructionFront {
+    animation: leaveInstructionAnimMobile 1s;
+    animation-fill-mode: forwards;
+  }
+
+  .previousInstruction {
+    animation: previousInstructionAnimMobile 1s;
+    animation-fill-mode: forwards;
+    color: rgb(152, 152, 152);
+  }
 }
 
 @keyframes smooth-appear {
