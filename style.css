@@ -587,7 +587,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
+    background-color: #faf8e7;
     -webkit-transition: .4s;
     transition: .4s;
   }
@@ -599,13 +599,13 @@ body {
     width: 26px;
     left: 4px;
     bottom: 4px;
-    background-color: #a9acc6;
+    background-color: #49274A;
     -webkit-transition: .4s;
     transition: .4s;
   }
   
   input:checked + .slider {
-    background-color: #64766A;
+    background-color: #DED369;
   }
   
   input:focus + .slider {
@@ -627,8 +627,8 @@ body {
   }
 
   .informationPanel {
-    background-color:#49274A;
-    border: 5px solid #DED369;
+    background-color:#E0475B;
+    border: 5px solid #49274A;
     border-radius: 30px;
     width: 50%;
     display: flex;
@@ -665,7 +665,7 @@ body {
     align-self: flex-start;
     font-family: 'Futura';
     border: none;
-    background-color:#94618E;
+    background-color:#E0475B;
     color: white;
     font-size: large;
     overflow:hidden;
@@ -674,7 +674,8 @@ body {
 
   .exitInfoPanel:hover {
     border: none;
-    background-color: #F4DECB;
+    background-color: #E0475B;
+    color:#49274A;
   }
 
   .imggg {
