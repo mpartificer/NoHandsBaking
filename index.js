@@ -5,6 +5,7 @@ const backToResults = document.getElementById('backToResults');
 const backToResults2 = document.getElementById('backToResults2');
 const backToResults3 = document.getElementById('backToResults3');
 const homeButton = document.getElementById('homeButton');
+const searchInput = document.getElementById('webpage');
 const settingsButton = document.getElementById('settingsButton');
 const ingredientReminderImage = document.getElementById('ingredientReminderImage');
 const ingredientInsert = document.getElementById('ingredientInsert');
@@ -149,34 +150,35 @@ function nextFunction() {
   const setAnimation = document.getElementById(`instructionListItem${currentInstruction}`);
   const setNextAnimation = document.getElementById(`instructionListItem${currentInstruction + 1}`);
   const setPrevAnimation = document.getElementById(`instructionListItem${currentInstruction - 1}`);
+  const exitingInstructionLoop = document.getElementById(`instructionListItem${currentInstruction - 2}`);
+  const finalExit = document.getElementById(`instructionListItem${currentInstruction - 3}`);
+
+
   
   if (setPrevAnimation) {
-  setPrevAnimation.classList = "";
-  setPrevAnimation.classList.add('previousInstruction');
+    setPrevAnimation.classList = "";
+    setPrevAnimation.classList.add('previousInstruction');
   }
 
   if (setAnimation) {
-  setAnimation.classList = "";
-  setAnimation.classList.add('currentInstruction');
+    setAnimation.classList = "";
+    setAnimation.classList.add('currentInstruction');
   }
 
-  if (currentInstruction > 1) {
-    const exitingInstructionLoop = document.getElementById(`instructionList${currentInstruction - 2}`);
-    if (exitingInstructionLoop) {
-    exitingInstructionLoop.classList = "";
-    exitingInstructionLoop.classList.add('exitInstructionFront')
-    }
+  if (exitingInstructionLoop) {
+    console.log(exitingInstructionLoop);
+    exitingInstructionLoop.classList.remove('previousInstruction');
+    exitingInstructionLoop.classList.add('exitInstructionFront');
   }
-  if (currentInstruction > 2) {
-    const finalExit = document.getElementById(`instructionList${currentInstruction - 3}`);
-    if (finalExit) {
-    finalExit.classList = "";
-    }
+
+  if (finalExit) {
+    finalExit.classList.remove('exitInstructionFront');
   }
-  if (currentInstruction + 1 != stepCount) {
+
+  if ((currentInstruction + 1) != stepCount) {
     if (setNextAnimation) {
-    setNextAnimation.classList = "";
-    setNextAnimation.classList.add('nextInstruction');
+      setNextAnimation.classList = "";
+      setNextAnimation.classList.add('nextInstruction');
     }
   }
 
@@ -352,6 +354,46 @@ async function ingredientArray() {
   return ingredientHTML;
 }
 
+async function searchingIsHappening() {
+  if (typeof searchInput.value == "string" && searchInput.value.trim()){
+    offset = 0;
+    pageNumber = 1;
+    document.body.style.cursor='wait';
+    previousPage.disabled = true;
+
+    recipeList = await retrieveRecipes(offset);
+
+    totalPages = recipeList.totalResults / 10
+    if (totalPages % 10 != 0) {
+      totalPages = Math.floor(recipeList.totalResults/10) + 1;
+    }
+    if (pageNumber == 1 && pageNumber != totalPages) {
+      previousPage.disabled = true;
+      nextPage.disabled = false;
+    }
+    else if (pageNumber != 1 && pageNumber == totalPages) {
+      previousPage.disabled = false;
+      nextPage.disabled = true;
+    }
+    else if (pageNumber == 1 && pageNumber == totalPages) {
+      nextPage.disabled = true;
+      previousPage.disabled = true;
+    }
+    else if (pageNumber != 1 && pageNumber != totalPages) {
+      nextPage.disabled = false;
+      previousPage.disabled = false;
+    }
+
+    await recipeWaiter(recipeList.results);
+    document.getElementById('selectorPageTracker').innerHTML = `Page ${pageNumber} of ${totalPages}`
+    recipeSelectionScreen.style.visibility = 'visible';
+    recipeSelectionScreen.style.display = 'block';
+
+    recipeSelector.setAttribute('class', 'hideTheOpener');
+    document.body.style.cursor='default';
+  }
+}
+
 async function readMore() {
 
   const image = sessionStorage.getItem('storedRecipeImage');
@@ -499,43 +541,15 @@ async function recipeWaiter(recipesList) {
   }
 }
 
+
 buttonLink.addEventListener('click', async () => {
+  searchingIsHappening();
+})
 
-  offset = 0;
-  pageNumber = 1;
-  document.body.style.cursor='wait';
-  previousPage.disabled = true;
-
-  recipeList = await retrieveRecipes(offset);
-
-  totalPages = recipeList.totalResults / 10
-  if (totalPages % 10 != 0) {
-    totalPages = Math.floor(recipeList.totalResults/10) + 1;
+searchInput.addEventListener('keydown', async (e) => {
+  if (e.key == "Enter"){
+    searchingIsHappening();
   }
-  if (pageNumber == 1 && pageNumber != totalPages) {
-    previousPage.disabled = true;
-    nextPage.disabled = false;
-  }
-  else if (pageNumber != 1 && pageNumber == totalPages) {
-    previousPage.disabled = false;
-    nextPage.disabled = true;
-  }
-  else if (pageNumber == 1 && pageNumber == totalPages) {
-    nextPage.disabled = true;
-    previousPage.disabled = true;
-  }
-  else if (pageNumber != 1 && pageNumber != totalPages) {
-    nextPage.disabled = false;
-    previousPage.disabled = false;
-  }
-
-  await recipeWaiter(recipeList.results);
-  document.getElementById('selectorPageTracker').innerHTML = `Page ${pageNumber} of ${totalPages}`
-  recipeSelectionScreen.style.visibility = 'visible';
-  recipeSelectionScreen.style.display = 'block';
-
-  recipeSelector.setAttribute('class', 'hideTheOpener');
-  document.body.style.cursor='default';
 })
 
 nextPage.addEventListener('click', async () => {
