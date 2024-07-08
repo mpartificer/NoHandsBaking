@@ -50,6 +50,12 @@
   z-index: 2;
   width: 50px;
   height:50px;
+  background-color: #192F01;
+}
+
+.socialButtons:hover {
+  border: #192F01;
+  background-color: #192F01;
 }
 
 .instructionsWrapper {
@@ -105,7 +111,7 @@
 }
 
 .aboutUsVisible {
-  color:black;
+  color:#F8EFEA;
   position: absolute;
   animation: smooth-appear 2s ease forwards;
   text-align: center;
@@ -150,11 +156,12 @@
   margin-right: 20px;
   visibility:visible;
   animation: opacity 2s linear reverse;
+  color: #F8EFEA
 }
 
 .aboutUsExitVisible:hover {
   border: none;
-  background-color: none;
+  background-color: #192F01;
 }
 
 ul {
@@ -352,7 +359,8 @@ body {
   width: 32%;
   margin:2px;
   row-gap: 20px;
-  overflow: scroll;
+  overflow: -moz-scrollbars-vertical;
+  overflow-y: scroll;
   text-wrap:wrap;
   scroll-snap-align: center;
 }
@@ -806,6 +814,10 @@ input:checked + .slider:before {
     width: 100%;
   }
 
+  .homeButton {
+    margin-top: 17px;
+  }
+
   .instructionExitsButtons {
     font-size: 14px;
   }
@@ -819,8 +831,6 @@ input:checked + .slider:before {
   }
 
   .rowPreview {
-    /* display: flex;
-    flex-direction: column; */
     flex-wrap: wrap;
     overflow: scroll;
   }
@@ -954,4 +964,14 @@ input:checked + .slider:before {
   100% {
     transform: scale(1.05)
   }
+}
+
+.columnPreview::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+.columnPreview::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, .5);
+  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
 }

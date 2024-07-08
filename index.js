@@ -108,7 +108,7 @@ function previousFunction() {
   setAnimation.classList = "";
   setAnimation.classList.add('currentInstruction');
   setNextAnimation.classList = "";
-  setNextAnimation.classList.add('nextInstruction');
+  setNextAnimation.classList.add('previousInstruction');
   
 
   if (currentInstruction > 0) {
@@ -116,7 +116,7 @@ function previousFunction() {
     
     if (setPreviousAnimation) {
     setPreviousAnimation.classList = "";
-    setPreviousAnimation.classList.add(`previousInstruction`);
+    setPreviousAnimation.classList.add(`nextInstruction`);
     }
   }
 
@@ -545,6 +545,12 @@ buttonLink.addEventListener('click', async () => {
 })
 
 searchInput.addEventListener('keydown', async (e) => {
+  if (searchInput.value == "" || searchInput.value.trim() == "") {
+    buttonLink.disabled = true;
+  }
+  else {
+    buttonLink.disabled = false;
+  }
   if (e.key == "Enter"){
     searchingIsHappening();
   }
