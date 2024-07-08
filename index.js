@@ -2,8 +2,6 @@ const footer = document.getElementById('footer');
 const wrapper = document.getElementById('wrapper');
 const exitAboutUs = document.getElementById('exitAboutUs');
 const backToResults = document.getElementById('backToResults');
-const backToResults2 = document.getElementById('backToResults2');
-const backToResults3 = document.getElementById('backToResults3');
 const homeButton = document.getElementById('homeButton');
 const searchInput = document.getElementById('webpage');
 const settingsButton = document.getElementById('settingsButton');
@@ -648,12 +646,6 @@ exitAboutUs.addEventListener('click', () => {
 
 backToResults.addEventListener('click', () => {
   recipePreview.style.visibility = "hidden";
-  recipeSelectionScreen.style.visibility = "visible";
-  recipeSelectionScreen.style.display = "block";
-})
-
-backToResults3.addEventListener('click', () => {
-  instructions.style.visibility = "hidden";
   recipeSelectionScreen.style.visibility = "visible";
   recipeSelectionScreen.style.display = "block";
 })
