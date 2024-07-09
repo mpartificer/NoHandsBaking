@@ -4,6 +4,9 @@
         <title>No Hands Baking!</title>
         <link rel="stylesheet" type="text/css" href="style.css">
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+        <meta property="og:title" content="No Hands Baking!" />
+        <meta property=”og:image” content=”https://github.com/mpartificer/NoHandsBaking/NHBMetaImg.png” />
+        <meta property=”og:description” content=”Keep your hands busy whisking and stirring and kneading with this speech-to-text and voice command based kitchen assistant. We&#8217;ll read your recipe, you just make it!” />
     </head>
 
     <body>
@@ -12,8 +15,6 @@
         <button id="backToHome" class="backToHome"><img id="homeButton" class="homeButton" src='https://static.thenounproject.com/png/5566533-200.png'></button>
         <h1>No Hands Baking!</h1>
     </div>
-
-    <p></p>
 
     <div class="footer" id="footer">
         <div id="aboutUs" class="aboutUs">
@@ -40,7 +41,7 @@
 
     <div id="errorPanel" class="informationPanel"></div>
 
-    <div id="recipeSelector" class="opener">
+    <div id="recipeSelector" class="opener"><br><br>
         What are we baking today?
         <input type="text" id="webpage" class="enterText" placeholder="What do you want to bake?"> 
         <button id="letsGoButton" onclick="document.body.style.cursor='wait'; return true;" disabled> Search </button>

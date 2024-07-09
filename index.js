@@ -612,6 +612,7 @@ miseEnPlaceSet.addEventListener('click', async () => {
   currentInstruction = 0;
   const setAnimation = document.getElementById(`instructionListItem${currentInstruction}`);
   const setNextAnimation = document.getElementById(`instructionListItem${currentInstruction + 1}`);
+
   var savedRecipeTitle = sessionStorage.getItem('storedRecipeTitle');
   var parsedRecipeTitle = JSON.parse(savedRecipeTitle);
   recipeTitle.innerHTML = "";
@@ -654,19 +655,30 @@ backToResults.addEventListener('click', () => {
   recipePreview.style.visibility = "hidden";
   recipeSelectionScreen.style.visibility = "visible";
   recipeSelectionScreen.style.display = "block";
+  miseEnPlaceText.style.visibility = "hidden";
+  exitMisePanel.style.visibility = "hidden";
 })
 
 backToMise.addEventListener('click', () => {
   instructions.style.visibility = 'hidden';
   recipePreview.style.visibility = "visible";
+  informationPanel.style.visibility = "hidden";
+  exitInfoPanel.style.visibility = "hidden";
+  ingredientReminderPanel.style.visibility = "hidden";
+  exitIngRemPanel.style.visibility = "hidden";
 })
 
 homeButton.addEventListener('click', () => {
   instructions.style.visibility = "hidden";
   miseEnPlaceText.style.visibility = "hidden";
+  exitMisePanel.style.visibility = "hidden";
   recipePreview.style.visibility = "hidden";
   recipeSelectionScreen.style.visibility = "hidden";
   recipeSelector.setAttribute('class', 'opener');
+  informationPanel.style.visibility = "hidden";
+  exitInfoPanel.style.visibility = "hidden";
+  ingredientReminderPanel.style.visibility = "hidden";
+  exitIngRemPanel.style.visibility = "hidden";
 })
 
 previousStep.addEventListener('click', async () => {
