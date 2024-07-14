@@ -65,6 +65,7 @@
   align-items: center;
   padding-right: 15px;
   padding-left: 15px;
+  padding-bottom: 5px;
   width: 100%;
 }
 
@@ -284,11 +285,20 @@ body {
 }
 
 .backToHome {
-  border:none;
+  border:#192F01;
 }
 
 .backToHome:hover {
   background-color: rgb(255, 240, 242);
+  border: none;
+}
+
+.socialLinks {
+  border: 1px solid #192F01;
+}
+
+.socialLinks:hover {
+  background-color: #192F01;
 }
 
 .row {
@@ -347,6 +357,7 @@ body {
   width: 32%;
   border: solid 2px #E0475B;
   scroll-snap-align: center;
+
 }
 
 .columnPreview {
@@ -464,7 +475,7 @@ h3 {
 
 .instructions {
   top: 15%;
-  max-height: 70%;
+  max-height: 100%;
   width: 100%;
   visibility: hidden;
   overflow: visible;
@@ -476,14 +487,14 @@ h3 {
 
 .instructionListManager {
   color:black;
-  max-height: 55vh;
+  /* max-height: 55vh; */
   overflow: scroll;
 }
 
 .instructionsText {
   color: white !important;
   height: 40%;
-  max-height: 55%;
+  max-height: 100%;
   overflow: scroll;
   padding-left: 40px;
   padding-right: 40px;
@@ -649,7 +660,7 @@ input:checked + .slider:before {
 }
 
 .imggg {
-  width: 90%;
+  width: 100%;
 }
 
 .instructionExits {
@@ -824,7 +835,7 @@ input:checked + .slider:before {
   }
 
   .instructionsText {
-    max-height: 50vh;
+    max-height: 55vh;
   }
 
   .recipeTitle {
@@ -838,6 +849,7 @@ input:checked + .slider:before {
 
   .columnPreview {
     width: 95%;
+    overflow: hidden;
   }
 
   .wrapper{
@@ -848,6 +860,7 @@ input:checked + .slider:before {
   .imageColumn {
     min-width: 95%;
     align-items: center;
+    overflow: hidden;
   }
 
   .header {
@@ -874,7 +887,6 @@ input:checked + .slider:before {
     font-size:15px;
     min-height:90vh;
     max-height:90vh;
-    overflow: hidden;
   }
 
   .recipePreview {
