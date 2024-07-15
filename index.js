@@ -241,6 +241,64 @@ function waitYourTurn(utterance) {
   });
 }
 
+async function retrieveRandomRecipes() {
+  try {
+  
+    searchTerm.innerHTML = "RANDOM";
+    const recipeSearch = `https://api.spoonacular.com/recipes/random?apiKey=${spoonacularKey}&number=10`
+  
+    const findMyRecipe = await fetch(recipeSearch, {
+      headers: 
+        {"Content-Type": "application/json"
+    }});
+    
+    recipeList = await findMyRecipe.json();
+  
+    const isItOk = findMyRecipe.ok;
+    const whatIsStatus = findMyRecipe.status;
+  
+    console.log('isItOk', isItOk)
+    console.log('whatIsStatus', whatIsStatus)
+  
+  
+    if (!findMyRecipe.ok) {
+      const responseError = {
+        type: 'Error',
+        message: recipeList.message || 'Something went wrong',
+        data: recipeList.data || '', 
+        code: recipeList.code || '',
+      };
+    
+      let error = new Error();
+      error = { ...error, ...responseError };
+      throw (error);
+    };
+  
+    return recipeList;
+  }
+  catch (err) {
+    console.log('here is the error!!', err, typeof err)
+    if (err.code == "402") {
+      console.log('it is a 402!!', err)
+      errorPanel.innerHTML = "";
+      errorPanel.innerHTML = "No Hands Baking has exhausted its Spoonacular calls for the day. Try again after 9:00 p.m. UTC.";
+      errorPanel.style.visibility = 'visible';
+  
+      setTimeout(function(){
+        errorPanel.style.visibility = 'hidden';
+      }, 5000);
+    }
+    else {
+      errorPanel.innerHTML = "";
+      errorPanel.innerHTML = "Something has gone wrong, please try again";
+      errorPanel.style.visibility = 'visible';
+      setTimeout(function(){
+        errorPanel.style.visibility = 'hidden';
+      }, 5000);    
+    }
+  }
+}
+
 async function retrieveRecipes(offset) {
   try {
   const searchValue = webpage.value;
@@ -320,6 +378,7 @@ async function manageInstructionsPreview(parsedInstructions) {
   return instructionInsert;
 }
 
+
 async function manageInstructions(parsedInstructions) {
   var instructionInsert = "";
   instructionInsert += '<ul>';
@@ -389,6 +448,23 @@ async function searchingIsHappening() {
 
     recipeSelector.setAttribute('class', 'hideTheOpener');
     document.body.style.cursor='default';
+  }
+  else {
+    document.body.style.cursor='wait';
+    recipeList = await retrieveRandomRecipes();
+
+    console.log(recipeList.recipes);
+    previousPage.disabled= true;
+    nextPage.disabled = true;
+    await recipeWaiter(recipeList.recipes);
+    document.getElementById('selectorPageTracker').innerHTML = `Page 1 of 1`
+
+    recipeSelectionScreen.style.visibility = 'visible';
+    recipeSelectionScreen.style.display = 'block';
+
+    recipeSelector.setAttribute('class', 'hideTheOpener');
+    document.body.style.cursor='default';
+
   }
 }
 
@@ -507,6 +583,7 @@ async function buildSelectionScreen(i, id) {
 
 async function recipeWaiter(recipesList) {
   wrapper.innerHTML = "";
+  console.log(recipesList);
   for (i = 0; i < recipesList.length; i++) {
     if (sessionStorage.getItem(`Title${i}`) != null) {
       sessionStorage.removeItem(`Title${i}`);
@@ -545,12 +622,6 @@ buttonLink.addEventListener('click', async () => {
 })
 
 searchInput.addEventListener('keydown', async (e) => {
-  if (searchInput.value == "" || searchInput.value.trim() == "") {
-    buttonLink.disabled = true;
-  }
-  else {
-    buttonLink.disabled = false;
-  }
   if (e.key == "Enter"){
     searchingIsHappening();
   }
