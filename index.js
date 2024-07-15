@@ -446,7 +446,7 @@ async function searchingIsHappening() {
     recipeSelectionScreen.style.visibility = 'visible';
     recipeSelectionScreen.style.display = 'block';
 
-    recipeSelector.setAttribute('class', 'hideTheOpener');
+    recipeSelector.style.visibility = 'hidden';
     document.body.style.cursor='default';
   }
   else {
@@ -462,7 +462,7 @@ async function searchingIsHappening() {
     recipeSelectionScreen.style.visibility = 'visible';
     recipeSelectionScreen.style.display = 'block';
 
-    recipeSelector.setAttribute('class', 'hideTheOpener');
+    recipeSelector.style.visibility = 'hidden';
     document.body.style.cursor='default';
 
   }
@@ -745,7 +745,7 @@ homeButton.addEventListener('click', () => {
   exitMisePanel.style.visibility = "hidden";
   recipePreview.style.visibility = "hidden";
   recipeSelectionScreen.style.visibility = "hidden";
-  recipeSelector.setAttribute('class', 'opener');
+  recipeSelector.style.visibility = 'visible';
   informationPanel.style.visibility = "hidden";
   exitInfoPanel.style.visibility = "hidden";
   ingredientReminderPanel.style.visibility = "hidden";
