@@ -210,9 +210,8 @@ button:disabled:hover {
   display: flex;
   width:100%;
   justify-content: flex-start;
-  margin-left: 20px;
+  margin-top:20px;
   margin-bottom: 20px;
-  margin-right: 20px;
 }
 
 .nextButtonAlign {
@@ -228,6 +227,7 @@ button:disabled:hover {
 
 .backButton {
   text-align: left;
+  margin-left: 10px;
 }
 
 body {
@@ -393,7 +393,7 @@ body {
 }
 
 .recipePreview {
-  top: 15%;
+  top: 12%;
   white-space: nowrap;
   display: block;
   visibility: hidden;
@@ -822,6 +822,12 @@ input:checked + .slider:before {
     width: 100%;
   }
 
+  .backButtonAlign {
+    flex-direction: column;
+    margin-top:5px;
+    margin-bottom: 10px;
+  }
+
   .row {
     width: 100%;
   }
@@ -830,8 +836,16 @@ input:checked + .slider:before {
     margin-top: 17px;
   }
 
+  .instructionExits {
+    flex:1;
+  }
+
   .instructionExitsButtons {
     font-size: 14px;
+  }
+
+  .instructions {
+    max-height: 75vh;
   }
 
   .instructionsText {
@@ -839,12 +853,30 @@ input:checked + .slider:before {
   }
 
   .recipeTitle {
-    max-width: 34vw;
+    margin-top: 10px;
+    /* max-width: 34vw; */
+    /* order: 1; */
+  }
+
+  .titleContainer {
+    order: 1;
+  }
+
+  .backButtonBox {
+    /* align-self: flex-start; */
+    width: 50%;
+    flex-grow: 1;
+  }
+
+  .instructionsSettingsBox {
+    flex-grow:1;
+    width: 50%;
   }
 
   .rowPreview {
     flex-wrap: wrap;
     overflow: scroll;
+    max-height:55vh;
   }
 
   .columnPreview {
@@ -873,14 +905,17 @@ input:checked + .slider:before {
     justify-self: center;
     font-weight: bold;
     font-size: 20px;
+    order: 1;
+    padding-top: 10px;
   }
 
   .titleContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex:0.333;
+    /* flex:0.333; */
     text-wrap:wrap;
+    flex-basis: 100%;
   }
 
   body {
@@ -891,6 +926,7 @@ input:checked + .slider:before {
 
   .recipePreview {
     overflow: scroll !important;
+    max-height: 80vh;
   }
 
   .recipePreviewVisible {
@@ -932,6 +968,12 @@ input:checked + .slider:before {
     animation-fill-mode: forwards;
     color: rgb(152, 152, 152);
   }
+
+  .instructionsWrapper {
+    flex-wrap:wrap;
+  }
+
+
 }
 
 @keyframes smooth-appear {
