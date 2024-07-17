@@ -22,7 +22,7 @@
   background: none;
 }
 
-.backToHome:hover {
+.backToHome:active {
   border: none;
   background-color: none;
 }
