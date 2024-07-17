@@ -52,6 +52,7 @@ var currentInstruction = 0;
 var recipeList;
 var synthVolume = 1;
 var microphoneBox = 0;
+var backMicControl = 0;
 var stepCount;
 var voice;
 var offset;
@@ -97,9 +98,13 @@ recognition.onresult = async (event) => {
 
 recognition.addEventListener('end', () => {
   
-  if (microphoneBox == 0) {
+  if (microphoneBox == 0 && backMicControl == 0) {
     console.log('iamonend', `${microphoneBox}`);
     recognition.start();
+  }
+
+  if (backMicControl == 1) {
+    backMicControl = 0;
   }
 })
 
@@ -159,8 +164,6 @@ function nextFunction() {
   const exitingInstructionLoop = document.getElementById(`instructionListItem${currentInstruction - 2}`);
   const finalExit = document.getElementById(`instructionListItem${currentInstruction - 3}`);
 
-
-  
   if (setPrevAnimation) {
     setPrevAnimation.classList = "";
     setPrevAnimation.classList.add('previousInstruction');
@@ -236,17 +239,10 @@ function buttonCheck() {
 }
 
 function waitYourTurn(utterance) {
-  // recognition.stop()
   const utterThis = new SpeechSynthesisUtterance(utterance);
   utterThis.voice = voice;
   utterThis.volume = synthVolume;
   synth.speak(utterThis)
-
-  // utterThis.addEventListener("end", (event) => {
-  //   if (microphoneBox == 0) {
-  //     recognition.start();
-  //   }
-  // });
 }
 
 async function retrieveRandomRecipes() {
@@ -623,7 +619,7 @@ async function recipeWaiter(recipesList) {
   }
 }
 
-buttonLink.addEventListener('click touchstart', async () => {
+buttonLink.addEventListener('click', async () => {
   searchingIsHappening();
 })
 
@@ -743,7 +739,9 @@ backToMise.addEventListener('click', () => {
   exitInfoPanel.style.visibility = "hidden";
   ingredientReminderPanel.style.visibility = "hidden";
   exitIngRemPanel.style.visibility = "hidden";
+  backMicControl = 1;
   recognition.stop();
+  synth.cancel();
 })
 
 homeButton.addEventListener('click', () => {
@@ -758,6 +756,9 @@ homeButton.addEventListener('click', () => {
   exitInfoPanel.style.visibility = "hidden";
   ingredientReminderPanel.style.visibility = "hidden";
   exitIngRemPanel.style.visibility = "hidden";
+  backMicControl = 1;
+  recognition.stop();
+  synth.cancel();
 })
 
 previousStep.addEventListener('click', async () => {
