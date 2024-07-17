@@ -623,7 +623,7 @@ async function recipeWaiter(recipesList) {
   }
 }
 
-buttonLink.addEventListener('click', async () => {
+buttonLink.addEventListener('click touchstart', async () => {
   searchingIsHappening();
 })
 
