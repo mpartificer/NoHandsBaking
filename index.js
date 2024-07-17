@@ -95,6 +95,14 @@ recognition.onresult = async (event) => {
 }
 };
 
+recognition.addEventListener('end', () => {
+  
+  if (microphoneBox == 0) {
+    console.log('iamonend', `${microphoneBox}`);
+    recognition.start();
+  }
+})
+
 
 function repeatFunction() {
   const setAnimation = document.getElementById(`instructionListItem${currentInstruction}`);
@@ -228,22 +236,21 @@ function buttonCheck() {
 }
 
 function waitYourTurn(utterance) {
-  recognition.stop()
+  // recognition.stop()
   const utterThis = new SpeechSynthesisUtterance(utterance);
   utterThis.voice = voice;
   utterThis.volume = synthVolume;
   synth.speak(utterThis)
 
-  utterThis.addEventListener("end", (event) => {
-    if (microphoneBox == 0) {
-      recognition.start();
-    }
-  });
+  // utterThis.addEventListener("end", (event) => {
+  //   if (microphoneBox == 0) {
+  //     recognition.start();
+  //   }
+  // });
 }
 
 async function retrieveRandomRecipes() {
   try {
-  
     searchTerm.innerHTML = "RANDOM";
     const recipeSearch = `https://api.spoonacular.com/recipes/random?apiKey=${spoonacularKey}&number=10`
   
@@ -546,7 +553,6 @@ async function setRecipe(recipeID) {
   if (findMyRecipe.readyInMinutes) {
     const jsonObjectReadyInMinutes = JSON.stringify(findMyRecipe.readyInMinutes);
     sessionStorage.setItem('storedReadyInMinutes', jsonObjectReadyInMinutes);
-    console.log(jsonObjectReadyInMinutes)
   }
 
   sessionStorage.setItem('storedRecipeTitle', jsonObjectTitle);
