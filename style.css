@@ -53,10 +53,7 @@
   background-color: #192F01;
 }
 
-.socialButtons:hover {
-  border: #192F01;
-  background-color: #192F01;
-}
+
 
 .instructionsWrapper {
   display: flex;
@@ -129,10 +126,7 @@
   margin-left: 35px;
 }
 
-.aboutUsButton:hover {
-  border:none;
-  background-color: none;
-}
+
 
 .aboutUsExitButton {
   border: none; 
@@ -160,10 +154,7 @@
   color: #F8EFEA
 }
 
-.aboutUsExitVisible:hover {
-  border: none;
-  background-color: #192F01;
-}
+
 
 ul {
   list-style-type: none;
@@ -202,9 +193,7 @@ button:disabled {
   color:rgba(16, 16, 16, 0.3);
 }
 
-button:disabled:hover {
-  color:rgba(16, 16, 16, 0.3);
-}
+
 
 .backButtonAlign {
   display: flex;
@@ -284,18 +273,11 @@ body {
   border:#192F01;
 }
 
-.backToHome:hover {
-  background-color: rgb(255, 240, 242);
-  border: none;
-}
-
 .socialLinks {
   border: 1px solid #192F01;
 }
 
-.socialLinks:hover {
-  background-color: #192F01;
-}
+
 
 .row {
   display: flex;
@@ -314,12 +296,6 @@ body {
   overflow: hidden;
   /* height:100px; */
   /* height: fit-content; */
-}
-
-.row:hover {
-  background-color: #f2edc3;
-  cursor:pointer;
-  animation: highlightCard ease 0.5s forwards;
 }
 
 .column {
@@ -426,22 +402,10 @@ h3 {
   color: #F8EFEA;
 }
 
-.pageButtons:hover {
-  color: white;
-}
-
-.pageButtons:hover:disabled {
-  background-color: #F8EFEA;
-  border-color: rgba(16, 16, 16, 0.3);
-}
-
 .miseOrientationButtons {
   color: #F8EFEA;
 }
 
-.miseOrientationButtons:hover {
-  color: white;
-}
 .pageCounter {
   align-self:center;
 }
@@ -463,11 +427,6 @@ h3 {
   /* flex:0.333; */
   margin-right: 15px;
   text-align:right;
-}
-
-.instructionSettingsButton:hover {
-  border: none;
-  background-color: #F8EFEA;
 }
 
 .instructionSettingsBox {
@@ -525,10 +484,6 @@ h3 {
 .instructionManipulationButton:disabled {
   background-color: rgb(210, 209, 209);
   color: black;
-}
-
-.instructionManipulationButton:hover:disabled {
-  color:black;
 }
 
 .boxContainer {
@@ -654,12 +609,6 @@ input:checked + .slider:before {
   position:static;
 }
 
-.exitInfoPanel:hover {
-  border: none;
-  background-color: #E0475B;
-  color:#192F01;
-}
-
 .imggg {
   width: 100%;
 }
@@ -676,10 +625,6 @@ input:checked + .slider:before {
 
 .instructionExitsButtons {
   text-align: left;
-}
-
-.instructionExitsButtons:hover {
-  color:white;
 }
 
 .previousInstruction {
@@ -980,6 +925,76 @@ input:checked + .slider:before {
   }
 
 
+}
+
+@media (hover: hover) {
+  .socialButtons:hover {
+    border: #192F01;
+    background-color: #192F01;
+  }
+
+  .aboutUsButton:hover {
+    border:none;
+    background-color: none;
+  }
+
+  .aboutUsExitVisible:hover {
+    border: none;
+    background-color: #192F01;
+  }
+
+  button:disabled:hover {
+    color:rgba(16, 16, 16, 0.3);
+  }
+
+  .miseOrientationButtons:hover {
+    color: white;
+  }
+
+  .pageButtons:hover {
+    color: white;
+  }
+
+  .exitInfoPanel:hover {
+    border: none;
+    background-color: #E0475B;
+    color:#192F01;
+  }
+  
+  .pageButtons:hover:disabled {
+    background-color: #F8EFEA;
+    border-color: rgba(16, 16, 16, 0.3);
+  }
+
+  .backToHome:hover {
+    background-color: rgb(255, 240, 242);
+    border: none;
+  }
+
+  .instructionSettingsButton:hover {
+    border: none;
+    background-color: #F8EFEA;
+  }
+
+  .socialLinks:hover {
+    background-color: #192F01;
+  }
+
+  .instructionExitsButtons:hover {
+    color:white;
+  }
+
+  .row:hover {
+    background-color: #f2edc3;
+    cursor:pointer;
+    animation: highlightCard ease 0.5s forwards;
+  }
+
+  .instructionManipulationButton:hover:disabled {
+    color:black;
+  }
+  
+  
 }
 
 @keyframes smooth-appear {
