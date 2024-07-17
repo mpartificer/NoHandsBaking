@@ -926,6 +926,10 @@ input:checked + .slider:before {
     cursor: pointer;
   }
 
+  button {
+    cursor: pointer !important;
+  }
+
   .recipePreview {
     overflow: scroll !important;
     max-height: 80vh;
