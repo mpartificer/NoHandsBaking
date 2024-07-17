@@ -743,6 +743,7 @@ backToMise.addEventListener('click', () => {
   exitInfoPanel.style.visibility = "hidden";
   ingredientReminderPanel.style.visibility = "hidden";
   exitIngRemPanel.style.visibility = "hidden";
+  recognition.stop();
 })
 
 homeButton.addEventListener('click', () => {

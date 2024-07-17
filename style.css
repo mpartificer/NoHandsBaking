@@ -923,6 +923,7 @@ input:checked + .slider:before {
     font-size:15px;
     min-height:90vh;
     max-height:90vh;
+    cursor: pointer;
   }
 
   .recipePreview {
