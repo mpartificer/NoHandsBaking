@@ -454,6 +454,7 @@ async function searchingIsHappening() {
     recipeSelectionScreen.style.display = 'block';
 
     recipeSelector.style.visibility = 'hidden';
+    recipeSelector.style.display = 'none';
     document.body.style.cursor='default';
   }
   else {
@@ -622,7 +623,7 @@ async function recipeWaiter(recipesList) {
   }
 }
 
-buttonLink.addEventListener('touchstart', async () => {
+buttonLink.addEventListener('click', async () => {
   searchingIsHappening();
 })
 
@@ -752,6 +753,7 @@ homeButton.addEventListener('click', () => {
   recipePreview.style.visibility = "hidden";
   recipeSelectionScreen.style.visibility = "hidden";
   recipeSelector.style.visibility = 'visible';
+  recipeSelector.style.display = 'flex';
   informationPanel.style.visibility = "hidden";
   exitInfoPanel.style.visibility = "hidden";
   ingredientReminderPanel.style.visibility = "hidden";

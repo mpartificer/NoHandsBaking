@@ -182,7 +182,7 @@ button {
   color:#192F01;
 }
 
-button:active {
+button:hover {
   color:#F4DECB;
   border: 1px solid #192F01;
   background-color: #192F01;
@@ -375,6 +375,7 @@ body {
 }
 
 .recipeSelectionScreen {
+  padding-top:15px;
   white-space: nowrap;
   display: block;
   width: 100%;
@@ -923,11 +924,8 @@ input:checked + .slider:before {
   .instructionsWrapper {
     flex-wrap:wrap;
   }
-
-
 }
 
-@media (hover: hover) {
   .socialButtons:hover {
     border: #192F01;
     background-color: #192F01;
@@ -993,9 +991,6 @@ input:checked + .slider:before {
   .instructionManipulationButton:hover:disabled {
     color:black;
   }
-  
-  
-}
 
 @keyframes smooth-appear {
   0%{
