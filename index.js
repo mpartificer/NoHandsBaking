@@ -622,6 +622,7 @@ async function recipeWaiter(recipesList) {
   }
 }
 
+document.addEventListener("touchstart", function() {}, true);
 
 buttonLink.addEventListener('click', async () => {
   searchingIsHappening();
