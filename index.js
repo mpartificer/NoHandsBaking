@@ -454,7 +454,7 @@ async function searchingIsHappening() {
 
     recipeSelector.style.visibility = 'hidden';
     recipeSelector.style.display = 'none';
-    document.body.style.cursor='default';
+    document.body.style.cursor='pointer';
   }
   else {
     document.body.style.cursor='wait';
@@ -474,7 +474,7 @@ async function searchingIsHappening() {
 
     recipeSelector.style.visibility = 'hidden';
     recipeSelector.style.display = 'none';
-    document.body.style.cursor='default';
+    document.body.style.cursor='pointer';
 
   }
 }
@@ -615,6 +615,11 @@ async function recipeWaiter(recipesList) {
 
   }
 }
+
+document.addEventListener('click', () => {
+  footer.style.backgroundColor = 'yellow'
+  // searchingIsHappening();
+})
 
 buttonLink.addEventListener('touchstart', async () => {
   footer.style.backgroundColor = 'red'
