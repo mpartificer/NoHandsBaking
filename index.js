@@ -617,15 +617,19 @@ async function recipeWaiter(recipesList) {
 
 
 const tempButton = document.getElementById('backToHome');
+const myBody = document.getElementById('myBody');
 
-document.addEventListener('touchstart', (e) => {
+
+myBody.addEventListener('touchstart', (e) => {
+  alert(`something! body touch, id: ${e.target.id}`)
   footer.style.backgroundColor = 'orange'
   console.log('here is what was touched', e.target)
   tempButton.innerText = JSON.stringify(e.target.id)
   // searchingIsHappening();
 })
 
-document.addEventListener('click', (e) => {
+myBody.addEventListener('click', (e) => {
+  alert(`something! body click, id: ${e.target.id}`)
   footer.style.backgroundColor = 'yellow'
   console.log('here is what was clicked', e.target)
   tempButton.innerText = JSON.stringify(e.target.id)
@@ -633,11 +637,13 @@ document.addEventListener('click', (e) => {
 })
 
 buttonLink.addEventListener('touchstart', async () => {
+  alert(`something! button touch, id: ${e.target.id}`)
   footer.style.backgroundColor = 'red'
   searchingIsHappening();
 })
 
 buttonLink.addEventListener('click', async () => {
+  alert(`something! button click, id: ${e.target.id}`)
   footer.style.backgroundColor = 'blue'
   searchingIsHappening();
 })
