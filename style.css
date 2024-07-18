@@ -449,8 +449,8 @@ h3 {
 
 .instructionListManager {
   color:black;
-  /* max-height: 55vh; */
   overflow: scroll;
+  max-height: 55vh;
 }
 
 .instructionsText {
@@ -571,7 +571,7 @@ input:checked + .slider:before {
   display: flex;
   margin-left: 25%;
   margin-right: 25%;
-  margin-top:20%;
+  margin-top:15%;
   visibility: hidden;
   font-size: large;
   justify-content: center;
@@ -581,7 +581,8 @@ input:checked + .slider:before {
   position:fixed;
   z-index: 1;
   padding-bottom: 3%;
-  overflow: hidden;
+  overflow: scroll;
+  max-height:65vh;
 }
 
 .balanceLine {
@@ -608,6 +609,7 @@ input:checked + .slider:before {
   font-size: large;
   overflow:hidden;
   position:static;
+  z-index: 5;
 }
 
 .imggg {

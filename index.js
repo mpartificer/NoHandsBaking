@@ -467,6 +467,7 @@ async function searchingIsHappening() {
     recipeSelectionScreen.style.display = 'block';
 
     recipeSelector.style.visibility = 'hidden';
+    recipeSelector.style.display = 'block';
     document.body.style.cursor='default';
 
   }
@@ -499,10 +500,8 @@ async function readMore() {
   recipePreviewTitle.innerHTML = "";
   recipePreviewTitle.innerHTML = parsedRecipeTitle;
 
-  const storedIngredients = sessionStorage.getItem('storedRecipeIngredients');
-  const parsedIngredients = JSON.parse(storedIngredients);
 
-  var ingredientHTML = await ingredientArray(parsedIngredients);
+  var ingredientHTML = await ingredientArray();
   ingredientsPreview.innerHTML = ingredientHTML;
 
   const storedInstructions = sessionStorage.getItem('storedRecipeInstructions');
@@ -568,14 +567,6 @@ var voices = synth.getVoices();
     voice = voices[n];
   }
   }
-}
-
-async function letsBake() {
-
-  const storedIngredients = sessionStorage.getItem('storedRecipeIngredients');
-  const parsedIngredients = JSON.parse(storedIngredients);
-  var ingredientHTML = await ingredientArray(parsedIngredients);
-  ingredients.innerHTML = ingredientHTML;
 }
 
 async function buildSelectionScreen(i, id) {
@@ -793,19 +784,10 @@ settingsButton.addEventListener('click', () => {
   exitInfoPanel.style.visibility = "visible";
 })
 
-ingredientReminderImage.addEventListener('click', () => {
-  const storedIngredients = sessionStorage.getItem('storedRecipeIngredients');
-  const parsedIngredients = JSON.parse(storedIngredients);
+ingredientReminderImage.addEventListener('click', async () => {
 
-  const ingredientsList = parsedIngredients;
-  var ingredientHTML;
-  ingredientHTML = '';
-  ingredientHTML = '<ul class="instructionListManager"><b>Ingredients</b>';
-    for (i = 0; i < ingredientsList.length; i++) {
-      ingredientHTML += '<li>' + ingredientsList[i].original + '</li>'; 
-    }
-  ingredientHTML += `</ul>`;  
-
+  var ingredientHTML = await ingredientArray()
+ 
   ingredientInsert.innerHTML = "";
   ingredientInsert.innerHTML = ingredientHTML;
 
