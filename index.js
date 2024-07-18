@@ -616,7 +616,7 @@ async function recipeWaiter(recipesList) {
   }
 }
 
-buttonLink.addEventListener('click', async () => {
+buttonLink.addEventListener('touchstart', async () => {
   footer.style.backgroundColor = 'red'
   searchingIsHappening();
 })
