@@ -475,7 +475,6 @@ async function searchingIsHappening() {
     recipeSelector.style.visibility = 'hidden';
     recipeSelector.style.display = 'none';
     document.body.style.cursor='pointer';
-
   }
 }
 
@@ -616,8 +615,20 @@ async function recipeWaiter(recipesList) {
   }
 }
 
-document.addEventListener('click', () => {
+
+const tempButton = document.getElementById('backToHome');
+
+document.addEventListener('touchstart', (e) => {
+  footer.style.backgroundColor = 'orange'
+  console.log('here is what was touched', e.target)
+  tempButton.innerText = JSON.stringify(e.target.id)
+  // searchingIsHappening();
+})
+
+document.addEventListener('click', (e) => {
   footer.style.backgroundColor = 'yellow'
+  console.log('here is what was clicked', e.target)
+  tempButton.innerText = JSON.stringify(e.target.id)
   // searchingIsHappening();
 })
 
