@@ -178,8 +178,9 @@ button {
   background: none;
   font-family: 'Futura';
   font-size: 15px;
-  cursor: pointer;
+  cursor: pointer !important;
   color:#192F01;
+  z-index: 1000;
 }
 
 button:hover {
@@ -192,8 +193,6 @@ button:disabled {
   cursor:default;
   color:rgba(16, 16, 16, 0.3);
 }
-
-
 
 .backButtonAlign {
   display: flex;
