@@ -184,13 +184,14 @@ button {
 }
 
 button:hover {
+  cursor: pointer;
   color:#F4DECB;
   border: 1px solid #192F01;
   background-color: #192F01;
 }
 
 button:disabled {
-  cursor:default;
+  /* cursor:default; */
   color:rgba(16, 16, 16, 0.3);
 }
 
