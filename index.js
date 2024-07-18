@@ -473,7 +473,7 @@ async function searchingIsHappening() {
     recipeSelectionScreen.style.display = 'block';
 
     recipeSelector.style.visibility = 'hidden';
-    recipeSelector.style.display = 'block';
+    recipeSelector.style.display = 'none';
     document.body.style.cursor='default';
 
   }
@@ -618,6 +618,11 @@ async function recipeWaiter(recipesList) {
 
 buttonLink.addEventListener('touchstart', async () => {
   footer.style.backgroundColor = 'red'
+  searchingIsHappening();
+})
+
+buttonLink.addEventListener('click', async () => {
+  footer.style.backgroundColor = 'blue'
   searchingIsHappening();
 })
 
