@@ -303,6 +303,7 @@ async function retrieveRandomRecipes() {
 }
 
 async function retrieveRecipes(offset) {
+  console.log('hello retrieve')
   try {
   const searchValue = webpage.value;
   console.log(searchValue);
@@ -421,6 +422,8 @@ async function searchingIsHappening() {
     document.body.style.cursor='wait';
     previousPage.disabled = true;
 
+    console.log('hello about to retrieve')
+
     recipeList = await retrieveRecipes(offset);
 
     totalPages = recipeList.totalResults / 10
@@ -455,6 +458,9 @@ async function searchingIsHappening() {
   }
   else {
     document.body.style.cursor='wait';
+
+    console.log('hello about to retrieve no input value tho')
+
     recipeList = await retrieveRandomRecipes();
 
     console.log(recipeList.recipes);
@@ -610,7 +616,7 @@ async function recipeWaiter(recipesList) {
   }
 }
 
-buttonLink.addEventListener('touchstart', async () => {
+buttonLink.addEventListener('click', async () => {
   searchingIsHappening();
 })
 
