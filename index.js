@@ -644,7 +644,7 @@ async function recipeWaiter(recipesList) {
 
 buttonLink.addEventListener('click', async () => {
   // alert(`something! button click, id: ${e.target.id}`)
-  // footer.style.backgroundColor = 'blue'
+  footer.style.backgroundColor = 'blue'
   searchingIsHappening();
 })
 
