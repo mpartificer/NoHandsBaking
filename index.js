@@ -42,9 +42,12 @@ const errorPanel = document.getElementById('errorPanel');
 const recipePreviewTitle = document.getElementById('recipePreviewTitle');
 const spoonacularKey = "3c5ec8b2939641a99e28c6023598b2d4";
 const synth = window.speechSynthesis;
-var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition || null;
-var SpeechGrammarList = SpeechGrammarList || window.webkitSpeechGrammarList || null;
-var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent || null;
+var SpeechRecognition = webkitSpeechRecognition
+var SpeechGrammarList = window.webkitSpeechGrammarList;
+var SpeechRecognitionEvent = webkitSpeechRecognitionEvent;
+// var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
+// var SpeechGrammarList = SpeechGrammarList || window.webkitSpeechGrammarList;
+// var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent;
 var columnPreview = document.getElementsByClassName('columnPreview');
 var currentInstruction = 0;
 var recipeList;
@@ -58,164 +61,164 @@ var pageNumber;
 var totalPages;
 var i;
 
-const grammarArray = ['next', 'back', 'repeat']
-const grammar = `#JSGF V1.0; grammar commandWords; public <commandWord> = ${grammarArray.join(' | ')} ;`;
-const recognition = new SpeechRecognition();
-const speechRecognitionList = new SpeechGrammarList();
-speechRecognitionList.addFromString(grammar, 1);
-recognition.grammars = speechRecognitionList;
-recognition.continuous = true;
-recognition.lang = "en-US";
-recognition.interimResults = false;
-recognition.maxAlternatives = 1;
+// const grammarArray = ['next', 'back', 'repeat']
+// const grammar = `#JSGF V1.0; grammar commandWords; public <commandWord> = ${grammarArray.join(' | ')} ;`;
+// const recognition = new SpeechRecognition();
+// const speechRecognitionList = new SpeechGrammarList();
+// speechRecognitionList.addFromString(grammar, 1);
+// recognition.grammars = speechRecognitionList;
+// recognition.continuous = true;
+// recognition.lang = "en-US";
+// recognition.interimResults = false;
+// recognition.maxAlternatives = 1;
 
 
-recognition.onresult = async (event) => {
+// recognition.onresult = async (event) => {
 
-  if (event.results.length > 0) {
-  const mostRecentResult = event.results.length - 1;
+//   if (event.results.length > 0) {
+//   const mostRecentResult = event.results.length - 1;
 
-  const commandWord = event.results[mostRecentResult][0].transcript.toLowerCase().trim();
-  const confidence = event.results[mostRecentResult][0].confidence
+//   const commandWord = event.results[mostRecentResult][0].transcript.toLowerCase().trim();
+//   const confidence = event.results[mostRecentResult][0].confidence
 
-  if (commandWord == "back" && confidence > 0.5) {
-    previousFunction();
-  }
-  else if(commandWord == "repeat" && confidence > 0.5) {
-    repeatFunction();
-  }
-  else if (commandWord == "next" && confidence > 0.5) {
-    nextFunction();
-  }
-  else {
-    console.log('Please try command again')
-    console.log(commandWord)
-  }
-}
-};
+//   if (commandWord == "back" && confidence > 0.5) {
+//     previousFunction();
+//   }
+//   else if(commandWord == "repeat" && confidence > 0.5) {
+//     repeatFunction();
+//   }
+//   else if (commandWord == "next" && confidence > 0.5) {
+//     nextFunction();
+//   }
+//   else {
+//     console.log('Please try command again')
+//     console.log(commandWord)
+//   }
+// }
+// };
 
-recognition.addEventListener('end', () => {
+// recognition.addEventListener('end', () => {
   
-  if (microphoneBox == 0 && backMicControl == 0) {
-    console.log('iamonend', `${microphoneBox}`);
-    recognition.start();
-  }
+//   if (microphoneBox == 0 && backMicControl == 0) {
+//     console.log('iamonend', `${microphoneBox}`);
+//     recognition.start();
+//   }
 
-  if (backMicControl == 1) {
-    backMicControl = 0;
-  }
-})
+//   if (backMicControl == 1) {
+//     backMicControl = 0;
+//   }
+// })
 
 
-function repeatFunction() {
-  const setAnimation = document.getElementById(`instructionListItem${currentInstruction}`);
-  waitYourTurn(setAnimation.innerText)
-}
+// function repeatFunction() {
+//   const setAnimation = document.getElementById(`instructionListItem${currentInstruction}`);
+//   waitYourTurn(setAnimation.innerText)
+// }
 
-function previousFunction() {
-  currentInstruction -= 1;
-  const setAnimation = document.getElementById(`instructionListItem${currentInstruction}`);
-  const setNextAnimation = document.getElementById(`instructionListItem${currentInstruction + 1}`);
-  setAnimation.classList = "";
-  setAnimation.classList.add('currentInstruction');
-  setNextAnimation.classList = "";
-  setNextAnimation.classList.add('previousInstruction');
+// function previousFunction() {
+//   currentInstruction -= 1;
+//   const setAnimation = document.getElementById(`instructionListItem${currentInstruction}`);
+//   const setNextAnimation = document.getElementById(`instructionListItem${currentInstruction + 1}`);
+//   setAnimation.classList = "";
+//   setAnimation.classList.add('currentInstruction');
+//   setNextAnimation.classList = "";
+//   setNextAnimation.classList.add('previousInstruction');
   
 
-  if (currentInstruction > 0) {
-    const setPreviousAnimation = document.getElementById(`instructionListItem${currentInstruction - 1}`);
+//   if (currentInstruction > 0) {
+//     const setPreviousAnimation = document.getElementById(`instructionListItem${currentInstruction - 1}`);
     
-    if (setPreviousAnimation) {
-    setPreviousAnimation.classList = "";
-    setPreviousAnimation.classList.add(`nextInstruction`);
-    }
-  }
+//     if (setPreviousAnimation) {
+//     setPreviousAnimation.classList = "";
+//     setPreviousAnimation.classList.add(`nextInstruction`);
+//     }
+//   }
 
-  if (currentInstruction < stepCount - 1) {
-    const removeNextAnimation = document.getElementById(`instructionListItem${currentInstruction + 2}`);
+//   if (currentInstruction < stepCount - 1) {
+//     const removeNextAnimation = document.getElementById(`instructionListItem${currentInstruction + 2}`);
 
-    if (removeNextAnimation) {
-    removeNextAnimation.classList = "";
-    removeNextAnimation.classList.add('exitInstructionFront');
-    }
-  }
+//     if (removeNextAnimation) {
+//     removeNextAnimation.classList = "";
+//     removeNextAnimation.classList.add('exitInstructionFront');
+//     }
+//   }
 
-  if (currentInstruction < stepCount - 2) {
-    const removeExit = document.getElementById(`instructionListItem${currentInstruction + 3}`);
+//   if (currentInstruction < stepCount - 2) {
+//     const removeExit = document.getElementById(`instructionListItem${currentInstruction + 3}`);
 
-    if (removeExit) {
-    removeExit.classList = "";
-    }
-  }
+//     if (removeExit) {
+//     removeExit.classList = "";
+//     }
+//   }
 
-  scrollParentToChild(instructionsText, setAnimation);
-  buttonCheck();
+//   scrollParentToChild(instructionsText, setAnimation);
+//   buttonCheck();
 
-  waitYourTurn(setAnimation.innerText)
-}
+//   waitYourTurn(setAnimation.innerText)
+// }
 
-function nextFunction() {
-  currentInstruction += 1;
-  const setAnimation = document.getElementById(`instructionListItem${currentInstruction}`);
-  const setNextAnimation = document.getElementById(`instructionListItem${currentInstruction + 1}`);
-  const setPrevAnimation = document.getElementById(`instructionListItem${currentInstruction - 1}`);
-  const exitingInstructionLoop = document.getElementById(`instructionListItem${currentInstruction - 2}`);
-  const finalExit = document.getElementById(`instructionListItem${currentInstruction - 3}`);
+// function nextFunction() {
+//   currentInstruction += 1;
+//   const setAnimation = document.getElementById(`instructionListItem${currentInstruction}`);
+//   const setNextAnimation = document.getElementById(`instructionListItem${currentInstruction + 1}`);
+//   const setPrevAnimation = document.getElementById(`instructionListItem${currentInstruction - 1}`);
+//   const exitingInstructionLoop = document.getElementById(`instructionListItem${currentInstruction - 2}`);
+//   const finalExit = document.getElementById(`instructionListItem${currentInstruction - 3}`);
 
-  if (setPrevAnimation) {
-    setPrevAnimation.classList = "";
-    setPrevAnimation.classList.add('previousInstruction');
-  }
+//   if (setPrevAnimation) {
+//     setPrevAnimation.classList = "";
+//     setPrevAnimation.classList.add('previousInstruction');
+//   }
 
-  if (setAnimation) {
-    setAnimation.classList = "";
-    setAnimation.classList.add('currentInstruction');
-  }
+//   if (setAnimation) {
+//     setAnimation.classList = "";
+//     setAnimation.classList.add('currentInstruction');
+//   }
 
-  if (exitingInstructionLoop) {
-    console.log(exitingInstructionLoop);
-    exitingInstructionLoop.classList.remove('previousInstruction');
-    exitingInstructionLoop.classList.add('exitInstructionFront');
-  }
+//   if (exitingInstructionLoop) {
+//     console.log(exitingInstructionLoop);
+//     exitingInstructionLoop.classList.remove('previousInstruction');
+//     exitingInstructionLoop.classList.add('exitInstructionFront');
+//   }
 
-  if (finalExit) {
-    finalExit.classList.remove('exitInstructionFront');
-  }
+//   if (finalExit) {
+//     finalExit.classList.remove('exitInstructionFront');
+//   }
 
-  if ((currentInstruction + 1) != stepCount) {
-    if (setNextAnimation) {
-      setNextAnimation.classList = "";
-      setNextAnimation.classList.add('nextInstruction');
-    }
-  }
+//   if ((currentInstruction + 1) != stepCount) {
+//     if (setNextAnimation) {
+//       setNextAnimation.classList = "";
+//       setNextAnimation.classList.add('nextInstruction');
+//     }
+//   }
 
-  scrollParentToChild(instructionsText, setAnimation);
-  buttonCheck();
+//   scrollParentToChild(instructionsText, setAnimation);
+//   buttonCheck();
 
-  waitYourTurn(setAnimation.innerText)
-}
+//   waitYourTurn(setAnimation.innerText)
+// }
 
-function scrollParentToChild(parent, child) {
-  var parentRect = parent.getBoundingClientRect();
-  var parentViewableArea = {
-    height: parent.clientHeight,
-    width: parent.clientWidth
-  };
+// function scrollParentToChild(parent, child) {
+//   var parentRect = parent.getBoundingClientRect();
+//   var parentViewableArea = {
+//     height: parent.clientHeight,
+//     width: parent.clientWidth
+//   };
 
-  var childRect = child.getBoundingClientRect();
-  var isViewable = (childRect.top >= parentRect.top) && (childRect.bottom <= parentRect.top + parentViewableArea.height);
+//   var childRect = child.getBoundingClientRect();
+//   var isViewable = (childRect.top >= parentRect.top) && (childRect.bottom <= parentRect.top + parentViewableArea.height);
 
-  if (!isViewable) {
-        const scrollTop = childRect.top - parentRect.top;
-        const scrollBot = childRect.bottom - parentRect.bottom;
-        if (Math.abs(scrollTop) < Math.abs(scrollBot)) {
-            parent.scrollTop += scrollTop;
-        } else {
-            parent.scrollTop += scrollBot;
-        }
-  }
+//   if (!isViewable) {
+//         const scrollTop = childRect.top - parentRect.top;
+//         const scrollBot = childRect.bottom - parentRect.bottom;
+//         if (Math.abs(scrollTop) < Math.abs(scrollBot)) {
+//             parent.scrollTop += scrollTop;
+//         } else {
+//             parent.scrollTop += scrollBot;
+//         }
+//   }
 
-}
+// }
 
 function buttonCheck() {
   
@@ -236,12 +239,12 @@ function buttonCheck() {
   }
 }
 
-function waitYourTurn(utterance) {
-  const utterThis = new SpeechSynthesisUtterance(utterance);
-  utterThis.voice = voice;
-  utterThis.volume = synthVolume;
-  synth.speak(utterThis)
-}
+// function waitYourTurn(utterance) {
+//   const utterThis = new SpeechSynthesisUtterance(utterance);
+//   utterThis.voice = voice;
+//   utterThis.volume = synthVolume;
+//   synth.speak(utterThis)
+// }
 
 async function retrieveRandomRecipes() {
   try {
