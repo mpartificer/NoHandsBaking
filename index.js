@@ -64,12 +64,12 @@ else {
   var SpeechRecognition = window.webkitSpeechRecognition;
   var SpeechGrammarList = window.webkitSpeechGrammarList;
   var SpeechRecognitionEvent = window.webkitSpeechRecognitionEvent;
-  const grammarArray = ['next', 'back', 'repeat']
-  const grammar = `#JSGF V1.0; grammar commandWords; public <commandWord> = ${grammarArray.join(' | ')} ;`;
+  // const grammarArray = ['next', 'back', 'repeat']
+  // const grammar = `#JSGF V1.0; grammar commandWords; public <commandWord> = ${grammarArray.join(' | ')} ;`;
   const recognition = new webkitSpeechRecognition();
-  const speechRecognitionList = new webkitSpeechGrammarList();
-  speechRecognitionList.addFromString(grammar, 1);
-  recognition.grammars = speechRecognitionList;
+  // const speechRecognitionList = new webkitSpeechGrammarList();
+  // speechRecognitionList.addFromString(grammar, 1);
+  // recognition.grammars = speechRecognitionList;
   recognition.continuous = true;
   recognition.lang = "en-US";
   recognition.interimResults = false;
