@@ -96,7 +96,7 @@
   position: relative;
   border: none;
   padding:16px;
-  margin-right:20px;
+  /* margin-right:20px; */
   font-family:'Futura';
   z-index: 1;
 }
@@ -123,7 +123,7 @@
   border: none;
   font-family:'Futura';
   z-index: 1;
-  margin-left: 35px;
+  /* margin-left: 15px; */
 }
 
 
@@ -180,7 +180,6 @@ button {
   font-size: 15px;
   cursor: pointer !important;
   color:#192F01;
-  z-index: 1000;
 }
 
 button:hover {
@@ -312,11 +311,13 @@ body {
 .sayMore {
   visibility: hidden;
   position: absolute;
+  animation: opacityReverse 2s linear reverse;
 }
 
 .sayMoreVisible {
   visibility: visible;
-  width: 100%;
+  width: 95%;
+  animation: opacity 2s linear reverse;
 }
 
 .imageColumn {
@@ -343,7 +344,7 @@ body {
   margin:2px;
   row-gap: 20px;
   overflow: -moz-scrollbars-vertical;
-  overflow-y: scroll;
+  overflow-y: none;
   text-wrap:wrap;
   scroll-snap-align: center;
 }
@@ -449,7 +450,7 @@ h3 {
 
 .instructionListManager {
   color:black;
-  overflow: scroll;
+  overflow:hidden;
   max-height: 55vh;
 }
 
@@ -896,11 +897,21 @@ input:checked + .slider:before {
   }
 
   .aboutUs {
-    margin: 20px;
+    margin-top:10px;
+    margin-bottom: 20px;
+  }
+
+  .aboutUsButton {
+    margin-left: 15px;
+  }
+
+  .goAwayAbout {
+    animation: smooth-disappear-mobile 2s ease;
+    animation-fill-mode: forwards;
   }
 
   .aboutUsVisible {
-    min-height: 10vh;
+    min-height: 92px;
     animation: smooth-appear-mobile 2s ease forwards;
   } 
 
@@ -1018,19 +1029,19 @@ input:checked + .slider:before {
 
 @keyframes smooth-appear-mobile {
   0%{
-    height: 7%;
+    height:92px;
   }
   100%{
-    height: 35%;
+    height:300px;
   }
 }
 
 @keyframes smooth-disappear-mobile {
   0% {
-    height: 35%;
+    height: 300px;
   }
   100% {
-    height: 7%;
+    height: 92px;
   }
 }
 
