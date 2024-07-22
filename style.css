@@ -778,7 +778,7 @@ input:checked + .slider:before {
   }
 
   .row {
-    width: 100%;
+    width: 90%;
   }
 
   .homeButton {
@@ -839,7 +839,7 @@ input:checked + .slider:before {
   }
 
   .imageColumn {
-    min-width: 95%;
+    width: 95%;
     align-items: center;
     overflow: hidden;
   }
