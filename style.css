@@ -177,7 +177,7 @@ button {
   border-radius: 5px;
   background: none;
   font-family: 'Futura';
-  font-size: 10px;
+  font-size: 15px;
   cursor: pointer !important;
   color:#192F01;
   z-index: 1000;
@@ -876,7 +876,6 @@ input:checked + .slider:before {
 
   button {
     cursor: pointer !important;
-    font-size: 50px;
   }
 
   .recipePreview {
