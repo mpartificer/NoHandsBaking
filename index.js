@@ -72,178 +72,178 @@ recognition.interimResults = false;
 recognition.maxAlternatives = 1;
 
 
-recognition.onresult = async (event) => {
+// recognition.onresult = async (event) => {
 
-  if (event.results.length > 0) {
-  const mostRecentResult = event.results.length - 1;
+//   if (event.results.length > 0) {
+//   const mostRecentResult = event.results.length - 1;
 
-  const commandWord = event.results[mostRecentResult][0].transcript.toLowerCase().trim();
-  const confidence = event.results[mostRecentResult][0].confidence
+//   const commandWord = event.results[mostRecentResult][0].transcript.toLowerCase().trim();
+//   const confidence = event.results[mostRecentResult][0].confidence
 
-  if (commandWord == "back" && confidence > 0.5) {
-    previousFunction();
-  }
-  else if(commandWord == "repeat" && confidence > 0.5) {
-    repeatFunction();
-  }
-  else if (commandWord == "next" && confidence > 0.5) {
-    nextFunction();
-  }
-  else {
-    console.log('Please try command again')
-    console.log(commandWord)
-  }
-}
-};
+//   if (commandWord == "back" && confidence > 0.5) {
+//     previousFunction();
+//   }
+//   else if(commandWord == "repeat" && confidence > 0.5) {
+//     repeatFunction();
+//   }
+//   else if (commandWord == "next" && confidence > 0.5) {
+//     nextFunction();
+//   }
+//   else {
+//     console.log('Please try command again')
+//     console.log(commandWord)
+//   }
+// }
+// };
 
-recognition.addEventListener('end', () => {
+// recognition.addEventListener('end', () => {
   
-  if (microphoneBox == 0 && backMicControl == 0) {
-    console.log('iamonend', `${microphoneBox}`);
-    recognition.start();
-  }
+//   if (microphoneBox == 0 && backMicControl == 0) {
+//     console.log('iamonend', `${microphoneBox}`);
+//     recognition.start();
+//   }
 
-  if (backMicControl == 1) {
-    backMicControl = 0;
-  }
-})
+//   if (backMicControl == 1) {
+//     backMicControl = 0;
+//   }
+// })
 
 
-function repeatFunction() {
-  const setAnimation = document.getElementById(`instructionListItem${currentInstruction}`);
-  waitYourTurn(setAnimation.innerText)
-}
+// function repeatFunction() {
+//   const setAnimation = document.getElementById(`instructionListItem${currentInstruction}`);
+//   waitYourTurn(setAnimation.innerText)
+// }
 
-function previousFunction() {
-  currentInstruction -= 1;
-  const setAnimation = document.getElementById(`instructionListItem${currentInstruction}`);
-  const setNextAnimation = document.getElementById(`instructionListItem${currentInstruction + 1}`);
-  setAnimation.classList = "";
-  setAnimation.classList.add('currentInstruction');
-  setNextAnimation.classList = "";
-  setNextAnimation.classList.add('previousInstruction');
+// function previousFunction() {
+//   currentInstruction -= 1;
+//   const setAnimation = document.getElementById(`instructionListItem${currentInstruction}`);
+//   const setNextAnimation = document.getElementById(`instructionListItem${currentInstruction + 1}`);
+//   setAnimation.classList = "";
+//   setAnimation.classList.add('currentInstruction');
+//   setNextAnimation.classList = "";
+//   setNextAnimation.classList.add('previousInstruction');
   
 
-  if (currentInstruction > 0) {
-    const setPreviousAnimation = document.getElementById(`instructionListItem${currentInstruction - 1}`);
+//   if (currentInstruction > 0) {
+//     const setPreviousAnimation = document.getElementById(`instructionListItem${currentInstruction - 1}`);
     
-    if (setPreviousAnimation) {
-    setPreviousAnimation.classList = "";
-    setPreviousAnimation.classList.add(`nextInstruction`);
-    }
-  }
+//     if (setPreviousAnimation) {
+//     setPreviousAnimation.classList = "";
+//     setPreviousAnimation.classList.add(`nextInstruction`);
+//     }
+//   }
 
-  if (currentInstruction < stepCount - 1) {
-    const removeNextAnimation = document.getElementById(`instructionListItem${currentInstruction + 2}`);
+//   if (currentInstruction < stepCount - 1) {
+//     const removeNextAnimation = document.getElementById(`instructionListItem${currentInstruction + 2}`);
 
-    if (removeNextAnimation) {
-    removeNextAnimation.classList = "";
-    removeNextAnimation.classList.add('exitInstructionFront');
-    }
-  }
+//     if (removeNextAnimation) {
+//     removeNextAnimation.classList = "";
+//     removeNextAnimation.classList.add('exitInstructionFront');
+//     }
+//   }
 
-  if (currentInstruction < stepCount - 2) {
-    const removeExit = document.getElementById(`instructionListItem${currentInstruction + 3}`);
+//   if (currentInstruction < stepCount - 2) {
+//     const removeExit = document.getElementById(`instructionListItem${currentInstruction + 3}`);
 
-    if (removeExit) {
-    removeExit.classList = "";
-    }
-  }
+//     if (removeExit) {
+//     removeExit.classList = "";
+//     }
+//   }
 
-  scrollParentToChild(instructionsText, setAnimation);
-  buttonCheck();
+//   scrollParentToChild(instructionsText, setAnimation);
+//   buttonCheck();
 
-  waitYourTurn(setAnimation.innerText)
-}
+//   waitYourTurn(setAnimation.innerText)
+// }
 
-function nextFunction() {
-  currentInstruction += 1;
-  const setAnimation = document.getElementById(`instructionListItem${currentInstruction}`);
-  const setNextAnimation = document.getElementById(`instructionListItem${currentInstruction + 1}`);
-  const setPrevAnimation = document.getElementById(`instructionListItem${currentInstruction - 1}`);
-  const exitingInstructionLoop = document.getElementById(`instructionListItem${currentInstruction - 2}`);
-  const finalExit = document.getElementById(`instructionListItem${currentInstruction - 3}`);
+// function nextFunction() {
+//   currentInstruction += 1;
+//   const setAnimation = document.getElementById(`instructionListItem${currentInstruction}`);
+//   const setNextAnimation = document.getElementById(`instructionListItem${currentInstruction + 1}`);
+//   const setPrevAnimation = document.getElementById(`instructionListItem${currentInstruction - 1}`);
+//   const exitingInstructionLoop = document.getElementById(`instructionListItem${currentInstruction - 2}`);
+//   const finalExit = document.getElementById(`instructionListItem${currentInstruction - 3}`);
 
-  if (setPrevAnimation) {
-    setPrevAnimation.classList = "";
-    setPrevAnimation.classList.add('previousInstruction');
-  }
+//   if (setPrevAnimation) {
+//     setPrevAnimation.classList = "";
+//     setPrevAnimation.classList.add('previousInstruction');
+//   }
 
-  if (setAnimation) {
-    setAnimation.classList = "";
-    setAnimation.classList.add('currentInstruction');
-  }
+//   if (setAnimation) {
+//     setAnimation.classList = "";
+//     setAnimation.classList.add('currentInstruction');
+//   }
 
-  if (exitingInstructionLoop) {
-    console.log(exitingInstructionLoop);
-    exitingInstructionLoop.classList.remove('previousInstruction');
-    exitingInstructionLoop.classList.add('exitInstructionFront');
-  }
+//   if (exitingInstructionLoop) {
+//     console.log(exitingInstructionLoop);
+//     exitingInstructionLoop.classList.remove('previousInstruction');
+//     exitingInstructionLoop.classList.add('exitInstructionFront');
+//   }
 
-  if (finalExit) {
-    finalExit.classList.remove('exitInstructionFront');
-  }
+//   if (finalExit) {
+//     finalExit.classList.remove('exitInstructionFront');
+//   }
 
-  if ((currentInstruction + 1) != stepCount) {
-    if (setNextAnimation) {
-      setNextAnimation.classList = "";
-      setNextAnimation.classList.add('nextInstruction');
-    }
-  }
+//   if ((currentInstruction + 1) != stepCount) {
+//     if (setNextAnimation) {
+//       setNextAnimation.classList = "";
+//       setNextAnimation.classList.add('nextInstruction');
+//     }
+//   }
 
-  scrollParentToChild(instructionsText, setAnimation);
-  buttonCheck();
+//   scrollParentToChild(instructionsText, setAnimation);
+//   buttonCheck();
 
-  waitYourTurn(setAnimation.innerText)
-}
+//   waitYourTurn(setAnimation.innerText)
+// }
 
-function scrollParentToChild(parent, child) {
-  var parentRect = parent.getBoundingClientRect();
-  var parentViewableArea = {
-    height: parent.clientHeight,
-    width: parent.clientWidth
-  };
+// function scrollParentToChild(parent, child) {
+//   var parentRect = parent.getBoundingClientRect();
+//   var parentViewableArea = {
+//     height: parent.clientHeight,
+//     width: parent.clientWidth
+//   };
 
-  var childRect = child.getBoundingClientRect();
-  var isViewable = (childRect.top >= parentRect.top) && (childRect.bottom <= parentRect.top + parentViewableArea.height);
+//   var childRect = child.getBoundingClientRect();
+//   var isViewable = (childRect.top >= parentRect.top) && (childRect.bottom <= parentRect.top + parentViewableArea.height);
 
-  if (!isViewable) {
-        const scrollTop = childRect.top - parentRect.top;
-        const scrollBot = childRect.bottom - parentRect.bottom;
-        if (Math.abs(scrollTop) < Math.abs(scrollBot)) {
-            parent.scrollTop += scrollTop;
-        } else {
-            parent.scrollTop += scrollBot;
-        }
-  }
+//   if (!isViewable) {
+//         const scrollTop = childRect.top - parentRect.top;
+//         const scrollBot = childRect.bottom - parentRect.bottom;
+//         if (Math.abs(scrollTop) < Math.abs(scrollBot)) {
+//             parent.scrollTop += scrollTop;
+//         } else {
+//             parent.scrollTop += scrollBot;
+//         }
+//   }
 
-}
+// }
 
-function buttonCheck() {
+// function buttonCheck() {
   
-  const trueCount = currentInstruction + 1;
+//   const trueCount = currentInstruction + 1;
 
-  if (stepCount == trueCount) {
-    nextStep.disabled = true;
-  }
-  else {
-    nextStep.disabled = false;
-  }
+//   if (stepCount == trueCount) {
+//     nextStep.disabled = true;
+//   }
+//   else {
+//     nextStep.disabled = false;
+//   }
 
-  if (trueCount == 1) {
-    previousStep.disabled = true;
-  }
-  else {
-    previousStep.disabled = false;
-  }
-}
+//   if (trueCount == 1) {
+//     previousStep.disabled = true;
+//   }
+//   else {
+//     previousStep.disabled = false;
+//   }
+// }
 
-function waitYourTurn(utterance) {
-  const utterThis = new SpeechSynthesisUtterance(utterance);
-  utterThis.voice = voice;
-  utterThis.volume = synthVolume;
-  synth.speak(utterThis)
-}
+// function waitYourTurn(utterance) {
+//   const utterThis = new SpeechSynthesisUtterance(utterance);
+//   utterThis.voice = voice;
+//   utterThis.volume = synthVolume;
+//   synth.speak(utterThis)
+// }
 
 async function retrieveRandomRecipes() {
   try {
@@ -364,56 +364,56 @@ catch (err) {
 }
 }
 
-async function manageInstructionsPreview(parsedInstructions) {
+// async function manageInstructionsPreview(parsedInstructions) {
 
-  var instructionInsert = "";
-  instructionInsert += '<ul class="instructionListManager"><b>Instructions</b>';
+//   var instructionInsert = "";
+//   instructionInsert += '<ul class="instructionListManager"><b>Instructions</b>';
 
-  for (i = 0; i < parsedInstructions.length; i++) {
-    instructionInsert += `<li id="instructionList${i}" class="">`;
-    instructionInsert += parsedInstructions[i];
-    instructionInsert += `</li>`;
-  }
+//   for (i = 0; i < parsedInstructions.length; i++) {
+//     instructionInsert += `<li id="instructionList${i}" class="">`;
+//     instructionInsert += parsedInstructions[i];
+//     instructionInsert += `</li>`;
+//   }
 
-  instructionInsert += `</ul>`;
+//   instructionInsert += `</ul>`;
 
-  stepCount = parsedInstructions.length;
+//   stepCount = parsedInstructions.length;
 
-  return instructionInsert;
-}
+//   return instructionInsert;
+// }
 
 
-async function manageInstructions(parsedInstructions) {
-  var instructionInsert = "";
-  instructionInsert += '<ul>';
+// async function manageInstructions(parsedInstructions) {
+//   var instructionInsert = "";
+//   instructionInsert += '<ul>';
 
-  for (i=0; i < parsedInstructions.length; i++) {
-    instructionInsert += `<li id="instructionListItem${i}" class="">`;
-    instructionInsert += parsedInstructions[i];
-    instructionInsert += `</li>`
-  }
+//   for (i=0; i < parsedInstructions.length; i++) {
+//     instructionInsert += `<li id="instructionListItem${i}" class="">`;
+//     instructionInsert += parsedInstructions[i];
+//     instructionInsert += `</li>`
+//   }
 
-  instructionInsert += '</ul>';
-  stepCount = parsedInstructions.length;
+//   instructionInsert += '</ul>';
+//   stepCount = parsedInstructions.length;
 
-  return instructionInsert;
-}
-async function ingredientArray() {
+//   return instructionInsert;
+// }
+// async function ingredientArray() {
 
-  const storedIngredients = sessionStorage.getItem('storedRecipeIngredients');
-  const parsedIngredients = JSON.parse(storedIngredients);
+//   const storedIngredients = sessionStorage.getItem('storedRecipeIngredients');
+//   const parsedIngredients = JSON.parse(storedIngredients);
 
-  const ingredientsList = parsedIngredients;
-  var ingredientHTML;
-  ingredientHTML = '';
-  ingredientHTML = '<ul class="instructionListManager"><b>Ingredients</b>';
-    for (i = 0; i < ingredientsList.length; i++) {
-      ingredientHTML += '<li>' + ingredientsList[i].original + '</li>'; 
-    }
-  ingredientHTML += `</ul>`;
+//   const ingredientsList = parsedIngredients;
+//   var ingredientHTML;
+//   ingredientHTML = '';
+//   ingredientHTML = '<ul class="instructionListManager"><b>Ingredients</b>';
+//     for (i = 0; i < ingredientsList.length; i++) {
+//       ingredientHTML += '<li>' + ingredientsList[i].original + '</li>'; 
+//     }
+//   ingredientHTML += `</ul>`;
 
-  return ingredientHTML;
-}
+//   return ingredientHTML;
+// }
 
 async function searchingIsHappening() {
   if (typeof searchInput.value == "string" && searchInput.value.trim()){
@@ -478,107 +478,107 @@ async function searchingIsHappening() {
   }
 }
 
-async function readMore() {
+// async function readMore() {
 
-  const image = sessionStorage.getItem('storedRecipeImage');
-  const parsedImage = JSON.parse(image)
+//   const image = sessionStorage.getItem('storedRecipeImage');
+//   const parsedImage = JSON.parse(image)
 
-  var img = document.createElement("img");
-  img.src = parsedImage;
+//   var img = document.createElement("img");
+//   img.src = parsedImage;
 
-  img.setAttribute('class', 'imggg'); 
-  imagePreview.innerHTML = "";
-  imagePreview.appendChild(img);
+//   img.setAttribute('class', 'imggg'); 
+//   imagePreview.innerHTML = "";
+//   imagePreview.appendChild(img);
 
-  try {
-    const readyInMinutes = sessionStorage.getItem('storedReadyInMinutes');
-    const parsedMinutes = JSON.parse(readyInMinutes)
-    var minutes = document.createElement("minutes");
-    minutes.setAttribute('class', "pageCounter");
-    minutes.innerHTML = "<p>Ready in " + parsedMinutes + " minutes";
-    imagePreview.appendChild(minutes);
-  }
-  catch{}
+//   try {
+//     const readyInMinutes = sessionStorage.getItem('storedReadyInMinutes');
+//     const parsedMinutes = JSON.parse(readyInMinutes)
+//     var minutes = document.createElement("minutes");
+//     minutes.setAttribute('class', "pageCounter");
+//     minutes.innerHTML = "<p>Ready in " + parsedMinutes + " minutes";
+//     imagePreview.appendChild(minutes);
+//   }
+//   catch{}
 
-  const recipeTitle = sessionStorage.getItem('storedRecipeTitle');
-  const parsedRecipeTitle = JSON.parse(recipeTitle);
-  recipePreviewTitle.innerHTML = "";
-  recipePreviewTitle.innerHTML = parsedRecipeTitle;
+//   const recipeTitle = sessionStorage.getItem('storedRecipeTitle');
+//   const parsedRecipeTitle = JSON.parse(recipeTitle);
+//   recipePreviewTitle.innerHTML = "";
+//   recipePreviewTitle.innerHTML = parsedRecipeTitle;
 
 
-  var ingredientHTML = await ingredientArray();
-  ingredientsPreview.innerHTML = ingredientHTML;
+//   var ingredientHTML = await ingredientArray();
+//   ingredientsPreview.innerHTML = ingredientHTML;
 
-  const storedInstructions = sessionStorage.getItem('storedRecipeInstructions');
-  const parsedInstructions = JSON.parse(storedInstructions);
-  var formattedInstructions = await manageInstructionsPreview(parsedInstructions);
-  instructionsPreview.innerHTML = formattedInstructions;
-}
+//   const storedInstructions = sessionStorage.getItem('storedRecipeInstructions');
+//   const parsedInstructions = JSON.parse(storedInstructions);
+//   var formattedInstructions = await manageInstructionsPreview(parsedInstructions);
+//   instructionsPreview.innerHTML = formattedInstructions;
+// }
 
-async function instructionLoad() {
-  const storedInstructions = sessionStorage.getItem('storedRecipeInstructions');
-  const parsedInstructions = JSON.parse(storedInstructions);
-  var formattedInstructions = await manageInstructions(parsedInstructions);
-  instructionsText.innerHTML = "";
-  instructionsText.innerHTML = formattedInstructions;
-}
+// async function instructionLoad() {
+//   const storedInstructions = sessionStorage.getItem('storedRecipeInstructions');
+//   const parsedInstructions = JSON.parse(storedInstructions);
+//   var formattedInstructions = await manageInstructions(parsedInstructions);
+//   instructionsText.innerHTML = "";
+//   instructionsText.innerHTML = formattedInstructions;
+// }
 
-async function setRecipe(recipeID) {
-  const recipeSelect = `https://api.spoonacular.com/recipes/${recipeID}/information?apiKey=${spoonacularKey}`
+// async function setRecipe(recipeID) {
+//   const recipeSelect = `https://api.spoonacular.com/recipes/${recipeID}/information?apiKey=${spoonacularKey}`
 
-  const selectMyRecipe = await fetch(recipeSelect, {
-    headers: 
-      {"Content-Type": "application/json"
-  }});
+//   const selectMyRecipe = await fetch(recipeSelect, {
+//     headers: 
+//       {"Content-Type": "application/json"
+//   }});
   
-  const findMyRecipe = await selectMyRecipe.json();
-  console.log(findMyRecipe)
+//   const findMyRecipe = await selectMyRecipe.json();
+//   console.log(findMyRecipe)
 
-  if (sessionStorage.getItem('storedRecipeTitle') != undefined) {
-    sessionStorage.removeItem('storedRecipeTitle');
-    sessionStorage.removeItem('storedRecipeId');
-    sessionStorage.removeItem('storedRecipeIngredients');
-    sessionStorage.removeItem('storedRecipeImage');
-    sessionStorage.removeItem('storedRecipeInstructions');
-  }
+//   if (sessionStorage.getItem('storedRecipeTitle') != undefined) {
+//     sessionStorage.removeItem('storedRecipeTitle');
+//     sessionStorage.removeItem('storedRecipeId');
+//     sessionStorage.removeItem('storedRecipeIngredients');
+//     sessionStorage.removeItem('storedRecipeImage');
+//     sessionStorage.removeItem('storedRecipeInstructions');
+//   }
 
-  const jsonObjectTitle = JSON.stringify(findMyRecipe.title);
-  const jsonObjectId = JSON.stringify(findMyRecipe.id);
-  const jsonObjectIngredients = JSON.stringify(findMyRecipe.extendedIngredients);
-  const jsonObjectImage = JSON.stringify(findMyRecipe.image);
-  const instructionsArray = [];
-  for (i = 0; i < findMyRecipe.analyzedInstructions[0].steps.length; i++) {
-    instructionsArray.push(findMyRecipe.analyzedInstructions[0].steps[i].step)
-  }
-  const jsonObjectInstructions = JSON.stringify(instructionsArray)
-  if (findMyRecipe.readyInMinutes) {
-    const jsonObjectReadyInMinutes = JSON.stringify(findMyRecipe.readyInMinutes);
-    sessionStorage.setItem('storedReadyInMinutes', jsonObjectReadyInMinutes);
-  }
+//   const jsonObjectTitle = JSON.stringify(findMyRecipe.title);
+//   const jsonObjectId = JSON.stringify(findMyRecipe.id);
+//   const jsonObjectIngredients = JSON.stringify(findMyRecipe.extendedIngredients);
+//   const jsonObjectImage = JSON.stringify(findMyRecipe.image);
+//   const instructionsArray = [];
+//   for (i = 0; i < findMyRecipe.analyzedInstructions[0].steps.length; i++) {
+//     instructionsArray.push(findMyRecipe.analyzedInstructions[0].steps[i].step)
+//   }
+//   const jsonObjectInstructions = JSON.stringify(instructionsArray)
+//   if (findMyRecipe.readyInMinutes) {
+//     const jsonObjectReadyInMinutes = JSON.stringify(findMyRecipe.readyInMinutes);
+//     sessionStorage.setItem('storedReadyInMinutes', jsonObjectReadyInMinutes);
+//   }
 
-  sessionStorage.setItem('storedRecipeTitle', jsonObjectTitle);
-  sessionStorage.setItem('storedRecipeId', jsonObjectId);
-  sessionStorage.setItem('storedRecipeInstructions', jsonObjectInstructions);
-  sessionStorage.setItem('storedRecipeIngredients', jsonObjectIngredients);
-  sessionStorage.setItem('storedRecipeImage', jsonObjectImage);
+//   sessionStorage.setItem('storedRecipeTitle', jsonObjectTitle);
+//   sessionStorage.setItem('storedRecipeId', jsonObjectId);
+//   sessionStorage.setItem('storedRecipeInstructions', jsonObjectInstructions);
+//   sessionStorage.setItem('storedRecipeIngredients', jsonObjectIngredients);
+//   sessionStorage.setItem('storedRecipeImage', jsonObjectImage);
 
-}
+// }
 
-async function setVoice() {
-var voices = synth.getVoices();
+// async function setVoice() {
+// var voices = synth.getVoices();
 
-  for (n = 0; n < voices.length; n++){
-  if (voices[n].name == "Daniel (English (United Kingdom))") {
-    voice = voices[n];
-  }
-  }
-}
+//   for (n = 0; n < voices.length; n++){
+//   if (voices[n].name == "Daniel (English (United Kingdom))") {
+//     voice = voices[n];
+//   }
+//   }
+// }
 
-async function buildSelectionScreen(i, id) {
-  wrapper.innerHTML += `<div class="row" onclick="previewListener(${id})"><div class="column" value="">
-  <div id="Recipe${i+1}" class="recipeSelectionTitle"></div>
-  </div><div class="cardImage" id="cardImage${i+1}"></div></div>`;
-}
+// async function buildSelectionScreen(i, id) {
+//   wrapper.innerHTML += `<div class="row" onclick="previewListener(${id})"><div class="column" value="">
+//   <div id="Recipe${i+1}" class="recipeSelectionTitle"></div>
+//   </div><div class="cardImage" id="cardImage${i+1}"></div></div>`;
+// }
 
 async function recipeWaiter(recipesList) {
   wrapper.innerHTML = "";
@@ -616,31 +616,31 @@ async function recipeWaiter(recipesList) {
 }
 
 
-const tempButton = document.getElementById('backToHome');
-const myBody = document.getElementById('myBody');
+// const tempButton = document.getElementById('backToHome');
+// const myBody = document.getElementById('myBody');
 
 
-myBody.addEventListener('touchstart', (e) => {
-  alert(`something! body touch, id: ${e.target.id}`)
-  footer.style.backgroundColor = 'orange'
-  console.log('here is what was touched', e.target)
-  tempButton.innerText = JSON.stringify(e.target.id)
-  // searchingIsHappening();
-})
+// myBody.addEventListener('touchstart', (e) => {
+//   alert(`something! body touch, id: ${e.target.id}`)
+//   footer.style.backgroundColor = 'orange'
+//   console.log('here is what was touched', e.target)
+//   tempButton.innerText = JSON.stringify(e.target.id)
+//   // searchingIsHappening();
+// })
 
-myBody.addEventListener('click', (e) => {
-  alert(`something! body click, id: ${e.target.id}`)
-  footer.style.backgroundColor = 'yellow'
-  console.log('here is what was clicked', e.target)
-  tempButton.innerText = JSON.stringify(e.target.id)
-  // searchingIsHappening();
-})
+// myBody.addEventListener('click', (e) => {
+//   alert(`something! body click, id: ${e.target.id}`)
+//   footer.style.backgroundColor = 'yellow'
+//   console.log('here is what was clicked', e.target)
+//   tempButton.innerText = JSON.stringify(e.target.id)
+//   // searchingIsHappening();
+// })
 
-buttonLink.addEventListener('touchstart', async () => {
-  alert(`something! button touch, id: ${e.target.id}`)
-  footer.style.backgroundColor = 'red'
-  searchingIsHappening();
-})
+// buttonLink.addEventListener('touchstart', async () => {
+//   alert(`something! button touch, id: ${e.target.id}`)
+//   footer.style.backgroundColor = 'red'
+//   searchingIsHappening();
+// })
 
 buttonLink.addEventListener('click', async () => {
   alert(`something! button click, id: ${e.target.id}`)
@@ -648,216 +648,216 @@ buttonLink.addEventListener('click', async () => {
   searchingIsHappening();
 })
 
-searchInput.addEventListener('keydown', async (e) => {
-  if (e.key == "Enter"){
-    searchingIsHappening();
-  }
-})
+// searchInput.addEventListener('keydown', async (e) => {
+//   if (e.key == "Enter"){
+//     searchingIsHappening();
+//   }
+// })
 
-nextPage.addEventListener('click', async () => {
-  offset += 10
-  pageNumber += 1;
-  recipeList = await retrieveRecipes(offset);
-  if (pageNumber == 1 && pageNumber != totalPages) {
-    previousPage.disabled = true;
-    nextPage.disabled = false;
-  }
-  else if (pageNumber != 1 && pageNumber == totalPages) {
-    previousPage.disabled = false;
-    nextPage.disabled = true;
-  }
-  else if (pageNumber == 1 && pageNumber == totalPages) {
-    nextPage.disabled = true;
-    previousPage.disabled = true;
-  }
-  else if (pageNumber != 1 && pageNumber != totalPages) {
-    nextPage.disabled = false;
-    previousPage.disabled = false;
-  }
-  await recipeWaiter(recipeList.results);
-  document.getElementById('selectorPageTracker').innerHTML = `Page ${pageNumber} of ${totalPages}`
-  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible'); 
-})
+// nextPage.addEventListener('click', async () => {
+//   offset += 10
+//   pageNumber += 1;
+//   recipeList = await retrieveRecipes(offset);
+//   if (pageNumber == 1 && pageNumber != totalPages) {
+//     previousPage.disabled = true;
+//     nextPage.disabled = false;
+//   }
+//   else if (pageNumber != 1 && pageNumber == totalPages) {
+//     previousPage.disabled = false;
+//     nextPage.disabled = true;
+//   }
+//   else if (pageNumber == 1 && pageNumber == totalPages) {
+//     nextPage.disabled = true;
+//     previousPage.disabled = true;
+//   }
+//   else if (pageNumber != 1 && pageNumber != totalPages) {
+//     nextPage.disabled = false;
+//     previousPage.disabled = false;
+//   }
+//   await recipeWaiter(recipeList.results);
+//   document.getElementById('selectorPageTracker').innerHTML = `Page ${pageNumber} of ${totalPages}`
+//   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible'); 
+// })
 
-previousPage.addEventListener('click', async () => {
-  offset -= 10;
-  pageNumber -= 1;
-  recipeList = await retrieveRecipes(offset);
-  if (pageNumber == 1 && pageNumber != totalPages) {
-    previousPage.disabled = true;
-    nextPage.disabled = false;
-  }
-  else if (pageNumber != 1 && pageNumber == totalPages) {
-    previousPage.disabled = false;
-    nextPage.disabled = true;
-  }
-  else if (pageNumber == 1 && pageNumber == totalPages) {
-    nextPage.disabled = true;
-    previousPage.disabled = true;
-  }
-  else if (pageNumber != 1 && pageNumber != totalPages) {
-    nextPage.disabled = false;
-    previousPage.disabled = false;
-  }
-  await recipeWaiter(recipeList.results);
-  document.getElementById('selectorPageTracker').innerHTML = `Page ${pageNumber} of ${totalPages}`
-  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible'); 
-})
+// previousPage.addEventListener('click', async () => {
+//   offset -= 10;
+//   pageNumber -= 1;
+//   recipeList = await retrieveRecipes(offset);
+//   if (pageNumber == 1 && pageNumber != totalPages) {
+//     previousPage.disabled = true;
+//     nextPage.disabled = false;
+//   }
+//   else if (pageNumber != 1 && pageNumber == totalPages) {
+//     previousPage.disabled = false;
+//     nextPage.disabled = true;
+//   }
+//   else if (pageNumber == 1 && pageNumber == totalPages) {
+//     nextPage.disabled = true;
+//     previousPage.disabled = true;
+//   }
+//   else if (pageNumber != 1 && pageNumber != totalPages) {
+//     nextPage.disabled = false;
+//     previousPage.disabled = false;
+//   }
+//   await recipeWaiter(recipeList.results);
+//   document.getElementById('selectorPageTracker').innerHTML = `Page ${pageNumber} of ${totalPages}`
+//   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible'); 
+// })
 
-miseEnPlaceSet.addEventListener('click', async () => {
-  await instructionLoad();
-  await setVoice();
-  currentInstruction = 0;
-  const setAnimation = document.getElementById(`instructionListItem${currentInstruction}`);
-  const setNextAnimation = document.getElementById(`instructionListItem${currentInstruction + 1}`);
+// miseEnPlaceSet.addEventListener('click', async () => {
+//   await instructionLoad();
+//   await setVoice();
+//   currentInstruction = 0;
+//   const setAnimation = document.getElementById(`instructionListItem${currentInstruction}`);
+//   const setNextAnimation = document.getElementById(`instructionListItem${currentInstruction + 1}`);
 
-  var savedRecipeTitle = sessionStorage.getItem('storedRecipeTitle');
-  var parsedRecipeTitle = JSON.parse(savedRecipeTitle);
-  recipeTitle.innerHTML = "";
-  recipeTitle.innerHTML = parsedRecipeTitle;
-  previousStep.disabled = true;
-  setAnimation.classList.add('currentInstruction');
-  setNextAnimation.setAttribute('class', 'nextInstruction');
-  instructions.style.visibility = 'visible';
-  recipePreview.style.visibility = 'hidden';
-  miseEnPlaceText.style.visibility = 'hidden';
-  exitMisePanel.style.visibility = 'hidden';
-  informationPanel.style.visibility = 'visible';
-  exitInfoPanel.style.visibility = 'visible';
-})
+//   var savedRecipeTitle = sessionStorage.getItem('storedRecipeTitle');
+//   var parsedRecipeTitle = JSON.parse(savedRecipeTitle);
+//   recipeTitle.innerHTML = "";
+//   recipeTitle.innerHTML = parsedRecipeTitle;
+//   previousStep.disabled = true;
+//   setAnimation.classList.add('currentInstruction');
+//   setNextAnimation.setAttribute('class', 'nextInstruction');
+//   instructions.style.visibility = 'visible';
+//   recipePreview.style.visibility = 'hidden';
+//   miseEnPlaceText.style.visibility = 'hidden';
+//   exitMisePanel.style.visibility = 'hidden';
+//   informationPanel.style.visibility = 'visible';
+//   exitInfoPanel.style.visibility = 'visible';
+// })
 
 
-selectRecipe.addEventListener('click', async () => {
-  miseEnPlaceText.style.visibility = 'visible';
-  exitMisePanel.style.visibility = 'visible';
-})
+// selectRecipe.addEventListener('click', async () => {
+//   miseEnPlaceText.style.visibility = 'visible';
+//   exitMisePanel.style.visibility = 'visible';
+// })
 
-aboutUsButton.addEventListener('click', () => {
-  sayMore.classList.add('sayMoreVisible');
-  footer.classList.add('aboutUsVisible');
-  exitAboutUs.setAttribute('class', 'aboutUsExitVisible')
-})
+// aboutUsButton.addEventListener('click', () => {
+//   sayMore.classList.add('sayMoreVisible');
+//   footer.classList.add('aboutUsVisible');
+//   exitAboutUs.setAttribute('class', 'aboutUsExitVisible')
+// })
 
-exitAboutUs.addEventListener('click', () => {
-  footer.classList.remove('aboutUsVisible');
-  footer.classList.add('goAwayAbout');
-  exitAboutUs.setAttribute('class', 'aboutUsExitAnimation')
+// exitAboutUs.addEventListener('click', () => {
+//   footer.classList.remove('aboutUsVisible');
+//   footer.classList.add('goAwayAbout');
+//   exitAboutUs.setAttribute('class', 'aboutUsExitAnimation')
   
-  setTimeout(function(){
-    footer.classList.remove('goAwayAbout');
-    exitAboutUs.setAttribute('class', 'aboutUsExitButton')
-  }, 2000);
-  })
+//   setTimeout(function(){
+//     footer.classList.remove('goAwayAbout');
+//     exitAboutUs.setAttribute('class', 'aboutUsExitButton')
+//   }, 2000);
+//   })
 
-backToResults.addEventListener('click', () => {
-  recipePreview.style.visibility = "hidden";
-  recipeSelectionScreen.style.visibility = "visible";
-  recipeSelectionScreen.style.display = "block";
-  miseEnPlaceText.style.visibility = "hidden";
-  exitMisePanel.style.visibility = "hidden";
-})
+// backToResults.addEventListener('click', () => {
+//   recipePreview.style.visibility = "hidden";
+//   recipeSelectionScreen.style.visibility = "visible";
+//   recipeSelectionScreen.style.display = "block";
+//   miseEnPlaceText.style.visibility = "hidden";
+//   exitMisePanel.style.visibility = "hidden";
+// })
 
-backToMise.addEventListener('click', () => {
-  instructions.style.visibility = 'hidden';
-  recipePreview.style.visibility = "visible";
-  informationPanel.style.visibility = "hidden";
-  exitInfoPanel.style.visibility = "hidden";
-  ingredientReminderPanel.style.visibility = "hidden";
-  exitIngRemPanel.style.visibility = "hidden";
-  backMicControl = 1;
-  recognition.stop();
-  synth.cancel();
-})
+// backToMise.addEventListener('click', () => {
+//   instructions.style.visibility = 'hidden';
+//   recipePreview.style.visibility = "visible";
+//   informationPanel.style.visibility = "hidden";
+//   exitInfoPanel.style.visibility = "hidden";
+//   ingredientReminderPanel.style.visibility = "hidden";
+//   exitIngRemPanel.style.visibility = "hidden";
+//   backMicControl = 1;
+//   recognition.stop();
+//   synth.cancel();
+// })
 
-homeButton.addEventListener('click', () => {
-  instructions.style.visibility = "hidden";
-  miseEnPlaceText.style.visibility = "hidden";
-  exitMisePanel.style.visibility = "hidden";
-  recipePreview.style.visibility = "hidden";
-  recipeSelectionScreen.style.visibility = "hidden";
-  recipeSelector.style.visibility = 'visible';
-  recipeSelector.style.display = 'flex';
-  informationPanel.style.visibility = "hidden";
-  exitInfoPanel.style.visibility = "hidden";
-  ingredientReminderPanel.style.visibility = "hidden";
-  exitIngRemPanel.style.visibility = "hidden";
-  backMicControl = 1;
-  recognition.stop();
-  synth.cancel();
-})
+// homeButton.addEventListener('click', () => {
+//   instructions.style.visibility = "hidden";
+//   miseEnPlaceText.style.visibility = "hidden";
+//   exitMisePanel.style.visibility = "hidden";
+//   recipePreview.style.visibility = "hidden";
+//   recipeSelectionScreen.style.visibility = "hidden";
+//   recipeSelector.style.visibility = 'visible';
+//   recipeSelector.style.display = 'flex';
+//   informationPanel.style.visibility = "hidden";
+//   exitInfoPanel.style.visibility = "hidden";
+//   ingredientReminderPanel.style.visibility = "hidden";
+//   exitIngRemPanel.style.visibility = "hidden";
+//   backMicControl = 1;
+//   recognition.stop();
+//   synth.cancel();
+// })
 
-previousStep.addEventListener('click', async () => {
-  previousFunction();
-})
+// previousStep.addEventListener('click', async () => {
+//   previousFunction();
+// })
 
-nextStep.addEventListener('click', async () => {
-  nextFunction();
-})
+// nextStep.addEventListener('click', async () => {
+//   nextFunction();
+// })
 
-repeatStep.addEventListener('click', async () => {
-  repeatFunction();
-})
+// repeatStep.addEventListener('click', async () => {
+//   repeatFunction();
+// })
 
-exitInfoPanel.addEventListener('click', () => {
-  informationPanel.style.visibility = "hidden";
-  exitInfoPanel.style.visibility = "hidden";
+// exitInfoPanel.addEventListener('click', () => {
+//   informationPanel.style.visibility = "hidden";
+//   exitInfoPanel.style.visibility = "hidden";
 
-  repeatFunction();
-  if (microphoneBox == 0) {
-    recognition.start();
-  }
-})
+//   repeatFunction();
+//   if (microphoneBox == 0) {
+//     recognition.start();
+//   }
+// })
 
-exitMisePanel.addEventListener('click', () => {
-  miseEnPlaceText.style.visibility = "hidden";
-  exitMisePanel.style.visibility = "hidden";
-})
+// exitMisePanel.addEventListener('click', () => {
+//   miseEnPlaceText.style.visibility = "hidden";
+//   exitMisePanel.style.visibility = "hidden";
+// })
 
-settingsButton.addEventListener('click', () => {
-  informationPanel.style.visibility = "visible";
-  exitInfoPanel.style.visibility = "visible";
-})
+// settingsButton.addEventListener('click', () => {
+//   informationPanel.style.visibility = "visible";
+//   exitInfoPanel.style.visibility = "visible";
+// })
 
-ingredientReminderImage.addEventListener('click', async () => {
+// ingredientReminderImage.addEventListener('click', async () => {
 
-  var ingredientHTML = await ingredientArray()
+//   var ingredientHTML = await ingredientArray()
  
-  ingredientInsert.innerHTML = "";
-  ingredientInsert.innerHTML = ingredientHTML;
+//   ingredientInsert.innerHTML = "";
+//   ingredientInsert.innerHTML = ingredientHTML;
 
-  ingredientReminderPanel.style.visibility = 'visible';
-  exitIngRemPanel.style.visibility = 'visible';
-})
+//   ingredientReminderPanel.style.visibility = 'visible';
+//   exitIngRemPanel.style.visibility = 'visible';
+// })
 
-exitIngRemPanel.addEventListener('click', () => {
-  ingredientReminderPanel.style.visibility = 'hidden';
-  exitIngRemPanel.style.visibility = 'hidden';
-})
+// exitIngRemPanel.addEventListener('click', () => {
+//   ingredientReminderPanel.style.visibility = 'hidden';
+//   exitIngRemPanel.style.visibility = 'hidden';
+// })
 
-async function previewListener(id){
-  await setRecipe(id);
-  await readMore();
-  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
-  recipeSelectionScreen.style.visibility = "hidden";
-  recipeSelectionScreen.style.display = "none";
-  recipePreview.style.visibility = "visible";
-}
+// async function previewListener(id){
+//   await setRecipe(id);
+//   await readMore();
+//   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
+//   recipeSelectionScreen.style.visibility = "hidden";
+//   recipeSelectionScreen.style.display = "none";
+//   recipePreview.style.visibility = "visible";
+// }
 
-function checkVoice () {
-  if (muteOration.checked == true){
-      synthVolume = 0;
-      console.log(synthVolume);
-      synth.cancel();
-    } else {
-      synthVolume = 1;
-    }
-}
+// function checkVoice () {
+//   if (muteOration.checked == true){
+//       synthVolume = 0;
+//       console.log(synthVolume);
+//       synth.cancel();
+//     } else {
+//       synthVolume = 1;
+//     }
+// }
 
-function checkMicrophone() {
-  console.log("i'm here microphone", `${pauseMicrophone.checked}`);
-  if (pauseMicrophone.checked == true){
-      microphoneBox = 1;
-    } else {
-      microphoneBox = 0;
-    }
-}
+// function checkMicrophone() {
+//   console.log("i'm here microphone", `${pauseMicrophone.checked}`);
+//   if (pauseMicrophone.checked == true){
+//       microphoneBox = 1;
+//     } else {
+//       microphoneBox = 0;
+//     }
+// }
