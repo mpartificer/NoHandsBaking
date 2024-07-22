@@ -2,42 +2,42 @@ const footer = document.getElementById('footer');
 const wrapper = document.getElementById('wrapper');
 const exitAboutUs = document.getElementById('exitAboutUs');
 const backToResults = document.getElementById('backToResults');
-// const homeButton = document.getElementById('homeButton');
+const homeButton = document.getElementById('homeButton');
 const searchInput = document.getElementById('webpage');
-// const settingsButton = document.getElementById('settingsButton');
-// const ingredientReminderImage = document.getElementById('ingredientReminderImage');
-// const ingredientInsert = document.getElementById('ingredientInsert');
-// const ingredientReminderPanel = document.getElementById('ingredientReminderPanel');
-// const exitIngRemPanel = document.getElementById('exitIngRemPanel');
-// const backToMise = document.getElementById('backToMise');
+const settingsButton = document.getElementById('settingsButton');
+const ingredientReminderImage = document.getElementById('ingredientReminderImage');
+const ingredientInsert = document.getElementById('ingredientInsert');
+const ingredientReminderPanel = document.getElementById('ingredientReminderPanel');
+const exitIngRemPanel = document.getElementById('exitIngRemPanel');
+const backToMise = document.getElementById('backToMise');
 const searchTerm = document.getElementById('searchTerm');
 const buttonLink = document.getElementById('letsGoButton');
-// const recipeTitle = document.getElementById('recipeTitle');
-// const exitInfoPanel = document.getElementById('exitInfoPanel');
-// const miseEnPlaceSet = document.getElementById('lockedAndLoadedButton');
-// const miseEnPlaceText = document.getElementById('miseEnPlace');
-// const exitMisePanel = document.getElementById('exitMisePanel');
+const recipeTitle = document.getElementById('recipeTitle');
+const exitInfoPanel = document.getElementById('exitInfoPanel');
+const miseEnPlaceSet = document.getElementById('lockedAndLoadedButton');
+const miseEnPlaceText = document.getElementById('miseEnPlace');
+const exitMisePanel = document.getElementById('exitMisePanel');
 const recipeSelector = document.getElementById('recipeSelector');
-// const instructions = document.getElementById('instructions');
+const instructions = document.getElementById('instructions');
 const recipeSelectionScreen = document.getElementById('recipeSelectionScreen');
-// const informationPanel = document.getElementById('informationPanel');
-// const recipePreview = document.getElementById('recipePreview');
-// const imagePreview = document.getElementById('imagePreview');
-// const ingredientsPreview = document.getElementById('ingredientsPreview');
-// const instructionsPreview = document.getElementById('instructionsPreview');
-// const instructionsText = document.getElementById('instructionsText');
-// const aboutUsButton = document.getElementById('aboutUsButton');
-// const aboutUs = document.getElementById('aboutUs')
-// const sayMore = document.getElementById('sayMore');
-// const ingredients = document.getElementById('ingredients');
+const informationPanel = document.getElementById('informationPanel');
+const recipePreview = document.getElementById('recipePreview');
+const imagePreview = document.getElementById('imagePreview');
+const ingredientsPreview = document.getElementById('ingredientsPreview');
+const instructionsPreview = document.getElementById('instructionsPreview');
+const instructionsText = document.getElementById('instructionsText');
+const aboutUsButton = document.getElementById('aboutUsButton');
+const aboutUs = document.getElementById('aboutUs')
+const sayMore = document.getElementById('sayMore');
+const ingredients = document.getElementById('ingredients');
 const previousPage = document.getElementById('previousPage');
 const nextPage = document.getElementById('nextPage');
-// const selectRecipe = document.getElementById('selectRecipe');
-// const previousStep = document.getElementById('previousStep');
-// const repeatStep = document.getElementById('repeatStep');
-// const nextStep = document.getElementById('nextStep');
-// const muteOration = document.getElementById('muteOration');
-// const pauseMicrophone = document.getElementById('pauseMicrophone');
+const selectRecipe = document.getElementById('selectRecipe');
+const previousStep = document.getElementById('previousStep');
+const repeatStep = document.getElementById('repeatStep');
+const nextStep = document.getElementById('nextStep');
+const muteOration = document.getElementById('muteOration');
+const pauseMicrophone = document.getElementById('pauseMicrophone');
 const errorPanel = document.getElementById('errorPanel');
 const recipePreviewTitle = document.getElementById('recipePreviewTitle');
 const spoonacularKey = "3c5ec8b2939641a99e28c6023598b2d4";
@@ -48,11 +48,11 @@ const synth = window.speechSynthesis;
 // var columnPreview = document.getElementsByClassName('columnPreview');
 // var currentInstruction = 0;
 var recipeList;
-// var synthVolume = 1;
-// var microphoneBox = 0;
-// var backMicControl = 0;
-// var stepCount;
-// var voice;
+var synthVolume = 1;
+var microphoneBox = 0;
+var backMicControl = 0;
+var stepCount;
+var voice;
 var offset;
 var pageNumber;
 var totalPages;
@@ -362,23 +362,23 @@ catch (err) {
 }
 }
 
-// async function manageInstructionsPreview(parsedInstructions) {
+async function manageInstructionsPreview(parsedInstructions) {
 
-//   var instructionInsert = "";
-//   instructionInsert += '<ul class="instructionListManager"><b>Instructions</b>';
+  var instructionInsert = "";
+  instructionInsert += '<ul class="instructionListManager"><b>Instructions</b>';
 
-//   for (i = 0; i < parsedInstructions.length; i++) {
-//     instructionInsert += `<li id="instructionList${i}" class="">`;
-//     instructionInsert += parsedInstructions[i];
-//     instructionInsert += `</li>`;
-//   }
+  for (i = 0; i < parsedInstructions.length; i++) {
+    instructionInsert += `<li id="instructionList${i}" class="">`;
+    instructionInsert += parsedInstructions[i];
+    instructionInsert += `</li>`;
+  }
 
-//   instructionInsert += `</ul>`;
+  instructionInsert += `</ul>`;
 
-//   stepCount = parsedInstructions.length;
+  stepCount = parsedInstructions.length;
 
-//   return instructionInsert;
-// }
+  return instructionInsert;
+}
 
 
 // async function manageInstructions(parsedInstructions) {
@@ -396,22 +396,23 @@ catch (err) {
 
 //   return instructionInsert;
 // }
-// async function ingredientArray() {
 
-//   const storedIngredients = sessionStorage.getItem('storedRecipeIngredients');
-//   const parsedIngredients = JSON.parse(storedIngredients);
+async function ingredientArray() {
 
-//   const ingredientsList = parsedIngredients;
-//   var ingredientHTML;
-//   ingredientHTML = '';
-//   ingredientHTML = '<ul class="instructionListManager"><b>Ingredients</b>';
-//     for (i = 0; i < ingredientsList.length; i++) {
-//       ingredientHTML += '<li>' + ingredientsList[i].original + '</li>'; 
-//     }
-//   ingredientHTML += `</ul>`;
+  const storedIngredients = sessionStorage.getItem('storedRecipeIngredients');
+  const parsedIngredients = JSON.parse(storedIngredients);
 
-//   return ingredientHTML;
-// }
+  const ingredientsList = parsedIngredients;
+  var ingredientHTML;
+  ingredientHTML = '';
+  ingredientHTML = '<ul class="instructionListManager"><b>Ingredients</b>';
+    for (i = 0; i < ingredientsList.length; i++) {
+      ingredientHTML += '<li>' + ingredientsList[i].original + '</li>'; 
+    }
+  ingredientHTML += `</ul>`;
+
+  return ingredientHTML;
+}
 
 async function searchingIsHappening() {
   if (typeof searchInput.value == "string" && searchInput.value.trim()){
@@ -476,42 +477,42 @@ async function searchingIsHappening() {
   }
 }
 
-// async function readMore() {
+async function readMore() {
 
-//   const image = sessionStorage.getItem('storedRecipeImage');
-//   const parsedImage = JSON.parse(image)
+  const image = sessionStorage.getItem('storedRecipeImage');
+  const parsedImage = JSON.parse(image)
 
-//   var img = document.createElement("img");
-//   img.src = parsedImage;
+  var img = document.createElement("img");
+  img.src = parsedImage;
 
-//   img.setAttribute('class', 'imggg'); 
-//   imagePreview.innerHTML = "";
-//   imagePreview.appendChild(img);
+  img.setAttribute('class', 'imggg'); 
+  imagePreview.innerHTML = "";
+  imagePreview.appendChild(img);
 
-//   try {
-//     const readyInMinutes = sessionStorage.getItem('storedReadyInMinutes');
-//     const parsedMinutes = JSON.parse(readyInMinutes)
-//     var minutes = document.createElement("minutes");
-//     minutes.setAttribute('class', "pageCounter");
-//     minutes.innerHTML = "<p>Ready in " + parsedMinutes + " minutes";
-//     imagePreview.appendChild(minutes);
-//   }
-//   catch{}
+  try {
+    const readyInMinutes = sessionStorage.getItem('storedReadyInMinutes');
+    const parsedMinutes = JSON.parse(readyInMinutes)
+    var minutes = document.createElement("minutes");
+    minutes.setAttribute('class', "pageCounter");
+    minutes.innerHTML = "<p>Ready in " + parsedMinutes + " minutes";
+    imagePreview.appendChild(minutes);
+  }
+  catch{}
 
-//   const recipeTitle = sessionStorage.getItem('storedRecipeTitle');
-//   const parsedRecipeTitle = JSON.parse(recipeTitle);
-//   recipePreviewTitle.innerHTML = "";
-//   recipePreviewTitle.innerHTML = parsedRecipeTitle;
+  const recipeTitle = sessionStorage.getItem('storedRecipeTitle');
+  const parsedRecipeTitle = JSON.parse(recipeTitle);
+  recipePreviewTitle.innerHTML = "";
+  recipePreviewTitle.innerHTML = parsedRecipeTitle;
 
 
-//   var ingredientHTML = await ingredientArray();
-//   ingredientsPreview.innerHTML = ingredientHTML;
+  var ingredientHTML = await ingredientArray();
+  ingredientsPreview.innerHTML = ingredientHTML;
 
-//   const storedInstructions = sessionStorage.getItem('storedRecipeInstructions');
-//   const parsedInstructions = JSON.parse(storedInstructions);
-//   var formattedInstructions = await manageInstructionsPreview(parsedInstructions);
-//   instructionsPreview.innerHTML = formattedInstructions;
-// }
+  const storedInstructions = sessionStorage.getItem('storedRecipeInstructions');
+  const parsedInstructions = JSON.parse(storedInstructions);
+  var formattedInstructions = await manageInstructionsPreview(parsedInstructions);
+  instructionsPreview.innerHTML = formattedInstructions;
+}
 
 // async function instructionLoad() {
 //   const storedInstructions = sessionStorage.getItem('storedRecipeInstructions');
@@ -521,46 +522,46 @@ async function searchingIsHappening() {
 //   instructionsText.innerHTML = formattedInstructions;
 // }
 
-// async function setRecipe(recipeID) {
-//   const recipeSelect = `https://api.spoonacular.com/recipes/${recipeID}/information?apiKey=${spoonacularKey}`
+async function setRecipe(recipeID) {
+  const recipeSelect = `https://api.spoonacular.com/recipes/${recipeID}/information?apiKey=${spoonacularKey}`
 
-//   const selectMyRecipe = await fetch(recipeSelect, {
-//     headers: 
-//       {"Content-Type": "application/json"
-//   }});
+  const selectMyRecipe = await fetch(recipeSelect, {
+    headers: 
+      {"Content-Type": "application/json"
+  }});
   
-//   const findMyRecipe = await selectMyRecipe.json();
-//   console.log(findMyRecipe)
+  const findMyRecipe = await selectMyRecipe.json();
+  console.log(findMyRecipe)
 
-//   if (sessionStorage.getItem('storedRecipeTitle') != undefined) {
-//     sessionStorage.removeItem('storedRecipeTitle');
-//     sessionStorage.removeItem('storedRecipeId');
-//     sessionStorage.removeItem('storedRecipeIngredients');
-//     sessionStorage.removeItem('storedRecipeImage');
-//     sessionStorage.removeItem('storedRecipeInstructions');
-//   }
+  if (sessionStorage.getItem('storedRecipeTitle') != undefined) {
+    sessionStorage.removeItem('storedRecipeTitle');
+    sessionStorage.removeItem('storedRecipeId');
+    sessionStorage.removeItem('storedRecipeIngredients');
+    sessionStorage.removeItem('storedRecipeImage');
+    sessionStorage.removeItem('storedRecipeInstructions');
+  }
 
-//   const jsonObjectTitle = JSON.stringify(findMyRecipe.title);
-//   const jsonObjectId = JSON.stringify(findMyRecipe.id);
-//   const jsonObjectIngredients = JSON.stringify(findMyRecipe.extendedIngredients);
-//   const jsonObjectImage = JSON.stringify(findMyRecipe.image);
-//   const instructionsArray = [];
-//   for (i = 0; i < findMyRecipe.analyzedInstructions[0].steps.length; i++) {
-//     instructionsArray.push(findMyRecipe.analyzedInstructions[0].steps[i].step)
-//   }
-//   const jsonObjectInstructions = JSON.stringify(instructionsArray)
-//   if (findMyRecipe.readyInMinutes) {
-//     const jsonObjectReadyInMinutes = JSON.stringify(findMyRecipe.readyInMinutes);
-//     sessionStorage.setItem('storedReadyInMinutes', jsonObjectReadyInMinutes);
-//   }
+  const jsonObjectTitle = JSON.stringify(findMyRecipe.title);
+  const jsonObjectId = JSON.stringify(findMyRecipe.id);
+  const jsonObjectIngredients = JSON.stringify(findMyRecipe.extendedIngredients);
+  const jsonObjectImage = JSON.stringify(findMyRecipe.image);
+  const instructionsArray = [];
+  for (i = 0; i < findMyRecipe.analyzedInstructions[0].steps.length; i++) {
+    instructionsArray.push(findMyRecipe.analyzedInstructions[0].steps[i].step)
+  }
+  const jsonObjectInstructions = JSON.stringify(instructionsArray)
+  if (findMyRecipe.readyInMinutes) {
+    const jsonObjectReadyInMinutes = JSON.stringify(findMyRecipe.readyInMinutes);
+    sessionStorage.setItem('storedReadyInMinutes', jsonObjectReadyInMinutes);
+  }
 
-//   sessionStorage.setItem('storedRecipeTitle', jsonObjectTitle);
-//   sessionStorage.setItem('storedRecipeId', jsonObjectId);
-//   sessionStorage.setItem('storedRecipeInstructions', jsonObjectInstructions);
-//   sessionStorage.setItem('storedRecipeIngredients', jsonObjectIngredients);
-//   sessionStorage.setItem('storedRecipeImage', jsonObjectImage);
+  sessionStorage.setItem('storedRecipeTitle', jsonObjectTitle);
+  sessionStorage.setItem('storedRecipeId', jsonObjectId);
+  sessionStorage.setItem('storedRecipeInstructions', jsonObjectInstructions);
+  sessionStorage.setItem('storedRecipeIngredients', jsonObjectIngredients);
+  sessionStorage.setItem('storedRecipeImage', jsonObjectImage);
 
-// }
+}
 
 // async function setVoice() {
 // var voices = synth.getVoices();
@@ -613,94 +614,66 @@ async function recipeWaiter(recipesList) {
   }
 }
 
-
-// const tempButton = document.getElementById('backToHome');
-// const myBody = document.getElementById('myBody');
-
-
-// myBody.addEventListener('touchstart', (e) => {
-//   alert(`something! body touch, id: ${e.target.id}`)
-//   footer.style.backgroundColor = 'orange'
-//   console.log('here is what was touched', e.target)
-//   tempButton.innerText = JSON.stringify(e.target.id)
-//   // searchingIsHappening();
-// })
-
-// myBody.addEventListener('click', (e) => {
-//   alert(`something! body click, id: ${e.target.id}`)
-//   footer.style.backgroundColor = 'yellow'
-//   console.log('here is what was clicked', e.target)
-//   tempButton.innerText = JSON.stringify(e.target.id)
-//   // searchingIsHappening();
-// })
-
-// buttonLink.addEventListener('touchstart', async () => {
-//   alert(`something! button touch, id: ${e.target.id}`)
-//   footer.style.backgroundColor = 'red'
-//   searchingIsHappening();
-// })
-
 buttonLink.addEventListener('click', async () => {
-  // alert(`something! button click, id: ${e.target.id}`)
   footer.style.backgroundColor = 'blue'
   searchingIsHappening();
 })
 
-// searchInput.addEventListener('keydown', async (e) => {
-//   if (e.key == "Enter"){
-//     searchingIsHappening();
-//   }
-// })
+searchInput.addEventListener('keydown', async (e) => {
+  if (e.key == "Enter"){
+    searchingIsHappening();
+  }
+})
 
-// nextPage.addEventListener('click', async () => {
-//   offset += 10
-//   pageNumber += 1;
-//   recipeList = await retrieveRecipes(offset);
-//   if (pageNumber == 1 && pageNumber != totalPages) {
-//     previousPage.disabled = true;
-//     nextPage.disabled = false;
-//   }
-//   else if (pageNumber != 1 && pageNumber == totalPages) {
-//     previousPage.disabled = false;
-//     nextPage.disabled = true;
-//   }
-//   else if (pageNumber == 1 && pageNumber == totalPages) {
-//     nextPage.disabled = true;
-//     previousPage.disabled = true;
-//   }
-//   else if (pageNumber != 1 && pageNumber != totalPages) {
-//     nextPage.disabled = false;
-//     previousPage.disabled = false;
-//   }
-//   await recipeWaiter(recipeList.results);
-//   document.getElementById('selectorPageTracker').innerHTML = `Page ${pageNumber} of ${totalPages}`
-//   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible'); 
-// })
+nextPage.addEventListener('click', async () => {
+  offset += 10
+  pageNumber += 1;
+  recipeList = await retrieveRecipes(offset);
+  if (pageNumber == 1 && pageNumber != totalPages) {
+    previousPage.disabled = true;
+    nextPage.disabled = false;
+  }
+  else if (pageNumber != 1 && pageNumber == totalPages) {
+    previousPage.disabled = false;
+    nextPage.disabled = true;
+  }
+  else if (pageNumber == 1 && pageNumber == totalPages) {
+    nextPage.disabled = true;
+    previousPage.disabled = true;
+  }
+  else if (pageNumber != 1 && pageNumber != totalPages) {
+    nextPage.disabled = false;
+    previousPage.disabled = false;
+  }
+  await recipeWaiter(recipeList.results);
+  document.getElementById('selectorPageTracker').innerHTML = `Page ${pageNumber} of ${totalPages}`
+  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible'); 
+})
 
-// previousPage.addEventListener('click', async () => {
-//   offset -= 10;
-//   pageNumber -= 1;
-//   recipeList = await retrieveRecipes(offset);
-//   if (pageNumber == 1 && pageNumber != totalPages) {
-//     previousPage.disabled = true;
-//     nextPage.disabled = false;
-//   }
-//   else if (pageNumber != 1 && pageNumber == totalPages) {
-//     previousPage.disabled = false;
-//     nextPage.disabled = true;
-//   }
-//   else if (pageNumber == 1 && pageNumber == totalPages) {
-//     nextPage.disabled = true;
-//     previousPage.disabled = true;
-//   }
-//   else if (pageNumber != 1 && pageNumber != totalPages) {
-//     nextPage.disabled = false;
-//     previousPage.disabled = false;
-//   }
-//   await recipeWaiter(recipeList.results);
-//   document.getElementById('selectorPageTracker').innerHTML = `Page ${pageNumber} of ${totalPages}`
-//   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible'); 
-// })
+previousPage.addEventListener('click', async () => {
+  offset -= 10;
+  pageNumber -= 1;
+  recipeList = await retrieveRecipes(offset);
+  if (pageNumber == 1 && pageNumber != totalPages) {
+    previousPage.disabled = true;
+    nextPage.disabled = false;
+  }
+  else if (pageNumber != 1 && pageNumber == totalPages) {
+    previousPage.disabled = false;
+    nextPage.disabled = true;
+  }
+  else if (pageNumber == 1 && pageNumber == totalPages) {
+    nextPage.disabled = true;
+    previousPage.disabled = true;
+  }
+  else if (pageNumber != 1 && pageNumber != totalPages) {
+    nextPage.disabled = false;
+    previousPage.disabled = false;
+  }
+  await recipeWaiter(recipeList.results);
+  document.getElementById('selectorPageTracker').innerHTML = `Page ${pageNumber} of ${totalPages}`
+  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible'); 
+})
 
 // miseEnPlaceSet.addEventListener('click', async () => {
 //   await instructionLoad();
@@ -725,35 +698,35 @@ buttonLink.addEventListener('click', async () => {
 // })
 
 
-// selectRecipe.addEventListener('click', async () => {
-//   miseEnPlaceText.style.visibility = 'visible';
-//   exitMisePanel.style.visibility = 'visible';
-// })
+selectRecipe.addEventListener('click', async () => {
+  miseEnPlaceText.style.visibility = 'visible';
+  exitMisePanel.style.visibility = 'visible';
+})
 
-// aboutUsButton.addEventListener('click', () => {
-//   sayMore.classList.add('sayMoreVisible');
-//   footer.classList.add('aboutUsVisible');
-//   exitAboutUs.setAttribute('class', 'aboutUsExitVisible')
-// })
+aboutUsButton.addEventListener('click', () => {
+  sayMore.classList.add('sayMoreVisible');
+  footer.classList.add('aboutUsVisible');
+  exitAboutUs.setAttribute('class', 'aboutUsExitVisible')
+})
 
-// exitAboutUs.addEventListener('click', () => {
-//   footer.classList.remove('aboutUsVisible');
-//   footer.classList.add('goAwayAbout');
-//   exitAboutUs.setAttribute('class', 'aboutUsExitAnimation')
+exitAboutUs.addEventListener('click', () => {
+  footer.classList.remove('aboutUsVisible');
+  footer.classList.add('goAwayAbout');
+  exitAboutUs.setAttribute('class', 'aboutUsExitAnimation')
   
-//   setTimeout(function(){
-//     footer.classList.remove('goAwayAbout');
-//     exitAboutUs.setAttribute('class', 'aboutUsExitButton')
-//   }, 2000);
-//   })
+  setTimeout(function(){
+    footer.classList.remove('goAwayAbout');
+    exitAboutUs.setAttribute('class', 'aboutUsExitButton')
+  }, 2000);
+  })
 
-// backToResults.addEventListener('click', () => {
-//   recipePreview.style.visibility = "hidden";
-//   recipeSelectionScreen.style.visibility = "visible";
-//   recipeSelectionScreen.style.display = "block";
-//   miseEnPlaceText.style.visibility = "hidden";
-//   exitMisePanel.style.visibility = "hidden";
-// })
+backToResults.addEventListener('click', () => {
+  recipePreview.style.visibility = "hidden";
+  recipeSelectionScreen.style.visibility = "visible";
+  recipeSelectionScreen.style.display = "block";
+  miseEnPlaceText.style.visibility = "hidden";
+  exitMisePanel.style.visibility = "hidden";
+})
 
 // backToMise.addEventListener('click', () => {
 //   instructions.style.visibility = 'hidden';
@@ -767,22 +740,22 @@ buttonLink.addEventListener('click', async () => {
 //   synth.cancel();
 // })
 
-// homeButton.addEventListener('click', () => {
-//   instructions.style.visibility = "hidden";
-//   miseEnPlaceText.style.visibility = "hidden";
-//   exitMisePanel.style.visibility = "hidden";
-//   recipePreview.style.visibility = "hidden";
-//   recipeSelectionScreen.style.visibility = "hidden";
-//   recipeSelector.style.visibility = 'visible';
-//   recipeSelector.style.display = 'flex';
-//   informationPanel.style.visibility = "hidden";
-//   exitInfoPanel.style.visibility = "hidden";
-//   ingredientReminderPanel.style.visibility = "hidden";
-//   exitIngRemPanel.style.visibility = "hidden";
-//   backMicControl = 1;
-//   recognition.stop();
-//   synth.cancel();
-// })
+homeButton.addEventListener('click', () => {
+  instructions.style.visibility = "hidden";
+  miseEnPlaceText.style.visibility = "hidden";
+  exitMisePanel.style.visibility = "hidden";
+  recipePreview.style.visibility = "hidden";
+  recipeSelectionScreen.style.visibility = "hidden";
+  recipeSelector.style.visibility = 'visible';
+  recipeSelector.style.display = 'flex';
+  informationPanel.style.visibility = "hidden";
+  exitInfoPanel.style.visibility = "hidden";
+  ingredientReminderPanel.style.visibility = "hidden";
+  exitIngRemPanel.style.visibility = "hidden";
+  backMicControl = 1;
+  // recognition.stop();
+  synth.cancel();
+})
 
 // previousStep.addEventListener('click', async () => {
 //   previousFunction();
@@ -806,10 +779,10 @@ buttonLink.addEventListener('click', async () => {
 //   }
 // })
 
-// exitMisePanel.addEventListener('click', () => {
-//   miseEnPlaceText.style.visibility = "hidden";
-//   exitMisePanel.style.visibility = "hidden";
-// })
+exitMisePanel.addEventListener('click', () => {
+  miseEnPlaceText.style.visibility = "hidden";
+  exitMisePanel.style.visibility = "hidden";
+})
 
 // settingsButton.addEventListener('click', () => {
 //   informationPanel.style.visibility = "visible";
@@ -832,14 +805,14 @@ buttonLink.addEventListener('click', async () => {
 //   exitIngRemPanel.style.visibility = 'hidden';
 // })
 
-// async function previewListener(id){
-//   await setRecipe(id);
-//   await readMore();
-//   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
-//   recipeSelectionScreen.style.visibility = "hidden";
-//   recipeSelectionScreen.style.display = "none";
-//   recipePreview.style.visibility = "visible";
-// }
+async function previewListener(id){
+  await setRecipe(id);
+  await readMore();
+  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreen');
+  recipeSelectionScreen.style.visibility = "hidden";
+  recipeSelectionScreen.style.display = "none";
+  recipePreview.style.visibility = "visible";
+}
 
 // function checkVoice () {
 //   if (muteOration.checked == true){
