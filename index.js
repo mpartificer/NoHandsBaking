@@ -42,39 +42,28 @@ const errorPanel = document.getElementById('errorPanel');
 const recipePreviewTitle = document.getElementById('recipePreviewTitle');
 const spoonacularKey = "3c5ec8b2939641a99e28c6023598b2d4";
 const synth = window.speechSynthesis;
-// var SpeechRecognition = SpeechRecognition || window.webkitSpeechRecognition
-// var SpeechGrammarList = SpeechGrammarList || window.webkitSpeechGrammarList;
-// var SpeechRecognitionEvent = SpeechRecognitionEvent || window.webkitSpeechRecognitionEvent;
-if (!('webkitSpeechRecognition' in window)) {
-  var SpeechRecognition = SpeechRecognition;
+var SpeechRecognition = SpeechRecognition || window.webkitSpeechRecognition
+var SpeechGrammarList = SpeechGrammarList || window.webkitSpeechGrammarList;
+var SpeechRecognitionEvent = SpeechRecognitionEvent || window.webkitSpeechRecognitionEvent;
+
+if (SpeechGrammarList) {
   var SpeechGrammarList = SpeechGrammarList;
-  var SpeechRecognitionEvent = SpeechRecognitionEvent;
   const grammarArray = ['next', 'back', 'repeat']
   const grammar = `#JSGF V1.0; grammar commandWords; public <commandWord> = ${grammarArray.join(' | ')} ;`;
-  const recognition = new SpeechRecognition();
   const speechRecognitionList = new SpeechGrammarList();
   speechRecognitionList.addFromString(grammar, 1);
   recognition.grammars = speechRecognitionList;
-  recognition.continuous = true;
-  recognition.lang = "en-US";
-  recognition.interimResults = false;
-  recognition.maxAlternatives = 1;
 }
-else {
-  var SpeechRecognition = window.webkitSpeechRecognition;
-  var SpeechGrammarList = window.webkitSpeechGrammarList;
-  var SpeechRecognitionEvent = window.webkitSpeechRecognitionEvent;
-  // const grammarArray = ['next', 'back', 'repeat']
-  // const grammar = `#JSGF V1.0; grammar commandWords; public <commandWord> = ${grammarArray.join(' | ')} ;`;
-  const recognition = new webkitSpeechRecognition();
-  // const speechRecognitionList = new webkitSpeechGrammarList();
-  // speechRecognitionList.addFromString(grammar, 1);
-  // recognition.grammars = speechRecognitionList;
-  recognition.continuous = true;
-  recognition.lang = "en-US";
-  recognition.interimResults = false;
-  recognition.maxAlternatives = 1;
-}
+
+var SpeechRecognition = SpeechRecognition;
+var SpeechRecognitionEvent = SpeechRecognitionEvent;
+const recognition = new SpeechRecognition();
+
+recognition.continuous = true;
+recognition.lang = "en-US";
+recognition.interimResults = false;
+recognition.maxAlternatives = 1;
+
 var columnPreview = document.getElementsByClassName('columnPreview');
 var currentInstruction = 0;
 var recipeList;
