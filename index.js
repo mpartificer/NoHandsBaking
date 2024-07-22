@@ -2,74 +2,72 @@ const footer = document.getElementById('footer');
 const wrapper = document.getElementById('wrapper');
 const exitAboutUs = document.getElementById('exitAboutUs');
 const backToResults = document.getElementById('backToResults');
-const homeButton = document.getElementById('homeButton');
+// const homeButton = document.getElementById('homeButton');
 const searchInput = document.getElementById('webpage');
-const settingsButton = document.getElementById('settingsButton');
-const ingredientReminderImage = document.getElementById('ingredientReminderImage');
-const ingredientInsert = document.getElementById('ingredientInsert');
-const ingredientReminderPanel = document.getElementById('ingredientReminderPanel');
-const exitIngRemPanel = document.getElementById('exitIngRemPanel');
-const backToMise = document.getElementById('backToMise');
+// const settingsButton = document.getElementById('settingsButton');
+// const ingredientReminderImage = document.getElementById('ingredientReminderImage');
+// const ingredientInsert = document.getElementById('ingredientInsert');
+// const ingredientReminderPanel = document.getElementById('ingredientReminderPanel');
+// const exitIngRemPanel = document.getElementById('exitIngRemPanel');
+// const backToMise = document.getElementById('backToMise');
 const searchTerm = document.getElementById('searchTerm');
 const buttonLink = document.getElementById('letsGoButton');
-const recipeTitle = document.getElementById('recipeTitle');
-const exitInfoPanel = document.getElementById('exitInfoPanel');
-const miseEnPlaceSet = document.getElementById('lockedAndLoadedButton');
-const miseEnPlaceText = document.getElementById('miseEnPlace');
-const exitMisePanel = document.getElementById('exitMisePanel');
+// const recipeTitle = document.getElementById('recipeTitle');
+// const exitInfoPanel = document.getElementById('exitInfoPanel');
+// const miseEnPlaceSet = document.getElementById('lockedAndLoadedButton');
+// const miseEnPlaceText = document.getElementById('miseEnPlace');
+// const exitMisePanel = document.getElementById('exitMisePanel');
 const recipeSelector = document.getElementById('recipeSelector');
-const enterInstructionMode = document.getElementById('enterInstructionMode');
-const instructions = document.getElementById('instructions');
+// const instructions = document.getElementById('instructions');
 const recipeSelectionScreen = document.getElementById('recipeSelectionScreen');
-const informationPanel = document.getElementById('informationPanel');
-const recipePreview = document.getElementById('recipePreview');
-const imagePreview = document.getElementById('imagePreview');
-const ingredientsPreview = document.getElementById('ingredientsPreview');
-const instructionsPreview = document.getElementById('instructionsPreview');
-const instructionsText = document.getElementById('instructionsText');
-const aboutUsButton = document.getElementById('aboutUsButton');
-const aboutUs = document.getElementById('aboutUs')
-const sayMore = document.getElementById('sayMore');
-const ingredients = document.getElementById('ingredients');
+// const informationPanel = document.getElementById('informationPanel');
+// const recipePreview = document.getElementById('recipePreview');
+// const imagePreview = document.getElementById('imagePreview');
+// const ingredientsPreview = document.getElementById('ingredientsPreview');
+// const instructionsPreview = document.getElementById('instructionsPreview');
+// const instructionsText = document.getElementById('instructionsText');
+// const aboutUsButton = document.getElementById('aboutUsButton');
+// const aboutUs = document.getElementById('aboutUs')
+// const sayMore = document.getElementById('sayMore');
+// const ingredients = document.getElementById('ingredients');
 const previousPage = document.getElementById('previousPage');
 const nextPage = document.getElementById('nextPage');
-const selectRecipe = document.getElementById('selectRecipe');
-const readTest = document.getElementById('readTest');
-const previousStep = document.getElementById('previousStep');
-const repeatStep = document.getElementById('repeatStep');
-const nextStep = document.getElementById('nextStep');
-const muteOration = document.getElementById('muteOration');
-const pauseMicrophone = document.getElementById('pauseMicrophone');
+// const selectRecipe = document.getElementById('selectRecipe');
+// const previousStep = document.getElementById('previousStep');
+// const repeatStep = document.getElementById('repeatStep');
+// const nextStep = document.getElementById('nextStep');
+// const muteOration = document.getElementById('muteOration');
+// const pauseMicrophone = document.getElementById('pauseMicrophone');
 const errorPanel = document.getElementById('errorPanel');
 const recipePreviewTitle = document.getElementById('recipePreviewTitle');
 const spoonacularKey = "3c5ec8b2939641a99e28c6023598b2d4";
-const synth = window.speechSynthesis;
-var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
-var SpeechGrammarList = SpeechGrammarList || window.webkitSpeechGrammarList
-var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
-var columnPreview = document.getElementsByClassName('columnPreview');
-var currentInstruction = 0;
+// const synth = window.speechSynthesis;
+// var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
+// var SpeechGrammarList = SpeechGrammarList || window.webkitSpeechGrammarList
+// var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
+// var columnPreview = document.getElementsByClassName('columnPreview');
+// var currentInstruction = 0;
 var recipeList;
-var synthVolume = 1;
-var microphoneBox = 0;
-var backMicControl = 0;
-var stepCount;
-var voice;
+// var synthVolume = 1;
+// var microphoneBox = 0;
+// var backMicControl = 0;
+// var stepCount;
+// var voice;
 var offset;
 var pageNumber;
 var totalPages;
 var i;
 
-const grammarArray = ['next', 'back', 'repeat']
-const grammar = `#JSGF V1.0; grammar commandWords; public <commandWord> = ${grammarArray.join(' | ')} ;`;
-const recognition = new SpeechRecognition();
-const speechRecognitionList = new SpeechGrammarList();
-speechRecognitionList.addFromString(grammar, 1);
-recognition.grammars = speechRecognitionList;
-recognition.continuous = true;
-recognition.lang = "en-US";
-recognition.interimResults = false;
-recognition.maxAlternatives = 1;
+// const grammarArray = ['next', 'back', 'repeat']
+// const grammar = `#JSGF V1.0; grammar commandWords; public <commandWord> = ${grammarArray.join(' | ')} ;`;
+// const recognition = new SpeechRecognition();
+// const speechRecognitionList = new SpeechGrammarList();
+// speechRecognitionList.addFromString(grammar, 1);
+// recognition.grammars = speechRecognitionList;
+// recognition.continuous = true;
+// recognition.lang = "en-US";
+// recognition.interimResults = false;
+// recognition.maxAlternatives = 1;
 
 
 // recognition.onresult = async (event) => {
@@ -419,7 +417,7 @@ async function searchingIsHappening() {
   if (typeof searchInput.value == "string" && searchInput.value.trim()){
     offset = 0;
     pageNumber = 1;
-    document.body.style.cursor='wait';
+    // document.body.style.cursor='wait';
     previousPage.disabled = true;
 
     console.log('hello about to retrieve')
@@ -454,10 +452,10 @@ async function searchingIsHappening() {
 
     recipeSelector.style.visibility = 'hidden';
     recipeSelector.style.display = 'none';
-    document.body.style.cursor='pointer';
+    // document.body.style.cursor='pointer';
   }
   else {
-    document.body.style.cursor='wait';
+    // document.body.style.cursor='wait';
 
     console.log('hello about to retrieve no input value tho')
 
@@ -474,7 +472,7 @@ async function searchingIsHappening() {
 
     recipeSelector.style.visibility = 'hidden';
     recipeSelector.style.display = 'none';
-    document.body.style.cursor='pointer';
+    // document.body.style.cursor='pointer';
   }
 }
 
