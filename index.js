@@ -42,9 +42,19 @@ const errorPanel = document.getElementById('errorPanel');
 const recipePreviewTitle = document.getElementById('recipePreviewTitle');
 const spoonacularKey = "3c5ec8b2939641a99e28c6023598b2d4";
 const synth = window.speechSynthesis;
-var SpeechRecognition = SpeechRecognition || window.webkitSpeechRecognition
-var SpeechGrammarList = SpeechGrammarList || window.webkitSpeechGrammarList;
-var SpeechRecognitionEvent = SpeechRecognitionEvent || window.webkitSpeechRecognitionEvent;
+// var SpeechRecognition = SpeechRecognition || window.webkitSpeechRecognition
+// var SpeechGrammarList = SpeechGrammarList || window.webkitSpeechGrammarList;
+// var SpeechRecognitionEvent = SpeechRecognitionEvent || window.webkitSpeechRecognitionEvent;
+if (!('webkitSpeechRecognition' in window)) {
+  var SpeechRecognition = SpeechRecognition;
+  var SpeechGrammarList = SpeechGrammarList;
+  var SpeechRecognitionEvent = SpeechRecognitionEvent;
+}
+else {
+  var SpeechRecognition = window.webkitSpeechRecognition
+  var SpeechGrammarList = window.webkitSpeechGrammarList;
+  var SpeechRecognitionEvent = window.webkitSpeechRecognitionEvent;
+}
 var columnPreview = document.getElementsByClassName('columnPreview');
 var currentInstruction = 0;
 var recipeList;
