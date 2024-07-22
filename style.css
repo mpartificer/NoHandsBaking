@@ -794,7 +794,7 @@ input:checked + .slider:before {
   }
 
   .instructions {
-    max-height: 75vh;
+    max-height: 65vh;
   }
 
   .instructionsText {

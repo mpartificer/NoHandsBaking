@@ -45,6 +45,9 @@ const synth = window.speechSynthesis;
 var SpeechRecognition = SpeechRecognition || window.webkitSpeechRecognition
 var SpeechGrammarList = SpeechGrammarList || window.webkitSpeechGrammarList;
 var SpeechRecognitionEvent = SpeechRecognitionEvent || window.webkitSpeechRecognitionEvent;
+var SpeechRecognition = SpeechRecognition;
+var SpeechRecognitionEvent = SpeechRecognitionEvent;
+const recognition = new SpeechRecognition();
 
 if (SpeechGrammarList) {
   var SpeechGrammarList = SpeechGrammarList;
@@ -54,10 +57,6 @@ if (SpeechGrammarList) {
   speechRecognitionList.addFromString(grammar, 1);
   recognition.grammars = speechRecognitionList;
 }
-
-var SpeechRecognition = SpeechRecognition;
-var SpeechRecognitionEvent = SpeechRecognitionEvent;
-const recognition = new SpeechRecognition();
 
 recognition.continuous = true;
 recognition.lang = "en-US";
