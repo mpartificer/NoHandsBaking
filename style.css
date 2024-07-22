@@ -451,7 +451,6 @@ h3 {
 .instructionListManager {
   color:black;
   overflow:hidden;
-  max-height: 55vh;
 }
 
 .instructionsText {
@@ -770,6 +769,10 @@ input:checked + .slider:before {
 @media screen and (max-width: 600px) {
   .column {
     width: 100%;
+  }
+
+  .sayMore {
+    width: 90%;
   }
 
   .backButtonAlign {
