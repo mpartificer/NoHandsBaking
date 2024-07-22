@@ -42,12 +42,6 @@ const errorPanel = document.getElementById('errorPanel');
 const recipePreviewTitle = document.getElementById('recipePreviewTitle');
 const spoonacularKey = "3c5ec8b2939641a99e28c6023598b2d4";
 const synth = window.speechSynthesis;
-var SpeechRecognition = webkitSpeechRecognition
-var SpeechGrammarList = window.webkitSpeechGrammarList;
-var SpeechRecognitionEvent = webkitSpeechRecognitionEvent;
-// var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
-// var SpeechGrammarList = SpeechGrammarList || window.webkitSpeechGrammarList;
-// var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent;
 var columnPreview = document.getElementsByClassName('columnPreview');
 var currentInstruction = 0;
 var recipeList;
@@ -61,6 +55,16 @@ var pageNumber;
 var totalPages;
 var i;
 
+if (!('webkitSpeechRecognition' in window)) {
+  var SpeechRecognition = SpeechRecognition;
+  var SpeechGrammarList = SpeechGrammarList;
+  var SpeechRecognitionEvent = SpeechRecognitionEvent;
+}
+else {
+  var SpeechRecognition = webkitSpeechRecognition
+  var SpeechGrammarList = window.webkitSpeechGrammarList;
+  var SpeechRecognitionEvent = webkitSpeechRecognitionEvent;
+}
 // const grammarArray = ['next', 'back', 'repeat']
 // const grammar = `#JSGF V1.0; grammar commandWords; public <commandWord> = ${grammarArray.join(' | ')} ;`;
 // const recognition = new SpeechRecognition();
