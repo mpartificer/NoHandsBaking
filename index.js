@@ -49,11 +49,31 @@ if (!('webkitSpeechRecognition' in window)) {
   var SpeechRecognition = SpeechRecognition;
   var SpeechGrammarList = SpeechGrammarList;
   var SpeechRecognitionEvent = SpeechRecognitionEvent;
+  const grammarArray = ['next', 'back', 'repeat']
+  const grammar = `#JSGF V1.0; grammar commandWords; public <commandWord> = ${grammarArray.join(' | ')} ;`;
+  const recognition = new SpeechRecognition();
+  const speechRecognitionList = new SpeechGrammarList();
+  speechRecognitionList.addFromString(grammar, 1);
+  recognition.grammars = speechRecognitionList;
+  recognition.continuous = true;
+  recognition.lang = "en-US";
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
 }
 else {
   var SpeechRecognition = window.webkitSpeechRecognition
   var SpeechGrammarList = window.webkitSpeechGrammarList;
   var SpeechRecognitionEvent = window.webkitSpeechRecognitionEvent;
+  const grammarArray = ['next', 'back', 'repeat']
+  const grammar = `#JSGF V1.0; grammar commandWords; public <commandWord> = ${grammarArray.join(' | ')} ;`;
+  const recognition = new SpeechRecognition();
+  const speechRecognitionList = new SpeechGrammarList();
+  speechRecognitionList.addFromString(grammar, 1);
+  recognition.grammars = speechRecognitionList;
+  recognition.continuous = true;
+  recognition.lang = "en-US";
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
 }
 var columnPreview = document.getElementsByClassName('columnPreview');
 var currentInstruction = 0;
@@ -69,16 +89,7 @@ var totalPages;
 var i;
 
 
-// const grammarArray = ['next', 'back', 'repeat']
-// const grammar = `#JSGF V1.0; grammar commandWords; public <commandWord> = ${grammarArray.join(' | ')} ;`;
-// const recognition = new SpeechRecognition();
-// const speechRecognitionList = new SpeechGrammarList();
-// speechRecognitionList.addFromString(grammar, 1);
-// recognition.grammars = speechRecognitionList;
-// recognition.continuous = true;
-// recognition.lang = "en-US";
-// recognition.interimResults = false;
-// recognition.maxAlternatives = 1;
+
 
 
 // recognition.onresult = async (event) => {
