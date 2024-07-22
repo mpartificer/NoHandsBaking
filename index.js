@@ -625,7 +625,6 @@ async function recipeWaiter(recipesList) {
 }
 
 buttonLink.addEventListener('click', async () => {
-  footer.style.backgroundColor = 'blue'
   searchingIsHappening();
 })
 
