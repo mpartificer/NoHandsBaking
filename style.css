@@ -885,7 +885,7 @@ input:checked + .slider:before {
   .recipePreview {
     top:15%;
     overflow: scroll !important;
-    max-height: 75vh;
+    max-height: 70vh;
   }
 
   .recipePreviewVisible {
