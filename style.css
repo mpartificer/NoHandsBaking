@@ -793,6 +793,11 @@ input:checked + .slider:before {
     flex:1;
   }
 
+  .wrapper {
+    overflow:visible;
+    max-height: none;
+  }
+
   .instructionExitsButtons {
     font-size: 14px;
   }
@@ -837,8 +842,8 @@ input:checked + .slider:before {
     overflow: hidden;
   }
 
-  .wrapper{
-    max-height:55vh;
+  .recipeSelectionScreen {
+    max-height:60vh;
     overflow: scroll;
   }
 
