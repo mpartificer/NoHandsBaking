@@ -376,7 +376,7 @@ body {
 }
 
 .recipeSelectionScreen {
-  padding-top:15px;
+  margin-top:15px;
   white-space: nowrap;
   display: block;
   width: 100%;
