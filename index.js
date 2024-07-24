@@ -656,7 +656,7 @@ nextPage.addEventListener('click', async () => {
   }
   await recipeWaiter(recipeList.results);
   document.getElementById('selectorPageTracker').innerHTML = `Page ${pageNumber} of ${totalPages}`
-  recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible'); 
+  recipeSelectionScreen.style.visibility = 'visible'; 
 })
 
 previousPage.addEventListener('click', async () => {
@@ -713,7 +713,7 @@ selectRecipe.addEventListener('click', async () => {
 })
 
 aboutUsButton.addEventListener('click', () => {
-  sayMore.classList.add('sayMoreVisible');
+  sayMore.setAttribute('class', 'sayMoreVisible');
   footer.classList.add('aboutUsVisible');
   exitAboutUs.setAttribute('class', 'aboutUsExitVisible')
 })
@@ -721,7 +721,8 @@ aboutUsButton.addEventListener('click', () => {
 exitAboutUs.addEventListener('click', () => {
   footer.classList.remove('aboutUsVisible');
   footer.classList.add('goAwayAbout');
-  exitAboutUs.setAttribute('class', 'aboutUsExitAnimation')
+  exitAboutUs.setAttribute('class', 'aboutUsExitAnimation');
+  sayMore.setAttribute('class', 'sayMore');
   
   setTimeout(function(){
     footer.classList.remove('goAwayAbout');
