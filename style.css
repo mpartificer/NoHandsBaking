@@ -227,7 +227,7 @@ body {
     text-align: center;
     margin: 0px;
     min-height: 75vh;
-    overflow: hidden;
+    overflow: hidden !important;
     display: flex;
     flex-direction: column;
     color: #192F01;
