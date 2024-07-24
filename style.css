@@ -309,12 +309,14 @@ body {
 }
 
 .sayMore {
+  display: none;
   visibility: hidden;
   position: absolute;
   animation: opacityReverse 2s linear reverse;
 }
 
 .sayMoreVisible {
+  display:inherit;
   visibility: visible;
   width: 95%;
   animation: opacity 2s linear reverse;

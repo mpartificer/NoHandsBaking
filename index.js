@@ -714,7 +714,6 @@ selectRecipe.addEventListener('click', async () => {
 
 aboutUsButton.addEventListener('click', () => {
   sayMore.setAttribute('class', 'sayMoreVisible');
-  sayMore.style.display = 'inherit';
   footer.classList.add('aboutUsVisible');
   exitAboutUs.setAttribute('class', 'aboutUsExitVisible')
 })
@@ -724,7 +723,6 @@ exitAboutUs.addEventListener('click', () => {
   footer.classList.add('goAwayAbout');
   exitAboutUs.setAttribute('class', 'aboutUsExitAnimation');
   sayMore.setAttribute('class', 'sayMore');
-  sayMore.style.display = 'block';
   
   setTimeout(function(){
     footer.classList.remove('goAwayAbout');
