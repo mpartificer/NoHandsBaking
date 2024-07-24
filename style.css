@@ -1041,13 +1041,13 @@ input:checked + .slider:before {
     height:92px;
   }
   100%{
-    height:300px;
+    height:350px;
   }
 }
 
 @keyframes smooth-disappear-mobile {
   0% {
-    height: 300px;
+    height: 350px;
   }
   100% {
     height: 92px;
