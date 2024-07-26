@@ -845,7 +845,7 @@ input:checked + .slider:before {
   }
 
   .recipeSelectionScreen {
-    max-height:60vh;
+    max-height:65vh;
     overflow: scroll;
   }
 
@@ -880,8 +880,8 @@ input:checked + .slider:before {
 
   body {
     font-size:15px;
-    min-height:85vh;
-    max-height:85vh;
+    min-height:90vh;
+    max-height:90vh;
     cursor: pointer;
   }
 
@@ -909,7 +909,7 @@ input:checked + .slider:before {
 
   .aboutUs {
     margin-top:10px;
-    margin-bottom: 0px;
+    margin-bottom: 20px;
   }
 
   .aboutUsButton {
