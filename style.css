@@ -318,7 +318,7 @@ body {
 .sayMoreVisible {
   display:inherit;
   visibility: visible;
-  width: 95%;
+  width: 100%;
   animation: opacity 2s linear reverse;
 }
 
