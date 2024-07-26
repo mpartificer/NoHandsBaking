@@ -845,7 +845,7 @@ input:checked + .slider:before {
   }
 
   .recipeSelectionScreen {
-    max-height:65vh;
+    max-height:60vh;
     overflow: scroll;
   }
 
