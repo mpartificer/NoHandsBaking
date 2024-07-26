@@ -880,8 +880,8 @@ input:checked + .slider:before {
 
   body {
     font-size:15px;
-    min-height:90vh;
-    max-height:90vh;
+    min-height:85vh;
+    max-height:85vh;
     cursor: pointer;
   }
 
