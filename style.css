@@ -909,7 +909,7 @@ input:checked + .slider:before {
 
   .aboutUs {
     margin-top:10px;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
   }
 
   .aboutUsButton {
