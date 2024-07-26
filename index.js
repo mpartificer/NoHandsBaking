@@ -415,7 +415,7 @@ async function ingredientArray() {
   const ingredientsList = parsedIngredients;
   var ingredientHTML;
   ingredientHTML = '';
-  ingredientHTML = '<ul class="instructionListManager"><b>Ingredients</b>';
+  ingredientHTML = '<ul class="ingredientListManager"><b>Ingredients</b>';
     for (i = 0; i < ingredientsList.length; i++) {
       ingredientHTML += '<li>' + ingredientsList[i].original + '</li>'; 
     }

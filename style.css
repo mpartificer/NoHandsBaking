@@ -455,6 +455,25 @@ h3 {
   overflow:hidden;
 }
 
+.innerDiv {
+  height: 100%;
+  max-height:65vh;
+  overflow:hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.ingredientListManager{
+  color:black;
+  overflow:scroll;
+  display:flex;
+}
+
+.ingredientInsert {
+  overflow:scroll;
+  height: 50%;
+}
+
 .instructionsText {
   color: white !important;
   max-height: 65vh;
@@ -574,6 +593,7 @@ input:checked + .slider:before {
   margin-left: 25%;
   margin-right: 25%;
   margin-top:15%;
+  margin-bottom: 15%;
   visibility: hidden;
   font-size: large;
   justify-content: center;
@@ -583,7 +603,7 @@ input:checked + .slider:before {
   position:fixed;
   z-index: 1;
   padding-bottom: 3%;
-  overflow: scroll;
+  overflow: hidden;
   max-height:65vh;
 }
 
@@ -610,8 +630,9 @@ input:checked + .slider:before {
   color: white;
   font-size: large;
   overflow:hidden;
-  position:static;
+  position:relative;
   z-index: 5;
+  top:0;
 }
 
 .imggg {
@@ -805,7 +826,7 @@ input:checked + .slider:before {
   }
 
   .instructions {
-    max-height: 65vh;
+    max-height: 60vh;
   }
 
   .instructionsText {
@@ -892,7 +913,7 @@ input:checked + .slider:before {
   .recipePreview {
     top:15%;
     overflow: scroll !important;
-    max-height: 65vh;
+    max-height: 60vh;
   }
 
   .recipePreviewVisible {
@@ -901,6 +922,7 @@ input:checked + .slider:before {
   
   .informationPanel {
     width: 60%;
+
     margin-left: 20%;
     margin-right: 20%;
     margin-top: 35%;
