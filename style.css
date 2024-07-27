@@ -692,10 +692,10 @@ input:checked + .slider:before {
 
 @keyframes currentInstructionAnimMobile {
   from {
-    font-size:20px;
+    font-size:15px;
   }
   to {
-    font-size: 30px;
+    font-size: 20px;
   }
 }
 
@@ -710,10 +710,10 @@ input:checked + .slider:before {
 
 @keyframes nextInstructionAnimMobile {
   from {
-    font-size: 15px;
+    font-size: 10px;
   }
   to {
-    font-size: 20px;
+    font-size: 15px;
   }
 }
 
@@ -728,10 +728,10 @@ input:checked + .slider:before {
 
 @keyframes previousInstructionAnimMobile {
   from {
-    font-size: 30px;
+    font-size: 20px;
   }
   to {
-    font-size: 20px;
+    font-size: 15px;
   }
 }
 
@@ -746,10 +746,10 @@ input:checked + .slider:before {
 
 @keyframes leaveInstructionAnimMobile {
   from {
-    font-size: 20px;
+    font-size: 15px;
   }
   to {
-    font-size: 15px;
+    font-size: 10px;
   }
 }
 
@@ -831,6 +831,7 @@ input:checked + .slider:before {
 
   .instructionsText {
     max-height: 55vh;
+    font-size: 10px;
   }
 
   .recipeTitle {
