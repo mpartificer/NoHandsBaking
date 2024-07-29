@@ -97,17 +97,12 @@ recognition.onresult = async (event) => {
   else if (commandWord == "next" && confidence > 0.5) {
     nextFunction();
   }
-  else {
-    console.log('Please try command again')
-    console.log(commandWord)
-  }
 }
 };
 
 recognition.addEventListener('end', () => {
   
   if (microphoneBox == 0 && backMicControl == 0) {
-    console.log('iamonend', `${microphoneBox}`);
     recognition.start();
   }
 
@@ -183,7 +178,6 @@ function nextFunction() {
   }
 
   if (exitingInstructionLoop) {
-    console.log(exitingInstructionLoop);
     exitingInstructionLoop.classList.remove('previousInstruction');
     exitingInstructionLoop.classList.add('exitInstructionFront');
   }
@@ -265,13 +259,6 @@ async function retrieveRandomRecipes() {
     
     recipeList = await findMyRecipe.json();
   
-    const isItOk = findMyRecipe.ok;
-    const whatIsStatus = findMyRecipe.status;
-  
-    console.log('isItOk', isItOk)
-    console.log('whatIsStatus', whatIsStatus)
-  
-  
     if (!findMyRecipe.ok) {
       const responseError = {
         type: 'Error',
@@ -288,9 +275,7 @@ async function retrieveRandomRecipes() {
     return recipeList;
   }
   catch (err) {
-    console.log('here is the error!!', err, typeof err)
     if (err.code == "402") {
-      console.log('it is a 402!!', err)
       errorPanel.innerHTML = "";
       errorPanel.innerHTML = "No Hands Baking has exhausted its Spoonacular calls for the day. Try again after 9:00 p.m. UTC.";
       errorPanel.style.visibility = 'visible';
@@ -311,10 +296,8 @@ async function retrieveRandomRecipes() {
 }
 
 async function retrieveRecipes(offset) {
-  console.log('hello retrieve')
   try {
   const searchValue = webpage.value;
-  console.log(searchValue);
 
   searchTerm.innerHTML = "";
   searchTerm.innerHTML = searchValue;
@@ -326,13 +309,6 @@ async function retrieveRecipes(offset) {
   }});
   
   recipeList = await findMyRecipe.json();
-
-  const isItOk = findMyRecipe.ok;
-  const whatIsStatus = findMyRecipe.status;
-
-  console.log('isItOk', isItOk)
-  console.log('whatIsStatus', whatIsStatus)
-
 
   if (!findMyRecipe.ok) {
     const responseError = {
@@ -350,9 +326,7 @@ async function retrieveRecipes(offset) {
   return recipeList;
 }
 catch (err) {
-  console.log('here is the error!!', err, typeof err)
   if (err.code == "402") {
-    console.log('it is a 402!!', err)
     errorPanel.innerHTML = "";
     errorPanel.innerHTML = "No Hands Baking has exhausted its Spoonacular calls for the day. Try again after 9:00 p.m. UTC.";
     errorPanel.style.visibility = 'visible';
@@ -428,10 +402,8 @@ async function searchingIsHappening() {
   if (typeof searchInput.value == "string" && searchInput.value.trim()){
     offset = 0;
     pageNumber = 1;
-    // document.body.style.cursor='wait';
+    document.body.style.cursor='wait';
     previousPage.disabled = true;
-
-    console.log('hello about to retrieve')
 
     recipeList = await retrieveRecipes(offset);
 
@@ -463,16 +435,13 @@ async function searchingIsHappening() {
 
     recipeSelector.style.visibility = 'hidden';
     recipeSelector.style.display = 'none';
-    // document.body.style.cursor='pointer';
+    document.body.style.cursor='pointer';
   }
   else {
-    // document.body.style.cursor='wait';
-
-    console.log('hello about to retrieve no input value tho')
+    document.body.style.cursor='wait';
 
     recipeList = await retrieveRandomRecipes();
 
-    console.log(recipeList.recipes);
     previousPage.disabled= true;
     nextPage.disabled = true;
     await recipeWaiter(recipeList.recipes);
@@ -483,7 +452,7 @@ async function searchingIsHappening() {
 
     recipeSelector.style.visibility = 'hidden';
     recipeSelector.style.display = 'none';
-    // document.body.style.cursor='pointer';
+    document.body.style.cursor='pointer';
   }
 }
 
@@ -541,7 +510,6 @@ async function setRecipe(recipeID) {
   }});
   
   const findMyRecipe = await selectMyRecipe.json();
-  console.log(findMyRecipe)
 
   if (sessionStorage.getItem('storedRecipeTitle') != undefined) {
     sessionStorage.removeItem('storedRecipeTitle');
@@ -591,7 +559,6 @@ async function buildSelectionScreen(i, id) {
 
 async function recipeWaiter(recipesList) {
   wrapper.innerHTML = "";
-  console.log(recipesList);
   for (i = 0; i < recipesList.length; i++) {
     if (sessionStorage.getItem(`Title${i}`) != null) {
       sessionStorage.removeItem(`Title${i}`);
@@ -697,7 +664,10 @@ miseEnPlaceSet.addEventListener('click', async () => {
   recipeTitle.innerHTML = parsedRecipeTitle;
   previousStep.disabled = true;
   setAnimation.classList.add('currentInstruction');
-  setNextAnimation.setAttribute('class', 'nextInstruction');
+  if (setNextAnimation) {
+    setNextAnimation.setAttribute('class', 'nextInstruction');
+  }
+
   instructions.style.visibility = 'visible';
   recipePreview.style.visibility = 'hidden';
   miseEnPlaceText.style.visibility = 'hidden';
@@ -827,7 +797,6 @@ async function previewListener(id){
 function checkVoice () {
   if (muteOration.checked == true){
       synthVolume = 0;
-      console.log(synthVolume);
       synth.cancel();
     } else {
       synthVolume = 1;
@@ -835,7 +804,6 @@ function checkVoice () {
 }
 
 function checkMicrophone() {
-  console.log("i'm here microphone", `${pauseMicrophone.checked}`);
   if (pauseMicrophone.checked == true){
       microphoneBox = 1;
     } else {
