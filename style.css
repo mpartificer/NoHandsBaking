@@ -165,10 +165,39 @@ ul {
   color: rgb(216, 216, 216);
 }
 
+.bigSearchButton {
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 30px;
+  border-style:double;
+  border-color:#DED369;
+  border-width: 5px;
+}
+
+.bigSearchButton:hover {
+  font-size: 20px;
+  color:#E0475B;
+  padding: 10px;
+  border-radius: 30px;
+  border-style:double;
+  border-color:#DED369;
+  border-width: 5px;
+  background-color: #192F01;
+}
+
 .enterText {
   font-family: 'Futura';
-  font-size:15px;
-  width: 200px;
+  font-size:20px;
+  width: 300px;
+  padding: 10px;
+  border-radius: 30px;
+  border-style:double;
+  border-color:#DED369;
+  border-width: 5px;
+}
+
+.searchTermParent {
+  padding-bottom: 5px;
 }
 
 button {
@@ -204,7 +233,7 @@ button:disabled {
 
 .nextButtonAlign {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   margin: 20px;
 }
 
@@ -329,7 +358,7 @@ body {
   margin:2px;
   overflow: hidden;
   text-wrap: wrap;
-  width: 32%;
+  width: 49%;
   border: solid 2px #E0475B;
   scroll-snap-align: center;
 
@@ -342,10 +371,9 @@ body {
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  width: 32%;
+  width: 49%;
   margin:2px;
   row-gap: 20px;
-  overflow: -moz-scrollbars-vertical;
   overflow-y: none;
   text-wrap:wrap;
   scroll-snap-align: center;
@@ -354,7 +382,7 @@ body {
 .rowPreview {
   width: 100%;
   overflow: scroll;
-  max-height: 65vh;
+  max-height: 62vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -1086,14 +1114,4 @@ input:checked + .slider:before {
   100% {
     transform: scale(1.05)
   }
-}
-
-.columnPreview::-webkit-scrollbar {
-  -webkit-appearance: none;
-  width: 7px;
-}
-.columnPreview::-webkit-scrollbar-thumb {
-  border-radius: 4px;
-  background-color: rgba(0, 0, 0, .5);
-  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
 }

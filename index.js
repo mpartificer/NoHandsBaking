@@ -14,9 +14,6 @@ const searchTerm = document.getElementById('searchTerm');
 const buttonLink = document.getElementById('letsGoButton');
 const recipeTitle = document.getElementById('recipeTitle');
 const exitInfoPanel = document.getElementById('exitInfoPanel');
-const miseEnPlaceSet = document.getElementById('lockedAndLoadedButton');
-const miseEnPlaceText = document.getElementById('miseEnPlace');
-const exitMisePanel = document.getElementById('exitMisePanel');
 const recipeSelector = document.getElementById('recipeSelector');
 const instructions = document.getElementById('instructions');
 const recipeSelectionScreen = document.getElementById('recipeSelectionScreen');
@@ -24,7 +21,6 @@ const informationPanel = document.getElementById('informationPanel');
 const recipePreview = document.getElementById('recipePreview');
 const imagePreview = document.getElementById('imagePreview');
 const ingredientsPreview = document.getElementById('ingredientsPreview');
-const instructionsPreview = document.getElementById('instructionsPreview');
 const instructionsText = document.getElementById('instructionsText');
 const aboutUsButton = document.getElementById('aboutUsButton');
 const aboutUs = document.getElementById('aboutUs')
@@ -346,24 +342,6 @@ catch (err) {
 }
 }
 
-async function manageInstructionsPreview(parsedInstructions) {
-
-  var instructionInsert = "";
-  instructionInsert += '<ul class="instructionListManager"><b>Instructions</b>';
-
-  for (i = 0; i < parsedInstructions.length; i++) {
-    instructionInsert += `<li id="instructionList${i}" class="">`;
-    instructionInsert += parsedInstructions[i];
-    instructionInsert += `</li>`;
-  }
-
-  instructionInsert += `</ul>`;
-
-  stepCount = parsedInstructions.length;
-
-  return instructionInsert;
-}
-
 
 async function manageInstructions(parsedInstructions) {
   var instructionInsert = "";
@@ -435,7 +413,7 @@ async function searchingIsHappening() {
 
     recipeSelector.style.visibility = 'hidden';
     recipeSelector.style.display = 'none';
-    document.body.style.cursor='pointer';
+    document.body.style.cursor='auto';
   }
   else {
     document.body.style.cursor='wait';
@@ -452,7 +430,7 @@ async function searchingIsHappening() {
 
     recipeSelector.style.visibility = 'hidden';
     recipeSelector.style.display = 'none';
-    document.body.style.cursor='pointer';
+    document.body.style.cursor='auto';
   }
 }
 
@@ -486,11 +464,6 @@ async function readMore() {
 
   var ingredientHTML = await ingredientArray();
   ingredientsPreview.innerHTML = ingredientHTML;
-
-  const storedInstructions = sessionStorage.getItem('storedRecipeInstructions');
-  const parsedInstructions = JSON.parse(storedInstructions);
-  var formattedInstructions = await manageInstructionsPreview(parsedInstructions);
-  instructionsPreview.innerHTML = formattedInstructions;
 }
 
 async function instructionLoad() {
@@ -651,7 +624,7 @@ previousPage.addEventListener('click', async () => {
   recipeSelectionScreen.setAttribute('class', 'recipeSelectionScreenVisible'); 
 })
 
-miseEnPlaceSet.addEventListener('click', async () => {
+selectRecipe.addEventListener('click', async () => {
   await instructionLoad();
   await setVoice();
   currentInstruction = 0;
@@ -670,16 +643,8 @@ miseEnPlaceSet.addEventListener('click', async () => {
 
   instructions.style.visibility = 'visible';
   recipePreview.style.visibility = 'hidden';
-  miseEnPlaceText.style.visibility = 'hidden';
-  exitMisePanel.style.visibility = 'hidden';
   informationPanel.style.visibility = 'visible';
   exitInfoPanel.style.visibility = 'visible';
-})
-
-
-selectRecipe.addEventListener('click', async () => {
-  miseEnPlaceText.style.visibility = 'visible';
-  exitMisePanel.style.visibility = 'visible';
 })
 
 aboutUsButton.addEventListener('click', () => {
@@ -704,8 +669,6 @@ backToResults.addEventListener('click', () => {
   recipePreview.style.visibility = "hidden";
   recipeSelectionScreen.style.visibility = "visible";
   recipeSelectionScreen.style.display = "block";
-  miseEnPlaceText.style.visibility = "hidden";
-  exitMisePanel.style.visibility = "hidden";
 })
 
 backToMise.addEventListener('click', () => {
@@ -722,8 +685,6 @@ backToMise.addEventListener('click', () => {
 
 homeButton.addEventListener('click', () => {
   instructions.style.visibility = "hidden";
-  miseEnPlaceText.style.visibility = "hidden";
-  exitMisePanel.style.visibility = "hidden";
   recipePreview.style.visibility = "hidden";
   recipeSelectionScreen.style.visibility = "hidden";
   recipeSelector.style.visibility = 'visible';
@@ -757,11 +718,6 @@ exitInfoPanel.addEventListener('click', () => {
   if (microphoneBox == 0) {
     recognition.start();
   }
-})
-
-exitMisePanel.addEventListener('click', () => {
-  miseEnPlaceText.style.visibility = "hidden";
-  exitMisePanel.style.visibility = "hidden";
 })
 
 settingsButton.addEventListener('click', () => {
