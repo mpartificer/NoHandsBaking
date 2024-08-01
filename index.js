@@ -527,7 +527,7 @@ var voices = synth.getVoices();
 async function buildSelectionScreen(i, id) {
   wrapper.innerHTML += `<div class="row" onclick="previewListener(${id})"><div class="column" value="">
   <div id="Recipe${i+1}" class="recipeSelectionTitle"></div>
-  </div><div class="cardImage" id="cardImage${i+1}"></div></div>`;
+  </div><div class="cardImageBox" id="cardImage${i+1}"></div></div>`;
 }
 
 async function recipeWaiter(recipesList) {
