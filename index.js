@@ -762,6 +762,7 @@ function checkVoice () {
 function checkMicrophone() {
   if (pauseMicrophone.checked == true){
       microphoneBox = 1;
+      recognition.stop();
     } else {
       microphoneBox = 0;
     }
