@@ -47,13 +47,12 @@
     <div id="errorPanel" class="informationPanel"></div>
 
     <div id="recipeSelector" class="opener"><br><br>
-        What are we baking today?
         <input type="text" id="webpage" class="enterText" placeholder="What do you want to bake?"> 
-        <button id="letsGoButton" type="button"> Search </button>
+        <button id="letsGoButton" type="button" class="bigSearchButton"> Search </button>
     </div>
 
     <div id="recipeSelectionScreen" class="recipeSelectionScreen">
-        Showing results for "<div id="searchTerm" class="searchTerm"></div>"
+        <div class="searchTermParent">Showing results for "<div id="searchTerm" class="searchTerm"></div>"</div>
         <div class="wrapper" id="wrapper">
         </div>
         <div class="alignPageInfo">
@@ -75,17 +74,10 @@
         <div class="rowPreview">
             <div class="imageColumn" id="imagePreview"></div>
             <div class="columnPreview" id="ingredientsPreview"></div>
-            <div class="columnPreview" id="instructionsPreview"></div>
         </div>
         <div class="nextButtonAlign">
-        <button id="selectRecipe">Let's Bake!</button> </div>
+        <button id="selectRecipe" class="bigSearchButton">Let's Bake!</button> </div>
         </div>
-    </div>
-
-    <div id = "miseEnPlace" class="informationPanel">
-        <button id="exitMisePanel" class="exitInfoPanel">x</button>
-        <h3>Prepare your Ingredients before moving on!</h3>
-        <button id="lockedAndLoadedButton" class="miseOrientationButtons">Go To Instructions</button>
     </div>
 
     <div id="informationPanel" class="informationPanel">
